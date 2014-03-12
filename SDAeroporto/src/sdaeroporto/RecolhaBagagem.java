@@ -6,16 +6,22 @@
 
 package sdaeroporto;
 
-import Estruturas.Bagagem;
+import Interfaces.RecolhaBagageiroInterface;
+import Interfaces.RecolhaPassageiroInterface;
+import java.util.HashMap;
+
+
 
 /**
  *
  * @author rafael
  */
-public class RecolhaBagagem extends Bagagem{
-
-    public RecolhaBagagem(int nMalas) {
-        super(nMalas);
+public class RecolhaBagagem implements RecolhaBagageiroInterface,RecolhaPassageiroInterface{
+    
+    HashMap<Integer,Integer> cam;
+    
+    public RecolhaBagagem() {
+    cam = new HashMap<>();  
     }
     
     /**
@@ -25,6 +31,7 @@ public class RecolhaBagagem extends Bagagem{
         * Invocador: Passageiro
      * @param bagID 
      */
+    @Override
     public synchronized void goCollectABag(int bagID)
     {
     
@@ -33,9 +40,10 @@ public class RecolhaBagagem extends Bagagem{
      * Invocador: Bagageiro
      * @param badID 
      */
-    public synchronized void carryItToAppropriateStore(int badID)
+    @Override
+    public synchronized int carryItToAppropriateStore(int badID)
     {
-        
+        return 0;
     }
     
     /**
@@ -43,6 +51,7 @@ public class RecolhaBagagem extends Bagagem{
      * precisam de reportar o acontecimento. Logging!
      * @param passageiroID 
      */
+    @Override
     public synchronized void reportMissingBags(int passageiroID)
     {
         

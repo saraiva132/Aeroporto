@@ -3,21 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estruturas;
+
+package Interfaces;
 
 /**
  *
  * @author rafael
  */
-public class Mala {
+public interface RecolhaPassageiroInterface {
+    
+    public void goCollectABag(int id);
+    
+    public void reportMissingBags(int passageiroID);
 
-    private final int ownerID;
-
-    public int getOwnerID() {
-        return ownerID;
-    }
-
-    public Mala(int id) {
-        this.ownerID = id;
-    }
 }

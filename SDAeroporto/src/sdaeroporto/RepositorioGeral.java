@@ -27,11 +27,11 @@ public class RepositorioGeral {
 
     public RepositorioGeral(int nPass) {
         PassageiroState = new int[nPass];
-        BagageiroState = Estados.WAITINGPLANE;
-        MotoristaState = Estados.PARKINGARRIVAL;
+        BagageiroState = AuxInfo.WAITINGPLANE;
+        MotoristaState = AuxInfo.PARKINGARRIVAL;
 
         for (int i = 0; i < nPass; i++) {
-            PassageiroState[i] = Estados.ZONADESEMBARQUE;
+            PassageiroState[i] = AuxInfo.ZONADESEMBARQUE;
         }
     }
 

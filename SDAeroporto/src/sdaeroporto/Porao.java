@@ -6,19 +6,35 @@
 
 package sdaeroporto;
 
-import Estruturas.Bagagem;
-import Estruturas.Mala;
+import static Estruturas.AuxInfo.passMax;
+import Interfaces.PoraoBagageiroInterface;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 /**
  *
  * @author rafael
  */
-public class Porao extends Bagagem {
+public class Porao implements PoraoBagageiroInterface {
 
+private int [] Malas;
+
+private int nMalas;
     
-public Porao(int nMalas)
+public Porao(ArrayList<Integer> malas,int nMalas)
 {
-    super(nMalas);
+    this.nMalas = nMalas;
+        Malas = new int[nMalas];
+        int index = 0;
+        for(int i=0;i<passMax;i++)
+        {
+            for(int j= 0; j<malas.get(passMax);j++)
+            {
+                Malas[index] = i;
+                index++;
+            }
+        }
 }
 
 /**
@@ -26,9 +42,16 @@ public Porao(int nMalas)
  * @param bagID
  * @return 
  */
-public synchronized boolean tryToCollectABag(int bagID)
+@Override
+public synchronized int tryToCollectABag()
 {
-    return true;
+    if (nMalas == 0)
+        return 0;
+    else
+    {
+        nMalas--;
+        return Malas[nMalas];
+    }
 }
 
 }

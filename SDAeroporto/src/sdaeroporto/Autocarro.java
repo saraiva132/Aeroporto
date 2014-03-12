@@ -6,26 +6,48 @@
 
 package sdaeroporto;
 
+import Interfaces.AutocarroMotoristaInterface;
+import Interfaces.AutocarroPassageiroInterface;
+
 /**
  *
  * @author rafael
  */
 
 
-public class Autocarro {
+public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
 
     private int nOcupantes;
-    private int lotação;
     private int [] passageirosID;
     
-    public Autocarro(int nPassageirosMax)
+    public Autocarro()
     {
-        this.lotação = nPassageirosMax;
+    }
+    
+        /**
+     * Passageiro entra no autocarro
+     * @param passageiroID 
+     */
+    @Override
+    public synchronized void enterTheBus(int passageiroID)
+    {
+        
+    }
+    
+    /**
+     * Passageiro sai do autocarro
+     * @param passageiroID 
+     */
+    @Override
+    public synchronized void leaveTheBus(int passageiroID)
+    {
+        
     }
     
     /**
      * Motorista conduz de volta
      */
+    @Override
     public void goToDepartureTerminal()
     {
         
@@ -34,6 +56,7 @@ public class Autocarro {
     /**
      * Motorista leva os passageiros para o proximo aeroporto
      */
+    @Override
     public void goToArrivalTerminal()
     {
         
@@ -42,6 +65,7 @@ public class Autocarro {
     /**
      * Motorista estaciona o autocarro
      */
+    @Override
     public void parkTheBus()
     {
         
@@ -50,6 +74,7 @@ public class Autocarro {
     /**
      * Motorista estaciona o autocarro e larga os passageiros.
      */
+    @Override
     public void parkTheBusAndLetPassOff()
     {
         

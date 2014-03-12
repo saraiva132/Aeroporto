@@ -3,65 +3,60 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sdaeroporto;
+
+import static Estruturas.AuxInfo.*;
+import Interfaces.TransferenciaMotoristaInterface;
+import Interfaces.TransferenciaPassageiroInterface;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author rafael
  */
-public class TransferenciaTerminal {
+public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
 
-    private int nPassageiros;
-    private int nPassageirosMax;
-    private int [] passageirosID;
-    
-    public TransferenciaTerminal(int nPassageirosMax)
-    {
-        this.nPassageirosMax = nPassageirosMax;
+    private Queue<Integer> fila;
+
+    public TransferenciaTerminal() {
+        fila = new LinkedList<Integer>();
     }
-    
+
     /**
      * Passageiro anuncia a intenção de entrar no autocarro
-     * @param passageiroID 
+     *
+     * @param passageiroID
      */
-    
-    public synchronized void takeABus(int passageiroID)
-    {
-        
+    @Override
+    public synchronized void takeABus(int passageiroID) {
+        fila.add(passageiroID);
+        if(fila.size() == lotação)
+            notify();
     }
-    /**
-     * Passageiro entra no autocarro
-     * @param passageiroID 
-     */
-    public synchronized void enterTheBus(int passageiroID)
-    {
-        
-    }
-    
-    /**
-     * Passageiro sai do autocarro
-     * @param passageiroID 
-     */
-    public synchronized void leaveTheBus(int passageiroID)
-    {
-        
-    }
-    
+
     /**
      * Motorista anuncia que ja acabou o trabalho
-     * @return 
+     *
+     * @return
      */
-    public synchronized boolean hasDaysWorkEnded()
-    {
+    @Override
+    public synchronized boolean hasDaysWorkEnded() {
         return true;
     }
-    
+
     /**
      * Motorista anuncia que a viagem vai começar
      */
-    public synchronized void announcingBusBoarding()
-    {
-        
-    }
+    @Override
+    public synchronized void announcingBusBoarding() {
+        try {
+            while (fila.size() < lotação) {
+                wait();
+            }
+        } catch (InterruptedException ex) {
+        }
+    } 
 }

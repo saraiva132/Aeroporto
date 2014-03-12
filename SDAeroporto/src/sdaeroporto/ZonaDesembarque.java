@@ -5,8 +5,9 @@
  */
 
 package sdaeroporto;
-import Estruturas.Estados;
-import Interface.*;
+import static Estruturas.AuxInfo.passMax;
+import Interfaces.ZonaDesembarqueBagageiroInterface;
+import Interfaces.ZonaDesembarquePassageiroInterface;
 
 /**
  *
@@ -22,15 +23,10 @@ private int nPass;
  * O bagageiro ja pode começar a recolher malas
  */
 private boolean canGo;
-/**
- * Número de voo
- */
-private int nVoo;
 
-public ZonaDesembarque(int nPass, int nVoo)
+public ZonaDesembarque()
 {
-   this.nPass = nPass;
-   this.nVoo = nVoo;
+   nPass = passMax;
    canGo = false;
 }
 
@@ -58,7 +54,7 @@ public synchronized void  takeARest()
  * @return 
  */
 @Override
-public synchronized int whatShouldIDo(int passageiroID,int nVoo,boolean dest,int nMalas)
+public synchronized int whatShouldIDo(boolean dest,int nMalas)
 {
     nPass--;
     if(nPass == 0)
@@ -84,6 +80,6 @@ public synchronized int whatShouldIDo(int passageiroID,int nVoo,boolean dest,int
 @Override
 public synchronized void noMoreBagsToCollect()
 {
-    RepositorioGeral.setBagageiroState(Estados.WAITINGPLANE);
 }
+
 }
