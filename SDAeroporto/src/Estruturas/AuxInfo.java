@@ -43,4 +43,10 @@ public class AuxInfo {
         DRIVING_BACKWARD,
         PARKING_AT_THE_DEPARTURE_TERMINAL
     }
+    
+    public static enum destination {
+        IN_TRANSIT, //PASSAGEIRO_DEST
+        WITH_BAGGAGE,
+        WITHOUT_BAGGAGE,
+    }
 }

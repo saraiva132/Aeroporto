@@ -20,9 +20,10 @@ import java.util.logging.Logger;
 public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
 
     private Queue<Integer> fila;
+    private int nPassageiros;
 
     public TransferenciaTerminal() {
-        fila = new LinkedList<Integer>();
+        fila = new LinkedList<>();
     }
 
     /**
@@ -31,10 +32,14 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @param passageiroID
      */
     @Override
-    public synchronized void takeABus(int passageiroID) {
-        fila.add(passageiroID);
-        if(fila.size() == lotação)
+    public synchronized int takeABus(int passageiroID) {
+        int ticket;
+        fila.add(fila.size());
+        ticket = fila.size();
+        if (fila.size() == lotação) {
             notify();
+        }
+        return fila.remove();
     }
 
     /**
@@ -44,19 +49,25 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized boolean hasDaysWorkEnded() {
-        return true;
+        try {
+            while (fila.size() < lotação) {
+                wait();
+            }
+        } catch (InterruptedException ex) {
+
+        }
+
+        if (fila.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Motorista anuncia que a viagem vai começar
      */
     @Override
-    public synchronized void announcingBusBoarding() {
-        try {
-            while (fila.size() < lotação) {
-                wait();
-            }
-        } catch (InterruptedException ex) {
-        }
-    } 
+    public synchronized void announcingBusBoardingShouting() {
+        notifyAll();
+    }
 }

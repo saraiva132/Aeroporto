@@ -5,6 +5,7 @@
  */
 package Estruturas;
 
+import Estruturas.AuxInfo.destination;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
 import Estruturas.AuxInfo.passState;
@@ -50,9 +51,9 @@ public class Passageiro extends Thread {
 
     @Override
     public void run() {
-        int nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
+        destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
         switch (nextState) {
-            case 0:
+            case WITH_BAGGAGE:
                 while (nMalasEmPosse < nMalasTotal) {
                     recolha.goCollectABag(id);
                     nMalasEmPosse++;
@@ -61,17 +62,18 @@ public class Passageiro extends Thread {
                 transicao.goHome();
                 state = passState.EXITING_THE_ARRIVAL_TERMINAL;
                 break;
-            case 1:
-                transferencia.takeABus(id);
+            case IN_TRANSIT:
+                int ticket; //bilhete para entrar no autocarro.
+                ticket = transferencia.takeABus(id);
                 state = passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL;
-                auto.enterTheBus(id);
+                auto.enterTheBus(ticket);
                 state = passState.TERMINAL_TRANSFER;
-                auto.leaveTheBus(id);
+                auto.leaveTheBus(ticket);
                 state = passState.AT_THE_DEPARTURE_TRANSFER_TERMINAL;
                 transicao.prepareNextLeg();
                 state = passState.ENTERING_THE_DEPARTURE_TERMINAL;
                 break;
-            case 2:
+            case WITHOUT_BAGGAGE:
                 transicao.goHome();
                 state = passState.EXITING_THE_ARRIVAL_TERMINAL;
                 break;

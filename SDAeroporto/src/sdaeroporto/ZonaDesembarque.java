@@ -5,6 +5,7 @@
  */
 
 package sdaeroporto;
+import Estruturas.AuxInfo.destination;
 import static Estruturas.AuxInfo.passMax;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
@@ -47,14 +48,12 @@ public synchronized void  takeARest()
 
 /**
  * O passageiro decide o que vai fazer.(Acontece imediatamente depois de desembarcar)
- * @param passageiroID
- * @param nVoo
  * @param dest
  * @param nMalas
  * @return 
  */
 @Override
-public synchronized int whatShouldIDo(boolean dest,int nMalas)
+public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 {
     nPass--;
     if(nPass == 0)
@@ -65,12 +64,12 @@ public synchronized int whatShouldIDo(boolean dest,int nMalas)
     }
     if(dest && nMalas == 0)
     {
-        return 0;
+        return destination.WITHOUT_BAGGAGE;
     }
     else if(dest)
-        return 1;
+        return destination.WITH_BAGGAGE;
     else
-        return 2;
+        return destination.IN_TRANSIT;
     
 }
 

@@ -6,6 +6,7 @@
 
 package sdaeroporto;
 
+import static Estruturas.AuxInfo.lotação;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.AutocarroPassageiroInterface;
 
@@ -18,30 +19,51 @@ import Interfaces.AutocarroPassageiroInterface;
 public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
 
     private int nOcupantes;
-    private int [] passageirosID;
+    private boolean [] seat;
     
     public Autocarro()
     {
+        seat = new boolean[lotação];
+        for(int i = 0;i<lotação;i++)
+        {
+            seat[i] = false; // Autocarro inicialmente encontra-se vazio.
+        }
     }
     
         /**
      * Passageiro entra no autocarro
-     * @param passageiroID 
+     * @param id
      */
     @Override
-    public synchronized void enterTheBus(int passageiroID)
+    public synchronized void enterTheBus(int id)
     {
-        
+        nOcupantes++;
+        seat[id] = true;
+        if(nOcupantes == lotação)
+            notify();
     }
     
     /**
      * Passageiro sai do autocarro
-     * @param passageiroID 
+     * @param id 
      */
     @Override
-    public synchronized void leaveTheBus(int passageiroID)
+    public synchronized void leaveTheBus(int id)
     {
-        
+        nOcupantes--;
+        seat[id] = false;
+        if(nOcupantes == 0)
+            notify();
+    }
+    
+    @Override
+    public synchronized void announcingBusBoardingWaiting() {
+        try {
+            while (nOcupantes < lotação) {
+                wait();
+            }
+        } catch (InterruptedException ex) {
+        }
     }
     
     /**
@@ -50,7 +72,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     @Override
     public void goToDepartureTerminal()
     {
-        
+        //Estado de transição. Fazer o quê mesmo?
     }
     
     /**
@@ -59,7 +81,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     @Override
     public void goToArrivalTerminal()
     {
-        
+        //Estado de transição. Fazer o quê mesmo?
     }
     
     /**
@@ -75,8 +97,13 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Motorista estaciona o autocarro e larga os passageiros.
      */
     @Override
-    public void parkTheBusAndLetPassOff()
+    public synchronized void parkTheBusAndLetPassOff()
     {
-        
+        try {
+            while (nOcupantes > 0) {
+                wait();
+            }
+        } catch (InterruptedException ex) {
+        }
     }
 }

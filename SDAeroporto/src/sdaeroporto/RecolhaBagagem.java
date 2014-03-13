@@ -39,6 +39,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface,RecolhaPassagei
     /**
      * Invocador: Bagageiro
      * @param badID 
+     * @return  
      */
     @Override
     public synchronized int carryItToAppropriateStore(int badID)

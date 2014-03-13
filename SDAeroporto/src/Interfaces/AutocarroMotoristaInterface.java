@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Interfaces;
 
 /**
@@ -11,20 +10,26 @@ package Interfaces;
  * @author rafael
  */
 public interface AutocarroMotoristaInterface {
+
+    public void announcingBusBoardingWaiting();
+
     /**
      * Motorista leva os passageiros para o proximo aeroporto
      */
     public void goToDepartureTerminal();
+
     /**
      * Motorista leva os passageiros para o proximo aeroporto
      */
     public void goToArrivalTerminal();
+
     /**
      * Motorista estaciona o autocarro
      */
-    public void parkTheBus();  
+    public void parkTheBus();
+
     /**
      * Motorista estaciona o autocarro e larga os passageiros.
      */
-    public void parkTheBusAndLetPassOff();  
+    public void parkTheBusAndLetPassOff();
 }

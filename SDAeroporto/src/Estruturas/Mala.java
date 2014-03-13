@@ -3,16 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package Interfaces;
-
-import Estruturas.AuxInfo.destination;
+package Estruturas;
 
 /**
  *
  * @author rafael
  */
-public interface ZonaDesembarquePassageiroInterface {
+public class Mala {
 
-public destination whatShouldIDo(boolean dest,int nMalas);
+    private int owner;
+
+    public Mala(int owner) {
+        this.owner = owner;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
 }

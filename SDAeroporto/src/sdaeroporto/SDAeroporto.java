@@ -11,9 +11,6 @@ import Estruturas.Motorista;
 import Estruturas.Passageiro;
 import genclass.GenericIO;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 /**

@@ -15,7 +15,8 @@ public interface TransferenciaPassageiroInterface {
       /**
      * Passageiro anuncia a intenção de entrar no autocarro
      * @param passageiroID 
+     * @return  
      */
     
-    public void takeABus(int passageiroID);
+    public int takeABus(int passageiroID);
 }

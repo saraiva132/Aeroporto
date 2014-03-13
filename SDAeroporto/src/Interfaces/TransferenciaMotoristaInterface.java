@@ -21,6 +21,6 @@ public interface TransferenciaMotoristaInterface {
     /**
      * Motorista anuncia que a viagem vai começar
      */
-    public void announcingBusBoarding();
+    public void announcingBusBoardingShouting();
     
 }
