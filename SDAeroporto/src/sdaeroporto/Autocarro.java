@@ -16,11 +16,13 @@ import Interfaces.AutocarroPassageiroInterface;
 public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
 
     private int nOcupantes;
+    private int bilhetes;
     private boolean[] seat;
     private boolean hasEnded;
 
     public Autocarro() {
         hasEnded = false;
+        bilhetes = 0;
         nOcupantes = 0;
         seat = new boolean[lotação];
         for (int i = 0; i < lotação; i++) {
@@ -37,8 +39,8 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     public synchronized void enterTheBus(int id) {
         System.out.println("Entering the bus motha focka");
         nOcupantes++;
-        seat[id-1] = true;
-        if (nOcupantes == lotação) {
+        seat[id] = true;
+        if (nOcupantes == bilhetes) {
             notify();
         }
         try {
@@ -58,17 +60,18 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     public synchronized void leaveTheBus(int id) {
         System.out.println("IM OUT!Shitty bus");
         nOcupantes--;
-        seat[id-1] = false;
+        seat[id] = false;
         if (nOcupantes == 0) {
             notify();
         }
     }
 
     @Override
-    public synchronized void announcingBusBoardingWaiting() {
+    public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
+        bilhetes = bilhetesVendidos;
         System.out.println("All Aboard V2");
         try {
-            while (nOcupantes < lotação) {
+            while (nOcupantes < bilhetes) {
                 wait();
             }
         } catch (InterruptedException ex) {

@@ -20,13 +20,14 @@ import java.util.TimerTask;
 public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
 
     private Queue<Integer> fila;
-    private int nPassageiros;
-    boolean timeUp;
+    private int VagasLivres;
+    boolean timeUp, canGo;
 
     public TransferenciaTerminal() {
-        nPassageiros = 0;
+        VagasLivres = 0;
         fila = new LinkedList<>();
         timeUp = false;
+        canGo = false;
         run();
     }
 
@@ -57,20 +58,23 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     public synchronized int takeABus(int passageiroID) {
         System.out.println("Take the bus");
         int ticket;
+        
         fila.add(passageiroID);
-        nPassageiros++;
-        ticket = fila.size();
-        System.out.println(nPassageiros);
+        
+        ticket = fila.size() % 3;
+        
         if (fila.size() == lotação) {
-            notify();
+            notifyAll();
         }
+        
         try {
-            while (nPassageiros != 0) {
+            while (VagasLivres == 0 && !canGo) {
                 wait();
             }
         } catch (InterruptedException ex) {
         }
-         System.out.println(nPassageiros);
+        VagasLivres--;
+        fila.remove(passageiroID);
         return ticket;
     }
 
@@ -98,12 +102,11 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * Motorista anuncia que a viagem vai começar
      */
     @Override
-    public synchronized void announcingBusBoardingShouting() {
+    public synchronized int announcingBusBoardingShouting() {
         System.out.println("ALL ABOAAARD!");
-        for (int i = 0; i < nPassageiros; i++) {
-            fila.remove();
-        }
+        VagasLivres = fila.size() % 3 + 1;
+        canGo = true;
         notifyAll();
-        nPassageiros = 0;
+        return fila.size() % 3;
     }
 }

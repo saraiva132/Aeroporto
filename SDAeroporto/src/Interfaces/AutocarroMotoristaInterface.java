@@ -11,7 +11,7 @@ package Interfaces;
  */
 public interface AutocarroMotoristaInterface {
 
-    public void announcingBusBoardingWaiting();
+    public void announcingBusBoardingWaiting(int bilhetesVendidos);
 
     /**
      * Motorista leva os passageiros para o proximo aeroporto

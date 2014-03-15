@@ -31,9 +31,7 @@ public class Motorista extends Thread {
 
         while (!transferencia.hasDaysWorkEnded()) {
             
-            transferencia.announcingBusBoardingShouting();
-            
-            auto.announcingBusBoardingWaiting();
+            auto.announcingBusBoardingWaiting(transferencia.announcingBusBoardingShouting());
             
             auto.goToDepartureTerminal();
             state = motState.DRIVING_FORWARD;

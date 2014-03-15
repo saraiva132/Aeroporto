@@ -20,7 +20,8 @@ public interface TransferenciaMotoristaInterface {
     
     /**
      * Motorista anuncia que a viagem vai começar
+     * @return 
      */
-    public void announcingBusBoardingShouting();
+    public int announcingBusBoardingShouting();
     
 }

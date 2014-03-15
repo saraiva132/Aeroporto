@@ -47,7 +47,6 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
             }
         } catch (InterruptedException ex) {
         }
-        System.out.println("oi "+bagID);
         if (belt.containsKey(bagID)) {        
             belt.remove(bagID);
             return bagCollect.MINE;
