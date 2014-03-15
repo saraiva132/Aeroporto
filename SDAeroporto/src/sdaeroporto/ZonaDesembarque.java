@@ -55,6 +55,7 @@ public synchronized void  takeARest()
 @Override
 public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 {
+    System.out.println("What should i do!");
     nPass--;
     if(nPass == 0)
     {
@@ -79,6 +80,7 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 @Override
 public synchronized void noMoreBagsToCollect()
 {
+    System.out.println("No more bags to collect!");
 }
 
 }

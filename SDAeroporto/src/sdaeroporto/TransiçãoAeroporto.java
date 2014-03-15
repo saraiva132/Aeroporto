@@ -23,10 +23,10 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     /**
      * Passageiro com destino final abandona o aeroporto e vai para casa.
      *
-     * @param passageiroID
      */
     @Override
     public synchronized void goHome() {
+        System.out.println("GoHome!");
         nPassageiros--;
         if (nPassageiros == 0) {
             nPassageiros = passMax;
@@ -43,13 +43,12 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     /**
      * Passageiro que nao se encontra no destino final. Prepara o proximo voo.
      *
-     * @param passageiroID
      */
     @Override
     public synchronized void prepareNextLeg() {
+        System.out.println("Prepare next leg!");
         nPassageiros--;
         if (nPassageiros == 0) {
-            nPassageiros = passMax;
             notifyAll();
         }
         try {

@@ -6,10 +6,9 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.passMax;
+import Estruturas.Mala;
 import Interfaces.PoraoBagageiroInterface;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 /**
@@ -18,39 +17,26 @@ import java.util.HashMap;
  */
 public class Porao implements PoraoBagageiroInterface {
 
-private int [] Malas;
-
-private int nMalas;
+ArrayList<Mala> malas;
     
-public Porao(ArrayList<Integer> malas,int nMalas)
+public Porao(ArrayList<Mala> malas)
 {
-    this.nMalas = nMalas;
-        Malas = new int[nMalas];
-        int index = 0;
-        for(int i=0;i<passMax;i++)
-        {
-            for(int j= 0; j<malas.get(passMax);j++)
-            {
-                Malas[index] = i;
-                index++;
-            }
-        }
+    this.malas = malas;
 }
 
 /**
  * Recolher uma mala do porao. Executada pelo bagageiro
- * @param bagID
  * @return 
  */
 @Override
-public synchronized int tryToCollectABag()
+public synchronized Mala tryToCollectABag()
 {
-    if (nMalas == 0)
-        return 0;
+    System.out.println("Try to collect a bag");
+    if (malas.isEmpty())
+        return null;
     else
     {
-        nMalas--;
-        return Malas[nMalas];
+        return malas.remove(0);
     }
 }
 

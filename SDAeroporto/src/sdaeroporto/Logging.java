@@ -6,12 +6,18 @@
 
 package sdaeroporto;
 
+import Estruturas.AuxInfo.*;
+
 /**
  *
  * @author rafael
  */
 public class Logging {
 
+    private passState [] pstate;
+    private bagState bstate;
+    private motState mstate;
+     
     public Logging() {
     }
 

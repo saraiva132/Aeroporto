@@ -7,6 +7,7 @@ package sdaeroporto;
 
 import static Estruturas.AuxInfo.*;
 import Estruturas.Bagageiro;
+import Estruturas.Mala;
 import Estruturas.Motorista;
 import Estruturas.Passageiro;
 import genclass.GenericIO;
@@ -37,48 +38,49 @@ public class SDAeroporto {
 
         int nIter;//Used?
         String fName;
-        
+
         /* inicialização */
         GenericIO.writelnString("A começar Aeoroport\n");
-        
-        ArrayList<Integer> malas = new ArrayList();
-        int nMalas = 0;
+
+        ArrayList<Mala> malas = new ArrayList();
+        int[] nMalasPass = new int[passMax];
+        boolean[] dest = new boolean[passMax];
         int randtemp;
-        
-         //Gerar malas por passageiro
+
+        //Gerar malas por passageiro
+        //Gerar destino do passageiro
         for (int i = 0; i < passMax; i++) {
-            randtemp = new Random().nextInt(3);
-            malas.add(randtemp);
-            nMalas += randtemp;
+            nMalasPass[i] = new Random().nextInt(3);
+            dest[i] = getRandomBoolean();
+            for (int j = 0; j < nMalasPass[i]; j++) {
+                malas.add(new Mala(i, dest[i]));
+            }
         }
-        
+
         /*Inicialização das zonas de região crítica*/
-        porao = new Porao(malas, nMalas);
+        porao = new Porao(malas);
         zona = new ZonaDesembarque();
         auto = new Autocarro();
         recolha = new RecolhaBagagem();
         transferencia = new TransferenciaTerminal();
         transicao = new TransiçãoAeroporto();
-        
+
         /*Inicialização dos elementos activos*/
         b = new Bagageiro(zona, porao, recolha);
         m = new Motorista(auto, transferencia);
 
         for (int i = 0; i < passMax; i++) {
-            p[i] = new Passageiro(malas.get(i), i, 1, getRandomBoolean(), zona, auto, transicao, recolha, transferencia);
+            p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia);
         }
-        
-        
+
         /* arranque da simulação */
         m.start();
         b.start();
         for (int i = 0; i < passMax; i++) {
             p[i].start();
         }
-        
-        /* aguardar o fim da simulação */
-        
 
+        /* aguardar o fim da simulação */
     }
 
     public static boolean getRandomBoolean() {

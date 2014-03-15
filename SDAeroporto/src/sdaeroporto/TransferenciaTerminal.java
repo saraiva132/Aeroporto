@@ -10,8 +10,8 @@ import Interfaces.TransferenciaMotoristaInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -21,9 +21,31 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
     private Queue<Integer> fila;
     private int nPassageiros;
+    boolean timeUp;
 
     public TransferenciaTerminal() {
+        nPassageiros = 0;
         fila = new LinkedList<>();
+        timeUp = false;
+        run();
+    }
+
+    private void run() {
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.format("Time's up!%n");
+                runn();
+                timer.cancel(); //Terminate the timer thread
+            }
+        }, 5000);
+    }
+
+    private synchronized void runn() {
+        System.out.println("ACORDA CARALHO");
+        timeUp = true;
+        notifyAll();
     }
 
     /**
@@ -33,13 +55,23 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized int takeABus(int passageiroID) {
+        System.out.println("Take the bus");
         int ticket;
-        fila.add(fila.size());
+        fila.add(passageiroID);
+        nPassageiros++;
         ticket = fila.size();
+        System.out.println(nPassageiros);
         if (fila.size() == lotação) {
             notify();
         }
-        return fila.remove();
+        try {
+            while (nPassageiros != 0) {
+                wait();
+            }
+        } catch (InterruptedException ex) {
+        }
+         System.out.println(nPassageiros);
+        return ticket;
     }
 
     /**
@@ -49,18 +81,17 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized boolean hasDaysWorkEnded() {
+        System.out.println("has work ended?");
+
         try {
-            while (fila.size() < lotação) {
+            while (fila.size() < lotação && timeUp == false) {
                 wait();
             }
         } catch (InterruptedException ex) {
 
         }
-
-        if (fila.isEmpty()) {
-            return true;
-        }
-        return false;
+        timeUp = false;
+        return fila.isEmpty();
     }
 
     /**
@@ -68,6 +99,11 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized void announcingBusBoardingShouting() {
+        System.out.println("ALL ABOAAARD!");
+        for (int i = 0; i < nPassageiros; i++) {
+            fila.remove();
+        }
         notifyAll();
+        nPassageiros = 0;
     }
 }
