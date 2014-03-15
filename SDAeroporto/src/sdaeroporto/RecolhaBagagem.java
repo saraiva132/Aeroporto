@@ -40,9 +40,9 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
         System.out.println("Try to collect a bag");
-
+        
         try {
-            while (belt.isEmpty() && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
+            while (!belt.containsKey(bagID) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
                 wait();                             //os passageiros são acordados
             }
         } catch (InterruptedException ex) {
@@ -51,10 +51,9 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
             belt.remove(bagID);
             return bagCollect.MINE;
         }
-        if (noMoreBags) {
-            return bagCollect.NOMORE;
-        }
-        return bagCollect.NOTMINE;
+        
+        return bagCollect.NOMORE;
+        
     }
 
     /**
