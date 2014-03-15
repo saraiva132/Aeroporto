@@ -8,23 +8,24 @@ package Estruturas;
 import Estruturas.AuxInfo.bagDest;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Estruturas.AuxInfo.bagState;
+import static Estruturas.AuxInfo.chegadas;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 
 /**
  * Identifica o tipo de dados bagageiro
- * 
+ *
  * @author rafael
  */
 public class Bagageiro extends Thread {
-    
+
     /**
      * Identifica o estado do bagageiro
-     * 
+     *
      * @serialField state
      */
     private bagState state;
-    
+
     ZonaDesembarqueBagageiroInterface zona;
     PoraoBagageiroInterface porao;
     RecolhaBagageiroInterface recolha;
@@ -40,24 +41,27 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
-        zona.takeARest();
-        mala = porao.tryToCollectABag();
-        do {
-            state = bagState.AT_THE_PLANES_HOLD;
-            bagDest nextState = recolha.carryItToAppropriateStore(mala);
-            switch (nextState) {
-                case BELT:
-                    state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR;
-                    break;
-                case STOREROOM:
-                    state = bagState.AT_THE_STOREROOM;
-                    break;
-                default:
-                    state = bagState.WAITING_FOR_A_PLANE_TO_LAND;   //job over
-                    break;
-            }
-        } while ((mala = porao.tryToCollectABag()) != null);
-        System.out.println("BAGAGEIRO MORREU PAH!");
+        for (int i = 0; i < chegadas; i++) {
+            System.out.println("Here we go again...");
+            zona.takeARest();
+            state = bagState.WAITING_FOR_A_PLANE_TO_LAND;
+            mala = porao.tryToCollectABag();
+            do {
+                state = bagState.AT_THE_PLANES_HOLD;
+                bagDest nextState = recolha.carryItToAppropriateStore(mala);
+                switch (nextState) {
+                    case BELT:
+                        state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR;
+                        break;
+                    case STOREROOM:
+                        state = bagState.AT_THE_STOREROOM;
+                        break;
+                    default:
+                        state = bagState.WAITING_FOR_A_PLANE_TO_LAND;   //job over
+                        break;
+                }
+            } while ((mala = porao.tryToCollectABag()) != null);
+        }
     }
 
 }

@@ -69,13 +69,12 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagDest carryItToAppropriateStore(Mala bag) {
-        System.out.println("CarryBag "+ bag.getOwner());
         if (bag == null) {
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
             return null; //Nao tem mala retorna null!
         }
-
+        System.out.println("CarryBag "+ bag.getOwner());
         if (bag.inTransit()) {
             nMalasStore++;
             return bagDest.STOREROOM;

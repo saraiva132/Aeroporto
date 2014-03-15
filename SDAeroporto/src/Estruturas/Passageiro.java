@@ -52,6 +52,7 @@ public class Passageiro extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Passageiro a iniciar");
         destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
         bagCollect getBag = null;
         switch (nextState) {
@@ -90,6 +91,5 @@ public class Passageiro extends Thread {
                 state = passState.EXITING_THE_ARRIVAL_TERMINAL;
                 break;
         }
-        System.out.println("PASSAGEIRO MORREU PAH!");
     }
 }

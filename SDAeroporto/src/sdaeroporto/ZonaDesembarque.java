@@ -38,6 +38,7 @@ public ZonaDesembarque()
 @Override
 public synchronized void  takeARest()
 {
+    System.out.println("Taking a Rest guys...");
     try {
     while(!canGo)
             wait();
@@ -61,6 +62,7 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
     {
         //reset da variavel nPass
         canGo = true;
+        nPass = passMax;
         notify();
     }
     if(dest && nMalas == 0)

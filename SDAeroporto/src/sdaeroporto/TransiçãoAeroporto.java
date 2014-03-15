@@ -15,9 +15,11 @@ import Interfaces.TransicaoPassageiroInterface;
 public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
 
     private int nPassageiros;
+    boolean canLeave;   //Passageiros podem sair!
 
     public TransiçãoAeroporto() {
         nPassageiros = passMax;
+        canLeave = false;
     }
 
     /**
@@ -29,13 +31,18 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
         System.out.println("GoHome!");
         nPassageiros--;
         if (nPassageiros == 0) {
+            canLeave = true;
             notifyAll();
         }
         try {
-            while (nPassageiros > 0) {
+            while (!canLeave) {
                 wait();
             }
         } catch (InterruptedException ex) {
+        }
+        nPassageiros++;
+        if (nPassageiros == passMax) {
+            canLeave = false;
         }
     }
 
@@ -48,13 +55,18 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
         System.out.println("Prepare next leg!");
         nPassageiros--;
         if (nPassageiros == 0) {
+            canLeave = true;
             notifyAll();
         }
         try {
-            while (nPassageiros > 0) {
+            while (!canLeave) {
                 wait();
             }
         } catch (InterruptedException ex) {
+        }
+        nPassageiros++;
+        if (nPassageiros == passMax) {
+            canLeave = false;
         }
     }
 }

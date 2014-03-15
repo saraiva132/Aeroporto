@@ -40,7 +40,7 @@ public class SDAeroporto {
         String fName;
 
         /* inicialização */
-        GenericIO.writelnString("A começar Aeoroport\n");
+        GenericIO.writelnString("A começar Airport \n");
 
         ArrayList<Mala> malas = new ArrayList();
         int[] nMalasPass = new int[passMax];
@@ -54,6 +54,8 @@ public class SDAeroporto {
             dest[i] = getRandomBoolean();
             for (int j = 0; j < nMalasPass[i]; j++) {
                 malas.add(new Mala(i, !dest[i]));
+                //malas.add(new Mala(i,false));
+                //malas.add(new Mala(i,true));
             }
         }
 
@@ -68,19 +70,51 @@ public class SDAeroporto {
         /*Inicialização dos elementos activos*/
         b = new Bagageiro(zona, porao, recolha);
         m = new Motorista(auto, transferencia);
-
-        for (int i = 0; i < passMax; i++) {
-            p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia);
-        }
-
-        /* arranque da simulação */
         m.start();
         b.start();
-        for (int i = 0; i < passMax; i++) {
-            p[i].start();
+        for (int j = 0; j < 5; j++) {
+            
+            for (int w = 0; w < passMax; w++) {
+                nMalasPass[w] = new Random().nextInt(3);
+                dest[w] = getRandomBoolean();
+                for (int l = 0; l < nMalasPass[w]; l++) {
+                    malas.add(new Mala(w, !dest[w]));
+                //malas.add(new Mala(i,false));
+                    //malas.add(new Mala(i,true));
+                }
+            }
+            for (int i = 0; i < passMax; i++) {
+                p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia);
+            }
+
+            /* arranque da simulação */
+            for (int i = 0; i < passMax; i++) {
+                p[i].start();
+            }
+
+            /* aguardar o fim da simulação */
+            for (int i = 0; i < passMax; i++) {
+                try {
+                    p[i].join();
+                } catch (InterruptedException e) {
+                }
+                GenericIO.writelnString("O passageiro " + i + " terminou.");
+            }
         }
 
-        /* aguardar o fim da simulação */
+        try {
+            m.join();
+        } catch (InterruptedException e) {
+        }
+        GenericIO.writelnString(
+                "O motorista terminou.");
+        try {
+            b.join();
+        } catch (InterruptedException e) {
+        }
+        GenericIO.writelnString(
+                "O bagageiro terminou.");
+
     }
 
     public static boolean getRandomBoolean() {

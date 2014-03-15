@@ -30,18 +30,10 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     private void run() {
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                System.out.format("Time's up!%n");
-                runn();
-                timer.cancel(); //Terminate the timer thread
-            }
-        }, 5000);
+        new Reminder(5);
     }
 
-    private synchronized void runn() {
+    private synchronized void tempoEsgotado() {
         System.out.println("ACORDA CARALHO");
         timeUp = true;
         notifyAll();
@@ -58,7 +50,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         int ticket;
 
         fila.add(passageiroID);
-        ticket = fila.size() % 3;
+        ticket = fila.size() % lotação;
 
         if (fila.size() == lotação) {
             notifyAll();
@@ -121,4 +113,24 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         return pass;
     }
 
+    public class Reminder {
+
+        Timer timer;
+
+        public Reminder(int seconds) {
+            timer = new Timer();
+            timer.schedule(new RemindTask(), seconds * 1000,seconds * 1000);
+        }
+
+        class RemindTask extends TimerTask {
+
+            @Override
+            public void run() {
+                System.out.println("Time's up!");
+                tempoEsgotado();
+                timer.cancel(); //Terminate the timer thread
+
+            }
+        }
+    }
 }
