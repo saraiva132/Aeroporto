@@ -5,8 +5,7 @@
  */
 package sdaeroporto;
 
-import Estruturas.AuxInfo.bagCollect;
-import Estruturas.AuxInfo.bagDest;
+import static Estruturas.AuxInfo.*;
 import Estruturas.Mala;
 import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
@@ -24,7 +23,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
 
     public RecolhaBagagem() {
         nMalasStore = 0;
-        belt = new HashMap<>();
+        belt = new HashMap<>(chegadas * passMax);
         noMoreBags = false;
     }
 
@@ -39,7 +38,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
-        System.out.println("Try to collect a bag");
+        System.out.println("Try to collect a bag " + bagID);
         
         try {
             while (!belt.containsKey(bagID) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
@@ -64,7 +63,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagDest carryItToAppropriateStore(Mala bag) {
-        System.out.println("CarryBag");
+        System.out.println("CarryBag "+ bag.getOwner());
         if (bag == null) {
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
