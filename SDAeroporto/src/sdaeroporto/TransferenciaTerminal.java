@@ -9,7 +9,6 @@ import static Estruturas.AuxInfo.*;
 import Interfaces.TransferenciaMotoristaInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,15 +18,14 @@ import java.util.TimerTask;
  */
 public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
 
-    private Queue<Integer> fila;
-    private int VagasLivres;
-    boolean timeUp, canGo;
+    private LinkedList<Integer> fila;
+    boolean timeUp, canGo, next;
 
     public TransferenciaTerminal() {
-        VagasLivres = 0;
         fila = new LinkedList<>();
         timeUp = false;
         canGo = false;
+        next = false;
         run();
     }
 
@@ -58,23 +56,23 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     public synchronized int takeABus(int passageiroID) {
         System.out.println("Take the bus");
         int ticket;
-        
+
         fila.add(passageiroID);
-        
         ticket = fila.size() % 3;
-        
+
         if (fila.size() == lotação) {
             notifyAll();
         }
-        
         try {
-            while (VagasLivres == 0 && !canGo) {
+            while (!canGo || fila.peek() != passageiroID) {
                 wait();
             }
         } catch (InterruptedException ex) {
         }
-        VagasLivres--;
-        fila.remove(passageiroID);
+        canGo = false;
+        next = true;
+        notifyAll();
+        fila.remove();
         return ticket;
     }
 
@@ -103,10 +101,24 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized int announcingBusBoardingShouting() {
-        System.out.println("ALL ABOAAARD!");
-        VagasLivres = fila.size() % 3 + 1;
-        canGo = true;
-        notifyAll();
-        return fila.size() % 3;
+        System.out.println("ALL ABOAAARD!: passageiros à espera: " + fila.size());
+        int pass = 0;
+        int npass = fila.size();
+        for (int i = 0; i < npass && i < lotação; i++) {
+            canGo = true;
+            notifyAll();
+            while (!next) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                }
+            }
+            System.out.println("Passageiro entra");
+            next = false;
+            pass++;
+        }
+        canGo = false;
+        return pass;
     }
+
 }

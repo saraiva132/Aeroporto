@@ -68,8 +68,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
+        
         bilhetes = bilhetesVendidos;
-        System.out.println("All Aboard V2");
+        System.out.println("All Aboard V2: bilhetes - "+bilhetesVendidos);
         try {
             while (nOcupantes < bilhetes) {
                 wait();
