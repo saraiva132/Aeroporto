@@ -5,6 +5,7 @@
  */
 package Estruturas;
 
+import Estruturas.AuxInfo.bagCollect;
 import Estruturas.AuxInfo.destination;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
@@ -52,12 +53,20 @@ public class Passageiro extends Thread {
     @Override
     public void run() {
         destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
+        bagCollect getBag = bagCollect.NOTMINE;
         switch (nextState) {
             case WITH_BAGGAGE:
-                while (nMalasEmPosse < nMalasTotal) {
-                    recolha.goCollectABag(id);
-                    nMalasEmPosse++;
-                    state = passState.AT_THE_LUGGAGE_COLLECTION_POINT;
+                state = passState.AT_THE_LUGGAGE_COLLECTION_POINT;
+                while (nMalasEmPosse < nMalasTotal || (getBag = recolha.goCollectABag(id)) != bagCollect.NOMORE) {
+                    if (getBag == bagCollect.MINE) {
+                        nMalasEmPosse++;
+
+                    }
+                    //System.out.println(getBag.toString());
+                }
+                if (nMalasEmPosse < nMalasTotal) {
+                    state = passState.AT_THE_BAGGAGE_RECLAIM_OFFICE;
+                    recolha.reportMissingBags(id, nMalasTotal - nMalasEmPosse);
                 }
                 transicao.goHome();
                 state = passState.EXITING_THE_ARRIVAL_TERMINAL;
@@ -78,5 +87,6 @@ public class Passageiro extends Thread {
                 state = passState.EXITING_THE_ARRIVAL_TERMINAL;
                 break;
         }
+        System.out.println("PASSAGEIRO MORREU PAH!");
     }
 }

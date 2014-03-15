@@ -49,4 +49,15 @@ public class AuxInfo {
         WITH_BAGGAGE,
         WITHOUT_BAGGAGE,
     }
+    
+    public static enum bagDest {
+        STOREROOM,
+        BELT,
+    }
+    
+    public static enum bagCollect {
+        NOTMINE,
+        MINE,
+        NOMORE,
+    }
 }

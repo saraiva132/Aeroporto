@@ -5,6 +5,7 @@
  */
 package Estruturas;
 
+import Estruturas.AuxInfo.bagDest;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Estruturas.AuxInfo.bagState;
 import Interfaces.PoraoBagageiroInterface;
@@ -31,21 +32,25 @@ public class Bagageiro extends Thread {
 
     @Override
     public void run() {
-        int bagID;
-        int nextState;
+        Mala mala;
         zona.takeARest();
-        while ((bagID = porao.tryToCollectABag()) != 0) {
+        mala = porao.tryToCollectABag();
+        do {
             state = bagState.AT_THE_PLANES_HOLD;
-            nextState = recolha.carryItToAppropriateStore(bagID);
+            bagDest nextState = recolha.carryItToAppropriateStore(mala);
             switch (nextState) {
-                case 0:
+                case BELT:
                     state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR;
                     break;
-                case 1:
+                case STOREROOM:
                     state = bagState.AT_THE_STOREROOM;
                     break;
+                default:
+                    state = bagState.WAITING_FOR_A_PLANE_TO_LAND;   //job over
+                    break;
             }
-        }
+        } while ((mala = porao.tryToCollectABag()) != null);
+        System.out.println("BAGAGEIRO MORREU PAH!");
     }
-    
+
 }

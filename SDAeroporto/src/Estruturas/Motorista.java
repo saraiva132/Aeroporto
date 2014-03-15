@@ -47,6 +47,6 @@ public class Motorista extends Thread {
             auto.parkTheBus();
             state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         }
-
+        System.out.println("MOTORISTA MORREU PAH!");
     }
 }

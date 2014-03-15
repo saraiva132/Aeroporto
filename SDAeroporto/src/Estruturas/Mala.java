@@ -12,13 +12,19 @@ package Estruturas;
 public class Mala {
 
     private int owner;
+    private boolean transit;
 
-    public Mala(int owner) {
+    public Mala(int owner, boolean transit) {
         this.owner = owner;
+        this.transit = transit;
     }
 
     public int getOwner() {
         return owner;
+    }
+
+    public boolean inTransit() {
+        return transit;
     }
 
 }
