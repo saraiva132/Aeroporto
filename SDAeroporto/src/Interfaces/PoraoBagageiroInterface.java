@@ -6,11 +6,13 @@
 
 package Interfaces;
 
+import Estruturas.Mala;
+
 /**
  *
  * @author rafael
  */
 public interface PoraoBagageiroInterface {
 
-    public int tryToCollectABag();
+    public Mala tryToCollectABag();
 }

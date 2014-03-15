@@ -6,14 +6,16 @@
 
 package Interfaces;
 
+import Estruturas.AuxInfo.bagCollect;
+
 /**
  *
  * @author rafael
  */
 public interface RecolhaPassageiroInterface {
     
-    public void goCollectABag(int id);
+    public bagCollect goCollectABag(int id);
     
-    public void reportMissingBags(int passageiroID);
+    public void reportMissingBags(int passageiroID,int malasPerdidas);
 
 }

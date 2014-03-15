@@ -6,12 +6,15 @@
 
 package Interfaces;
 
+import Estruturas.AuxInfo.bagDest;
+import Estruturas.Mala;
+
 /**
  *
  * @author rafael
  */
 public interface RecolhaBagageiroInterface {
 
-     public int carryItToAppropriateStore(int badID);
+     public bagDest carryItToAppropriateStore(Mala mala);
      
 }
