@@ -12,12 +12,19 @@ import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 
 /**
- *
+ * Identifica o tipo de dados bagageiro
+ * 
  * @author rafael
  */
 public class Bagageiro extends Thread {
-
+    
+    /**
+     * Identifica o estado do bagageiro
+     * 
+     * @serialField state
+     */
     private bagState state;
+    
     ZonaDesembarqueBagageiroInterface zona;
     PoraoBagageiroInterface porao;
     RecolhaBagageiroInterface recolha;

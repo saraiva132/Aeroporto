@@ -53,17 +53,20 @@ public class Passageiro extends Thread {
     @Override
     public void run() {
         destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
-        bagCollect getBag = bagCollect.NOTMINE;
+        bagCollect getBag = null;
         switch (nextState) {
             case WITH_BAGGAGE:
                 state = passState.AT_THE_LUGGAGE_COLLECTION_POINT;
-                while (nMalasEmPosse < nMalasTotal || (getBag = recolha.goCollectABag(id)) != bagCollect.NOMORE) {
+                System.out.println("tenho bagagem -----------------");
+                do {
+                    getBag = recolha.goCollectABag(id);
                     if (getBag == bagCollect.MINE) {
                         nMalasEmPosse++;
-
                     }
+                    System.out.println("ID: " + id + " posse: " + nMalasEmPosse + " total: " + nMalasTotal);
                     //System.out.println(getBag.toString());
-                }
+
+                } while (nMalasEmPosse < nMalasTotal && getBag != bagCollect.NOMORE);
                 if (nMalasEmPosse < nMalasTotal) {
                     state = passState.AT_THE_BAGGAGE_RECLAIM_OFFICE;
                     recolha.reportMissingBags(id, nMalasTotal - nMalasEmPosse);

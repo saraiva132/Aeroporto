@@ -53,7 +53,7 @@ public class SDAeroporto {
             nMalasPass[i] = new Random().nextInt(3);
             dest[i] = getRandomBoolean();
             for (int j = 0; j < nMalasPass[i]; j++) {
-                malas.add(new Mala(i, dest[i]));
+                malas.add(new Mala(i, !dest[i]));
             }
         }
 

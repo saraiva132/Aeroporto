@@ -29,7 +29,6 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
         System.out.println("GoHome!");
         nPassageiros--;
         if (nPassageiros == 0) {
-            nPassageiros = passMax;
             notifyAll();
         }
         try {

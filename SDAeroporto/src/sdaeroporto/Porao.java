@@ -31,7 +31,6 @@ public Porao(ArrayList<Mala> malas)
 @Override
 public synchronized Mala tryToCollectABag()
 {
-    System.out.println("Try to collect a bag");
     if (malas.isEmpty())
         return null;
     else

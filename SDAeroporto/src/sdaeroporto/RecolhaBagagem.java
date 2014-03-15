@@ -17,13 +17,15 @@ import java.util.HashMap;
  */
 public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassageiroInterface {
 
-    HashMap<Integer, Mala> belt;
+    HashMap<Integer, Integer> belt;
     int nMalasStore;
     boolean noMoreBags;
 
     public RecolhaBagagem() {
         nMalasStore = 0;
         belt = new HashMap<>(chegadas * passMax);
+        for(int i = 0; i< passMax ; i++)
+            belt.put(i, 0);
         noMoreBags = false;
     }
 
@@ -38,20 +40,24 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
-        System.out.println("Try to collect a bag " + bagID);
+       
+        System.out.println("Entrei aqui a procura da mala "+bagID);
         
-        try {
-            while (!belt.containsKey(bagID) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
-                wait();                             //os passageiros são acordados
+            while ( (belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
+               try {
+                wait();                            //os passageiros são acordados
+                } catch (InterruptedException ex) {
+        }
             }
-        } catch (InterruptedException ex) {
-        }
-        if (belt.containsKey(bagID)) {        
-            belt.remove(bagID);
-            return bagCollect.MINE;
-        }
         
-        return bagCollect.NOMORE;
+         System.out.println("Get a bag " + bagID);
+       if(belt.get(bagID) > 0){
+           belt.put(bagID, belt.get(bagID)-1);
+           return bagCollect.MINE;
+       }
+       return bagCollect.NOMORE;
+        
+            
         
     }
 
@@ -75,7 +81,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
             return bagDest.STOREROOM;
         } else {
             System.out.println(bag.getOwner());
-            belt.put(bag.getOwner(), bag);
+            belt.put(bag.getOwner(), belt.get(bag.getOwner())+1);
             notifyAll();
             return bagDest.BELT;
         }
