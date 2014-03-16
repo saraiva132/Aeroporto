@@ -7,33 +7,43 @@ package Interfaces;
  * @author rafael
  */
 public interface AutocarroMotoristaInterface {
+    
     /**
-     * Announcing bus boarding
+     * Invocador: Motorista
      * 
-     * 
-     * 
-     * @param bilhetesVendidos 
+     * Motorista espera que todos os passageiros entrem no autocarro para poder seguir
+     * @param bilhetesVendidos - Número de bilhetes vendidos. Numero de passageiros que está à espera
      */
 
     public void announcingBusBoardingWaiting(int bilhetesVendidos);
 
     /**
-     * Motorista leva os passageiros para terminal de partida
+     * Invocador: Motorista
+     * 
+     * Motorista conduz os passageiros para o proximo aeroporto.
+     * 
      */
     public void goToDepartureTerminal();
 
     /**
-     * Motorista volta ao terminal de chegadas
+     * Invocador: Motorista
+     * 
+     * Motorista retorna ao aeroporto de chegada.
      */
     public void goToArrivalTerminal();
 
     /**
-     * Motorista estaciona o autocarro
+     * Invocador: Motorista
+     * 
+     * Motorista estaciona o autocarro no aeroporto de chegada.
      */
     public void parkTheBus();
 
-    /**
-     * Motorista estaciona o autocarro e larga os passageiros
+     /**
+     * Invocador: Motorista
+     * 
+     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
+     * até que o ultimo passageiro saia do Autocarro e o acorde.
      */
     public void parkTheBusAndLetPassOff();
 }
