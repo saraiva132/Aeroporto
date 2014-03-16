@@ -33,7 +33,7 @@ public class Logging {
         System.out.println("Barbeiro     Motorista    Passageiro1   Passageiro2    Passageiro3   Passageiro4   Passageiro5");
     }
 
-    public synchronized void reportStatus() {
+    private synchronized void reportStatus() {
         String lineStatus = "";
         lineStatus += " " + bstate.toString() + " ";
         lineStatus += " " + mstate.toString() + " ";
@@ -45,13 +45,16 @@ public class Logging {
 
     public synchronized void reportState(int passID, passState state) {
         pstate[passID] = state;
+        reportStatus();
     }
 
     public void reportState(motState state) {
         mstate = state;
+        reportStatus();
     }
 
     public void reportState(bagState state) {
         bstate = state;
+        reportStatus();
     }
 }
