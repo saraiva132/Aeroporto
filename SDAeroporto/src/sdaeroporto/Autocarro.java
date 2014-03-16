@@ -73,7 +73,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
             notify();
         }
     }
-
+    /**
+     * 
+     * @param bilhetesVendidos 
+     */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
 

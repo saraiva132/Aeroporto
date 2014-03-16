@@ -23,7 +23,10 @@ public interface TransferenciaMotoristaInterface {
     /**
      * Invocador: Motorista
      * 
-     * @return 
+     * Existem passageiros para uma viagem começar.
+     * 
+     * @return Número de passageiros que tomaram interesse em participar na viagem.
+     * Limitado à lotação do Autocarro.
      */
     public int announcingBusBoardingShouting();
     
