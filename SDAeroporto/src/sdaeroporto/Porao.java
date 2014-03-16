@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package sdaeroporto;
 
 import Estruturas.Mala;
@@ -17,8 +11,18 @@ import java.util.ArrayList;
  */
 public class Porao implements PoraoBagageiroInterface {
 
+    /**
+     * Conjunto de malas que estão no porão do avião
+     * 
+     * @serialField malas
+     */
 ArrayList<Mala> malas;
     
+/**
+ * Instanciação e inicialização do monitor <b>Porao</b>
+ * 
+ * @param malas malas que se encontram no porão
+ */
 public Porao(ArrayList<Mala> malas)
 {
     this.malas = malas;
