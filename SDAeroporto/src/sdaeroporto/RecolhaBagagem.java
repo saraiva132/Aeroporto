@@ -30,13 +30,21 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     }
 
     /**
-     * estado de bloqueio enquanto nao ha novas malas a chegar a esta zona (o
-     * bagageiro vai fazer notifyall cada vez que leva 1 mala para esta zona e
-     * os passageiros quando 'acordam' vêm se têm alguma mala a recolher e
-     * adormecem outra vez) Invocador: Passageiro
-     *
-     * @param bagID
-     * @return
+     * Invocador: Passageiro
+     * 
+     * Vai buscar uma mala
+     * 
+     * O passageiro desloca-se à zona de recolha de bagagens para ir buscar a
+     * sua mala. Espera até que aviste a sua mala na passadeira rolante ou que o
+     * bagageiro anuncie que já não existem mais malas no porão do avião.
+     * 
+     * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de forma
+     * bem sucedida.
+     * 
+     * @param bagID identificador da mala
+     * @return a forma como conseguiu apanhar a sua mala: <b>com sucesso</b> ou 
+     * <b>sem sucesso</b>. Alternativamente, a informação de que já não vale a 
+     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m) 
      */
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
@@ -66,36 +74,52 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
 
     /**
      * Invocador: Bagageiro
-     *
-     * @param bag
-     * @return
+     * 
+     * O bagageiro transporta uma mala para um determinado local:
+     * <li> para a zona de armazenamento caso a mala pertença a um passageiro 
+     * que esteja em trânsito
+     * <li> para a passadeira rolante caso pertença a um passageiro cujo destino
+     * é este aeroporto, notificando-o de seguida
+     * 
+     * Caso o obejecto mala seja null notifica todos os passageiros de que já 
+     * não existem mais malas no porão do avião 
+     * 
+     * @param mala mala que o bagageiro transporta
+     * @return local para onde levou a mala, ou caso o objecto mala seja um 
+     * null, a informação de que o porão já se encontra vazio
      */
     @Override
-    public synchronized bagDest carryItToAppropriateStore(Mala bag) {
-        if (bag == null) {
+    public synchronized bagDest carryItToAppropriateStore(Mala mala) {
+        if (mala == null) {
             System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
             return bagDest.LOBBYCLEAN; //Nao tem mala retorna null!
         }
-        System.out.println("CarryBag "+ bag.getOwner());
-        if (bag.inTransit()) {
+        System.out.println("CarryBag "+ mala.getOwner());
+        if (mala.inTransit()) {
             nMalasStore++;
             return bagDest.STOREROOM;
         } else {
-            System.out.println(bag.getOwner());
-            belt.put(bag.getOwner(), belt.get(bag.getOwner())+1);
+            System.out.println(mala.getOwner());
+            belt.put(mala.getOwner(), belt.get(mala.getOwner())+1);
             notifyAll();
             return bagDest.BELT;
         }
     }
 
     /**
-     * Estado de transição. Nao bloqueante. Os passageiros que não obtiveram
-     * todas as suas malas precisam de reportar o acontecimento. Logging!
-     *
-     * @param passageiroID
-     * @param malasPerdidas
+     * Invocador: Passageiro
+     * 
+     * Reportar a falta de mala(s)
+     * 
+     * O passageiro, após não ter coleccionado todas as suas malas e após o 
+     * bagageiro o ter notificado de que já não existem mais malas no porão 
+     * desloca-se ao guichet de reclamação do aeroporto para reclamar a falta da(s)
+     * sua(s) mala(s)
+     * 
+     * @param passageiroID identificador do passageiro
+     * @param malasPerdidas número de malas perdidas
      */
     @Override
     public synchronized void reportMissingBags(int passageiroID, int malasPerdidas) {

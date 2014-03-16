@@ -1,28 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
 /**
- *
+ * Identifica e descreve as operações que um passageiro pode realizar sobre o 
+ * monitor <b>TransiçãoAeroporto</b>
+ * 
  * @author rafael
  */
 public interface TransicaoPassageiroInterface {
 
     /**
-     * Passageiro com destino final abandona o aeroporto e vai para casa.
-     *
-     * @param passageiroID
-     */
-    
+     * Invocador: Passageiro
+     * 
+     * Ir para casa
+     * 
+     * O passageiro, cujo destino final é este aeroporto, abandona o aeroporto e
+     * vai para casa. Espera até ao último passageiro do seu voo chegar à saída 
+     * do terminal de chegada ou ao terminal de partida, que tem a responsabilidade
+     * de notificar os outros passageiros que podem ir embora.
+     */    
     public void goHome();
 
     /**
-     * Passageiro que nao se encontra no destino final. Prepara o proximo voo.
-     *
-     * @param passageiroID
+     * Invocador: Passageiro
+     * 
+     * Entrar no terminal de partida
+     * 
+     * O passageiro, que se encontra em trânsito,prepara o próximo voo.Espera 
+     * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
+     * ou ao terminal de partida, que tem a responsabilidade de notificar os 
+     * outros passageiros que podem ir embora.
+     * 
      */
     public void prepareNextLeg();
 

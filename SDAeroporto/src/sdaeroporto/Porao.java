@@ -24,20 +24,27 @@ public Porao(ArrayList<Mala> malas)
     this.malas = malas;
 }
 
-/**
- * Recolher uma mala do porao. Executada pelo bagageiro
- * @return 
- */
-@Override
-public synchronized Mala tryToCollectABag()
-{
-    System.out.println("Procurando mala..");
-    if (malas.isEmpty())
-        return null;
-    else
+    /**
+     * Invocador: bagageiro
+     * 
+     * Tentar recolher uma mala
+     * 
+     * O bagageiro desloca-se ao porão do avião e caso este não se encontre vazio
+     * recolhe uma mala
+     * 
+     * @return a mala que apanhou no porão, ou em caso do porão se encontrar 
+     * vazio, null
+     */
+    @Override
+    public synchronized Mala tryToCollectABag()
     {
-        return malas.remove(0);
-    }
+        System.out.println("Procurando mala..");
+     if (malas.isEmpty())
+     { return null;
+     }
+     else
+     { return malas.remove(0);
+     }
 }
 
 }

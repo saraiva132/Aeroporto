@@ -23,8 +23,16 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     }
 
     /**
-     * Passageiro com destino final abandona o aeroporto e vai para casa.
+     * Invocador: Passageiro
+     * 
+     * Vai para casa
+     * 
+     * O passageiro, cujo destino final é este aeroporto, abandona o aeroporto e
+     * vai para casa. Espera até ao último passageiro do seu voo chegar à saída 
+     * do terminal de chegada ou ao terminal de partida, que tem a responsabilidade
+     * de notificar os outros passageiros que podem ir embora.
      *
+     * @param passageiroID identifica o passageiro
      */
     @Override
     public synchronized void goHome() {
@@ -47,8 +55,15 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     }
 
     /**
-     * Passageiro que nao se encontra no destino final. Prepara o proximo voo.
-     *
+     * Invocador: Passageiro
+     * 
+     * Entrar no terminal de partida
+     * 
+     * O passageiro, que se encontra em trânsito,prepara o próximo voo.Espera 
+     * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
+     * ou ao terminal de partida, que tem a responsabilidade de notificar os 
+     * outros passageiros que podem ir embora.
+     * 
      */
     @Override
     public synchronized void prepareNextLeg() {

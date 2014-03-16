@@ -36,9 +36,16 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     /**
-     * Passageiro anuncia a intenção de entrar no autocarro
-     *
-     * @param passageiroID
+     * Invocador: Passageiro
+     * 
+     * Apanhar o autocarro
+     * 
+     * O passageiro anuncia que pretende apanhar o autocarro. Coloca-se na fila,
+     * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no 
+     * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
+     * 
+     * @param passageiroID identificador do passageiro
+     * @return posição do seu assento no autocarro
      */
     @Override
     public synchronized int takeABus(int passageiroID) {
@@ -74,7 +81,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         System.out.println("has work ended?");
         Reminder reminder = new Reminder(3);
         try {
-            while (fila.size() < lotação && timeUp == false) {
+            while (fila.size() < lotação && !timeUp ) {
                 wait();
                  if(fila.size() >= lotação)
                     reminder.timer.cancel();

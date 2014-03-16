@@ -31,18 +31,24 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Passageiro entra no autocarro
-     *
-     * @param id
+     * Invocador: Passageiro
+     * Entrar no autocarro
+     * 
+     * O passageiro entra no autocarro de forma ordenada e senta-se no assento a 
+     * que corresponde o seu ticket.
+     * 
+     * Anuncia ao motorista que já se sentou e espera que o motorista o leve até
+     * à zona de transferência do terminal de partida.
+     * 
+     * @param ticketID lugar onde o passageiro se pode sentar
      */
     @Override
-    public synchronized void enterTheBus(int id) {
-        System.out.println("Entering the bus motha focka.Bilhete: " + id + " Bilhetes vendidos: " + bilhetes);
+    public synchronized void enterTheBus(int ticketID) {
+        System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
-        seat[id] = true;
-        if (nOcupantes >= bilhetes) {
-            notifyAll();
-        }
+        seat[ticketID] = true;
+        
+        notifyAll();
 
         while (!hasEnded) {
             try {
@@ -53,15 +59,19 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Passageiro sai do autocarro
-     *
-     * @param id
+     * Invocador: Passageiro
+     * Sair do autocarro
+     * 
+     * O passageiro sai do autocarro e caso seja o último a sair notifica o 
+     * motorista de que já não há mais ninguém no autocarro.
+     * 
+     * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
-    public synchronized void leaveTheBus(int id) {
+    public synchronized void leaveTheBus(int ticketID) {
         System.out.println("IM OUT!Shitty bus");
         nOcupantes--;
-        seat[id] = false;
+        seat[ticketID] = false;
         if (nOcupantes == 0) {
             notify();
         }
@@ -70,10 +80,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
 
-        bilhetes = bilhetesVendidos;
         System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
 
-        while (nOcupantes < bilhetes) {
+        while (nOcupantes < bilhetesVendidos) {
             try {
                 wait();
             } catch (InterruptedException ex) {

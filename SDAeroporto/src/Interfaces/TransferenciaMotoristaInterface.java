@@ -1,25 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Interfaces;
 
 /**
- *
+ *Identifica e descreve as operações que o motorista pode realizar sobre o 
+ * monitor <b>TransferênciaTerminal</b>
+ * 
  * @author rafael
  */
 public interface TransferenciaMotoristaInterface {
 
      /**
-     * Motorista anuncia que ja acabou o trabalho
-     * @return 
-     */
+      * Invocador: Motorista
+      * 
+      * O dia de trabalho já acabou
+      * 
+      * O motorista verifica se verifica se o seu dia de trabalho já acabou.
+      * 
+      * @return TRUE, caso tenho acabado
+      *         FALSE, caso contrário
+      */
     public boolean hasDaysWorkEnded();
     
     /**
-     * Motorista anuncia que a viagem vai começar
+     * Invocador: Motorista
+     * 
      * @return 
      */
     public int announcingBusBoardingShouting();

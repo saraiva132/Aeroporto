@@ -25,6 +25,10 @@ public class Bagageiro extends Thread {
      * @serialField state
      */
     private bagState state;
+    
+    /**
+     * 
+     */
 
     ZonaDesembarqueBagageiroInterface zona;
     PoraoBagageiroInterface porao;
