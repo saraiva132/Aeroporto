@@ -38,7 +38,7 @@ public Porao(ArrayList<Mala> malas)
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre vazio
      * recolhe uma mala
      * 
-     * @return a mala que apanhou no porão, ou em caso do porão se encontrar 
+     * @return A mala que apanhou no porão, ou em caso do porão se encontrar 
      * vazio, null
      */
     @Override

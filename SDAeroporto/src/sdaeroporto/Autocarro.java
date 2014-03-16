@@ -29,12 +29,12 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Passageiro
-     * Entrar no autocarro
+     * <p>Entrar no autocarro
      * 
-     * O passageiro entra no autocarro de forma ordenada e senta-se no assento a 
+     * <p>O passageiro entra no autocarro de forma ordenada e senta-se no assento a 
      * que corresponde o seu ticket.
      * 
-     * Anuncia ao motorista que já se sentou e espera que o motorista o leve até
+     * <p>Anuncia ao motorista que já se sentou e espera que o motorista o leve até
      * à zona de transferência do terminal de partida.
      * 
      * @param ticketID lugar onde o passageiro se pode sentar
