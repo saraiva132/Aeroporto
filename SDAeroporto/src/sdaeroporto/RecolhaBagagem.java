@@ -50,10 +50,13 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         }
             }
         
-         System.out.println("Get a bag " + bagID);
+       System.out.println("Get a bag " + bagID);
        if(belt.get(bagID) > 0){
            belt.put(bagID, belt.get(bagID)-1);
-           return bagCollect.MINE;
+           if(getBagChance())         
+               return bagCollect.MINE;
+           else 
+               return bagCollect.UNSUCCESSFUL;
        }
        return bagCollect.NOMORE;
         
@@ -70,9 +73,10 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     @Override
     public synchronized bagDest carryItToAppropriateStore(Mala bag) {
         if (bag == null) {
+            System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
-            return null; //Nao tem mala retorna null!
+            return bagDest.LOBBYCLEAN; //Nao tem mala retorna null!
         }
         System.out.println("CarryBag "+ bag.getOwner());
         if (bag.inTransit()) {
@@ -97,6 +101,10 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     public synchronized void reportMissingBags(int passageiroID, int malasPerdidas) {
         System.out.println("Report missing bags. Passageiro: "+passageiroID+" Perdidas: " + malasPerdidas);
         //Imprimir malas perdidas    
+    }
+    
+     private boolean getBagChance() {
+        return Math.random() > 0.2;
     }
 
 }

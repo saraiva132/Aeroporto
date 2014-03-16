@@ -26,12 +26,8 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         timeUp = false;
         canGo = false;
         next = false;
-        run();
     }
 
-    private void run() {
-        new Reminder(5);
-    }
 
     private synchronized void tempoEsgotado() {
         System.out.println("ACORDA CARALHO");
@@ -76,10 +72,12 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     @Override
     public synchronized boolean hasDaysWorkEnded() {
         System.out.println("has work ended?");
-
+        Reminder reminder = new Reminder(3);
         try {
             while (fila.size() < lotação && timeUp == false) {
                 wait();
+                 if(fila.size() >= lotação)
+                    reminder.timer.cancel();
             }
         } catch (InterruptedException ex) {
 

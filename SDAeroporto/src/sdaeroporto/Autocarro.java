@@ -37,17 +37,18 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public synchronized void enterTheBus(int id) {
-        System.out.println("Entering the bus motha focka");
+        System.out.println("Entering the bus motha focka.Bilhete: " + id + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
         seat[id] = true;
-        if (nOcupantes == bilhetes) {
-            notify();
+        if (nOcupantes >= bilhetes) {
+            notifyAll();
         }
-        try {
-            while (!hasEnded) {
+
+        while (!hasEnded) {
+            try {
                 wait();
+            } catch (InterruptedException ex) {
             }
-        } catch (InterruptedException ex) {
         }
     }
 
@@ -68,14 +69,15 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
-        
+
         bilhetes = bilhetesVendidos;
-        System.out.println("All Aboard V2: bilhetes - "+bilhetesVendidos);
-        try {
-            while (nOcupantes < bilhetes) {
+        System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
+
+        while (nOcupantes < bilhetes) {
+            try {
                 wait();
+            } catch (InterruptedException ex) {
             }
-        } catch (InterruptedException ex) {
         }
     }
 
