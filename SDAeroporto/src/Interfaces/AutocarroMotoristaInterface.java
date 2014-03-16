@@ -12,10 +12,10 @@ public interface AutocarroMotoristaInterface {
      * Invocador: Motorista
      * 
      * Motorista espera que todos os passageiros entrem no autocarro para poder seguir
-     * @param bilhetesVendidos - Número de bilhetes vendidos. Numero de passageiros que está à espera
+     * @param bilhetesvendidos - Número de bilhetes vendidos. Numero de passageiros que está à espera
      */
 
-    public void announcingBusBoardingWaiting(int bilhetesVendidos);
+    public void announcingBusBoardingWaiting(int bilhetesvendidos);
 
     /**
      * Invocador: Motorista

@@ -5,21 +5,21 @@ import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.AutocarroPassageiroInterface;
 
 /**
- * Monitor que simula a interacção entre os passageiros e o motorista no âmbito 
+ * Monitor que simula a interacção entre os passageiros e o motorista no âmbito
  * da viagem de autocarro entre os terminais de chegada e partida
- * 
+ *
  * @author rafael
  */
 public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
 
     private int nOcupantes;
-    private int bilhetes;
     private boolean[] seat;
     private boolean hasEnded;
+    private int bilhetesVendidos;
 
     public Autocarro() {
         hasEnded = false;
-        bilhetes = 0;
+        bilhetesVendidos = 0;
         nOcupantes = 0;
         seat = new boolean[lotação];
         for (int i = 0; i < lotação; i++) {
@@ -29,14 +29,17 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Passageiro
-     * <p>Entrar no autocarro
-     * 
-     * <p>O passageiro entra no autocarro de forma ordenada e senta-se no assento a 
+     * <p>
+     * Entrar no autocarro
+     *
+     * <p>
+     * O passageiro entra no autocarro de forma ordenada e senta-se no assento a
      * que corresponde o seu ticket.
-     * 
-     * <p>Anuncia ao motorista que já se sentou e espera que o motorista o leve até
+     *
+     * <p>
+     * Anuncia ao motorista que já se sentou e espera que o motorista o leve até
      * à zona de transferência do terminal de partida.
-     * 
+     *
      * @param ticketID lugar onde o passageiro se pode sentar
      */
     @Override
@@ -44,46 +47,51 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
         seat[ticketID] = true;
-        
-        notifyAll();
 
+        if (nOcupantes == bilhetesVendidos) {
+            notifyAll();
+        }
+    }
+
+    /**
+     * Invocador: Passageiro Sair do autocarro
+     * <p>
+     * O passageiro espera que a viagem termine. Quando o motorista anuncia 
+     * o término da viagem ele sai do autocarro e caso seja o último a sair 
+     * notifica o motorista de que já não há mais ninguém no autocarro.
+     *
+     * @param ticketID lugar onde o passageiro estava sentado
+     */
+    @Override
+    public synchronized void leaveTheBus(int ticketID) {
+        //System.out.println("IM OUT!Shitty bus");
         while (!hasEnded) {
             try {
                 wait();
             } catch (InterruptedException ex) {
             }
         }
-    }
-
-    /**
-     * Invocador: Passageiro
-     * Sair do autocarro
-     * 
-     * O passageiro sai do autocarro e caso seja o último a sair notifica o 
-     * motorista de que já não há mais ninguém no autocarro.
-     * 
-     * @param ticketID lugar onde o passageiro estava sentado 
-     */
-    @Override
-    public synchronized void leaveTheBus(int ticketID) {
-        //System.out.println("IM OUT!Shitty bus");
         nOcupantes--;
         seat[ticketID] = false;
         if (nOcupantes == 0) {
             notify();
         }
     }
+
     /**
      * Invocador: Motorista
-     * 
-     * Motorista espera que todos os passageiros entrem no autocarro para poder seguir
-     * @param bilhetesVendidos - Número de bilhetes vendidos. Numero de passageiros que está à espera
+     *
+     * Motorista espera que todos os passageiros entrem no autocarro para poder
+     * seguir
+     *
+     * @param bilhetesvendidos - Número de bilhetes vendidos. Numero de
+     * passageiros que está à espera
      */
     @Override
-    public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
+    public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {
 
-       // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
-
+        // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
+        bilhetesVendidos = bilhetesvendidos;
         while (nOcupantes < bilhetesVendidos) {
             try {
                 wait();
@@ -94,9 +102,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Motorista
-     * 
+     *
      * Motorista conduz os passageiros para o proximo aeroporto.
-     * 
+     *
      */
     @Override
     public void goToDepartureTerminal() {
@@ -106,7 +114,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Motorista
-     * 
+     *
      * Motorista retorna ao aeroporto de chegada.
      */
     @Override
@@ -117,7 +125,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Motorista
-     * 
+     *
      * Motorista estaciona o autocarro no aeroporto de chegada.
      */
     @Override
@@ -128,9 +136,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
 
     /**
      * Invocador: Motorista
-     * 
-     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
-     * até que o ultimo passageiro saia do Autocarro e o acorde.
+     *
+     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia até
+     * que o ultimo passageiro saia do Autocarro e o acorde.
      */
     @Override
     public synchronized void parkTheBusAndLetPassOff() {
