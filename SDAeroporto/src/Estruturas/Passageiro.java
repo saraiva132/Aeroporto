@@ -55,19 +55,19 @@ public class Passageiro extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Passageiro a iniciar");
+        //System.out.println("Passageiro a iniciar");
         destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
         bagCollect getBag = null;
         switch (nextState) {
             case WITH_BAGGAGE:
                 log.reportState(id,state = passState.AT_THE_LUGGAGE_COLLECTION_POINT);
-                System.out.println("tenho bagagem -----------------");
+               // System.out.println("tenho bagagem -----------------");
                 do {
                     getBag = recolha.goCollectABag(id);
                     if (getBag == bagCollect.MINE) {
                         nMalasEmPosse++;
                     }
-                    System.out.println("ID: " + id + " posse: " + nMalasEmPosse + " total: " + nMalasTotal);
+                    //System.out.println("ID: " + id + " posse: " + nMalasEmPosse + " total: " + nMalasTotal);
                     //System.out.println(getBag.toString());
 
                 } while (nMalasEmPosse < nMalasTotal && getBag != bagCollect.NOMORE);

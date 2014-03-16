@@ -86,7 +86,22 @@ public class AuxInfo {
          * O passageiro encontra-se no terminal de saída à espera que o seu voo 
          * parta.
          */
-        ENTERING_THE_DEPARTURE_TERMINAL
+        ENTERING_THE_DEPARTURE_TERMINAL;
+        
+        @Override
+        public String toString(){
+        switch(this){
+            case AT_THE_DISEMBARKING_ZONE: return "DESEMBARCAR";
+            case AT_THE_LUGGAGE_COLLECTION_POINT: return "RECOLHER BAGAGEM";
+            case AT_THE_BAGGAGE_RECLAIM_OFFICE: return "RECLAMAÇÂO";
+            case EXITING_THE_ARRIVAL_TERMINAL: return "PARA CASA";
+            case AT_THE_ARRIVAL_TRANSFER_TERMINAL: return "NO PASSEIO";
+            case TERMINAL_TRANSFER: return "AUTOCARRO";
+            case AT_THE_DEPARTURE_TRANSFER_TERMINAL: return "SAIDA";
+            case ENTERING_THE_DEPARTURE_TERMINAL: return "PROXIMO VOO";
+            default: throw new IllegalArgumentException();
+        }    
+        }
     }
     /**
      * Identificação dos possíveis estados do bagageiro ao longo do seu  
@@ -118,7 +133,17 @@ public class AuxInfo {
          * está em trânsito, na sala de armazenamento de bagagens, após a ter 
          * transportado desde o porão.
          */
-        AT_THE_STOREROOM
+        AT_THE_STOREROOM;
+        @Override
+        public String toString(){
+        switch(this){
+            case WAITING_FOR_A_PLANE_TO_LAND: return "A DORMIR";
+            case AT_THE_PLANES_HOLD: return "BUSCAR MALA";
+            case AT_THE_LUGGAGE_BELT_CONVERYOR: return "BELT";
+            case AT_THE_STOREROOM: return "STOREROOM";    
+            default: throw new IllegalArgumentException();
+        }    
+        }
     }
     
     /**
@@ -152,7 +177,18 @@ public class AuxInfo {
          * O motorista encontra-se no terminal de partida à espera que todos os 
          * passageiros saiam do autocarro.
          */
-        PARKING_AT_THE_DEPARTURE_TERMINAL
+        PARKING_AT_THE_DEPARTURE_TERMINAL;
+        
+        @Override
+        public String toString(){
+        switch(this){
+            case PARKING_AT_THE_ARRIVAL_TERMINAL: return "NO PASSEIO";
+            case DRIVING_FORWARD: return "CONDUZIR FRENTE";
+            case DRIVING_BACKWARD: return "CONDUZIR TRAS"; 
+            case PARKING_AT_THE_DEPARTURE_TERMINAL: return "TERMINAL PARTIDA";   
+            default: throw new IllegalArgumentException();
+        }    
+        }
     }
     
     /**
@@ -176,7 +212,8 @@ public class AuxInfo {
          * Este aeroporto corresponde ao destino do passageiro; e este não possui
          * bagagens.
          */
-        WITHOUT_BAGGAGE,
+        WITHOUT_BAGGAGE;
+        
     }
     
     /**

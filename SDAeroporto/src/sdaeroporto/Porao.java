@@ -42,7 +42,7 @@ public Porao(ArrayList<Mala> malas)
     @Override
     public synchronized Mala tryToCollectABag()
     {
-        System.out.println("Procurando mala..");
+        //System.out.println("Procurando mala..");
      if (malas.isEmpty())
      { return null;
      }

@@ -50,7 +50,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
        
-        System.out.println("Entrei aqui a procura da mala "+bagID);
+        //System.out.println("Entrei aqui a procura da mala "+bagID);
         
             while ( (belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
                try {
@@ -59,7 +59,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         }
             }
         
-       System.out.println("Get a bag " + bagID);
+       //System.out.println("Get a bag " + bagID);
        if(belt.get(bagID) > 0){
            belt.put(bagID, belt.get(bagID)-1);
            if(getBagChance())         
@@ -92,17 +92,17 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     @Override
     public synchronized bagDest carryItToAppropriateStore(Mala mala) {
         if (mala == null) {
-            System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
+            //System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
             return bagDest.LOBBYCLEAN; //Nao tem mala retorna null!
         }
-        System.out.println("CarryBag "+ mala.getOwner());
+        //System.out.println("CarryBag "+ mala.getOwner());
         if (mala.inTransit()) {
             nMalasStore++;
             return bagDest.STOREROOM;
         } else {
-            System.out.println(mala.getOwner());
+            //System.out.println(mala.getOwner());
             belt.put(mala.getOwner(), belt.get(mala.getOwner())+1);
             notifyAll();
             return bagDest.BELT;
@@ -124,7 +124,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized void reportMissingBags(int passageiroID, int malasPerdidas) {
-        System.out.println("Report missing bags. Passageiro: "+passageiroID+" Perdidas: " + malasPerdidas);
+        //System.out.println("Report missing bags. Passageiro: "+passageiroID+" Perdidas: " + malasPerdidas);
         //Imprimir malas perdidas    
     }
     

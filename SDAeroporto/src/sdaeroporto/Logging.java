@@ -30,17 +30,18 @@ public class Logging {
 
     private void init() {
         System.out.println("A começar logging...");
-        System.out.println("Barbeiro     Motorista    Passageiro1   Passageiro2    Passageiro3   Passageiro4   Passageiro5");
+        System.out.println("                Barbeiro                Motorista                  Passageiro1              Passageiro2              Passageiro3              Passageiro4              Passageiro5");
     }
 
     private synchronized void reportStatus() {
-        String lineStatus = "";
+        /*String lineStatus = "";
         lineStatus += " " + bstate.toString() + " ";
         lineStatus += " " + mstate.toString() + " ";
         for (int i = 0; i < passMax; i++) {
             lineStatus += " " + pstate[i].toString() + " ";
         }
-        System.out.println(lineStatus);
+        System.out.println(lineStatus);*/
+        System.out.printf("%25s %25s %25s %25s %25s %25s %25s \n",bstate,mstate,pstate[0],pstate[1],pstate[2],pstate[3],pstate[4]);
     }
 
     public synchronized void reportState(int passID, passState state) {

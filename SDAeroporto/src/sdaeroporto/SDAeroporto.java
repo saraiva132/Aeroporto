@@ -76,6 +76,7 @@ public class SDAeroporto {
         b.start();
         for (int j = 0; j < 5; j++) {
             
+            System.out.println("-------------------------------------------------A começar uma nova simulação--------------------------------------------");
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(3);
                 dest[w] = getRandomBoolean();
@@ -100,7 +101,7 @@ public class SDAeroporto {
                     p[i].join();
                 } catch (InterruptedException e) {
                 }
-                GenericIO.writelnString("O passageiro " + i + " terminou.");
+                //GenericIO.writelnString("O passageiro " + i + " terminou.");
             }
         }
 

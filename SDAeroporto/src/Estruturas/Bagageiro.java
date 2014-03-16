@@ -49,7 +49,7 @@ public class Bagageiro extends Thread {
     public void run() {
         Mala mala;
         for (int i = 0; i < chegadas; i++) {
-            System.out.println("Here we go again...");
+            //System.out.println("Here we go again...");
             zona.takeARest();
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);      
             mala = porao.tryToCollectABag();

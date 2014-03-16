@@ -47,7 +47,7 @@ public ZonaDesembarque()
 @Override
 public synchronized void  takeARest()
 {
-    System.out.println("Taking a Rest guys...");
+    //System.out.println("Taking a Rest guys...");
     try {
     while(!canGo)
             wait();
@@ -75,7 +75,7 @@ public synchronized void  takeARest()
 @Override
 public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 {
-    System.out.println("What should i do!");
+    //System.out.println("What should i do!");
     nPass--;
     if(nPass == 0)
     {
@@ -106,7 +106,7 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 @Override
 public synchronized void noMoreBagsToCollect()
 {
-    System.out.println("No more bags to collect!");
+    //System.out.println("No more bags to collect!");
 }
 
 }

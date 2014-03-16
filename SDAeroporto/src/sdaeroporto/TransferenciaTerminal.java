@@ -27,7 +27,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
 
     private synchronized void tempoEsgotado() {
-        System.out.println("ACORDA CARALHO");
+        //System.out.println("ACORDA CARALHO");
         timeUp = true;
         notifyAll();
     }
@@ -46,7 +46,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized int takeABus(int passageiroID) {
-        System.out.println("Take the bus");
+        //System.out.println("Take the bus");
         int ticket;
 
         fila.add(passageiroID);
@@ -75,7 +75,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized boolean hasDaysWorkEnded() {
-        System.out.println("has work ended?");
+        //System.out.println("has work ended?");
         Reminder reminder = new Reminder(3);
         try {
             while (fila.size() < lotação && !timeUp ) {
@@ -95,7 +95,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     @Override
     public synchronized int announcingBusBoardingShouting() {
-        System.out.println("ALL ABOAAARD!: passageiros à espera: " + fila.size());
+        //System.out.println("ALL ABOAAARD!: passageiros à espera: " + fila.size());
         int pass = 0;
         int npass = fila.size();
         for (int i = 0; i < npass && i < lotação; i++) {
@@ -107,7 +107,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
                 } catch (InterruptedException ex) {
                 }
             }
-            System.out.println("Passageiro entra");
+            //System.out.println("Passageiro entra");
             next = false;
             pass++;
         }
@@ -128,7 +128,6 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
             @Override
             public void run() {
-                System.out.println("Time's up!");
                 tempoEsgotado();
                 timer.cancel(); //Terminate the timer thread
 

@@ -32,7 +32,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      */
     @Override
     public synchronized void goHome() {
-        System.out.println("GoHome!");
+        //System.out.println("GoHome!");
         nPassageiros--;
         if (nPassageiros == 0) {
             canLeave = true;
@@ -63,7 +63,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      */
     @Override
     public synchronized void prepareNextLeg() {
-        System.out.println("Prepare next leg!");
+        //System.out.println("Prepare next leg!");
         nPassageiros--;
         if (nPassageiros == 0) {
             canLeave = true;

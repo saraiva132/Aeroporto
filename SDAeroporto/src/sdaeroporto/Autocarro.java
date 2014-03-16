@@ -44,7 +44,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public synchronized void enterTheBus(int ticketID) {
-        System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
+        //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
         seat[ticketID] = true;
         
@@ -69,7 +69,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public synchronized void leaveTheBus(int ticketID) {
-        System.out.println("IM OUT!Shitty bus");
+        //System.out.println("IM OUT!Shitty bus");
         nOcupantes--;
         seat[ticketID] = false;
         if (nOcupantes == 0) {
@@ -80,7 +80,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
 
-        System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
+       // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
 
         while (nOcupantes < bilhetesVendidos) {
             try {
@@ -95,7 +95,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public void goToDepartureTerminal() {
-        System.out.println("Go to next leg");
+        //System.out.println("Go to next leg");
         //Estado de transição. Fazer o quê mesmo?
     }
 
@@ -104,7 +104,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public void goToArrivalTerminal() {
-        System.out.println("Lets get back guys");
+        //System.out.println("Lets get back guys");
         //Estado de transição. Fazer o quê mesmo?
     }
 
@@ -114,7 +114,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     @Override
     public void parkTheBus() {
         //Transição
-        System.out.println("Parking..");
+        //System.out.println("Parking..");
     }
 
     /**
@@ -122,7 +122,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public synchronized void parkTheBusAndLetPassOff() {
-        System.out.println("OUT OUT OUT!");
+        //System.out.println("OUT OUT OUT!");
         hasEnded = true;
         notifyAll();
         try {
