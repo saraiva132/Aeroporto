@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import static Estruturas.AuxInfo.*;
@@ -13,6 +8,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * Monitor que simula a interacção entre os passageiros e o motorista na zona de 
+ * transferência entre os terminais de chegada e partida
  *
  * @author rafael
  */

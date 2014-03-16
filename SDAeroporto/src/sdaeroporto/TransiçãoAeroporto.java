@@ -4,6 +4,7 @@ import static Estruturas.AuxInfo.*;
 import Interfaces.TransicaoPassageiroInterface;
 
 /**
+ * Monitor que simula a interacção entre os passageiros à saída do aeroporto 
  *
  * @author rafael
  */

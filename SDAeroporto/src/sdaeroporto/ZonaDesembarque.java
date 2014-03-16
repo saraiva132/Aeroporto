@@ -5,7 +5,9 @@ import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
 
 /**
- *
+ * Monitor que simula a zona de interacção entre os passageiros e o bagageiro 
+ * na Zona de Desembarque do avião
+ * 
  * @author rafael
  */
 public  class ZonaDesembarque implements ZonaDesembarquePassageiroInterface,ZonaDesembarqueBagageiroInterface{

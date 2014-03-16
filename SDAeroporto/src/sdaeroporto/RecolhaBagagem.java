@@ -7,6 +7,9 @@ import Interfaces.RecolhaPassageiroInterface;
 import java.util.HashMap;
 
 /**
+ * Monitor que simula a interacção entre os passageiros e o bagageiro na zona
+ * de recolha de bagagens e ainda o guichet de reclamação e a zona de 
+ * armazenamento de bagagens
  *
  * @author rafael
  */
