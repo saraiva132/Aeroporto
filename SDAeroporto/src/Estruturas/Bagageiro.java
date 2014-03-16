@@ -11,6 +11,7 @@ import Estruturas.AuxInfo.bagState;
 import static Estruturas.AuxInfo.chegadas;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
+import sdaeroporto.Logging;
 
 /**
  * Identifica o tipo de dados bagageiro
@@ -30,16 +31,18 @@ public class Bagageiro extends Thread {
      * 
      */
 
-    ZonaDesembarqueBagageiroInterface zona;
-    PoraoBagageiroInterface porao;
-    RecolhaBagageiroInterface recolha;
+    private ZonaDesembarqueBagageiroInterface zona;
+    private PoraoBagageiroInterface porao;
+    private RecolhaBagageiroInterface recolha;
+    private Logging log;
 
     public Bagageiro(ZonaDesembarqueBagageiroInterface zona, PoraoBagageiroInterface porao,
-            RecolhaBagageiroInterface recolha) {
+            RecolhaBagageiroInterface recolha,Logging log) {
         state = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         this.zona = zona;
         this.porao = porao;
         this.recolha = recolha;
+        this.log = log;
     }
 
     @Override
@@ -48,24 +51,28 @@ public class Bagageiro extends Thread {
         for (int i = 0; i < chegadas; i++) {
             System.out.println("Here we go again...");
             zona.takeARest();
-            state = bagState.WAITING_FOR_A_PLANE_TO_LAND;
+            log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);      
             mala = porao.tryToCollectABag();
             bagDest nextState;
             do {
-                state = bagState.AT_THE_PLANES_HOLD;
+                log.reportState(state = bagState.AT_THE_PLANES_HOLD);
                 nextState = recolha.carryItToAppropriateStore(mala);
                 switch (nextState) {
                     case BELT:
-                        state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR;
+                        log.reportState(state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR);
                         break;
                     case STOREROOM:
-                        state = bagState.AT_THE_STOREROOM;
+                        log.reportState(state = bagState.AT_THE_STOREROOM);
                         break;
                 }
                 mala = porao.tryToCollectABag();
             } while (nextState != bagDest.LOBBYCLEAN);
-            state = bagState.WAITING_FOR_A_PLANE_TO_LAND; 
+            log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND); 
         }
     }
+    
+    
+    
+    
 
 }

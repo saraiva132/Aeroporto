@@ -35,6 +35,7 @@ public class SDAeroporto {
         TransferenciaTerminal transferencia;
         TransiçãoAeroporto transicao;
         ZonaDesembarque zona;
+        Logging log;
 
         int nIter;//Used?
         String fName;
@@ -60,6 +61,7 @@ public class SDAeroporto {
         }
 
         /*Inicialização das zonas de região crítica*/
+        log = new Logging();
         porao = new Porao(malas);
         zona = new ZonaDesembarque();
         auto = new Autocarro();
@@ -68,8 +70,8 @@ public class SDAeroporto {
         transicao = new TransiçãoAeroporto();
 
         /*Inicialização dos elementos activos*/
-        b = new Bagageiro(zona, porao, recolha);
-        m = new Motorista(auto, transferencia);
+        b = new Bagageiro(zona, porao, recolha,log);
+        m = new Motorista(auto, transferencia,log);
         m.start();
         b.start();
         for (int j = 0; j < 5; j++) {
@@ -84,7 +86,7 @@ public class SDAeroporto {
                 }
             }
             for (int i = 0; i < passMax; i++) {
-                p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia);
+                p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia,log);
             }
 
             /* arranque da simulação */

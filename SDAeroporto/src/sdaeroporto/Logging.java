@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sdaeroporto;
 
 import Estruturas.AuxInfo.*;
+import static Estruturas.AuxInfo.passMax;
 
 /**
  *
@@ -14,15 +14,44 @@ import Estruturas.AuxInfo.*;
  */
 public class Logging {
 
-    private passState [] pstate;
+    private passState[] pstate;
     private bagState bstate;
     private motState mstate;
-     
+
     public Logging() {
+        pstate = new passState[passMax];
+        init();
+        bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
+        mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        for (int i = 0; i < passMax; i++) {
+            pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
+        }
     }
 
-    public synchronized void reportStatus()
-    {
-        
+    private void init() {
+        System.out.println("A começar logging...");
+        System.out.println("Barbeiro     Motorista    Passageiro1   Passageiro2    Passageiro3   Passageiro4   Passageiro5");
+    }
+
+    public synchronized void reportStatus() {
+        String lineStatus = "";
+        lineStatus += " " + bstate.toString() + " ";
+        lineStatus += " " + mstate.toString() + " ";
+        for (int i = 0; i < passMax; i++) {
+            lineStatus += " " + pstate[i].toString() + " ";
+        }
+        System.out.println(lineStatus);
+    }
+
+    public synchronized void reportState(int passID, passState state) {
+        pstate[passID] = state;
+    }
+
+    public void reportState(motState state) {
+        mstate = state;
+    }
+
+    public void reportState(bagState state) {
+        bstate = state;
     }
 }

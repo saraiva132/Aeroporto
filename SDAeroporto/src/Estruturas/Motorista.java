@@ -8,6 +8,7 @@ package Estruturas;
 import Estruturas.AuxInfo.motState;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
+import sdaeroporto.Logging;
 
 /**
  *
@@ -19,11 +20,13 @@ public class Motorista extends Thread {
 
     private AutocarroMotoristaInterface auto;
     private TransferenciaMotoristaInterface transferencia;
-
-    public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia) {
+    private Logging log;
+    
+    public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia,Logging log) {
         this.auto = auto;
         this.transferencia = transferencia;
-        state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        log.reportState(state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
+        this.log = log;
     }
 
     @Override
@@ -34,16 +37,16 @@ public class Motorista extends Thread {
             auto.announcingBusBoardingWaiting(transferencia.announcingBusBoardingShouting());
             
             auto.goToDepartureTerminal();
-            state = motState.DRIVING_FORWARD;
+            log.reportState(state = motState.DRIVING_FORWARD);
 
             auto.parkTheBusAndLetPassOff();
-            state = motState.PARKING_AT_THE_DEPARTURE_TERMINAL;
+            log.reportState(state = motState.PARKING_AT_THE_DEPARTURE_TERMINAL);
 
             auto.goToArrivalTerminal();
-            state = motState.DRIVING_BACKWARD;
+            log.reportState(state = motState.DRIVING_BACKWARD);
 
             auto.parkTheBus();
-            state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+            log.reportState(state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
         }
     }
 }
