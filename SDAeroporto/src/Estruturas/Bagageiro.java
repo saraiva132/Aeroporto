@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Estruturas;
 
 import Estruturas.AuxInfo.bagDest;
@@ -28,14 +23,47 @@ public class Bagageiro extends Thread {
     private bagState state;
     
     /**
+     * Auxilia a simulação do ciclo de vida e as operações que o bagageiro pode 
+     * realizar sobre a zona de desembarque
      * 
+     * @serialField zona
      */
-
     private ZonaDesembarqueBagageiroInterface zona;
+    
+    /**
+     * Auxilia a simulação do ciclo de vida e as operações que o bagageiro pode 
+     * realizar sobre o porão do avião
+     * 
+     * @serialField porao
+     */
     private PoraoBagageiroInterface porao;
+    
+    /**
+     * Auxilia a simulação do ciclo de vida e as operações que o bagageiro pode 
+     * realizar sobre as zonas de recolha e de armazenamento temporário de 
+     * bagagens 
+     * 
+     * @serialField recolha
+     */
     private RecolhaBagageiroInterface recolha;
+    
+    /**
+     * Auxilia no logging da evolução dos estados do problema ao longo da simulação
+     * 
+     * @serialField log
+     */
     private Logging log;
 
+    
+    /**
+     * Instanciação e inicialização do bagageiro
+     * 
+     * @param zona monitor corresondente à zona de desembarque
+     * @param porao monitor correspondente ao porão do avião
+     * @param recolha monitor correspondente às zonas de recolha e armazenamento 
+     * temporário de bagagens
+     * @param log monitor correspondente ao logging do problema
+     */
     public Bagageiro(ZonaDesembarqueBagageiroInterface zona, PoraoBagageiroInterface porao,
             RecolhaBagageiroInterface recolha,Logging log) {
         state = bagState.WAITING_FOR_A_PLANE_TO_LAND;
@@ -45,6 +73,9 @@ public class Bagageiro extends Thread {
         this.log = log;
     }
 
+    /**
+     * Implementa o ciclo de vida do bagageiro
+     */
     @Override
     public void run() {
         Mala mala;

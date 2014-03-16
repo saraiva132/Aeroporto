@@ -9,10 +9,25 @@ import Interfaces.TransicaoPassageiroInterface;
  * @author rafael
  */
 public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
-
+    
+    /**
+     * Número de passageiros que faltam chegar à saída do aeroporto
+     * 
+     * @serialField nPassageiros
+     */
     private int nPassageiros;
-    boolean canLeave;   //Passageiros podem sair!
-
+    
+    /**
+     * Indica se os passageiros já podem sair ou ainda não
+     * 
+     * @serialField canLeave
+     * 
+     */
+    boolean canLeave;   
+    
+    /**
+     * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
+     */
     public TransiçãoAeroporto() {
         nPassageiros = passMax;
         canLeave = false;

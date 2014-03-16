@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import static Estruturas.AuxInfo.lotação;
@@ -10,7 +5,9 @@ import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.AutocarroPassageiroInterface;
 
 /**
- *
+ * Monitor que simula a interacção entre os passageiros e o motorista no âmbito 
+ * da viagem de autocarro entre os terminais de chegada e partida
+ * 
  * @author rafael
  */
 public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {

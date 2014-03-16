@@ -16,12 +16,34 @@ import java.util.HashMap;
 public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassageiroInterface {
 
     /**
+     * Passadeira de bagagens na zona de recolha de bagagens. Cada key do hashmap
+     * está associada a um passageiro e o valor que está associado a essa key 
+     * corresponde ao número de malas que estão na passadeira que pertencem ao 
+     * passageiro
      * 
+     * @serialField belt
      */
     HashMap<Integer, Integer> belt;
+    
+    /**
+     * Número de malas que estão na zona de armazenamento temporário de bagagens
+     * 
+     * @serialField nMalasStore
+     */
     int nMalasStore;
+    
+    /**
+     * Identifica se o bagageiro trará mais malas do porão para a zona de recolha 
+     * de bagagens ou não.
+     * 
+     * @serialField noMoreBags
+     */
     boolean noMoreBags;
 
+    
+    /**
+     * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
+     */
     public RecolhaBagagem() {
         nMalasStore = 0;
         belt = new HashMap<>(chegadas * passMax);
@@ -49,8 +71,6 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
-       
-        //System.out.println("Entrei aqui a procura da mala "+bagID);
         
             while ( (belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
                try {
@@ -58,8 +78,6 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
                 } catch (InterruptedException ex) {
         }
             }
-        
-       //System.out.println("Get a bag " + bagID);
        if(belt.get(bagID) > 0){
            belt.put(bagID, belt.get(bagID)-1);
            if(getBagChance())         
@@ -128,6 +146,12 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         //Imprimir malas perdidas    
     }
     
+    /**
+     * Função auxiliar que simula a probabilidade de uma mala ser ou não perdida
+     * 
+     * @return TRUE caso a mala não tenha sido perdida
+     *         FALSE caso contrário
+     */
      private boolean getBagChance() {
         return Math.random() > 0.2;
     }

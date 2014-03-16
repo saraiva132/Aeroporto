@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 
 /**
+ * 
+ * Monitor que simula a interacção do passageiro com o porão de um avião 
  *
  * @author rafael
  */
@@ -43,12 +45,12 @@ public Porao(ArrayList<Mala> malas)
     public synchronized Mala tryToCollectABag()
     {
         //System.out.println("Procurando mala..");
-     if (malas.isEmpty())
-     { return null;
-     }
-     else
-     { return malas.remove(0);
-     }
-}
+        if (malas.isEmpty())
+        { return null;
+        }
+        else
+        { return malas.remove(0);
+        }
+    }
 
 }
