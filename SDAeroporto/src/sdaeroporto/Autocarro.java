@@ -74,8 +74,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         }
     }
     /**
+     * Invocador: Motorista
      * 
-     * @param bilhetesVendidos 
+     * Motorista espera que todos os passageiros entrem no autocarro para poder seguir
+     * @param bilhetesVendidos - Número de bilhetes vendidos. Numero de passageiros que está à espera
      */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesVendidos) {
@@ -91,7 +93,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Motorista conduz de volta
+     * Invocador: Motorista
+     * 
+     * Motorista conduz os passageiros para o proximo aeroporto.
+     * 
      */
     @Override
     public void goToDepartureTerminal() {
@@ -100,7 +105,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Motorista leva os passageiros para o proximo aeroporto
+     * Invocador: Motorista
+     * 
+     * Motorista retorna ao aeroporto de chegada.
      */
     @Override
     public void goToArrivalTerminal() {
@@ -109,7 +116,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Motorista estaciona o autocarro
+     * Invocador: Motorista
+     * 
+     * Motorista estaciona o autocarro no aeroporto de chegada.
      */
     @Override
     public void parkTheBus() {
@@ -118,7 +127,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Motorista estaciona o autocarro e larga os passageiros.
+     * Invocador: Motorista
+     * 
+     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
+     * até que o ultimo passageiro saia do Autocarro e o acorde.
      */
     @Override
     public synchronized void parkTheBusAndLetPassOff() {
