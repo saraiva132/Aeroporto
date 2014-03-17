@@ -7,7 +7,8 @@ import static Estruturas.AuxInfo.passMax;
  * Monitor correspondente ao Repositório Geral de Informação. 
  * Necessário apenas para efeitos de logging
  * 
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Logging {
     

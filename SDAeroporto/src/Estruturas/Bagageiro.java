@@ -3,7 +3,7 @@ package Estruturas;
 import Estruturas.AuxInfo.bagDest;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Estruturas.AuxInfo.bagState;
-import static Estruturas.AuxInfo.chegadas;
+import static Estruturas.AuxInfo.nChegadas;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 import sdaeroporto.Logging;
@@ -11,7 +11,8 @@ import sdaeroporto.Logging;
 /**
  * Identifica o tipo de dados bagageiro
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Bagageiro extends Thread {
 
@@ -79,7 +80,7 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
-        for (int i = 0; i < chegadas; i++) {
+        for (int i = 0; i < nChegadas; i++) {
             //System.out.println("Here we go again...");
             zona.takeARest();
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);      

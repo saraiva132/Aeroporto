@@ -1,9 +1,10 @@
 package Estruturas;
 
 /**
- * Este tipo de dados armazena as constantes necessárias para a simulação do problema.
+ * Armazena as constantes necessárias para a simulação do problema.
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class AuxInfo {
     /**
@@ -11,28 +12,28 @@ public class AuxInfo {
      * 
      * @serialField chegadas
      */
-    public static int chegadas = 5;
+    public static final int nChegadas = 5;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static int bagMax = 2;
+    public static final int bagMax = 2;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static int lotação = 3;
+    public static final int lotação = 3;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static int passMax = 6;
+    public static final int passMax = 6;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  

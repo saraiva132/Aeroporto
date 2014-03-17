@@ -13,7 +13,8 @@ import sdaeroporto.Logging;
 /**
  * Identifica o tipo de dados motorista
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Motorista extends Thread {
 

@@ -8,7 +8,8 @@ import Interfaces.ZonaDesembarquePassageiroInterface;
  * Monitor que simula a zona de interacção entre os passageiros e o bagageiro 
  * na Zona de Desembarque do avião
  * 
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public  class ZonaDesembarque implements ZonaDesembarquePassageiroInterface,ZonaDesembarqueBagageiroInterface{
 
@@ -37,10 +38,10 @@ public ZonaDesembarque()
 
 
     /**
-     * Invocador: Bagageiro
-     * 
      * Descansar
-     * 
+     * <p>
+     * Invocador: Bagageiro
+     * <p>
      * O bagageiro descansa enquanto o próximo voo não chega e o último 
      * passageiro não sai do avião
      */
@@ -56,21 +57,21 @@ public synchronized void  takeARest()
     canGo = false;
 }
 
-/**
+    /**
+     * O que devo fazer?
+     * <p>
      * Invocador: Passageiro
-     * 
-     * o que devo fazer
-     * 
+     * <p>
      * O passageiro após sair do avião reflecte sobre para onde deve ir. O último 
      * passageiro deve notificar o bagageiro de que já pode começar a ir buscar 
      * as malas ao porão do avião
      * 
      * @param dest TRUE se este aeroporto é o seu destino, FALSE caso contrário
      * @param nMalas número de malas que o passageiro contém
-     * @return  qual o seu próximo passo dependendo da sua condição:
-     * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens
-     * <li> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
-     * <li> IN_TRANSIT caso esteja em trânsito
+     * @return  Qual o seu próximo passo dependendo da sua condição:
+     * <p><b>1.</b> WITH_BAGAGE caso este seja o seu destino e possua bagagens
+     * <p><b>2.</b> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
+     * <p><b>3.</b> IN_TRANSIT caso esteja em trânsito
      */
 @Override
 public synchronized destination whatShouldIDo(boolean dest,int nMalas)
@@ -96,10 +97,10 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
 }
 
     /**
-     * Invocador: Bagageiro
-     * 
      * Não existem mais malas para apanhar
-     * 
+     * <p>
+     * Invocador: Bagageiro
+     * <p>
      * O bagageiro, após verificar que o porão já se encontra vazio, dirige-se à
      * sua sala de espera
      */

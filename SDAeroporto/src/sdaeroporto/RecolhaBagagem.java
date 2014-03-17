@@ -11,7 +11,8 @@ import java.util.HashMap;
  * de recolha de bagagens e ainda o guichet de reclamação e a zona de 
  * armazenamento de bagagens
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassageiroInterface {
 
@@ -46,26 +47,26 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     public RecolhaBagagem() {
         nMalasStore = 0;
-        belt = new HashMap<>(chegadas * passMax);
+        belt = new HashMap<>(nChegadas * passMax);
         for(int i = 0; i< passMax ; i++)
             belt.put(i, 0);
         noMoreBags = false;
     }
 
     /**
+     * Buscar uma mala
+     * <p>
      * Invocador: Passageiro
-     * 
-     * Vai buscar uma mala
-     * 
+     * <p>
      * O passageiro desloca-se à zona de recolha de bagagens para ir buscar a
      * sua mala. Espera até que aviste a sua mala na passadeira rolante ou que o
      * bagageiro anuncie que já não existem mais malas no porão do avião.
-     * 
+     * <p>
      * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de forma
      * bem sucedida.
      * 
      * @param bagID identificador da mala
-     * @return a forma como conseguiu apanhar a sua mala: <b>com sucesso</b> ou 
+     * @return Forma como conseguiu apanhar a sua mala: <b>com sucesso</b> ou 
      * <b>sem sucesso</b>. Alternativamente, a informação de que já não vale a 
      * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m) 
      */
@@ -92,19 +93,21 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     }
 
     /**
+     * Transportar uma mala
+     * <p>
      * Invocador: Bagageiro
-     * 
+     * <p>
      * O bagageiro transporta uma mala para um determinado local:
-     * <li> para a zona de armazenamento caso a mala pertença a um passageiro 
+     * <p><b>1.</b> para a zona de armazenamento caso a mala pertença a um passageiro 
      * que esteja em trânsito
-     * <li> para a passadeira rolante caso pertença a um passageiro cujo destino
+     * <p><b>2.</b> para a passadeira rolante caso pertença a um passageiro cujo destino
      * é este aeroporto, notificando-o de seguida
-     * 
-     * Caso o obejecto mala seja null notifica todos os passageiros de que já 
+     * <p>
+     * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 
      * 
      * @param mala mala que o bagageiro transporta
-     * @return local para onde levou a mala, ou caso o objecto mala seja um 
+     * @return Local para onde levou a mala, ou caso o objecto mala seja um 
      * null, a informação de que o porão já se encontra vazio
      */
     @Override
@@ -128,10 +131,10 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     }
 
     /**
-     * Invocador: Passageiro
-     * 
      * Reportar a falta de mala(s)
-     * 
+     * <p>
+     * Invocador: Passageiro
+     * <p>
      * O passageiro, após não ter coleccionado todas as suas malas e após o 
      * bagageiro o ter notificado de que já não existem mais malas no porão 
      * desloca-se ao guichet de reclamação do aeroporto para reclamar a falta da(s)

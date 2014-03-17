@@ -8,15 +8,47 @@ import Interfaces.AutocarroPassageiroInterface;
  * Monitor que simula a interacção entre os passageiros e o motorista no âmbito
  * da viagem de autocarro entre os terminais de chegada e partida
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
 
+    /**
+     * Número de passageiros correntemente no autocarro
+     * 
+     * @serialField nOcupantes
+     */
     private int nOcupantes;
+    
+    /**
+     * Conjunto de bancos do autocarro. 
+     * <p>TRUE caso o assento esteja ocupaso, FALSE caso contrário
+     * 
+     * @serialField seat
+     */
     private boolean[] seat;
+    
+    /**
+     * Identifica se a viagem até ao terminal de partida já acabou ou não
+     * 
+     * <p>TRUE caso tenha acabado e os passageiros possam sair do autocarro, 
+     * FALSE caso contrário
+     * 
+     * @serialField hasEnded
+     */
     private boolean hasEnded;
+    
+    /**
+     * Identifica quantos passageiros o autocarro irá levar na viagem do terminal 
+     * de chegada para o terminal de partida
+     * 
+     * @serialField bilhetesVendidos
+     */
     private int bilhetesVendidos;
 
+    /**
+     * Instanciação e inicialização do monitor <b>Autocarro</b>
+     */
     public Autocarro() {
         hasEnded = false;
         bilhetesVendidos = 0;
@@ -28,18 +60,16 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+     * Entrar no autocarro
+     * <p>
      * Invocador: Passageiro
      * <p>
-     * Entrar no autocarro
-     *
-     * <p>
-     * O passageiro entra no autocarro de forma ordenada e senta-se no assento a
+     * O passageiro entra no autocarro de forma ordenada e senta-se no assento a 
      * que corresponde o seu ticket.
-     *
-     * <p>
-     * Anuncia ao motorista que já se sentou e espera que o motorista o leve até
-     * à zona de transferência do terminal de partida.
-     *
+     * O último passageiro a entrar anuncia ao motorista que já se sentou e 
+     * espera que o motorista o leve até à zona de transferência do terminal de 
+     * partida.
+     * 
      * @param ticketID lugar onde o passageiro se pode sentar
      */
     @Override
@@ -54,13 +84,14 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
-     * Invocador: Passageiro Sair do autocarro
+     * Sair do autocarro
      * <p>
-     * O passageiro espera que a viagem termine. Quando o motorista anuncia 
-     * o término da viagem ele sai do autocarro e caso seja o último a sair 
-     * notifica o motorista de que já não há mais ninguém no autocarro.
-     *
-     * @param ticketID lugar onde o passageiro estava sentado
+     * Invocador: Passageiro
+     * <p>
+     * O passageiro sai do autocarro e caso seja o último a sair notifica o 
+     * motorista de que já não há mais ninguém no autocarro.
+     * 
+     * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
     public synchronized void leaveTheBus(int ticketID) {
@@ -79,13 +110,15 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+     * Esperar que passageiros entrem no autocarro
+     * <p>
      * Invocador: Motorista
-     *
+     *<p>
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
      * @param bilhetesvendidos - Número de bilhetes vendidos. Numero de
-     * passageiros que está à espera
+     * passageiros que estão à espera
      */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {
@@ -101,10 +134,12 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+     * Dirigir-se ao terminal de partida
+     * <p>
      * Invocador: Motorista
-     *
-     * Motorista conduz os passageiros para o proximo aeroporto.
-     *
+     * <p>
+     * Motorista conduz os passageiros para o proximo terminal.
+     * 
      */
     @Override
     public void goToDepartureTerminal() {
@@ -113,9 +148,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+     * Dirigir-se ao terminal de chegada
+     * <p>
      * Invocador: Motorista
-     *
-     * Motorista retorna ao aeroporto de chegada.
+     * <p>
+     * Motorista retorna ao terminal de chegada.
      */
     @Override
     public void goToArrivalTerminal() {
@@ -124,9 +161,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+     * Estacionar o autocarro no terminal de chegada
+     * <p>
      * Invocador: Motorista
-     *
-     * Motorista estaciona o autocarro no aeroporto de chegada.
+     * <p>
+     * Motorista estaciona o autocarro no terminal de chegada.
      */
     @Override
     public void parkTheBus() {
@@ -135,10 +174,12 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     }
 
     /**
+      * Estacionar o autocarro no terminal de partida
+      * <p>
      * Invocador: Motorista
-     *
-     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia até
-     * que o ultimo passageiro saia do Autocarro e o acorde.
+     * <p>
+     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
+     * até que o ultimo passageiro saia do Autocarro e o acorde.
      */
     @Override
     public synchronized void parkTheBusAndLetPassOff() {

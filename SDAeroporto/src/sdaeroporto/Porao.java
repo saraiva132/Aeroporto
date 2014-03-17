@@ -9,7 +9,8 @@ import java.util.ArrayList;
  * 
  * Monitor que simula a interacção do passageiro com o porão de um avião 
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Porao implements PoraoBagageiroInterface {
 
@@ -31,14 +32,14 @@ public Porao(ArrayList<Mala> malas)
 }
 
     /**
-     * Invocador: bagageiro
-     * 
      * Tentar recolher uma mala
-     * 
+     * <p>
+     * Invocador: bagageiro
+     * <p>
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre vazio
      * recolhe uma mala
      * 
-     * @return A mala que apanhou no porão, ou em caso do porão se encontrar 
+     * @return Mala que apanhou no porão, ou em caso do porão se encontrar 
      * vazio, null
      */
     @Override

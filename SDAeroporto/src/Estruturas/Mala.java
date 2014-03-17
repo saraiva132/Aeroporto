@@ -3,7 +3,8 @@ package Estruturas;
 /**
  * Identifica o tipo de dados mala
  * 
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Mala {
   /**

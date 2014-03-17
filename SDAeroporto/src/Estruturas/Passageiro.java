@@ -13,7 +13,8 @@ import sdaeroporto.Logging;
 /**
  * Identifica o tipo de dados passageiro
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Passageiro extends Thread {
 
@@ -111,7 +112,7 @@ public class Passageiro extends Thread {
     private Logging log;
 
     /**
-     * Instanciaçãi e inicialização do passageiro
+     * Instanciação e inicialização do passageiro
      * 
      * @param nMalasTotal número de malas total do passageiro
      * @param id identificador do passageiro

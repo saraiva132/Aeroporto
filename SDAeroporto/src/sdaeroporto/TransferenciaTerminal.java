@@ -11,12 +11,22 @@ import java.util.TimerTask;
  * Monitor que simula a interacção entre os passageiros e o motorista na zona de 
  * transferência entre os terminais de chegada e partida
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
 
+    /**
+     * Fila de espera que se forma à entrada do autocarro. cada posição é ocupada
+     * pela identificação de um passageiro.
+     * 
+     * @serialField fila
+     */
     private LinkedList<Integer> fila;
-    boolean timeUp, canGo, next;
+    
+    private boolean timeUp,             /*indica se já é altura de realizar a viagem*/ 
+            canGo,                      /*indica ao passageiro se ele pode entrar no autocarro*/
+            next;                       /*indica se o motorista pode deixar o próximo passageiro na fila entrar no autocarro*/
 
     public TransferenciaTerminal() {
         fila = new LinkedList<>();
@@ -25,24 +35,26 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         next = false;
     }
 
-
+    /**
+     * Utilizado pelo motorista para 'acordar' regularmente
+     */
     private synchronized void tempoEsgotado() {
-        //System.out.println("ACORDA CARALHO");
+        //System.out.println("ACORDA MOTORISTA");
         timeUp = true;
         notifyAll();
     }
 
     /**
-     * Invocador: Passageiro
-     * 
      * Apanhar o autocarro
-     * 
+     * <p>
+     * Invocador: Passageiro
+     * <p>
      * O passageiro anuncia que pretende apanhar o autocarro. Coloca-se na fila,
      * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no 
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      * 
      * @param passageiroID identificador do passageiro
-     * @return posição do seu assento no autocarro
+     * @return Posição do seu assento no autocarro
      */
     @Override
     public synchronized int takeABus(int passageiroID) {
@@ -69,8 +81,10 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     /**
+     * Trabalho já acabou?
+     * <p>
      * Invocador - Motorista.
-     * 
+     * <p>
      * Motorista verifica se o trabalho já acabou. É acordado nas seguintes condições:
      * Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
      * Se a hora de partida chegou.
@@ -89,15 +103,16 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
                     reminder.timer.cancel();
             }
         } catch (InterruptedException ex) {
-
         }
         timeUp = false;
         return fila.isEmpty();
     }
 
     /**
+    * Anunciar início de viagem
+    * <p>
      * Invocador - Motorista.
-     * 
+     * <p>
      * Motorista anuncia que a viagem vai começar, acorda um passageiro e adormece.
      * O objectivo deste método é chamar um passageiro de cada vez por ordem de chegada
      * na fila de espera. Entrada ordenada!
@@ -126,6 +141,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         canGo = false;
         return pass;
     }
+    
     /**
      * Task criada em cada simulação que simula o horario do autocarro. Após 
      * 5 segundos de uma instância desta classe for criada vai chamar o metodo

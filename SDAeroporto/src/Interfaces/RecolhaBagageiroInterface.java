@@ -7,24 +7,27 @@ import Estruturas.Mala;
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o 
  * monitor <b>RecolhaBagagem</b>
  * 
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399s
  */
 public interface RecolhaBagageiroInterface {
     
     /**
+     * Transportar uma mala
+     * <p>
      * Invocador: Bagageiro
-     * 
+     * <p>
      * O bagageiro transporta uma mala para um determinado local:
-     * <li> para a zona de armazenamento caso a mala pertença a um passageiro 
+     * <p><b>1.</b> para a zona de armazenamento caso a mala pertença a um passageiro 
      * que esteja em trânsito
-     * <li> para a passadeira rolante caso pertença a um passageiro cujo destino
+     * <p><b>2.</b> para a passadeira rolante caso pertença a um passageiro cujo destino
      * é este aeroporto, notificando-o de seguida
-     * 
-     * Caso o obejecto mala seja null notifica todos os passageiros de que já 
+     * <p>
+     * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 
      * 
      * @param mala mala que o bagageiro transporta
-     * @return local para onde levou a mala, ou caso o objecto mala seja um 
+     * @return Local para onde levou a mala, ou caso o objecto mala seja um 
      * null, a informação de que o porão já se encontra vazio
      */
     public bagDest carryItToAppropriateStore(Mala mala);

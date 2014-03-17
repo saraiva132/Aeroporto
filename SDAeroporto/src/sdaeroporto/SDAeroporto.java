@@ -16,7 +16,8 @@ import java.util.Random;
 
 /**
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class SDAeroporto {
 
@@ -36,9 +37,7 @@ public class SDAeroporto {
         TransiçãoAeroporto transicao;
         ZonaDesembarque zona;
         Logging log;
-
-        int nIter;//Used?
-        String fName;
+        
 
         /* inicialização */
         GenericIO.writelnString("A começar Airport \n");
@@ -55,8 +54,6 @@ public class SDAeroporto {
             dest[i] = getRandomBoolean();
             for (int j = 0; j < nMalasPass[i]; j++) {
                 malas.add(new Mala(i, !dest[i]));
-                //malas.add(new Mala(i,false));
-                //malas.add(new Mala(i,true));
             }
         }
 
@@ -74,7 +71,7 @@ public class SDAeroporto {
         m = new Motorista(auto, transferencia,log);
         m.start();
         b.start();
-        for (int j = 0; j < 5; j++) {
+        for (int j = 0; j < nChegadas; j++) {
             
             System.out.println("-------------------------------------------------A começar uma nova simulação--------------------------------------------");
             for (int w = 0; w < passMax; w++) {
@@ -82,10 +79,9 @@ public class SDAeroporto {
                 dest[w] = getRandomBoolean();
                 for (int l = 0; l < nMalasPass[w]; l++) {
                     malas.add(new Mala(w, !dest[w]));
-                //malas.add(new Mala(i,false));
-                    //malas.add(new Mala(i,true));
                 }
             }
+            
             for (int i = 0; i < passMax; i++) {
                 p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia,log);
             }
