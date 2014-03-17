@@ -24,9 +24,16 @@ public interface RecolhaPassageiroInterface {
      * bem sucedida.
      * 
      * @param bagID identificador da mala
-     * @return Forma como conseguiu apanhar a sua mala: <b>com sucesso</b> ou 
-     * <b>sem sucesso</b>. Alternativamente, a informação de que já não vale a 
-     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m) 
+     * @return Forma como conseguiu apanhar a sua mala: 
+     * <ul>
+     * <li>MINE, com sucesso 
+     * <li>UNSUCCESSFUL, sem sucesso 
+     * </ul> 
+     * <p>Alternativamente, a informação de que já não vale a 
+     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m):
+     * <ul>
+     * <li>NOMORE
+     * </ul>
      */
     public bagCollect goCollectABag(int bagID);
     

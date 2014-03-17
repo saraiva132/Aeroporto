@@ -117,13 +117,13 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
-     * @param bilhetesvendidos - Número de bilhetes vendidos.
+     * @param bilhetesvendidos - Número de bilhetes vendidos
      */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {
 
         // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
-        bilhetesVendidos = bilhetesvendidos;
+        this.bilhetesVendidos = bilhetesvendidos;
         while (nOcupantes < bilhetesVendidos) {
             try {
                 wait();

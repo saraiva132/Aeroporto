@@ -1,6 +1,6 @@
 /**
- * Contains the required interfaces for the implementation of a concurrent 
- * solution to the problem <b>Rapsódia no Aeroporto</b>. 
+ * Contém as interfaces necessárias para a implementação da solução concorrente 
+ * do problema  <b>Rapsódia no Aeroporto</b>. 
  */
 
 package Interfaces;

@@ -29,8 +29,15 @@ public interface RecolhaBagageiroInterface {
      * não existem mais malas no porão do avião 
      * 
      * @param mala mala que o bagageiro transporta
-     * @return Local para onde levou a mala, ou caso o objecto mala seja um 
-     * null, a informação de que o porão já se encontra vazio
+     * @return Local para onde levou a mala:
+     * <ul>
+     * <li>STOREROOM, zona de armazenamento temporário de bagagens
+     * <li>BELT, zona de recolha de bagagens
+     * </ul>
+     * Alternativamente, caso o objecto mala seja um null, a informação de que o porão já se encontra vazio:
+     * <ul>
+     * <li>LOBBYCLEAN
+     * </ul>
      */
     public bagDest carryItToAppropriateStore(Mala mala);
      

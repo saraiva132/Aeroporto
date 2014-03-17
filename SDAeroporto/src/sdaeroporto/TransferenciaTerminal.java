@@ -92,7 +92,11 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * Se a hora de partida chegou.
      * 
      * O trabalho dele acabou se à hora da partida não se encontrar ninguém no passeio!
-     * @return True se acabou. False se não acabou ainda.
+     * @return 
+     * <ul>
+     * <li>TRUE, se o dia de trabalho acabou
+     * <li>FALSE, caso contrário
+     * </ul>
      */
     @Override
     public synchronized boolean hasDaysWorkEnded() {
@@ -119,8 +123,8 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * O objectivo deste método é chamar um passageiro de cada vez por ordem de chegada
      * na fila de espera. Entrada ordenada!
      * 
-     * @return Número de passageiros que tomaram interesse em participar na viagem.
-     * Limitado à lotação do Autocarro.
+     * @return Número de passageiros que tomaram interesse em participar na viagem
+     * (limitado à lotação do Autocarro)
      */
     @Override
     public synchronized int announcingBusBoardingShouting() {
