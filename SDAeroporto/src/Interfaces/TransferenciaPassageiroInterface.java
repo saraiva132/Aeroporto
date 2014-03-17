@@ -1,5 +1,7 @@
 package Interfaces;
 
+import sdaeroporto.Logging;
+
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o 
  * monitor <b>TransferenciaTerminal</b>
@@ -22,5 +24,5 @@ public interface TransferenciaPassageiroInterface {
      * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
-    public int takeABus(int passageiroID,int voo);
+    public int takeABus(Logging log,int passageiroID,int voo);
 }
