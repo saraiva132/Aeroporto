@@ -34,7 +34,6 @@ public class SDAeroporto {
         TransiçãoAeroporto transicao;
         ZonaDesembarque zona;
         Logging log;
-        
 
         /* inicialização */
         GenericIO.writelnString("A começar Airport \n");
@@ -69,8 +68,7 @@ public class SDAeroporto {
         m.start();
         b.start();
         for (int j = 0; j < nChegadas; j++) {
-            
-            System.out.println("-------------------------------------------------A começar uma nova simulação----------------------------------------------------------A começar uma nova simulação----------------------------------------");
+            log.nVoo(j+1);
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(3);
                 dest[w] = getRandomBoolean();
