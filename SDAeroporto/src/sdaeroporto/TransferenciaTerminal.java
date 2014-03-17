@@ -75,8 +75,8 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         }
         canGo = false;
         next = true;
-        notifyAll();
         fila.remove();
+        notifyAll();
         return ticket;
     }
 

@@ -73,7 +73,7 @@ public class SDAeroporto {
         b.start();
         for (int j = 0; j < nChegadas; j++) {
             
-            System.out.println("-------------------------------------------------A começar uma nova simulação--------------------------------------------");
+            System.out.println("-------------------------------------------------A começar uma nova simulação----------------------------------------------------------A começar uma nova simulação----------------------------------------");
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(3);
                 dest[w] = getRandomBoolean();

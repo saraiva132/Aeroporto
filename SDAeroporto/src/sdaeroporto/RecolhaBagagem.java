@@ -24,14 +24,14 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * 
      * @serialField belt
      */
-    HashMap<Integer, Integer> belt;
+    private HashMap<Integer, Integer> belt;
     
     /**
      * Número de malas que estão na zona de armazenamento temporário de bagagens
      * 
      * @serialField nMalasStore
      */
-    int nMalasStore;
+    private int nMalasStore;
     
     /**
      * Identifica se o bagageiro trará mais malas do porão para a zona de recolha 
@@ -39,7 +39,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * 
      * @serialField noMoreBags
      */
-    boolean noMoreBags;
+    private boolean noMoreBags;
 
     
     /**

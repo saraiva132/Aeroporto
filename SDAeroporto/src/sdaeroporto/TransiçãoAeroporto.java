@@ -24,7 +24,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * @serialField canLeave
      * 
      */
-    boolean canLeave;   
+    private boolean canLeave;   
     
     /**
      * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
