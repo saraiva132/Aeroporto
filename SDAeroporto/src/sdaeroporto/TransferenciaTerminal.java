@@ -23,12 +23,13 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @serialField fila
      */
     private LinkedList<Integer> fila;
-    
+    private int nVoo;                   /*indica o número de voo para o motorista saber se já acabou*/
     private boolean timeUp,             /*indica se já é altura de realizar a viagem*/ 
             canGo,                      /*indica ao passageiro se ele pode entrar no autocarro*/
             next;                       /*indica se o motorista pode deixar o próximo passageiro na fila entrar no autocarro*/
 
     public TransferenciaTerminal() {
+        nVoo = 1;
         fila = new LinkedList<>();
         timeUp = false;
         canGo = false;
@@ -54,13 +55,14 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      * 
      * @param passageiroID identificador do passageiro
+     * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
     @Override
-    public synchronized int takeABus(int passageiroID) {
+    public synchronized int takeABus(int passageiroID,int voo){
         //System.out.println("Take the bus");
         int ticket;
-
+        nVoo = voo;
         fila.add(passageiroID);
         ticket = fila.size() % lotação;
 
@@ -95,7 +97,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     @Override
     public synchronized boolean hasDaysWorkEnded() {
         //System.out.println("has work ended?");
-        Reminder reminder = new Reminder(3);
+        Reminder reminder = new Reminder(1);
         try {
             while (fila.size() < lotação && !timeUp ) {
                 wait();
@@ -105,7 +107,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         } catch (InterruptedException ex) {
         }
         timeUp = false;
-        return fila.isEmpty();
+        return (fila.isEmpty() && nVoo >= nChegadas);
     }
 
     /**
@@ -153,7 +155,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
         public Reminder(int seconds) {
             timer = new Timer();
-            timer.schedule(new RemindTask(), seconds * 1000,seconds * 1000);
+            timer.schedule(new RemindTask(), seconds * 100,seconds * 100);
         }
 
         class RemindTask extends TimerTask {

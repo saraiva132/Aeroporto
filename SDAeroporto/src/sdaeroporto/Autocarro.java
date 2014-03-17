@@ -117,8 +117,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
-     * @param bilhetesvendidos - Número de bilhetes vendidos. Numero de
-     * passageiros que estão à espera
+     * @param bilhetesvendidos - Número de bilhetes vendidos.
      */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {

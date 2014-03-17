@@ -19,7 +19,8 @@ public interface TransferenciaPassageiroInterface {
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      * 
      * @param passageiroID identificador do passageiro
+     * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
-    public int takeABus(int passageiroID);
+    public int takeABus(int passageiroID,int voo);
 }

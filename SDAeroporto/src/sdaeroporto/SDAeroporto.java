@@ -83,7 +83,7 @@ public class SDAeroporto {
             }
             
             for (int i = 0; i < passMax; i++) {
-                p[i] = new Passageiro(nMalasPass[i], i, 1, dest[i], zona, auto, transicao, recolha, transferencia,log);
+                p[i] = new Passageiro(nMalasPass[i], i, j+1, dest[i], zona, auto, transicao, recolha, transferencia,log);
             }
 
             /* arranque da simulação */
