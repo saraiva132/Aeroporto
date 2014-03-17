@@ -146,6 +146,7 @@ public class Passageiro extends Thread {
         this.id = id;
         log.reportState(id, state = passState.AT_THE_DISEMBARKING_ZONE);
         log.malasInicial(id, nMalasTotal);
+        log.malasActual(id, 0);
         log.destino(id, finalDest);
     }
 
