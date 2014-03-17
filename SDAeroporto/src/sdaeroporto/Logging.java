@@ -257,29 +257,16 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     
     @Override
       public synchronized void filaEspera(Object [] oi) {
+          
         for(int i= 0;i<oi.length;i++)
         {
             this.fila[i] = (int)oi[i];
         }
         for(int i =1;i<fila.length;i++)
         {
-            if(fila[i] == fila[i-1])
-                fila[i] = 0;
+            //if(fila[i] == fila[i-1])
+              //  fila[i] = 0;
         }
-        reportStatus();
-    }
-        public synchronized void filaEsperas(Object [] oi) {   
-        for(int i= 0;i<oi.length;i++)
-        {
-            this.fila[i] = (int)oi[i];
-        }
-        for(int i =1;i<fila.length;i++)
-        {
-            if(fila[i] == fila[i-1])
-                fila[i] = 0;
-        }
-        if(oi.length == 1)
-            this.fila[0] = 0;
         reportStatus();
     }
     @Override
