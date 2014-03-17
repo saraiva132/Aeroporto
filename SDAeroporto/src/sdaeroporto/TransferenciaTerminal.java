@@ -4,6 +4,7 @@ import static Estruturas.AuxInfo.*;
 import Interfaces.TransferenciaMotoristaInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,7 +23,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * 
      * @serialField fila
      */
-    private LinkedList<Integer> fila;
+    private Queue<Integer> fila;
     private int nVoo;                   /*indica o número de voo para o motorista saber se já acabou*/
     private boolean timeUp,             /*indica se já é altura de realizar a viagem*/ 
             canGo,                      /*indica ao passageiro se ele pode entrar no autocarro*/
@@ -30,7 +31,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
     public TransferenciaTerminal() {
         nVoo = 1;
-        fila = new LinkedList<>();
+        fila = new LinkedList<Integer>();
         timeUp = false;
         canGo = false;
         next = false;
@@ -54,23 +55,25 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no 
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      * 
+     * @param log
      * @param passageiroID identificador do passageiro
      * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
     @Override
-    public synchronized int takeABus(int passageiroID,int voo){
+    public synchronized int takeABus(Logging log,int passageiroID,int voo){
         //System.out.println("Take the bus");
         int ticket;
         nVoo = voo;
-        fila.add(passageiroID);
+        fila.add(passageiroID+1);
+        log.filaEspera(fila.toArray());
         ticket = fila.size() % lotação;
 
         if (fila.size() == lotação) {
             notifyAll();
         }
         try {
-            while (!canGo || fila.peek() != passageiroID) {
+            while (!canGo || fila.peek() != passageiroID+1) {
                 wait();
             }
         } catch (InterruptedException ex) {
@@ -78,6 +81,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         canGo = false;
         next = true;
         fila.remove();
+        log.filaEspera(fila.toArray());
         notifyAll();
         return ticket;
     }
