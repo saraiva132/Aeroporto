@@ -6,6 +6,8 @@ import static Estruturas.AuxInfo.passMax;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
+import genclass.GenericIO;
+import genclass.TextFile;
 import java.util.LinkedList;
 
 /**
@@ -16,6 +18,13 @@ import java.util.LinkedList;
  * @author Hugo Frade 59399
  */
 public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInterface, LoggingPassageiroInterface {
+
+    /**
+     * Nome do ficheiro de logging
+     *
+     * @serialField fileName
+     */
+    private String fileName = "log.txt";
 
     /**
      * Array com os estados de todos os passageiros
@@ -119,39 +128,57 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Função auxiliar utilizada para inicializar o logging
      */
     private void reportInitialStatus() {
-        System.out.println("A começar logging...");
-        System.out.println("PLANE     PORTER                   DRIVER");
-        System.out.println("FN BN  Stat CB SR   Stat  Q1 Q2 Q3 Q4 Q5 Q6  S1 S2 S3");
-        System.out.println("                                                         PASSENGERS");
-        System.out.println("St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
+        TextFile log = new TextFile();                      // instanciação de uma variável de tipo ficheiro de texto
+
+        if (!log.openForWriting(".", fileName)) {
+            GenericIO.writelnString("A operação de criação do ficheiro " + fileName + " falhou!");
+            System.exit(1);
+        }
+
+        log.writelnString("A começar logging...");
+        log.writelnString("PLANE     PORTER                   DRIVER");
+        log.writelnString("FN BN  Stat CB SR   Stat  Q1 Q2 Q3 Q4 Q5 Q6  S1 S2 S3");
+        log.writelnString("                                                         PASSENGERS");
+        log.writelnString("St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
+        if (!log.close()) {
+            GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
+            System.exit(1);
+        }
     }
 
     private synchronized void reportStatus() {
 
-        /*System.out.print(nVoo + " ");
-        System.out.print(nMalasPorao + " ");
-        System.out.print(bstate.toString() + " ");
-        System.out.print(nMalasBelt + " ");
-        System.out.print(nMalasStore + "   ");*/
-        System.out.printf("%2s %2s %10s %2s %2s %10s  Fila de espera: [",nVoo,nMalasPorao,bstate.toString(),nMalasBelt,nMalasStore,mstate.toString());
-        
-        for (int i = 0; i < fila.length; i++) {
-            System.out.printf("%1d,",fila[i]);
+        TextFile log = new TextFile();                      // instanciação de uma variável de tipo ficheiro de texto
+        String lineStatus = "";                              // linha a imprimir
+
+        if (!log.openForAppending(".", fileName)) {
+            GenericIO.writelnString("A operação de criação do ficheiro " + fileName + " falhou!");
+            System.exit(1);
         }
-        
+        System.out.printf("%2s %2s %10s %2s %2s %10s  Fila de espera: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
+
+        for (int i = 0; i < fila.length; i++) {
+            System.out.printf("%1d,", fila[i]);
+        }
+
         System.out.print("]  Estado do autocarro: [");
         for (int i = 0; i < assentos.length; i++) {
-            System.out.printf("%1d,",assentos[i]);
+            System.out.printf("%1d,", assentos[i]);
         }
-        
+
         System.out.println("]");
 
         for (int i = 0; i < passMax; i++) {
-            System.out.printf("%12s %2s %2s %2s",pstate[i].toString(),passDest[i],nMalasTotal[i],nMalasActual[i]);
+            System.out.printf("%12s %2s %2s %2s", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
-        
+
         System.out.println();
         System.out.println();
+        log.writelnString(lineStatus);
+        if (!log.close()) {
+            GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
+            System.exit(1);
+        }
     }
 
     /**
@@ -254,21 +281,20 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
         reportStatus();
     }
-    
+
     @Override
-      public synchronized void filaEspera(Object [] oi) {
-          
-        for(int i= 0;i<oi.length;i++)
-        {
-            this.fila[i] = (int)oi[i];
+    public synchronized void filaEspera(Object[] oi) {
+
+        for (int i = 0; i < oi.length; i++) {
+            this.fila[i] = (int) oi[i];
         }
-        for(int i =1;i<fila.length;i++)
-        {
+        for (int i = 1; i < fila.length; i++) {
             //if(fila[i] == fila[i-1])
-              //  fila[i] = 0;
+            //  fila[i] = 0;
         }
         reportStatus();
     }
+
     @Override
     public synchronized void autocarroState(int[] seats) {
         System.arraycopy(seats, 0, this.assentos, 0, seats.length);
