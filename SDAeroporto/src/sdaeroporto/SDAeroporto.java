@@ -68,6 +68,9 @@ public class SDAeroporto {
         m.start();
         b.start();
         for (int j = 0; j < nChegadas; j++) {
+            System.out.println("--------------------------------------------------------------Nova simulação----------------------------------------------------------------Nova simulação----------------------------------------------");
+            System.out.println("--------------------------------------------------------------Nova simulação----------------------------------------------------------------Nova simulação----------------------------------------------");
+            System.out.println("--------------------------------------------------------------Nova simulação----------------------------------------------------------------Nova simulação----------------------------------------------");
             log.nVoo(j+1);
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(3);
@@ -76,7 +79,7 @@ public class SDAeroporto {
                     malas.add(new Mala(w, !dest[w]));
                 }
             }
-            
+            log.setPorao(malas.size()+1);
             for (int i = 0; i < passMax; i++) {
                 p[i] = new Passageiro(nMalasPass[i], i, j+1, dest[i], zona, auto, transicao, recolha, transferencia,log);
             }
@@ -94,8 +97,9 @@ public class SDAeroporto {
                 }
                 //GenericIO.writelnString("O passageiro " + i + " terminou.");
             }
+            GenericIO.writelnString(
+                "O Voo número "+(j+1)+" terminou.");
         }
-
         try {
             m.join();
         } catch (InterruptedException e) {
