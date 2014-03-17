@@ -4,6 +4,7 @@ import Estruturas.AuxInfo.bagDest;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Estruturas.AuxInfo.bagState;
 import static Estruturas.AuxInfo.nChegadas;
+import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 import sdaeroporto.Logging;
@@ -53,7 +54,7 @@ public class Bagageiro extends Thread {
      * 
      * @serialField log
      */
-    private Logging log;
+    private LoggingBagageiroInterface log;
 
     
     /**
@@ -66,7 +67,7 @@ public class Bagageiro extends Thread {
      * @param log monitor correspondente ao logging do problema
      */
     public Bagageiro(ZonaDesembarqueBagageiroInterface zona, PoraoBagageiroInterface porao,
-            RecolhaBagageiroInterface recolha,Logging log) {
+            RecolhaBagageiroInterface recolha,LoggingBagageiroInterface log) {
         state = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         this.zona = zona;
         this.porao = porao;
@@ -87,13 +88,16 @@ public class Bagageiro extends Thread {
             mala = porao.tryToCollectABag();
             bagDest nextState;
             do {
+                log.bagagemPorao();
                 log.reportState(state = bagState.AT_THE_PLANES_HOLD);
                 nextState = recolha.carryItToAppropriateStore(mala);
                 switch (nextState) {
                     case BELT:
+                        log.bagagemBelt(false);
                         log.reportState(state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR);
                         break;
                     case STOREROOM:
+                        log.bagagemStore();
                         log.reportState(state = bagState.AT_THE_STOREROOM);
                         break;
                 }

@@ -7,6 +7,7 @@ package Estruturas;
 
 import Estruturas.AuxInfo.motState;
 import Interfaces.AutocarroMotoristaInterface;
+import Interfaces.LoggingMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
 import sdaeroporto.Logging;
 
@@ -47,7 +48,7 @@ public class Motorista extends Thread {
      * 
      * @serialField log
      */
-    private Logging log;
+    private LoggingMotoristaInterface log;
     
     /**
      * Instanciação e inicialização do motorista
@@ -57,7 +58,7 @@ public class Motorista extends Thread {
      * terminais
      * @param log monitor correspondente ao logging do problema
      */
-    public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia,Logging log) {
+    public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia,LoggingMotoristaInterface log) {
         this.auto = auto;
         this.transferencia = transferencia;
         log.reportState(state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
