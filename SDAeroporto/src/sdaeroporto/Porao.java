@@ -19,7 +19,6 @@ public class Porao implements PoraoBagageiroInterface {
      * @serialField malas
      */
     ArrayList<Mala> malas;
-
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
@@ -37,11 +36,9 @@ public class Porao implements PoraoBagageiroInterface {
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre
      * vazio recolhe uma mala
      *
-     * @return 
-     * <ul>
-     * <li>Mala que apanhou no porão
-     * <li>NULL, caso o porão se encontre vazio
-     * </ul>
+     * 
+     * @return Mala que apanhou no porão, ou em caso do porão se encontrar
+     * vazio, null
      */
     @Override
     public synchronized Mala tryToCollectABag() {

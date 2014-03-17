@@ -3,6 +3,7 @@ package sdaeroporto;
 import static Estruturas.AuxInfo.lotação;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.AutocarroPassageiroInterface;
+import Interfaces.LoggingPassageiroInterface;
 
 /**
  * Monitor que simula a interacção entre os passageiros e o motorista no âmbito
@@ -22,11 +23,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     
     /**
      * Conjunto de bancos do autocarro. 
-     * <p>TRUE caso o assento esteja ocupaso, FALSE caso contrário
+     * <p>Número do passageiro se ocupado. -1 se vazio.
      * 
      * @serialField seat
      */
-    private boolean[] seat;
+    private int[] seat;
     
     /**
      * Identifica se a viagem até ao terminal de partida já acabou ou não
@@ -53,9 +54,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         hasEnded = false;
         bilhetesVendidos = 0;
         nOcupantes = 0;
-        seat = new boolean[lotação];
+        seat = new int[lotação];
         for (int i = 0; i < lotação; i++) {
-            seat[i] = false; // Autocarro inicialmente encontra-se vazio.
+            seat[i] = -1; // Autocarro inicialmente encontra-se vazio.
         }
     }
 
@@ -70,14 +71,16 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * espera que o motorista o leve até à zona de transferência do terminal de 
      * partida.
      * 
+     * @param log
      * @param ticketID lugar onde o passageiro se pode sentar
+     * @param passID
      */
     @Override
-    public synchronized void enterTheBus(int ticketID) {
+    public synchronized void enterTheBus(Logging log,int ticketID,int passID) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
-        seat[ticketID] = true;
-
+        seat[ticketID] = passID+1;
+        log.autocarroState(seat);
         if (nOcupantes == bilhetesVendidos) {
             notifyAll();
         }
@@ -91,10 +94,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
+     * @param log
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
-    public synchronized void leaveTheBus(int ticketID) {
+    public synchronized void leaveTheBus(Logging log,int ticketID) {
         //System.out.println("IM OUT!Shitty bus");
         while (!hasEnded) {
             try {
@@ -103,7 +107,8 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
             }
         }
         nOcupantes--;
-        seat[ticketID] = false;
+        seat[ticketID] = -1;
+        log.autocarroState(seat);
         if (nOcupantes == 0) {
             notify();
         }
@@ -193,4 +198,5 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         }
         hasEnded = false;
     }
+
 }
