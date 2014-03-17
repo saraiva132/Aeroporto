@@ -98,10 +98,12 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * Invocador: Bagageiro
      * <p>
      * O bagageiro transporta uma mala para um determinado local:
-     * <p><b>1.</b> para a zona de armazenamento caso a mala pertença a um passageiro 
+     * <ul>
+     * <li> para a zona de armazenamento temporário caso a mala pertença a um passageiro 
      * que esteja em trânsito
-     * <p><b>2.</b> para a passadeira rolante caso pertença a um passageiro cujo destino
+     * <li> para a passadeira rolante caso pertença a um passageiro cujo destino
      * é este aeroporto, notificando-o de seguida
+     * </ul>
      * <p>
      * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 

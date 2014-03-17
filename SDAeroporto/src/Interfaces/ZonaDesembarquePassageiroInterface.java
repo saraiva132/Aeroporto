@@ -23,9 +23,11 @@ public interface ZonaDesembarquePassageiroInterface {
      * @param dest TRUE se este aeroporto é o seu destino, FALSE caso contrário
      * @param nMalas número de malas que o passageiro contém
      * @return  Qual o seu próximo passo dependendo da sua condição:
-     * <p><b>1.</b> WITH_BAGAGE caso este seja o seu destino e possua bagagens
-     * <p><b>2.</b> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
-     * <p><b>3.</b> IN_TRANSIT caso esteja em trânsito
+     * <ul>
+     * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens
+     * <li> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
+     * <li> IN_TRANSIT caso esteja em trânsito
+     * </ul>
      */
     public destination whatShouldIDo(boolean dest,int nMalas);
 }
