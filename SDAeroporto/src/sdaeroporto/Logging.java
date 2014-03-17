@@ -1,6 +1,7 @@
 package sdaeroporto;
 
 import Estruturas.AuxInfo.*;
+import static Estruturas.AuxInfo.lotação;
 import static Estruturas.AuxInfo.passMax;
 
 /**
@@ -34,15 +35,73 @@ public class Logging {
     private motState mstate;
 
     /**
+     * Número de voo
+     */
+    private int nVoo;
+
+    /**
+     * Número de malas no porão.
+     */
+    private int nMalasPorao;
+
+    /**
+     * Número de malas no cinto.
+     *
+     */
+    private int nMalasBelt;
+
+    /**
+     * Número de malas na storeroom.
+     */
+    private int nMalasStore;
+
+    /**
+     * Fila de passageiros no passeio.
+     */
+    private int[] fila;
+
+    /**
+     * Estado de ocupação do Autocarro.
+     */
+    private int[] assentos;
+
+    /**
+     * Destino do passageiro.
+     */
+    private destination[] passDest;
+
+    /**
+     * Número de malas total dos passageiros.
+     */
+    private int[] nMalasTotal;
+
+    /**
+     * Número de malas actual dos passageiros.
+     */
+    private int[] nMalasActual;
+
+    /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      */
     public Logging() {
         pstate = new passState[passMax];
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        fila = new int[passMax];
         for (int i = 0; i < passMax; i++) {
             pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
+            nMalasTotal[i] = 0;
+            nMalasActual[i] = 0;
+            fila[i] = 0;
         }
+        assentos = new int[lotação];
+        for (int i = 0; i < lotação; i++) {
+            assentos[i] = 0;
+        }
+        nMalasStore = 0;
+        nMalasBelt = 0;
+        nMalasPorao = 0;
+        nVoo = 0;
         reportInitialStatus();
     }
 

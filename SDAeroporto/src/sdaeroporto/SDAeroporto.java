@@ -5,11 +5,8 @@
  */
 package sdaeroporto;
 
+import Estruturas.*;
 import static Estruturas.AuxInfo.*;
-import Estruturas.Bagageiro;
-import Estruturas.Mala;
-import Estruturas.Motorista;
-import Estruturas.Passageiro;
 import genclass.GenericIO;
 import java.util.ArrayList;
 import java.util.Random;
