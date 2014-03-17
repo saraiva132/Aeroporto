@@ -1,5 +1,7 @@
 package Interfaces;
 
+import sdaeroporto.Logging;
+
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o monitor 
  * <b>Autocarro</b>
@@ -23,7 +25,7 @@ public interface AutocarroPassageiroInterface {
      * @param ticketID lugar onde o passageiro se pode sentar
      */
 
-    public void enterTheBus(int ticketID);
+    public void enterTheBus(Logging log,int ticketID,int passID);
     
     /**
      * Sair do autocarro
@@ -33,9 +35,11 @@ public interface AutocarroPassageiroInterface {
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
+     * @param log
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     
-    public void leaveTheBus(int ticketID);
+    public void leaveTheBus(Logging log,int ticketID);
+
             
 }
