@@ -76,7 +76,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * @param passID
      */
     @Override
-    public synchronized void enterTheBus(Logging log,int ticketID,int passID) {
+    public synchronized void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
         seat[ticketID] = passID+1;
@@ -98,7 +98,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
-    public synchronized void leaveTheBus(Logging log,int ticketID) {
+    public synchronized void leaveTheBus(LoggingPassageiroInterface log,int ticketID) {
         //System.out.println("IM OUT!Shitty bus");
         while (!hasEnded) {
             try {

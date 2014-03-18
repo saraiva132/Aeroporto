@@ -121,13 +121,12 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         nMalasBelt = 0;
         nMalasPorao = 0;
         this.nVoo = 0;
-        reportInitialStatus();
     }
 
     /**
      * Função auxiliar utilizada para inicializar o logging
      */
-    private void reportInitialStatus() {
+    public synchronized void reportInitialStatus() {
         TextFile log = new TextFile();                      // instanciação de uma variável de tipo ficheiro de texto
 
         if (!log.openForWriting(".", fileName)) {
@@ -135,53 +134,33 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             System.exit(1);
         }
 
-        log.writelnString("A começar logging...");
-        log.writelnString("PLANE     PORTER                   DRIVER");
-        log.writelnString("FN BN  Stat CB SR   Stat  Q1 Q2 Q3 Q4 Q5 Q6  S1 S2 S3");
+        System.out.println("|PLANE|   PORTER       DRIVER                                       PASSENGERS");
+        System.out.print("|FN BN| Stat CB SR     Stat      ");
+        for(int i = 0;i<passMax;i++)
+        {
+            System.out.printf("Q%s",i);
+        }
+        System.out.print("             ");
+        for(int i =0;i<lotação;i++)
+        {
+             System.out.printf("S%s",i);
+        }
+        System.out.print("     ");
         //log.writelnString("                                                         PASSENGERS");
-        log.writeString("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
+        //System.out.print("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
+        for(int i=0;i<passMax;i++)
+        {
+            System.out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
+        }
+        System.out.println();
         if (!log.close()) {
             GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
             System.exit(1);
         }
     }
 
-    /*private synchronized void reportStatus() {
-
-     TextFile log = new TextFile();                      // instanciação de uma variável de tipo ficheiro de texto
-     String lineStatus = "";                              // linha a imprimir
-
-     if (!log.openForAppending(".", fileName)) {
-     GenericIO.writelnString("A operação de criação do ficheiro " + fileName + " falhou!");
-     System.exit(1);
-     }
-     System.out.printf("%2s %2s %10s %2s %2s %10s  Fila de espera: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
-
-     for (int i = 0; i < fila.length; i++) {
-     System.out.printf("%1d,", fila[i]);
-     }
-
-     System.out.print("]  Estado do autocarro: [");
-     for (int i = 0; i < assentos.length; i++) {
-     System.out.printf("%1d,", assentos[i]);
-     }
-
-     System.out.println("]");
-
-     for (int i = 0; i < passMax; i++) {
-     System.out.printf("%12s %2s %2s %2s", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
-     }
-
-     System.out.println();
-     System.out.println();
-     log.writelnString(lineStatus);
-     if (!log.close()) {
-     GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
-     System.exit(1);
-     }
-     }*/
     private synchronized void reportStatus() {
-        System.out.printf("|%2s %2s|%4s %2s %2s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
+        System.out.printf("|%2s %2s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
         for (int i = 0; i < fila.length; i++) {
             System.out.printf("%1d,", fila[i]);
         }
@@ -192,7 +171,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
         System.out.print("]  ");
         for (int i = 0; i < passMax; i++) {
-            System.out.printf("%3s %3s  %1s  %1s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+            System.out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
 
         System.out.println();
@@ -251,8 +230,8 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         reportStatus();
     }
 
-    public synchronized void setPorao(int nMalas) {
-        this.nMalasPorao = nMalas;
+    public synchronized void setPorao(int set) {
+        this.nMalasPorao = set;
         reportStatus();
     }
 

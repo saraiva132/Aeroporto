@@ -45,13 +45,13 @@ public class SDAeroporto {
 
         //Gerar malas por passageiro
         //Gerar destino do passageiro
-        for (int i = 0; i < passMax; i++) {
+        /*for (int i = 0; i < passMax; i++) {
             nMalasPass[i] = new Random().nextInt(3);
             dest[i] = getRandomBoolean();
             for (int j = 0; j < nMalasPass[i]; j++) {
                 malas.add(new Mala(i, !dest[i]));
             }
-        }
+        }*/
 
         /*Inicialização das zonas de região crítica*/
         log = new Logging();
@@ -68,15 +68,17 @@ public class SDAeroporto {
         m.start();
         b.start();
         for (int j = 0; j < nChegadas; j++) {
+            log.reportInitialStatus();
             log.nVoo(j+1);
+            //recolha.clearBelt(log);
             for (int w = 0; w < passMax; w++) {
-                nMalasPass[w] = new Random().nextInt(3);
+                nMalasPass[w] = new Random().nextInt(bagMax+1);
                 dest[w] = getRandomBoolean();
                 for (int l = 0; l < nMalasPass[w]; l++) {
                     malas.add(new Mala(w, !dest[w]));
                 }
             }
-            log.setPorao(malas.size()+1);
+            log.setPorao(malas.size());
             for (int i = 0; i < passMax; i++) {
                 p[i] = new Passageiro(nMalasPass[i], i, j+1, dest[i], zona, auto, transicao, recolha, transferencia,log);
             }
@@ -94,6 +96,7 @@ public class SDAeroporto {
                 }
                 //GenericIO.writelnString("O passageiro " + i + " terminou.");
             }
+            recolha.resetNoMoreBags();
         }
         try {
             m.join();
