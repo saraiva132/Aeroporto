@@ -25,7 +25,7 @@ public interface AutocarroPassageiroInterface {
      * @param ticketID lugar onde o passageiro se pode sentar
      */
 
-    public void enterTheBus(Logging log,int ticketID,int passID);
+    public void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID);
     
     /**
      * Sair do autocarro
@@ -39,7 +39,7 @@ public interface AutocarroPassageiroInterface {
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     
-    public void leaveTheBus(Logging log,int ticketID);
+    public void leaveTheBus(LoggingPassageiroInterface log,int ticketID);
 
             
 }

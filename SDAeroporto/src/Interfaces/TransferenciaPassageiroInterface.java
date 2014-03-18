@@ -20,9 +20,10 @@ public interface TransferenciaPassageiroInterface {
      * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no 
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      * 
+     * @param log
      * @param passageiroID identificador do passageiro
      * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
-    public int takeABus(Logging log,int passageiroID,int voo);
+    public int takeABus(LoggingPassageiroInterface log,int passageiroID,int voo);
 }
