@@ -101,24 +101,24 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Número de malas actual dos passageiros.
      */
     private int[] nMalasActual;
-    
-    PrintWriter out;
+
+    PrintStream out;
+
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
      */
     public Logging() {
         try {
-            out = new PrintWriter(new FileWriter("test.txt", false));
+            out = new PrintStream(new FileOutputStream("test.txt", false));
         } catch (FileNotFoundException ex) {
-            
-        } catch (IOException ex) {
-            
+
         }
+        System.setOut(out);
         pstate = new passState[passMax];
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
-        fila = new int[passMax+1];
+        fila = new int[passMax + 1];
         nMalasTotal = new int[passMax];
         nMalasActual = new int[passMax];
         passDest = new String[passMax];
@@ -142,25 +142,22 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     /**
      * Função auxiliar utilizada para inicializar o logging
      */
-   /* public synchronized void reportInitialStatus() {
+    public synchronized void reportInitialStatus() {
 
         out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
         out.print("|FN  BN| Stat CB SR     Stat      ");
-        for(int i = 0;i<passMax;i++)
-        {
-            out.printf("Q%s",i);
+        for (int i = 0; i < passMax; i++) {
+            out.printf("Q%s", i);
         }
         out.print("             ");
-        for(int i =0;i<lotação;i++)
-        {
-             out.printf("S%s",i);
+        for (int i = 0; i < lotação; i++) {
+            out.printf("S%s", i);
         }
         out.print("     ");
         //log.writelnString("                                                         PASSENGERS");
         //System.out.print("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
-        for(int i=0;i<passMax;i++)
-        {
-            out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
+        for (int i = 0; i < passMax; i++) {
+            out.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
         }
         out.println();
     }
@@ -181,52 +178,52 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
 
         out.println();
-    }*/
+    }
+
     /**
      * Função auxiliar utilizada para inicializar o logging
      */
-    
-    public synchronized void reportInitialStatus() {
 
-        System.out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
-        System.out.print("|FN  BN| Stat CB SR     Stat      ");
-        for(int i = 0;i<passMax;i++)
-        {
-            System.out.printf("Q%s",i);
-        }
-        System.out.print("             ");
-        for(int i =0;i<lotação;i++)
-        {
-             System.out.printf("S%s",i);
-        }
-        System.out.print("     ");
-        //log.writelnString("                                                         PASSENGERS");
-        //System.out.print("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
-        for(int i=0;i<passMax;i++)
-        {
-            System.out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
-        }
-        System.out.println();
-    }
+    /*public synchronized void reportInitialStatus() {
 
-    private synchronized void reportStatus() {
-        System.out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
-        for (int i = 0; i < fila.length-1; i++) {
-            System.out.printf("%1d ", fila[i]);
-        }
+     System.out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
+     System.out.print("|FN  BN| Stat CB SR     Stat      ");
+     for(int i = 0;i<passMax;i++)
+     {
+     System.out.printf("Q%s",i);
+     }
+     System.out.print("             ");
+     for(int i =0;i<lotação;i++)
+     {
+     System.out.printf("S%s",i);
+     }
+     System.out.print("     ");
+     //log.writelnString("                                                         PASSENGERS");
+     //System.out.print("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
+     for(int i=0;i<passMax;i++)
+     {
+     System.out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
+     }
+     System.out.println();
+     }
 
-        System.out.print("] autocarro: [");
-        for (int i = 0; i < assentos.length; i++) {
-            System.out.printf("%1d ", assentos[i]);
-        }
-        System.out.print("]  ");
-        for (int i = 0; i < passMax; i++) {
-            System.out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
-        }
+     private synchronized void reportStatus() {
+     System.out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
+     for (int i = 0; i < fila.length-1; i++) {
+     System.out.printf("%1d ", fila[i]);
+     }
 
-        System.out.println();
-    }
-    
+     System.out.print("] autocarro: [");
+     for (int i = 0; i < assentos.length; i++) {
+     System.out.printf("%1d ", assentos[i]);
+     }
+     System.out.print("]  ");
+     for (int i = 0; i < passMax; i++) {
+     System.out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+     }
+
+     System.out.println();
+     }*/
     /**
      * Invocador: Passageiro
      *
@@ -358,6 +355,5 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         System.arraycopy(seats, 0, this.assentos, 0, seats.length);
         reportStatus();
     }
-    
-    
+
 }
