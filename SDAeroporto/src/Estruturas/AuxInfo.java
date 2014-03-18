@@ -12,7 +12,7 @@ public class AuxInfo {
      * 
      * @serialField chegadas
      */
-    public static final int nChegadas = 5;
+    public static final int nChegadas = 1;
     
     /**
      * Identificação do número máximo de bagagens por passageiro

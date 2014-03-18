@@ -66,7 +66,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         int ticket;
         nVoo = voo;
         fila.add(passageiroID+1);
-        log.filaEspera(fila.toArray());
+        log.addfilaEspera(passageiroID);
         ticket = fila.size() % lotação;
 
         if (fila.size() == lotação) {
@@ -81,7 +81,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         canGo = false;
         next = true;
         fila.remove();
-        log.filaEspera(fila.toArray());
+        log.removefilaEspera();
         notifyAll();
         return ticket;
     }

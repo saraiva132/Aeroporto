@@ -24,7 +24,9 @@ public interface LoggingPassageiroInterface {
 
     public void destino(int passID, Boolean destino);
 
-    public void filaEspera(Object [] oi);
+    public void addfilaEspera(int id);
+    
+    public void removefilaEspera();
 
     public void autocarroState(int[] seats);
 }

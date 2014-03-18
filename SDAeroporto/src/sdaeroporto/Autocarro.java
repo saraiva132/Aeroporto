@@ -56,7 +56,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         nOcupantes = 0;
         seat = new int[lotação];
         for (int i = 0; i < lotação; i++) {
-            seat[i] = -1; // Autocarro inicialmente encontra-se vazio.
+            seat[i] = 0; // Autocarro inicialmente encontra-se vazio.
         }
     }
 
@@ -107,7 +107,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
             }
         }
         nOcupantes--;
-        seat[ticketID] = -1;
+        seat[ticketID] = 0;
         log.autocarroState(seat);
         if (nOcupantes == 0) {
             notify();
