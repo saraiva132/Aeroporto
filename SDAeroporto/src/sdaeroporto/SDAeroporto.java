@@ -103,7 +103,7 @@ public class SDAeroporto {
                     p[i].join();
                 } catch (InterruptedException e) {
                 }
-                //GenericIO.writelnString("O passageiro " + i + " terminou.");
+                GenericIO.writelnString("O passageiro " + i + " do voo "+(j+1)+" terminou.");
             }
             recolha.resetNoMoreBags();
         }

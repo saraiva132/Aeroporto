@@ -143,12 +143,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Função auxiliar utilizada para inicializar o logging
      */
     public synchronized void reportInitialStatus() {
-        TextFile log = new TextFile();                      // instanciação de uma variável de tipo ficheiro de texto
-
-        if (!log.openForWriting(".", fileName)) {
-            GenericIO.writelnString("A operação de criação do ficheiro " + fileName + " falhou!");
-            System.exit(1);
-        }
 
         out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
         out.print("|FN  BN| Stat CB SR     Stat      ");
@@ -169,10 +163,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
         }
         out.println();
-        if (!log.close()) {
-            GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
-            System.exit(1);
-        }
     }
 
     private synchronized void reportStatus() {
@@ -191,7 +181,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
 
         out.println();
-
     }
 
     /**
@@ -325,4 +314,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         System.arraycopy(seats, 0, this.assentos, 0, seats.length);
         reportStatus();
     }
+    
+    
 }
