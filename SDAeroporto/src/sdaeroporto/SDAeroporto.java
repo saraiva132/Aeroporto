@@ -56,12 +56,12 @@ public class SDAeroporto {
         //Gerar malas por passageiro
         //Gerar destino do passageiro
         /*for (int i = 0; i < passMax; i++) {
-            nMalasPass[i] = new Random().nextInt(3);
-            dest[i] = getRandomBoolean();
-            for (int j = 0; j < nMalasPass[i]; j++) {
-                malas.add(new Mala(i, !dest[i]));
-            }
-        }*/
+         nMalasPass[i] = new Random().nextInt(3);
+         dest[i] = getRandomBoolean();
+         for (int j = 0; j < nMalasPass[i]; j++) {
+         malas.add(new Mala(i, !dest[i]));
+         }
+         }*/
 
         /*Inicialização das zonas de região crítica*/
         log = new Logging();
@@ -73,15 +73,16 @@ public class SDAeroporto {
         transicao = new TransiçãoAeroporto();
 
         /*Inicialização dos elementos activos*/
-        b = new Bagageiro(zona, porao, recolha,log);
-        m = new Motorista(auto, transferencia,log);
+        b = new Bagageiro(zona, porao, recolha, log);
+        m = new Motorista(auto, transferencia, log);
         m.start();
         b.start();
         for (int j = 0; j < nChegadas; j++) {
             log.reportInitialStatus();
-            log.nVoo(j+1);
+            log.nVoo(j + 1);
+
             for (int w = 0; w < passMax; w++) {
-                nMalasPass[w] = new Random().nextInt(bagMax+1);
+                nMalasPass[w] = new Random().nextInt(bagMax + 1);
                 dest[w] = getRandomBoolean();
                 for (int l = 0; l < nMalasPass[w]; l++) {
                     malas.add(new Mala(w, !dest[w]));
@@ -89,9 +90,10 @@ public class SDAeroporto {
             }
             log.setPorao(malas.size());
             for (int i = 0; i < passMax; i++) {
-                p[i] = new Passageiro(nMalasPass[i], i, j+1, dest[i], zona, auto, transicao, recolha, transferencia,log);
+                p[i] = new Passageiro(nMalasPass[i], i, j + 1, dest[i], zona, auto, transicao, recolha, transferencia, log);
             }
-
+            transferencia.setnVoo(j + 1);
+            b.setnVoo(j + 1);
             /* arranque da simulação */
             for (int i = 0; i < passMax; i++) {
                 p[i].start();
@@ -103,7 +105,7 @@ public class SDAeroporto {
                     p[i].join();
                 } catch (InterruptedException e) {
                 }
-                GenericIO.writelnString("O passageiro " + i + " do voo "+(j+1)+" terminou.");
+                //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
             }
             recolha.resetNoMoreBags();
         }
@@ -111,12 +113,12 @@ public class SDAeroporto {
             m.join();
         } catch (InterruptedException e) {
         }
-        GenericIO.writelnString(
-                "O motorista terminou.");
         try {
             b.join();
         } catch (InterruptedException e) {
         }
+        GenericIO.writelnString(
+                "O motorista terminou.");
         GenericIO.writelnString(
                 "O bagageiro terminou.");
 

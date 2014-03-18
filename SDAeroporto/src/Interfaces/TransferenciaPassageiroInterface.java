@@ -25,5 +25,5 @@ public interface TransferenciaPassageiroInterface {
      * @param voo         identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
-    public int takeABus(LoggingPassageiroInterface log,int passageiroID,int voo);
+    public int takeABus(LoggingPassageiroInterface log,int passageiroID);
 }

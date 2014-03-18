@@ -64,10 +64,9 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @return Posição do seu assento no autocarro
      */
     @Override
-    public synchronized int takeABus(LoggingPassageiroInterface log, int passageiroID, int voo) {
+    public synchronized int takeABus(LoggingPassageiroInterface log, int passageiroID) {
         //System.out.println("Take the bus");
         int ticket;
-        nVoo = voo;
         fila.add(passageiroID + 1);
         log.addfilaEspera(passageiroID);
         ticket = fila.size() % lotação;
@@ -110,9 +109,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         try {
             while (fila.size() < lotação && !timeUp) {
                 wait();
-                if (fila.size() >= lotação) {
-                    reminder.timer.cancel();
-                }
+                reminder.timer.cancel();
             }
         } catch (InterruptedException ex) {
         }
@@ -165,7 +162,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
         public Reminder(int seconds) {
             timer = new Timer();
-            timer.schedule(new RemindTask(), seconds * 100, seconds * 100);
+            timer.schedule(new RemindTask(), seconds * 30, seconds * 30);
         }
 
         class RemindTask extends TimerTask {
@@ -177,5 +174,9 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
 
             }
         }
+    }
+
+    public void setnVoo(int nvoo) {
+        this.nVoo = nvoo;
     }
 }

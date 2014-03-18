@@ -8,7 +8,6 @@ import static Estruturas.AuxInfo.nChegadas;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
-import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados bagageiro
@@ -57,6 +56,7 @@ public class Bagageiro extends Thread {
      * @serialField log
      */
     private LoggingBagageiroInterface log;
+    private int nVoo;
 
     /**
      * Instanciação e inicialização do bagageiro
@@ -74,6 +74,7 @@ public class Bagageiro extends Thread {
         this.porao = porao;
         this.recolha = recolha;
         this.log = log;
+        this.nVoo = 0;
     }
 
     /**
@@ -82,8 +83,7 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
-        for (int i = 0; i < nChegadas; i++) {
-            //System.out.println("Here we go again...");
+        while(nVoo < nChegadas) {
             zona.takeARest();
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
             mala = porao.tryToCollectABag();
@@ -107,5 +107,9 @@ public class Bagageiro extends Thread {
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
         }
     }
-
+    
+    public void setnVoo(int voo)
+    {
+        this.nVoo = voo;
+    }
 }

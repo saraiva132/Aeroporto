@@ -183,7 +183,7 @@ public class Passageiro extends Thread {
                 break;
             case IN_TRANSIT:
                 int ticket; //bilhete para entrar no autocarro.
-                ticket = transferencia.takeABus(log,id, nVoo);
+                ticket = transferencia.takeABus(log,id);
                 log.reportState(id, state = passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
                 auto.enterTheBus( log,ticket,id);
                 log.reportState(id, state = passState.TERMINAL_TRANSFER);
