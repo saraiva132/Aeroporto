@@ -2,6 +2,7 @@ package Interfaces;
 
 import Estruturas.AuxInfo.bagDest;
 import Estruturas.Mala;
+import sdaeroporto.Logging;
 
 /**
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o 
@@ -28,6 +29,7 @@ public interface RecolhaBagageiroInterface {
      * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 
      * 
+     * @param log
      * @param mala mala que o bagageiro transporta
      * @return Local para onde levou a mala:
      * <ul>
@@ -39,6 +41,6 @@ public interface RecolhaBagageiroInterface {
      * <li>LOBBYCLEAN
      * </ul>
      */
-    public bagDest carryItToAppropriateStore(Mala mala);
+    public bagDest carryItToAppropriateStore(LoggingBagageiroInterface log,Mala mala);
      
 }
