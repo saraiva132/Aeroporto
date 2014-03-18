@@ -164,8 +164,9 @@ public class Passageiro extends Thread {
                 // System.out.println("tenho bagagem -----------------");
                 do {
                     getBag = recolha.goCollectABag(id);
-                    if (getBag == bagCollect.MINE) {
+                    if(getBag == bagCollect.MINE || getBag == bagCollect.UNSUCCESSFUL)
                         log.bagagemBelt(true);
+                    if (getBag == bagCollect.MINE) {
                         nMalasEmPosse++;
                         log.malasActual(id, nMalasEmPosse);
                     }
@@ -182,11 +183,11 @@ public class Passageiro extends Thread {
                 break;
             case IN_TRANSIT:
                 int ticket; //bilhete para entrar no autocarro.
-                ticket = transferencia.takeABus((Logging) log,id, nVoo);
+                ticket = transferencia.takeABus(log,id, nVoo);
                 log.reportState(id, state = passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
-                auto.enterTheBus((Logging) log,ticket,id);
+                auto.enterTheBus( log,ticket,id);
                 log.reportState(id, state = passState.TERMINAL_TRANSFER);
-                auto.leaveTheBus((Logging) log,ticket);
+                auto.leaveTheBus(log,ticket);
                 log.reportState(id, state = passState.AT_THE_DEPARTURE_TRANSFER_TERMINAL);
                 transicao.prepareNextLeg();
                 log.reportState(id, state = passState.ENTERING_THE_DEPARTURE_TERMINAL);
