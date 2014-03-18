@@ -1,4 +1,4 @@
-package sdaeroporto;
+package Monitores;
 
 import Estruturas.AuxInfo.*;
 import static Estruturas.AuxInfo.lotação;
@@ -8,7 +8,15 @@ import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
 import genclass.GenericIO;
 import genclass.TextFile;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Monitor correspondente ao Repositório Geral de Informação. Necessário apenas
@@ -93,12 +101,20 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Número de malas actual dos passageiros.
      */
     private int[] nMalasActual;
-
+    
+    PrintWriter out;
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
      */
     public Logging() {
+        try {
+            out = new PrintWriter(new FileWriter("test.txt", false));
+        } catch (FileNotFoundException ex) {
+            
+        } catch (IOException ex) {
+            
+        }
         pstate = new passState[passMax];
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
@@ -134,25 +150,25 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             System.exit(1);
         }
 
-        System.out.println("|PLANE|   PORTER       DRIVER                                       PASSENGERS");
-        System.out.print("|FN BN| Stat CB SR     Stat      ");
+        out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
+        out.print("|FN  BN| Stat CB SR     Stat      ");
         for(int i = 0;i<passMax;i++)
         {
-            System.out.printf("Q%s",i);
+            out.printf("Q%s",i);
         }
-        System.out.print("             ");
+        out.print("             ");
         for(int i =0;i<lotação;i++)
         {
-             System.out.printf("S%s",i);
+             out.printf("S%s",i);
         }
-        System.out.print("     ");
+        out.print("     ");
         //log.writelnString("                                                         PASSENGERS");
         //System.out.print("  St1 Si1 NR1 NA1 St2 Si2 NR2 NA2 St3 Si3 NR3 NA3 St4 Si4 NR4 NA4 St5 Si5 NR5 NA5 St6 Si6 NR6 NA6");
         for(int i=0;i<passMax;i++)
         {
-            System.out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
+            out.print("St"+i+" Si"+i+" NR"+i+" NA"+i+"|");
         }
-        System.out.println();
+        out.println();
         if (!log.close()) {
             GenericIO.writelnString("A operação de fecho do ficheiro " + fileName + " falhou!");
             System.exit(1);
@@ -160,21 +176,21 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     }
 
     private synchronized void reportStatus() {
-        System.out.printf("|%2s %2s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
+        out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
         for (int i = 0; i < fila.length; i++) {
-            System.out.printf("%1d,", fila[i]);
+            out.printf("%1d ", fila[i]);
         }
 
-        System.out.print("] autocarro: [");
+        out.print("] autocarro: [");
         for (int i = 0; i < assentos.length; i++) {
-            System.out.printf("%1d,", assentos[i]);
+            out.printf("%1d ", assentos[i]);
         }
-        System.out.print("]  ");
+        out.print("]  ");
         for (int i = 0; i < passMax; i++) {
-            System.out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+            out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
 
-        System.out.println();
+        out.println();
 
     }
 

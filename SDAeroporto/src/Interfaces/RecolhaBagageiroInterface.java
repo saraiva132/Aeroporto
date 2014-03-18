@@ -2,7 +2,7 @@ package Interfaces;
 
 import Estruturas.AuxInfo.bagDest;
 import Estruturas.Mala;
-import sdaeroporto.Logging;
+import Monitores.Logging;
 
 /**
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o 

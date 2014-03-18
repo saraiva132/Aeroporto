@@ -5,6 +5,16 @@
  */
 package sdaeroporto;
 
+import Monitores.Logging;
+import Monitores.Porao;
+import Monitores.Autocarro;
+import Monitores.TransiçãoAeroporto;
+import Monitores.TransferenciaTerminal;
+import Monitores.RecolhaBagagem;
+import Monitores.ZonaDesembarque;
+import Threads.Motorista;
+import Threads.Passageiro;
+import Threads.Bagageiro;
 import Estruturas.*;
 import static Estruturas.AuxInfo.*;
 import genclass.GenericIO;
@@ -70,7 +80,6 @@ public class SDAeroporto {
         for (int j = 0; j < nChegadas; j++) {
             log.reportInitialStatus();
             log.nVoo(j+1);
-            //recolha.clearBelt(log);
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(bagMax+1);
                 dest[w] = getRandomBoolean();

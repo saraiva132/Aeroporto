@@ -1,4 +1,4 @@
-package sdaeroporto;
+package Monitores;
 
 import static Estruturas.AuxInfo.lotação;
 import Interfaces.AutocarroMotoristaInterface;

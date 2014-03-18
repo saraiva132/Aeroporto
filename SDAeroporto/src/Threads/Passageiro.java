@@ -1,4 +1,4 @@
-package Estruturas;
+package Threads;
 
 import Estruturas.AuxInfo.bagCollect;
 import Estruturas.AuxInfo.destination;
@@ -9,7 +9,7 @@ import Interfaces.LoggingPassageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import Interfaces.TransicaoPassageiroInterface;
-import sdaeroporto.Logging;
+import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados passageiro

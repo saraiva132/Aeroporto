@@ -1,6 +1,6 @@
 package Interfaces;
 
-import sdaeroporto.Logging;
+import Monitores.Logging;
 
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o 

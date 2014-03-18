@@ -19,21 +19,21 @@ public class AuxInfo {
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 10;
+    public static final int bagMax = 4;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 10;
+    public static final int lotação = 5;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static final int passMax = 25;
+    public static final int passMax = 10;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  

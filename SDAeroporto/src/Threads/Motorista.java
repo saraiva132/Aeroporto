@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estruturas;
+package Threads;
 
 import Estruturas.AuxInfo.motState;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
-import sdaeroporto.Logging;
+import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados motorista

@@ -1,13 +1,14 @@
-package Estruturas;
+package Threads;
 
 import Estruturas.AuxInfo.bagDest;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Estruturas.AuxInfo.bagState;
+import Estruturas.Mala;
 import static Estruturas.AuxInfo.nChegadas;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
-import sdaeroporto.Logging;
+import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados bagageiro

@@ -1,4 +1,4 @@
-package sdaeroporto;
+package Monitores;
 import Estruturas.AuxInfo.destination;
 import static Estruturas.AuxInfo.passMax;
 import Interfaces.ZonaDesembarqueBagageiroInterface;

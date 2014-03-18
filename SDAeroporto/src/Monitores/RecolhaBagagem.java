@@ -1,4 +1,4 @@
-package sdaeroporto;
+package Monitores;
 
 import static Estruturas.AuxInfo.*;
 import Estruturas.Mala;
@@ -167,15 +167,4 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         return Math.random() > 0.2;
     }
     
-    
-    public synchronized void clearBelt(Logging log)
-    {
-        for (int i = 0; i < passMax; i++) {
-            for(int j = 0;j<belt.get(i);j++)
-            {
-                log.bagagemBelt(true);
-            }
-            belt.put(i, 0);
-        }
-    }
 }
