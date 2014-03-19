@@ -6,17 +6,9 @@ import static Estruturas.AuxInfo.passMax;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
-import genclass.GenericIO;
-import genclass.TextFile;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Monitor correspondente ao Repositório Geral de Informação. Necessário apenas
@@ -181,7 +173,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     }
 
     /**
-     * Função auxiliar utilizada para inicializar o logging
+     * Função auxiliar utilizada para inicializar o logging com output na consola
      */
 
     /*public synchronized void reportInitialStatus() {

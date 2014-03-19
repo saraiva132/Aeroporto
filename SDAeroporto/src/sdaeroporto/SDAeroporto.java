@@ -117,6 +117,8 @@ public class SDAeroporto {
             b.join();
         } catch (InterruptedException e) {
         }
+        
+        System.out.println("The end.");
         GenericIO.writelnString(
                 "O motorista terminou.");
         GenericIO.writelnString(
