@@ -17,8 +17,8 @@ public interface AutocarroMotoristaInterface {
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
-     * @param bilhetesvendidos - Número de bilhetes vendidos. Numero de
-     * passageiros que estão à espera
+     * @param bilhetesvendidos Número de bilhetes vendidos (corresponde ao número de
+     * passageiros que estão à espera)
      */
     public void announcingBusBoardingWaiting(int bilhetesvendidos);
 
@@ -27,7 +27,7 @@ public interface AutocarroMotoristaInterface {
      * <p>
      * Invocador: Motorista
      * <p>
-     * Motorista conduz os passageiros para o proximo terminal.
+     * Motorista conduz os passageiros que se encontram em trânsito para o terminal de partida.
      * 
      */
     public void goToDepartureTerminal();
@@ -55,8 +55,8 @@ public interface AutocarroMotoristaInterface {
       * <p>
      * Invocador: Motorista
      * <p>
-     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
-     * até que o ultimo passageiro saia do Autocarro e o acorde.
+     * Motorista estaciona o autocarro e larga os passageiros; bloqueia
+     * até que o último passageiro saia do autocarro e o acorde.
      */
     public void parkTheBusAndLetPassOff();
 }

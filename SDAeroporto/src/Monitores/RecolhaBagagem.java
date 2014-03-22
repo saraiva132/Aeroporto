@@ -35,8 +35,11 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     private int nMalasStore;
 
     /**
-     * Identifica se o bagageiro trará mais malas do porão para a zona de
-     * recolha de bagagens ou não.
+     * Identifica se existem mais malas no porão ou não.
+     * <ul>
+     * <li>TRUE caso não existam
+     * <li>FALSE caso contrário
+     * </ul>
      *
      * @serialField noMoreBags
      */
@@ -63,13 +66,20 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * sua mala. Espera até que aviste a sua mala na passadeira rolante ou que o
      * bagageiro anuncie que já não existem mais malas no porão do avião.
      * <p>
-     * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de
-     * forma bem sucedida.
-     *
+     * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de forma
+     * bem sucedida.
+     * 
      * @param bagID identificador da mala
-     * @return Forma como conseguiu apanhar a sua mala: <b>com sucesso</b> ou
-     * <b>sem sucesso</b>. Alternativamente, a informação de que já não vale a
-     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m)
+     * @return Forma como conseguiu apanhar a sua mala: 
+     * <ul>
+     * <li>MINE, com sucesso 
+     * <li>UNSUCCESSFUL, sem sucesso 
+     * </ul> 
+     * <p>Alternativamente, a informação de que já não vale a 
+     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m):
+     * <ul>
+     * <li>NOMORE
+     * </ul>
      */
     @Override
     public synchronized bagCollect goCollectABag(int bagID) {
@@ -99,19 +109,26 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * <p>
      * O bagageiro transporta uma mala para um determinado local:
      * <ul>
-     * <li> para a zona de armazenamento temporário caso a mala pertença a um
-     * passageiro que esteja em trânsito
+     * <li> para a zona de armazenamento temporário caso a mala pertença a um passageiro 
+     * que esteja em trânsito
      * <li> para a passadeira rolante caso pertença a um passageiro cujo destino
      * é este aeroporto, notificando-o de seguida
      * </ul>
      * <p>
-     * Caso o objecto mala seja null notifica todos os passageiros de que já não
-     * existem mais malas no porão do avião
-     *
-     * @param log
+     * Caso o objecto mala seja null notifica todos os passageiros de que já 
+     * não existem mais malas no porão do avião 
+     * 
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param mala mala que o bagageiro transporta
-     * @return Local para onde levou a mala, ou caso o objecto mala seja um
-     * null, a informação de que o porão já se encontra vazio
+     * @return Local para onde levou a mala:
+     * <ul>
+     * <li>STOREROOM, zona de armazenamento temporário de bagagens
+     * <li>BELT, zona de recolha de bagagens
+     * </ul>
+     * Alternativamente, caso o objecto mala seja um null, a informação de que o porão já se encontra vazio:
+     * <ul>
+     * <li>LOBBYCLEAN
+     * </ul>
      */
     @Override
     public synchronized bagDest carryItToAppropriateStore(LoggingBagageiroInterface log, Mala mala) {
@@ -161,7 +178,11 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
     /**
      * Função auxiliar que simula a probabilidade de uma mala ser ou não perdida
      *
-     * @return TRUE caso a mala não tenha sido perdida FALSE caso contrário
+     * @return 
+     * <ul>
+     * <li>TRUE caso a mala não tenha sido perdida
+     * <li>FALSE caso contrário
+     * </ul>
      */
     private boolean getBagChance() {
         return Math.random() > 0.2;

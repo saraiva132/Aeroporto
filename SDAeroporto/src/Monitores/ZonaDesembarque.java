@@ -21,7 +21,10 @@ public  class ZonaDesembarque implements ZonaDesembarquePassageiroInterface,Zona
 private int nPass;
 /**
  * O bagageiro ja pode começar a recolher malas
- * 
+ * <ul>
+ * <li>TRUE caso possa
+ * <li>FALSE caso contrário
+ * </ul>
  * @serialField canGo
  */
 private boolean canGo;
@@ -66,7 +69,11 @@ public synchronized void  takeARest()
      * passageiro deve notificar o bagageiro de que já pode começar a ir buscar 
      * as malas ao porão do avião
      * 
-     * @param dest TRUE se este aeroporto é o seu destino, FALSE caso contrário
+     * @param dest 
+     * <ul>
+     * <li>TRUE se este aeroporto é o seu destino
+     * <li>FALSE caso contrário
+     * </ul>
      * @param nMalas número de malas que o passageiro contém
      * @return  Qual o seu próximo passo dependendo da sua condição:
      * <ul>

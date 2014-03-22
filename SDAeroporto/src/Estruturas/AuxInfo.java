@@ -10,7 +10,7 @@ public class AuxInfo {
     /**
      * Identificação do número de voos da simulação
      * 
-     * @serialField chegadas
+     * @serialField nChegadas
      */
     public static final int nChegadas = 20;
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import Monitores.Logging;
@@ -22,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ * Main Program
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
@@ -32,8 +28,7 @@ public class SDAeroporto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-
+        
         Bagageiro b;
         Passageiro[] p = new Passageiro[passMax];
         Motorista m;
@@ -51,17 +46,6 @@ public class SDAeroporto {
         ArrayList<Mala> malas = new ArrayList();
         int[] nMalasPass = new int[passMax];
         boolean[] dest = new boolean[passMax];
-        int randtemp;
-
-        //Gerar malas por passageiro
-        //Gerar destino do passageiro
-        /*for (int i = 0; i < passMax; i++) {
-         nMalasPass[i] = new Random().nextInt(3);
-         dest[i] = getRandomBoolean();
-         for (int j = 0; j < nMalasPass[i]; j++) {
-         malas.add(new Mala(i, !dest[i]));
-         }
-         }*/
 
         /*Inicialização das zonas de região crítica*/
         log = new Logging();

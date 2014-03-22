@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  *
- * Monitor que simula a interacção do passageiro com o porão de um avião
+ * Monitor que simula a interacção do bagageiro com o porão de um avião
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399

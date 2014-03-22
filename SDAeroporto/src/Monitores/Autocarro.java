@@ -31,10 +31,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     
     /**
      * Identifica se a viagem até ao terminal de partida já acabou ou não
-     * 
-     * <p>TRUE caso tenha acabado e os passageiros possam sair do autocarro, 
-     * FALSE caso contrário
-     * 
+     * <ul>
+     * <li>TRUE caso tenha acabado e os passageiros possam sair do autocarro, 
+     * <li>FALSE caso contrário
+     * </ul>
      * @serialField hasEnded
      */
     private boolean hasEnded;
@@ -71,9 +71,9 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * espera que o motorista o leve até à zona de transferência do terminal de 
      * partida.
      * 
-     * @param log
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro se pode sentar
-     * @param passID
+     * @param passID identificador do passageiro
      */
     @Override
     public synchronized void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID) {
@@ -94,12 +94,12 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
-     * @param log
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
     public synchronized void leaveTheBus(LoggingPassageiroInterface log,int ticketID) {
-        //System.out.println("IM OUT!Shitty bus");
+        //System.out.println("IM OUT from the bus");
         while (!hasEnded) {
             try {
                 wait();
@@ -122,7 +122,8 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
-     * @param bilhetesvendidos - Número de bilhetes vendidos
+     * @param bilhetesvendidos - Número de bilhetes vendidos (corresponde ao número de
+     * passageiros que estão à espera)
      */
     @Override
     public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {

@@ -25,11 +25,42 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @serialField fila
      */
     private Queue<Integer> fila;
-    private int nVoo;                   /*indica o número de voo para o motorista saber se já acabou*/
+    
+    /**
+     * indica o número de voo (para o motorista saber se já acabou)
+     * 
+     * @serialField nVoo
+     */
+    private int nVoo;
 
-    private boolean timeUp, /*indica se já é altura de realizar a viagem*/
-            canGo, /*indica ao passageiro se ele pode entrar no autocarro*/
-            next;                       /*indica se o motorista pode deixar o próximo passageiro na fila entrar no autocarro*/
+    /**
+     * indica se já é altura de realizar a viagem
+     * <ul>
+     * <li>TRUE caso já for altura
+     * <li>FALSE, caso contrário
+     * </ul>
+     * @serialField timeUp
+     */
+    private boolean timeUp; 
+    
+    /**
+     * indica ao passageiro se ele pode entrar no autocarro
+     * <ul>
+     * <li>TRUE caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     * @serialField canGo
+     */
+    private boolean        canGo;
+    /**
+     * indica se o motorista pode deixar o próximo passageiro na fila entrar no autocarro
+     * <ul>
+     * <li>TRUE caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     * @serialField next
+     */
+    private boolean        next;                       
 
 
     public TransferenciaTerminal() {
@@ -55,12 +86,11 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * Invocador: Passageiro
      * <p>
      * O passageiro anuncia que pretende apanhar o autocarro. Coloca-se na fila,
-     * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no
+     * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no 
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
-     *
-     * @param log
+     * 
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param passageiroID identificador do passageiro
-     * @param voo identificador do número de Voo
      * @return Posição do seu assento no autocarro
      */
     @Override
@@ -93,14 +123,16 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * <p>
      * Invocador - Motorista.
      * <p>
-     * Motorista verifica se o trabalho já acabou. É acordado nas seguintes
-     * condições: Se os passageiros na fila de espera, no passeio, cobrem a
-     * lotação do autocarro Se a hora de partida chegou.
-     *
-     * O trabalho dele acabou se à hora da partida não se encontrar ninguém no
-     * passeio!
-     *
-     * @return True se acabou. False se não acabou ainda.
+     * Motorista verifica se o trabalho já acabou. É acordado nas seguintes condições:
+     * Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
+     * Se a hora de partida chegou.
+     * 
+     * O trabalho dele acabou se à hora da partida não se encontrar ninguém no passeio!
+     * @return 
+     * <ul>
+     * <li>TRUE, se o dia de trabalho acabou
+     * <li>FALSE, caso contrário
+     * </ul>
      */
     @Override
     public synchronized boolean hasDaysWorkEnded() {
@@ -118,16 +150,16 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     /**
-     * Anunciar início de viagem
-     * <p>
+    * Anunciar início de viagem
+    * <p>
      * Invocador - Motorista.
      * <p>
-     * Motorista anuncia que a viagem vai começar, acorda um passageiro e
-     * adormece. O objectivo deste método é chamar um passageiro de cada vez por
-     * ordem de chegada na fila de espera. Entrada ordenada!
-     *
-     * @return Número de passageiros que tomaram interesse em participar na
-     * viagem. Limitado à lotação do Autocarro.
+     * Motorista anuncia que a viagem vai começar, acorda um passageiro e adormece.
+     * O objectivo deste método é chamar um passageiro de cada vez por ordem de chegada
+     * na fila de espera. Entrada ordenada!
+     * 
+     * @return Número de passageiros que tomaram interesse em participar na viagem
+     * (limitado à lotação do Autocarro)
      */
     @Override
     public synchronized int announcingBusBoardingShouting() {
@@ -152,9 +184,9 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     /**
-     * Task criada em cada simulação que simula o horario do autocarro. Após 5
-     * segundos de uma instância desta classe for criada vai chamar o metodo
-     * tempoEsgotado que coloca a flag timeUp a true.
+     * Task criada em cada simulação que simula o horario do autocarro. Após 1
+     * segundo de uma instância desta classe for criada vai chamar o metodo
+     * <i>tempoEsgotado</i> que coloca a flag <i>timeUp</i> a TRUE.
      */
     public class Reminder {
 

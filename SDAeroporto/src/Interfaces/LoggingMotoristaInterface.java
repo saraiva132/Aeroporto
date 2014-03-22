@@ -1,17 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
 import Estruturas.AuxInfo;
 
 /**
+ * Identifica e descreve as operações que o motorista pode realizar sobre o monitor <b>Logging</b>
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public interface LoggingMotoristaInterface {
 
+    /**
+     * Reportar mudança de estado.
+     * <p>
+     * Invocador: Motorista
+     * 
+     * Motorista reporta mudança do seu estado.
+     * 
+     * @param state novo estado do motorista
+     */
     public void reportState(AuxInfo.motState state);
 }

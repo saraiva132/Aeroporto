@@ -16,9 +16,11 @@ public class Mala {
     
     /**
      * Identifica se o owner da mala está ou não em trânsito
-     * 
+     * <p>
+     * <ul>
      * <li> TRUE, se está em trânsito
-     * <li> FALSE, se não está em trânsito
+     * <li> FALSE, caso contrário
+     * </ul>
      */
     private boolean transit;
     
@@ -33,8 +35,8 @@ public class Mala {
         this.transit = transit;
     }
     /**
-    * 
-    * @return owner id
+    * Obter a identificação do passageiro dono da mala.
+    * @return Identificador do passageiro
     */
     public int getOwner() {
         return owner;
@@ -44,7 +46,7 @@ public class Mala {
      * 
      * @return tipo de passageiro
      * <li> TRUE o passageiro está em trânsito
-     * <li> False o passageiro não está em trânsito
+     * <li> FALSE o passageiro não está em trânsito
      */
     public boolean inTransit() {
         return transit;

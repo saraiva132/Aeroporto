@@ -29,7 +29,7 @@ public interface RecolhaBagageiroInterface {
      * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 
      * 
-     * @param log
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param mala mala que o bagageiro transporta
      * @return Local para onde levou a mala:
      * <ul>

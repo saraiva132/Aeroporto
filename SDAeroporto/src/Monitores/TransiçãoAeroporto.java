@@ -20,7 +20,10 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     
     /**
      * Indica se os passageiros já podem sair ou ainda não
-     * 
+     * <ul>
+     * <li>TRUE caso possam
+     * <li>FALSE caso contrário
+     * </ul>
      * @serialField canLeave
      * 
      */

@@ -1,7 +1,5 @@
 package Interfaces;
 
-import Monitores.Logging;
-
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o monitor 
  * <b>Autocarro</b>
@@ -22,10 +20,12 @@ public interface AutocarroPassageiroInterface {
      * espera que o motorista o leve até à zona de transferência do terminal de 
      * partida.
      * 
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro se pode sentar
+     * @param passID identificador do passageiro
      */
 
-    public void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID);
+    public void enterTheBus(LoggingPassageiroInterface log,int ticketID, int passID);
     
     /**
      * Sair do autocarro
@@ -35,10 +35,9 @@ public interface AutocarroPassageiroInterface {
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
-     * @param log
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro estava sentado 
-     */
-    
+     */    
     public void leaveTheBus(LoggingPassageiroInterface log,int ticketID);
 
             
