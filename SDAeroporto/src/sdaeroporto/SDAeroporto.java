@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sdaeroporto;
 
 import Monitores.Logging;
@@ -17,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Main Program
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
@@ -28,7 +32,8 @@ public class SDAeroporto {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        // TODO code application logic here
+
         Bagageiro b;
         Passageiro[] p = new Passageiro[passMax];
         Motorista m;
@@ -46,6 +51,17 @@ public class SDAeroporto {
         ArrayList<Mala> malas = new ArrayList();
         int[] nMalasPass = new int[passMax];
         boolean[] dest = new boolean[passMax];
+        int passTRT=0;
+
+        //Gerar malas por passageiro
+        //Gerar destino do passageiro
+        /*for (int i = 0; i < passMax; i++) {
+         nMalasPass[i] = new Random().nextInt(3);
+         dest[i] = getRandomBoolean();
+         for (int j = 0; j < nMalasPass[i]; j++) {
+         malas.add(new Mala(i, !dest[i]));
+         }
+         }*/
 
         /*Inicialização das zonas de região crítica*/
         log = new Logging();
@@ -55,19 +71,21 @@ public class SDAeroporto {
         recolha = new RecolhaBagagem();
         transferencia = new TransferenciaTerminal();
         transicao = new TransiçãoAeroporto();
-
+        log.reportInitialStatus();
         /*Inicialização dos elementos activos*/
         b = new Bagageiro(zona, porao, recolha, log);
         m = new Motorista(auto, transferencia, log);
         m.start();
         b.start();
         for (int j = 0; j < nChegadas; j++) {
-            log.reportInitialStatus();
+            
             log.nVoo(j + 1);
 
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(bagMax + 1);
                 dest[w] = getRandomBoolean();
+                if(!dest[w])
+                    passTRT++;
                 for (int l = 0; l < nMalasPass[w]; l++) {
                     malas.add(new Mala(w, !dest[w]));
                 }
@@ -76,7 +94,8 @@ public class SDAeroporto {
             for (int i = 0; i < passMax; i++) {
                 p[i] = new Passageiro(nMalasPass[i], i, j + 1, dest[i], zona, auto, transicao, recolha, transferencia, log);
             }
-            transferencia.setnVoo(j + 1);
+            transferencia.setnVoo(j + 1,passTRT);
+            passTRT=0;
             b.setnVoo(j + 1);
             /* arranque da simulação */
             for (int i = 0; i < passMax; i++) {
@@ -92,21 +111,21 @@ public class SDAeroporto {
                 //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
             }
             recolha.resetNoMoreBags();
+            if(j< nChegadas -1)
+                log.reportInitialStatus();
         }
         try {
             m.join();
+
         } catch (InterruptedException e) {
         }
+        
         try {
             b.join();
         } catch (InterruptedException e) {
         }
         
-        System.out.println("The end.");
-        GenericIO.writelnString(
-                "O motorista terminou.");
-        GenericIO.writelnString(
-                "O bagageiro terminou.");
+        log.close();
 
     }
 

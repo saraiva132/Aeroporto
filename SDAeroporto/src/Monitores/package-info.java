@@ -40,6 +40,10 @@
  * simula a interacção entre o motorista e os passageiros que estão em trânsito. Esta
  * interacção decorre quando os passageiros entram no autocarro, o motorista os 
  * leva até ao terminal de partida e quando eles saem do autocarro.
+ * 
+ * <p>A <i>saída do aeroporto</i> e a <i>entrada no terminal de partida</i> são representadas
+ *  pelo monitor <b>TransiçãoAeroporto</b>. Este monitor simula a interacção entre todos os passageiros
+ * à saída do aeroporto, onde devem esperar que todos cheguem para poderem ir embora.
  */
 
 package Monitores;

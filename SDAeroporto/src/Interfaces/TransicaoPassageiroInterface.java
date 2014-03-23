@@ -18,7 +18,7 @@ public interface TransicaoPassageiroInterface {
      * vai para casa. Espera até ao último passageiro do seu voo chegar à saída 
      * do terminal de chegada ou ao terminal de partida, que tem a responsabilidade
      * de notificar os outros passageiros que podem ir embora.
-     */    
+     */     
     public void goHome();
 
     /**
@@ -30,7 +30,6 @@ public interface TransicaoPassageiroInterface {
      * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
      * ou ao terminal de partida, que tem a responsabilidade de notificar os 
      * outros passageiros que podem ir embora.
-     * 
      */
     public void prepareNextLeg();
 

@@ -10,30 +10,30 @@ public class AuxInfo {
     /**
      * Identificação do número de voos da simulação
      * 
-     * @serialField nChegadas
+     * @serialField chegadas
      */
-    public static final int nChegadas = 20;
+    public static final int nChegadas = 5;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 50;
+    public static final int bagMax = 2;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 10;
+    public static final int lotação = 3;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static final int passMax = 5;
+    public static final int passMax = 6;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  
@@ -92,14 +92,14 @@ public class AuxInfo {
         @Override
         public String toString(){
         switch(this){
-            case AT_THE_DISEMBARKING_ZONE: return "DESEMBARCAR";
-            case AT_THE_LUGGAGE_COLLECTION_POINT: return "RECOLHER";
-            case AT_THE_BAGGAGE_RECLAIM_OFFICE: return "RECLAMAÇÂO";
-            case EXITING_THE_ARRIVAL_TERMINAL: return "CASA";
-            case AT_THE_ARRIVAL_TRANSFER_TERMINAL: return "PASSEIO";
-            case TERMINAL_TRANSFER: return "AUTOCARRO";
-            case AT_THE_DEPARTURE_TRANSFER_TERMINAL: return "SAIDA";
-            case ENTERING_THE_DEPARTURE_TERMINAL: return "PROXIMO";
+            case AT_THE_DISEMBARKING_ZONE: return "ADZ";
+            case AT_THE_LUGGAGE_COLLECTION_POINT: return "BEL";
+            case AT_THE_BAGGAGE_RECLAIM_OFFICE: return "RCL";
+            case EXITING_THE_ARRIVAL_TERMINAL: return "HOM";
+            case AT_THE_ARRIVAL_TRANSFER_TERMINAL: return "ATT";
+            case TERMINAL_TRANSFER: return "BUS";
+            case AT_THE_DEPARTURE_TRANSFER_TERMINAL: return "DTT";
+            case ENTERING_THE_DEPARTURE_TERMINAL: return "EDT";
             default: throw new IllegalArgumentException();
         }    
         }
@@ -138,10 +138,10 @@ public class AuxInfo {
         @Override
         public String toString(){
         switch(this){
-            case WAITING_FOR_A_PLANE_TO_LAND: return "REST";
-            case AT_THE_PLANES_HOLD: return "BUSCAR MALA";
-            case AT_THE_LUGGAGE_BELT_CONVERYOR: return "BELT";
-            case AT_THE_STOREROOM: return "STOREROOM";    
+            case WAITING_FOR_A_PLANE_TO_LAND: return "W4P";
+            case AT_THE_PLANES_HOLD: return "APH";
+            case AT_THE_LUGGAGE_BELT_CONVERYOR: return "BEL";
+            case AT_THE_STOREROOM: return "STR";    
             default: throw new IllegalArgumentException();
         }    
         }
@@ -183,10 +183,10 @@ public class AuxInfo {
         @Override
         public String toString(){
         switch(this){
-            case PARKING_AT_THE_ARRIVAL_TERMINAL: return "NO PASSEIO";
-            case DRIVING_FORWARD: return "FRENTE";
-            case DRIVING_BACKWARD: return "TRAS"; 
-            case PARKING_AT_THE_DEPARTURE_TERMINAL: return "TERMINAL";   
+            case PARKING_AT_THE_ARRIVAL_TERMINAL: return "PAT";
+            case DRIVING_FORWARD: return "DRF";
+            case DRIVING_BACKWARD: return "DRB"; 
+            case PARKING_AT_THE_DEPARTURE_TERMINAL: return "PDT";   
             default: throw new IllegalArgumentException();
         }    
         }

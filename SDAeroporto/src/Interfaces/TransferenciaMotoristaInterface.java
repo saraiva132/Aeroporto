@@ -15,8 +15,10 @@ public interface TransferenciaMotoristaInterface {
      * Invocador - Motorista.
      * <p>
      * Motorista verifica se o trabalho já acabou. É acordado nas seguintes condições:
-     * Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
-     * Se a hora de partida chegou.
+     * <ul>
+     * <li>Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
+     * <li>Se a hora de partida chegou.
+     * </ul>
      * 
      * O trabalho dele acabou se à hora da partida não se encontrar ninguém no passeio!
      * @return 

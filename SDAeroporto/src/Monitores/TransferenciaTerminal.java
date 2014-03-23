@@ -27,6 +27,14 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     private Queue<Integer> fila;
     
     /**
+     * Número de passageiros que faltam transportar do terminal de chegada para o terminal de saída
+     * do voo que acabou de aterrar
+     * 
+     * @serialField passTRT
+     */
+    private int passTRT;
+    
+    /**
      * indica o número de voo (para o motorista saber se já acabou)
      * 
      * @serialField nVoo
@@ -60,11 +68,14 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * </ul>
      * @serialField next
      */
-    private boolean        next;                       
+    private boolean        next; 
 
-
+    /**
+     * Instanciação e inicialização do monitor TransferenciaTerminal
+     */
     public TransferenciaTerminal() {
         nVoo = 1;
+        passTRT = 0;
         fila = new LinkedList<Integer>();
         timeUp = false;
         canGo = false;
@@ -115,6 +126,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         fila.remove();
         log.removefilaEspera();
         notifyAll();
+        passTRT--;
         return ticket;
     }
 
@@ -124,9 +136,10 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * Invocador - Motorista.
      * <p>
      * Motorista verifica se o trabalho já acabou. É acordado nas seguintes condições:
-     * Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
-     * Se a hora de partida chegou.
-     * 
+     * <ul>
+     * <li>Se os passageiros na fila de espera, no passeio, cobrem a lotação do autocarro
+     * <li>Se a hora de partida chegou.
+     * </ul>
      * O trabalho dele acabou se à hora da partida não se encontrar ninguém no passeio!
      * @return 
      * <ul>
@@ -146,7 +159,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         } catch (InterruptedException ex) {
         }
         timeUp = false;
-        return (fila.isEmpty() && nVoo >= nChegadas);
+        return (fila.isEmpty() && nVoo >= nChegadas && passTRT==0);
     }
 
     /**
@@ -184,9 +197,9 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     }
 
     /**
-     * Task criada em cada simulação que simula o horario do autocarro. Após 1
-     * segundo de uma instância desta classe for criada vai chamar o metodo
-     * <i>tempoEsgotado</i> que coloca a flag <i>timeUp</i> a TRUE.
+     * Task criada em cada simulação que simula o horario do autocarro. Após 5
+     * segundos de uma instância desta classe for criada vai chamar o metodo
+     * tempoEsgotado que coloca a flag timeUp a true.
      */
     public class Reminder {
 
@@ -208,7 +221,15 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         }
     }
 
-    public void setnVoo(int nvoo) {
+    /**
+     * Actualizar o voo que acabou de aterrar e os passageiros que vêm nele e se
+     * encontram em trânsito.
+     * 
+     * @param nvoo número de voo
+     * @param nPassageiros número de passageiros em trânsito neste voo
+     */
+    public void setnVoo(int nvoo,int nPassageiros) {
         this.nVoo = nvoo;
+        this.passTRT = nPassageiros;
     }
 }

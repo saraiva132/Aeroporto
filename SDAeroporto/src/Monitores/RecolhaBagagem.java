@@ -156,7 +156,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         this.noMoreBags = false;
     }
 
-    /**
+   /**
      * Reportar a falta de mala(s)
      * <p>
      * Invocador: Passageiro

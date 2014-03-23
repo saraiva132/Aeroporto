@@ -76,7 +76,6 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
      * ou ao terminal de partida, que tem a responsabilidade de notificar os 
      * outros passageiros que podem ir embora.
-     * 
      */
     @Override
     public synchronized void prepareNextLeg() {

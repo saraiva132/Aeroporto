@@ -56,6 +56,12 @@ public class Bagageiro extends Thread {
      * @serialField log
      */
     private LoggingBagageiroInterface log;
+    
+    /**
+     * Número de voo que já aterrou
+     * 
+     * @serialField nVoo
+     */
     private int nVoo;
 
     /**
@@ -86,14 +92,12 @@ public class Bagageiro extends Thread {
         while(nVoo < nChegadas) {
             zona.takeARest();
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
-            mala = porao.tryToCollectABag();
+            mala = porao.tryToCollectABag(log);
             bagDest nextState;
             do {
                 log.reportState(state = bagState.AT_THE_PLANES_HOLD);
                 nextState = recolha.carryItToAppropriateStore(log,mala);
-                if (nextState != bagDest.LOBBYCLEAN) {
-                    log.bagagemPorao();
-                }
+                
                 switch (nextState) {
                     case BELT:
                         log.reportState(state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR);
@@ -102,12 +106,17 @@ public class Bagageiro extends Thread {
                         log.reportState(state = bagState.AT_THE_STOREROOM);
                         break;
                 }
-                mala = porao.tryToCollectABag();
+                mala = porao.tryToCollectABag(log);
             } while (nextState != bagDest.LOBBYCLEAN);
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
         }
     }
     
+    /**
+     * Actualizar o número de voo que aterrou
+     * 
+     * @param voo número de voo
+     */
     public void setnVoo(int voo)
     {
         this.nVoo = voo;

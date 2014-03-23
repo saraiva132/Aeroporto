@@ -21,10 +21,7 @@ public  class ZonaDesembarque implements ZonaDesembarquePassageiroInterface,Zona
 private int nPass;
 /**
  * O bagageiro ja pode começar a recolher malas
- * <ul>
- * <li>TRUE caso possa
- * <li>FALSE caso contrário
- * </ul>
+ * 
  * @serialField canGo
  */
 private boolean canGo;

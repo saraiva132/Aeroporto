@@ -23,7 +23,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     
     /**
      * Conjunto de bancos do autocarro. 
-     * <p>Número do passageiro se ocupado. -1 se vazio.
+     * <p>Número do passageiro se ocupado. 0 se vazio.
      * 
      * @serialField seat
      */
@@ -99,7 +99,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public synchronized void leaveTheBus(LoggingPassageiroInterface log,int ticketID) {
-        //System.out.println("IM OUT from the bus");
+        //System.out.println("IM OUT!Shitty bus");
         while (!hasEnded) {
             try {
                 wait();

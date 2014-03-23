@@ -126,27 +126,11 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
         System.setOut(out);
         pstate = new passState[passMax];
-        bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
-        mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         fila = new int[passMax + 1];
         nMalasTotal = new int[passMax];
         nMalasActual = new int[passMax];
         passDest = new String[passMax];
-        for (int i = 0; i < passMax; i++) {
-            pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
-            nMalasTotal[i] = 0;
-            nMalasActual[i] = 0;
-            fila[i] = 0;
-            passDest[i] = "";
-        }
         assentos = new int[lotação];
-        for (int i = 0; i < lotação; i++) {
-            assentos[i] = 0;
-        }
-        nMalasStore = 0;
-        nMalasBelt = 0;
-        nMalasPorao = 0;
-        this.nVoo = 0;
     }
 
     /**
@@ -164,18 +148,33 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             out.printf("S%s", i);
         }
         out.print("     ");
-        
         for (int i = 0; i < passMax; i++) {
             out.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
         }
         out.println();
+        bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
+        mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        for (int i = 0; i < passMax; i++) {
+            pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
+            nMalasTotal[i] = 0;
+            nMalasActual[i] = 0;
+            fila[i] = 0;
+            passDest[i] = "";
+        }
+        for (int i = 0; i < lotação; i++) {
+            assentos[i] = 0;
+        }
+        nMalasStore = 0;
+        nMalasBelt = 0;
+        nMalasPorao = 0;
     }
 
     /**
      * Auxilia a reportar uma actualização do estado geral do problema
      */
-    private synchronized void reportStatus() {
-        out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.ordinal(), nMalasBelt, nMalasStore, mstate.ordinal());
+    private void reportStatus() {
+        
+        out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
         for (int i = 0; i < fila.length; i++) {
             out.printf("%1d ", fila[i]);
         }
@@ -186,7 +185,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
         out.print("]  ");
         for (int i = 0; i < passMax; i++) {
-            out.printf("%3s %3s  %1s  %2s |", pstate[i].ordinal(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+            out.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
 
         out.println();
@@ -218,7 +217,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * @param state novo estado do motorista
      */
     @Override
-    public void reportState(motState state) {
+    public synchronized void reportState(motState state) {
         mstate = state;
         reportStatus();
     }
@@ -233,7 +232,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * @param state novo estado do bagageiro
      */
     @Override
-    public void reportState(bagState state) {
+    public synchronized void reportState(bagState state) {
         bstate = state;
         reportStatus();
     }
@@ -253,8 +252,8 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * 
      * @param malasPorao número de malas que estão no porão do avião
      */
-    public synchronized void setPorao(int malasPorao) {
-        this.nMalasPorao = malasPorao;
+    public synchronized void setPorao(int set) {
+        this.nMalasPorao = set;
         reportStatus();
     }
 
@@ -266,7 +265,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * <p>Bagageiro reporta que retirou uma mala do porão do avião.
      */
     @Override
-    public void bagagemPorao() {
+    public synchronized void bagagemPorao() {
         this.nMalasPorao--;
         reportStatus();
     }
@@ -302,7 +301,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * <p> Bagageiro reporta que colocou uma bagagem na zona de armazenamento temporário de bagagens.
      */
     @Override
-    public void bagagemStore() {
+    public synchronized void bagagemStore() {
         this.nMalasStore++;
         reportStatus();
     }
@@ -418,6 +417,13 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     public synchronized void autocarroState(int[] seats) {
         System.arraycopy(seats, 0, this.assentos, 0, seats.length);
         reportStatus();
+    }
+    
+    /**
+     * Fechar a stream
+     */
+    public synchronized void close(){
+        out.close();
     }
 
 }

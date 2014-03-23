@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
 import Estruturas.AuxInfo;
+import java.util.LinkedList;
 
 /**
  * Identifica e descreve as operações que o passageiro pode realizar sobre o monitor <b>Logging</b>
@@ -61,7 +57,6 @@ public interface LoggingPassageiroInterface {
      */
     public void malasInicial(int passID, int nMalas);
 
-    
     /**
      * Reportar tipo de passageiro.
      * 
