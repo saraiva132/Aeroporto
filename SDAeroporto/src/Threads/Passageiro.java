@@ -9,7 +9,6 @@ import Interfaces.LoggingPassageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import Interfaces.TransicaoPassageiroInterface;
-import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados passageiro

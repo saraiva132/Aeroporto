@@ -9,7 +9,6 @@ import Estruturas.AuxInfo.motState;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
-import Monitores.Logging;
 
 /**
  * Identifica o tipo de dados motorista

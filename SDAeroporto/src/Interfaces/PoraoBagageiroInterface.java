@@ -1,7 +1,6 @@
 package Interfaces;
 
 import Estruturas.Mala;
-import Monitores.Logging;
 /**
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o
  * monitor <b>Porão</b>

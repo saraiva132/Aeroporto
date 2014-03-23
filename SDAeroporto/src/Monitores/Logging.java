@@ -250,7 +250,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     /**
      * Definir o número de malas que vem no porão do avião que acabou de aterrar
      * 
-     * @param malasPorao número de malas que estão no porão do avião
+     * @param set número de malas no porão
      */
     public synchronized void setPorao(int set) {
         this.nMalasPorao = set;

@@ -53,16 +53,6 @@ public class SDAeroporto {
         boolean[] dest = new boolean[passMax];
         int passTRT=0;
 
-        //Gerar malas por passageiro
-        //Gerar destino do passageiro
-        /*for (int i = 0; i < passMax; i++) {
-         nMalasPass[i] = new Random().nextInt(3);
-         dest[i] = getRandomBoolean();
-         for (int j = 0; j < nMalasPass[i]; j++) {
-         malas.add(new Mala(i, !dest[i]));
-         }
-         }*/
-
         /*Inicialização das zonas de região crítica*/
         log = new Logging();
         porao = new Porao(malas);

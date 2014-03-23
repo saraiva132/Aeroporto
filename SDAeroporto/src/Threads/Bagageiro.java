@@ -108,6 +108,7 @@ public class Bagageiro extends Thread {
                 }
                 mala = porao.tryToCollectABag(log);
             } while (nextState != bagDest.LOBBYCLEAN);
+            zona.noMoreBagsToCollect();
             log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
         }
     }

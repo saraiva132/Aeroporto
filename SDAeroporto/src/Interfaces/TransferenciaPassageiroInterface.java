@@ -1,7 +1,5 @@
 package Interfaces;
 
-import Monitores.Logging;
-
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o 
  * monitor <b>TransferenciaTerminal</b>
