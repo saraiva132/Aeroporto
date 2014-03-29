@@ -22,9 +22,9 @@ public interface AutocarroPassageiroInterface {
      * 
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro se pode sentar
-     * @param passID identificador do passageiro
+     * @param passageiroId identificador do passageiro
      */
-    public void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID);
+    public void enterTheBus( LoggingPassageiroInterface log,int ticketID,int passageiroId);
     
     /**
      * Sair do autocarro
@@ -34,11 +34,12 @@ public interface AutocarroPassageiroInterface {
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
+     * @param passageiroId identificador do passageiro
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     
-    public void leaveTheBus(LoggingPassageiroInterface log,int ticketID);
+    public void leaveTheBus(int passageiroId, LoggingPassageiroInterface log,int ticketID);
 
             
 }

@@ -1,5 +1,6 @@
 package Monitores;
 
+import Estruturas.AuxInfo;
 import Estruturas.Mala;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
@@ -38,18 +39,25 @@ public class Porao implements PoraoBagageiroInterface {
      * vazio recolhe uma mala
      *
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
-     * @return Mala que apanhou no porão, ou em caso do porão se encontrar
-     * vazio, null
+     * @return Mala que apanhou no porão e informação sobre o estado do mesmo
      */
     @Override
     public synchronized Mala tryToCollectABag(LoggingBagageiroInterface log) {
         //System.out.println("Procurando mala..");
+        
+//        BagageiroTransportation mala =new BagageiroTransportation();
+//        if(malas.size()>1)
+//            mala.setTransport(malas.remove(0), false);
+//        else
+//            mala.setTransport(malas.remove(0), true);
+//        return mala;
+        
         if (malas.isEmpty()) {
             return null;
         } else {
+        log.reportState(AuxInfo.bagState.AT_THE_PLANES_HOLD);
             log.bagagemPorao();
-            return malas.remove(0);            
+            return malas.remove(0);
         }
     }
-
 }

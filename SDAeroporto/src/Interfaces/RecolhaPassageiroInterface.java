@@ -24,6 +24,7 @@ public interface RecolhaPassageiroInterface {
      * bem sucedida.
      * 
      * @param bagID identificador da mala
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @return Forma como conseguiu apanhar a sua mala: 
      * <ul>
      * <li>MINE, com sucesso 
@@ -35,7 +36,7 @@ public interface RecolhaPassageiroInterface {
      * <li>NOMORE
      * </ul>
      */
-    public bagCollect goCollectABag(int bagID);
+    public bagCollect goCollectABag(int bagID,LoggingPassageiroInterface log);
     
     /**
      * Reportar a falta de mala(s)
@@ -49,7 +50,8 @@ public interface RecolhaPassageiroInterface {
      * 
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void reportMissingBags(int passageiroID,int malasPerdidas);
+    public void reportMissingBags(int passageiroID,int malasPerdidas, LoggingPassageiroInterface log);
 
 }

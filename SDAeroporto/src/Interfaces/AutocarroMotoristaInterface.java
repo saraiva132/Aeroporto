@@ -29,8 +29,9 @@ public interface AutocarroMotoristaInterface {
      * <p>
      * Motorista conduz os passageiros que se encontram em trânsito para o terminal de partida.
      * 
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void goToDepartureTerminal();
+    public void goToDepartureTerminal(LoggingMotoristaInterface log);
 
     /**
      * Dirigir-se ao terminal de chegada
@@ -38,8 +39,9 @@ public interface AutocarroMotoristaInterface {
      * Invocador: Motorista
      * <p>
      * Motorista retorna ao terminal de chegada.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void goToArrivalTerminal();
+    public void goToArrivalTerminal(LoggingMotoristaInterface log);
 
     /**
      * Estacionar o autocarro no terminal de chegada
@@ -47,8 +49,9 @@ public interface AutocarroMotoristaInterface {
      * Invocador: Motorista
      * <p>
      * Motorista estaciona o autocarro no terminal de chegada.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void parkTheBus();
+    public void parkTheBus(LoggingMotoristaInterface log);
 
      /**
       * Estacionar o autocarro no terminal de partida
@@ -57,6 +60,7 @@ public interface AutocarroMotoristaInterface {
      * <p>
      * Motorista estaciona o autocarro e larga os passageiros; bloqueia
      * até que o último passageiro saia do autocarro e o acorde.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void parkTheBusAndLetPassOff();
+    public void parkTheBusAndLetPassOff(LoggingMotoristaInterface log);
 }

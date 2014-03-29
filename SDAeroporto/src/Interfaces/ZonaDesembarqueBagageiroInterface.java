@@ -26,6 +26,7 @@ public interface ZonaDesembarqueBagageiroInterface {
      * <p>
      * O bagageiro, após verificar que o porão já se encontra vazio, dirige-se à
      * sua sala de espera
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void noMoreBagsToCollect();
+    public void noMoreBagsToCollect(LoggingBagageiroInterface log);
 }

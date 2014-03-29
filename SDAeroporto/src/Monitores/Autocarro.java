@@ -1,8 +1,10 @@
 package Monitores;
 
+import Estruturas.AuxInfo;
 import static Estruturas.AuxInfo.lotação;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.AutocarroPassageiroInterface;
+import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
 
 /**
@@ -73,14 +75,15 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * 
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @param ticketID lugar onde o passageiro se pode sentar
-     * @param passID identificador do passageiro
+     * @param passageiroId identificador do passageiro
      */
     @Override
-    public synchronized void enterTheBus(LoggingPassageiroInterface log,int ticketID,int passID) {
+    public synchronized void enterTheBus( LoggingPassageiroInterface log,int ticketID,int passageiroId) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
-        seat[ticketID] = passID+1;
+        seat[ticketID] = passageiroId+1;
         log.autocarroState(seat);
+        log.reportState(passageiroId, AuxInfo.passState.TERMINAL_TRANSFER);
         if (nOcupantes == bilhetesVendidos) {
             notifyAll();
         }
@@ -98,7 +101,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     @Override
-    public synchronized void leaveTheBus(LoggingPassageiroInterface log,int ticketID) {
+    public synchronized void leaveTheBus(int passageiroId, LoggingPassageiroInterface log,int ticketID) {
         //System.out.println("IM OUT!Shitty bus");
         while (!hasEnded) {
             try {
@@ -109,6 +112,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         nOcupantes--;
         seat[ticketID] = 0;
         log.autocarroState(seat);
+        log.reportState(passageiroId, AuxInfo.passState.AT_THE_DEPARTURE_TRANSFER_TERMINAL);
         if (nOcupantes == 0) {
             notify();
         }
@@ -145,11 +149,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * <p>
      * Motorista conduz os passageiros para o proximo terminal.
      * 
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public void goToDepartureTerminal() {
-        //System.out.println("Go to next leg");
-        //Estado de transição. Fazer o quê mesmo?
+    public void goToDepartureTerminal(LoggingMotoristaInterface log) {
+        log.reportState(AuxInfo.motState.DRIVING_FORWARD);
     }
 
     /**
@@ -158,11 +162,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Invocador: Motorista
      * <p>
      * Motorista retorna ao terminal de chegada.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public void goToArrivalTerminal() {
-        //System.out.println("Lets get back guys");
-        //Estado de transição. Fazer o quê mesmo?
+    public void goToArrivalTerminal(LoggingMotoristaInterface log) {
+        log.reportState(AuxInfo.motState.DRIVING_BACKWARD);
     }
 
     /**
@@ -171,11 +175,11 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * Invocador: Motorista
      * <p>
      * Motorista estaciona o autocarro no terminal de chegada.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public void parkTheBus() {
-        //Transição
-        //System.out.println("Parking..");
+    public void parkTheBus(LoggingMotoristaInterface log) {
+        log.reportState( AuxInfo.motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
     }
 
     /**
@@ -185,10 +189,12 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * <p>
      * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia
      * até que o ultimo passageiro saia do Autocarro e o acorde.
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public synchronized void parkTheBusAndLetPassOff() {
+    public synchronized void parkTheBusAndLetPassOff(LoggingMotoristaInterface log) {
         //System.out.println("OUT OUT OUT!");
+        log.reportState( AuxInfo.motState.PARKING_AT_THE_DEPARTURE_TERMINAL);
         hasEnded = true;
         notifyAll();
         try {

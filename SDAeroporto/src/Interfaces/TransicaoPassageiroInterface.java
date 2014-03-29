@@ -18,8 +18,10 @@ public interface TransicaoPassageiroInterface {
      * vai para casa. Espera até ao último passageiro do seu voo chegar à saída 
      * do terminal de chegada ou ao terminal de partida, que tem a responsabilidade
      * de notificar os outros passageiros que podem ir embora.
+     * @param passageiroId identificador do passageiro
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */     
-    public void goHome();
+    public void goHome(int passageiroId, LoggingPassageiroInterface log);
 
     /**
      * Entrar no terminal de partida
@@ -30,7 +32,9 @@ public interface TransicaoPassageiroInterface {
      * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
      * ou ao terminal de partida, que tem a responsabilidade de notificar os 
      * outros passageiros que podem ir embora.
+     * @param passageiroId identificador do passageiro
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
-    public void prepareNextLeg();
+    public void prepareNextLeg(int passageiroId, LoggingPassageiroInterface log);
 
 }

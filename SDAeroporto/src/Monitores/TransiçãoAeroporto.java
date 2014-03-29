@@ -1,6 +1,7 @@
 package Monitores;
 
 import static Estruturas.AuxInfo.*;
+import Interfaces.LoggingPassageiroInterface;
 import Interfaces.TransicaoPassageiroInterface;
 
 /**
@@ -46,11 +47,14 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * vai para casa. Espera até ao último passageiro do seu voo chegar à saída 
      * do terminal de chegada ou ao terminal de partida, que tem a responsabilidade
      * de notificar os outros passageiros que podem ir embora.
+     * @param passageiroId identificador do passageiro
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public synchronized void goHome() {
+    public synchronized void goHome(int passageiroId, LoggingPassageiroInterface log) {
         //System.out.println("GoHome!");
         nPassageiros--;
+        log.reportState(passageiroId, passState.EXITING_THE_ARRIVAL_TERMINAL);
         if (nPassageiros == 0) {
             canLeave = true;
             notifyAll();
@@ -76,11 +80,14 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * até ao último passageiro do seu voo chegar à saída do terminal de chegada 
      * ou ao terminal de partida, que tem a responsabilidade de notificar os 
      * outros passageiros que podem ir embora.
+     * @param passageiroId identificador do passageiro
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public synchronized void prepareNextLeg() {
+    public synchronized void prepareNextLeg(int passageiroId, LoggingPassageiroInterface log) {
         //System.out.println("Prepare next leg!");
         nPassageiros--;
+        log.reportState(passageiroId, passState.ENTERING_THE_DEPARTURE_TERMINAL);
         if (nPassageiros == 0) {
             canLeave = true;
             notifyAll();

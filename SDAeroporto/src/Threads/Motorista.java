@@ -60,7 +60,6 @@ public class Motorista extends Thread {
     public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia,LoggingMotoristaInterface log) {
         this.auto = auto;
         this.transferencia = transferencia;
-        log.reportState(state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
         this.log = log;
     }
 
@@ -70,21 +69,12 @@ public class Motorista extends Thread {
     @Override
     public void run() {
 
-        while (!transferencia.hasDaysWorkEnded()) {
-            
+        while (!transferencia.hasDaysWorkEnded()) {            
             auto.announcingBusBoardingWaiting(transferencia.announcingBusBoardingShouting());
-            
-            auto.goToDepartureTerminal();
-            log.reportState(state = motState.DRIVING_FORWARD);
-
-            auto.parkTheBusAndLetPassOff();
-            log.reportState(state = motState.PARKING_AT_THE_DEPARTURE_TERMINAL);
-
-            auto.goToArrivalTerminal();
-            log.reportState(state = motState.DRIVING_BACKWARD);
-
-            auto.parkTheBus();
-            log.reportState(state = motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
+            auto.goToDepartureTerminal(log);            
+            auto.parkTheBusAndLetPassOff(log);            
+            auto.goToArrivalTerminal(log);            
+            auto.parkTheBus(log);            
         }
     }
 }

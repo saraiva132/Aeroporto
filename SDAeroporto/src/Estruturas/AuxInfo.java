@@ -7,6 +7,14 @@ package Estruturas;
  * @author Hugo Frade 59399
  */
 public class AuxInfo {
+    
+    /**
+     * Nome do ficheiro de logging
+     *
+     * @serialField fileName
+     */
+    public static String fileName = "log.txt";
+    
     /**
      * Identificação do número de voos da simulação
      * 

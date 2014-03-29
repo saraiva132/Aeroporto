@@ -29,7 +29,7 @@ public interface RecolhaBagageiroInterface {
      * não existem mais malas no porão do avião 
      * 
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
-     * @param mala mala que o bagageiro transporta
+     * @param mala mala que o bagageiro transporta e informação do estado actual do porão
      * @return Local para onde levou a mala:
      * <ul>
      * <li>STOREROOM, zona de armazenamento temporário de bagagens

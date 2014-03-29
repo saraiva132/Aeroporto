@@ -75,8 +75,8 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
     public TransferenciaTerminal() {
         nVoo = 1;
-        passTRT = 0;
-        fila = new LinkedList<Integer>();
+        passTRT = 99;
+        fila = new LinkedList<>();
         timeUp = false;
         canGo = false;
         next = false;
@@ -108,6 +108,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
     public synchronized int takeABus(LoggingPassageiroInterface log, int passageiroID) {
         //System.out.println("Take the bus");
         int ticket;
+        log.reportState(passageiroID, passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
         fila.add(passageiroID + 1);
         log.addfilaEspera(passageiroID);
         ticket = fila.size() % lotação;
@@ -147,19 +148,24 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * <li>FALSE, caso contrário
      * </ul>
      */
-    @Override
-    public synchronized boolean hasDaysWorkEnded() {
-        //System.out.println("has work ended?");
-        Reminder reminder = new Reminder(1);
-        try {
-            while (fila.size() < lotação && !timeUp) {
-                wait();
-                reminder.timer.cancel();
-            }
-        } catch (InterruptedException ex) {
-        }
-        timeUp = false;
-        return (fila.isEmpty() && nVoo >= nChegadas && passTRT==0);
+ @Override	
+    public synchronized boolean hasDaysWorkEnded() {		
+        
+        
+            while (true) {
+                try {
+                    Reminder reminder = new Reminder(1);
+                    wait();
+                    reminder.timer.cancel();
+                } catch (InterruptedException ex) {	
+                }
+                if(fila.size() >= lotação || (timeUp && fila.size() > 0) || (nVoo >= nChegadas && passTRT ==0)){
+                    break;
+                }
+            }	
+        	
+        timeUp = false;	
+        return (fila.isEmpty() && nVoo >= nChegadas && passTRT==0);	
     }
 
     /**
@@ -216,7 +222,6 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
             public void run() {
                 tempoEsgotado();
                 timer.cancel(); //Terminate the timer thread
-
             }
         }
     }

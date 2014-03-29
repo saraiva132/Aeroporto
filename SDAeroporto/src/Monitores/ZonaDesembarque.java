@@ -1,6 +1,9 @@
 package Monitores;
+import Estruturas.AuxInfo;
 import Estruturas.AuxInfo.destination;
 import static Estruturas.AuxInfo.passMax;
+import Interfaces.LoggingBagageiroInterface;
+import Interfaces.LoggingPassageiroInterface;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
 
@@ -66,12 +69,14 @@ public synchronized void  takeARest()
      * passageiro deve notificar o bagageiro de que já pode começar a ir buscar 
      * as malas ao porão do avião
      * 
+     * @param passageiroID identificador do passageiro
      * @param dest 
      * <ul>
      * <li>TRUE se este aeroporto é o seu destino
      * <li>FALSE caso contrário
      * </ul>
      * @param nMalas número de malas que o passageiro contém
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @return  Qual o seu próximo passo dependendo da sua condição:
      * <ul>
      * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens
@@ -80,7 +85,7 @@ public synchronized void  takeARest()
      * </ul>
      */
 @Override
-public synchronized destination whatShouldIDo(boolean dest,int nMalas)
+public synchronized destination whatShouldIDo(int passageiroID, boolean dest,int nMalas, LoggingPassageiroInterface log)
 {
     //System.out.println("What should i do!");
     nPass--;
@@ -95,8 +100,11 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
     {
         return destination.WITHOUT_BAGGAGE;
     }
-    else if(dest)
+    else if(dest){
+        log.reportState(passageiroID, AuxInfo.passState.AT_THE_LUGGAGE_COLLECTION_POINT);
         return destination.WITH_BAGGAGE;
+
+    }
     else
         return destination.IN_TRANSIT;
     
@@ -109,11 +117,13 @@ public synchronized destination whatShouldIDo(boolean dest,int nMalas)
      * <p>
      * O bagageiro, após verificar que o porão já se encontra vazio, dirige-se à
      * sua sala de espera
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
 @Override
-public synchronized void noMoreBagsToCollect()
+public synchronized void noMoreBagsToCollect(LoggingBagageiroInterface log)
 {
     //System.out.println("No more bags to collect!");
+    log.reportState(AuxInfo.bagState.WAITING_FOR_A_PLANE_TO_LAND);
 }
 
 }

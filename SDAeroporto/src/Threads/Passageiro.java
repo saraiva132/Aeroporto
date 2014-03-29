@@ -143,10 +143,6 @@ public class Passageiro extends Thread {
         this.finalDest = finalDest;
         this.nVoo = nVoo;   //not used for now
         this.id = id;
-        log.reportState(id, state = passState.AT_THE_DISEMBARKING_ZONE);
-        log.malasInicial(id, nMalasTotal);
-        log.malasActual(id, 0);
-        log.destino(id, finalDest);
     }
 
     /**
@@ -154,46 +150,34 @@ public class Passageiro extends Thread {
      */
     @Override
     public void run() {
-        //System.out.println("Passageiro a iniciar");
-        destination nextState = desembarque.whatShouldIDo(finalDest, nMalasTotal);
+        destination nextState = desembarque.whatShouldIDo(id,finalDest, nMalasTotal,log);
         bagCollect getBag = null;
         switch (nextState) {
             case WITH_BAGGAGE:
-                log.reportState(id, state = passState.AT_THE_LUGGAGE_COLLECTION_POINT);
+                
                 // System.out.println("tenho bagagem -----------------");
                 do {
-                    getBag = recolha.goCollectABag(id);
-                    if(getBag == bagCollect.MINE || getBag == bagCollect.UNSUCCESSFUL)
-                        log.bagagemBelt(true);
-                    if (getBag == bagCollect.MINE) {
+                    if ( (getBag=recolha.goCollectABag(id,log) ) == bagCollect.MINE) {
                         nMalasEmPosse++;
-                        log.malasActual(id, nMalasEmPosse);
                     }
                     //System.out.println("ID: " + id + " posse: " + nMalasEmPosse + " total: " + nMalasTotal);
                     //System.out.println(getBag.toString());
 
                 } while (nMalasEmPosse < nMalasTotal && getBag != bagCollect.NOMORE);
                 if (nMalasEmPosse < nMalasTotal) {
-                    log.reportState(id, state = passState.AT_THE_BAGGAGE_RECLAIM_OFFICE);
-                    recolha.reportMissingBags(id, nMalasTotal - nMalasEmPosse);
+                    recolha.reportMissingBags(id, nMalasTotal - nMalasEmPosse,log);
                 }
-                transicao.goHome();
-                log.reportState(id, state = passState.EXITING_THE_ARRIVAL_TERMINAL);
+                transicao.goHome(id,log);
                 break;
             case IN_TRANSIT:
                 int ticket; //bilhete para entrar no autocarro.
                 ticket = transferencia.takeABus(log,id);
-                log.reportState(id, state = passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
                 auto.enterTheBus( log,ticket,id);
-                log.reportState(id, state = passState.TERMINAL_TRANSFER);
-                auto.leaveTheBus(log,ticket);
-                log.reportState(id, state = passState.AT_THE_DEPARTURE_TRANSFER_TERMINAL);
-                transicao.prepareNextLeg();
-                log.reportState(id, state = passState.ENTERING_THE_DEPARTURE_TERMINAL);
+                auto.leaveTheBus(id, log,ticket);
+                transicao.prepareNextLeg(id,log);
                 break;
             case WITHOUT_BAGGAGE:
-                transicao.goHome();
-                log.reportState(id, state = passState.EXITING_THE_ARRIVAL_TERMINAL);
+                transicao.goHome(id,log);
                 break;
         }
     }

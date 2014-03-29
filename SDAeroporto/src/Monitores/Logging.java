@@ -1,7 +1,9 @@
 package Monitores;
 
 import Estruturas.AuxInfo.*;
+import static Estruturas.AuxInfo.fileName;
 import static Estruturas.AuxInfo.lotação;
+import static Estruturas.AuxInfo.nChegadas;
 import static Estruturas.AuxInfo.passMax;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.LoggingMotoristaInterface;
@@ -18,13 +20,6 @@ import java.io.PrintStream;
  * @author Hugo Frade 59399
  */
 public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInterface, LoggingPassageiroInterface {
-
-    /**
-     * Nome do ficheiro de logging
-     *
-     * @serialField fileName
-     */
-    private String fileName = "log.txt";
 
     /**
      * Array com os estados de todos os passageiros
@@ -111,8 +106,43 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * @serialField nMalasActual
      */
     private int[] nMalasActual;
-
-    private PrintStream out;
+    
+    /**
+     * Número de total de passageiros em trânsito
+     * 
+     * @serialField  nTotalPassageirosTransito
+     */
+    private int nTotalPassageirosTransito;
+    
+    /**
+     * Número de total de passageiros cujo destino final corresponde a este aeroporto
+     * 
+     * @serialField  nTotalPassageirosFinal
+     */
+    private int nTotalPassageirosFinal;
+    
+    /**
+     * Número total de malas carregadas pelo bagageiro para a sala de armazenamento temporário
+     * 
+     * @serialField nTotalMalasStoreroom
+     */
+    private int nTotalMalasStoreroom;
+    
+    /**
+     * Número total de malas carregadas pelo bagageiro para a passadeira de recolha de bagagens
+     * 
+     * @serialField nTotalMalasBelt
+     */
+    private int nTotalMalasBelt;
+    
+    /**
+     * Número total de malas perdidas pelos passageiros
+     * 
+     * @serialField nTotalMalasPerdidas
+     */
+    private int nTotalMalasPerdidas;
+    
+    private PrintStream fic;
 
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
@@ -120,17 +150,22 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     public Logging() {
         try {
-            out = new PrintStream(new FileOutputStream(fileName, false));
+            fic = new PrintStream(new FileOutputStream(fileName, false));
         } catch (FileNotFoundException ex) {
 
         }
-        System.setOut(out);
+        System.setOut(fic);
         pstate = new passState[passMax];
         fila = new int[passMax + 1];
         nMalasTotal = new int[passMax];
         nMalasActual = new int[passMax];
         passDest = new String[passMax];
         assentos = new int[lotação];
+        nTotalPassageirosTransito = 0;
+        nTotalPassageirosFinal=0;
+        nTotalMalasStoreroom=0;
+        nTotalMalasBelt=0;
+        nTotalMalasPerdidas=0;
     }
 
     /**
@@ -138,35 +173,33 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     public synchronized void reportInitialStatus() {
 
-        out.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
-        out.print("|FN  BN| Stat CB SR     Stat      ");
+        fic.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
+        fic.print("|FN  BN| Stat CB SR     Stat      ");
         for (int i = 0; i < passMax; i++) {
-            out.printf("Q%s", i);
+            fic.printf("Q%s", i);
         }
-        out.print("             ");
+        fic.print("             ");
         for (int i = 0; i < lotação; i++) {
-            out.printf("S%s", i);
+            fic.printf("S%s", i);
         }
-        out.print("     ");
+        fic.print("     ");
         for (int i = 0; i < passMax; i++) {
-            out.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
+            fic.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
         }
-        out.println();
+        fic.println();
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         for (int i = 0; i < passMax; i++) {
             pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
-            nMalasTotal[i] = 0;
             nMalasActual[i] = 0;
             fila[i] = 0;
-            passDest[i] = "";
         }
         for (int i = 0; i < lotação; i++) {
             assentos[i] = 0;
         }
         nMalasStore = 0;
         nMalasBelt = 0;
-        nMalasPorao = 0;
+        reportStatus();
     }
 
     /**
@@ -174,21 +207,21 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     private void reportStatus() {
         
-        out.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
+        fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
         for (int i = 0; i < fila.length; i++) {
-            out.printf("%1d ", fila[i]);
+            fic.printf("%1d ", fila[i]);
         }
 
-        out.print("] autocarro: [");
+        fic.print("] autocarro: [");
         for (int i = 0; i < assentos.length; i++) {
-            out.printf("%1d ", assentos[i]);
+            fic.printf("%1d ", assentos[i]);
         }
-        out.print("]  ");
+        fic.print("]  ");
         for (int i = 0; i < passMax; i++) {
-            out.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+            fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
 
-        out.println();
+        fic.println();
     }
     
     /**
@@ -244,7 +277,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     public synchronized void nVoo(int voo) {
         this.nVoo = voo;
-        reportStatus();
     }
 
     /**
@@ -254,7 +286,6 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     public synchronized void setPorao(int set) {
         this.nMalasPorao = set;
-        reportStatus();
     }
 
     /**
@@ -289,6 +320,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             this.nMalasBelt--;
         } else {
             this.nMalasBelt++;
+            nTotalMalasBelt++;
         }
         reportStatus();
     }
@@ -303,6 +335,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     @Override
     public synchronized void bagagemStore() {
         this.nMalasStore++;
+        nTotalMalasStoreroom++;
         reportStatus();
     }
 
@@ -314,52 +347,60 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * <p>Passageiro reporta quantas malas tem em sua posse.
      * 
      * @param passID identificador do passageiro
-     * @param nMalas número de malas que passageiro tem em sua posse
      */
     @Override
-    public synchronized void malasActual(int passID, int nMalas) {
-        this.nMalasActual[passID] = nMalas;
+    public synchronized void malasActual(int passID) {
+        this.nMalasActual[passID]++;
         reportStatus();
     }
 
     /**
      * Reportar número de malas total.
      * 
-     * <p>Invocador: Passageiro
+     * <p>No início de cada simulação é necessário reportar o número de malas total de cada passageiro.
      * 
-     * <p>Passageiro reporta quantas malas tem no total.
-     * 
-     * @param passID identificador do passageiro
-     * @param nMalas número de malas totais que petencem ao passageiro
+     * @param nMalas número de malas totais que petencem aos passageiros
      */
-    @Override
-    public synchronized void malasInicial(int passID, int nMalas) {
-        this.nMalasTotal[passID] = nMalas;
-        reportStatus();
+    public synchronized void malasInicial(int [] nMalas) {
+        System.arraycopy(nMalas, 0, nMalasTotal, 0, passMax); 
     }
 
     /**
      * Reportar tipo de passageiro.
      * 
-     * <p>Invocador: Passageiro
+     * <p>No início de cada simulação é necessário reportar o estado dos passageiros:
+     * se estão em trânsito ou se este aeroporto corresponde ao seu destino
      * 
-     * <p>Passageiro reporta se está em trânsito  ou se este aeroporto corresponde ao seu destino.
-     * 
-     * @param passID identificador do passageiro
      * @param destino 
      * <ul>
      * <li>FALSE caso esteja em trânsito
      * <li>TRUE caso contrário
      * </ul>
      */
-    @Override
-    public synchronized void destino(int passID, Boolean destino) {
-        if (destino) {
-            this.passDest[passID] = "FDT";
-        } else {
-            this.passDest[passID] = "TRT";
+    
+    public synchronized void destino(boolean [] destino) {
+        for(int i = 0; i< passMax; i++){
+            if (destino[i]) {
+                this.passDest[i] = "FDT";
+                nTotalPassageirosFinal++;
+            } else {
+                this.passDest[i] = "TRT";
+                nTotalPassageirosTransito++;
+            }
         }
-        reportStatus();
+    }
+    
+    /**
+     *  Reportar falta de malas
+     * 
+     * <p>Invocador: Passageiro
+     * 
+     * <p> Passageiro antes de sair do aeroporto reporta que perdeu malas
+     * @param malasPerdidas número de malas perdidas
+     */
+    @Override
+    public synchronized void missingBags(int malasPerdidas){
+        nTotalMalasPerdidas+=malasPerdidas;
     }
 
     /**
@@ -423,7 +464,17 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Fechar a stream
      */
     public synchronized void close(){
-        out.close();
+        fic.close();
     }
 
+    public synchronized void reportFinalStatus(){
+        fic.println("Número total de chegadas de aviões: "+nChegadas);
+        fic.println("\nNúmero total de passageiros: "+ (nChegadas * passMax));
+        fic.println("\n\tNúmero total de passageiros em trânsito: "+nTotalPassageirosTransito);
+        fic.println("\n\tNúmero total de passageiros finais: "+nTotalPassageirosFinal);
+        fic.println("\nNúmero total de malas carregadas pelo bagageiro:"+(nTotalMalasStoreroom+nTotalMalasBelt));
+        fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a storeroom: "+nTotalMalasStoreroom);
+        fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a passadeira: "+nTotalMalasBelt);
+        fic.println("\n\tNúmero total de malas perdidas pelos passageiros: "+nTotalMalasPerdidas);
+    }
 }

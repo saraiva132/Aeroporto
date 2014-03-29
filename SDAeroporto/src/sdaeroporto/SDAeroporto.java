@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import Monitores.Logging;
@@ -17,6 +12,7 @@ import Threads.Passageiro;
 import Threads.Bagageiro;
 import Estruturas.*;
 import static Estruturas.AuxInfo.*;
+import genclass.FileOp;
 import genclass.GenericIO;
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,9 +30,9 @@ public class SDAeroporto {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Bagageiro b;
-        Passageiro[] p = new Passageiro[passMax];
-        Motorista m;
+        Bagageiro bagageiro;
+        Passageiro[] passageiro = new Passageiro[passMax];
+        Motorista motorista;
         Autocarro auto;
         Porao porao;
         RecolhaBagagem recolha;
@@ -44,9 +40,22 @@ public class SDAeroporto {
         TransiçãoAeroporto transicao;
         ZonaDesembarque zona;
         Logging log;
-
+        boolean success;                                     // validação de dados de entrada
+        char opt;                                            // opção
+        
         /* inicialização */
-        GenericIO.writelnString("A começar Airport \n");
+        do
+      { GenericIO.writeString ("Nome do ficheiro de armazenamento da simulação? ");
+        fileName = GenericIO.readlnString ();
+        if (FileOp.exists (".", fileName))
+           { do
+             { GenericIO.writeString ("Já existe um directório/ficheiro com esse nome. Quer apagá-lo (s - sim; n - não)? ");
+               opt = GenericIO.readlnChar ();
+             } while ((opt != 's') && (opt != 'n'));
+           success = opt == 's';
+           }
+           else success = true;
+      } while (!success);
 
         ArrayList<Mala> malas = new ArrayList();
         int[] nMalasPass = new int[passMax];
@@ -61,15 +70,14 @@ public class SDAeroporto {
         recolha = new RecolhaBagagem();
         transferencia = new TransferenciaTerminal();
         transicao = new TransiçãoAeroporto();
-        log.reportInitialStatus();
+//        log.reportInitialStatus();
         /*Inicialização dos elementos activos*/
-        b = new Bagageiro(zona, porao, recolha, log);
-        m = new Motorista(auto, transferencia, log);
-        m.start();
-        b.start();
+        bagageiro = new Bagageiro(zona, porao, recolha, log);
+        motorista = new Motorista(auto, transferencia, log);
+        motorista.start();
+        bagageiro.start();
+        
         for (int j = 0; j < nChegadas; j++) {
-            
-            log.nVoo(j + 1);
 
             for (int w = 0; w < passMax; w++) {
                 nMalasPass[w] = new Random().nextInt(bagMax + 1);
@@ -80,41 +88,48 @@ public class SDAeroporto {
                     malas.add(new Mala(w, !dest[w]));
                 }
             }
+            
+            log.nVoo(j + 1);
             log.setPorao(malas.size());
+            log.malasInicial(nMalasPass);
+            log.destino(dest);
+            log.reportInitialStatus();
+            
             for (int i = 0; i < passMax; i++) {
-                p[i] = new Passageiro(nMalasPass[i], i, j + 1, dest[i], zona, auto, transicao, recolha, transferencia, log);
+                passageiro[i] = new Passageiro(nMalasPass[i], i, j + 1, dest[i], zona, auto, transicao, recolha, transferencia, log);
             }
+            
             transferencia.setnVoo(j + 1,passTRT);
             passTRT=0;
-            b.setnVoo(j + 1);
+            bagageiro.setnVoo(j + 1);
+
             /* arranque da simulação */
             for (int i = 0; i < passMax; i++) {
-                p[i].start();
+                passageiro[i].start();
             }
-
             /* aguardar o fim da simulação */
             for (int i = 0; i < passMax; i++) {
                 try {
-                    p[i].join();
+                    passageiro[i].join();
                 } catch (InterruptedException e) {
                 }
                 //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
             }
             recolha.resetNoMoreBags();
-            if(j< nChegadas -1)
-                log.reportInitialStatus();
+//            if(j< nChegadas -1)
+//                log.reportInitialStatus();
         }
         try {
-            m.join();
+            motorista.join();
 
         } catch (InterruptedException e) {
         }
         
         try {
-            b.join();
+            bagageiro.join();
         } catch (InterruptedException e) {
         }
-        
+        log.reportFinalStatus();
         log.close();
 
     }

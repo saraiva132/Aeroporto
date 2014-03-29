@@ -91,25 +91,21 @@ public class Bagageiro extends Thread {
         Mala mala;
         while(nVoo < nChegadas) {
             zona.takeARest();
-            log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
             mala = porao.tryToCollectABag(log);
             bagDest nextState;
             do {
-                log.reportState(state = bagState.AT_THE_PLANES_HOLD);
+//                if(mala.poraoIsEmpty()){
+//                    recolha.carryItToAppropriateStore(log,mala.getMalaIsBeingCarried());
+//                    nextState = recolha.carryItToAppropriateStore(log,null);
+//                }else{
+//                    nextState = recolha.carryItToAppropriateStore(log,mala.getMalaIsBeingCarried());
+//                    mala = porao.tryToCollectABag(log);
+//                }
                 nextState = recolha.carryItToAppropriateStore(log,mala);
-                
-                switch (nextState) {
-                    case BELT:
-                        log.reportState(state = bagState.AT_THE_LUGGAGE_BELT_CONVERYOR);
-                        break;
-                    case STOREROOM:
-                        log.reportState(state = bagState.AT_THE_STOREROOM);
-                        break;
-                }
                 mala = porao.tryToCollectABag(log);
+                
             } while (nextState != bagDest.LOBBYCLEAN);
-            zona.noMoreBagsToCollect();
-            log.reportState(state = bagState.WAITING_FOR_A_PLANE_TO_LAND);
+            zona.noMoreBagsToCollect(log);
         }
     }
     

@@ -3,6 +3,7 @@ package Monitores;
 import static Estruturas.AuxInfo.*;
 import Estruturas.Mala;
 import Interfaces.LoggingBagageiroInterface;
+import Interfaces.LoggingPassageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import java.util.HashMap;
@@ -70,6 +71,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * bem sucedida.
      * 
      * @param bagID identificador da mala
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @return Forma como conseguiu apanhar a sua mala: 
      * <ul>
      * <li>MINE, com sucesso 
@@ -82,7 +84,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * </ul>
      */
     @Override
-    public synchronized bagCollect goCollectABag(int bagID) {
+    public synchronized bagCollect goCollectABag(int bagID, LoggingPassageiroInterface log) {
 
         while ((belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
             try {
@@ -93,6 +95,8 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         if (belt.get(bagID) > 0) {
             belt.put(bagID, belt.get(bagID) - 1);
             if (getBagChance()) {
+                log.bagagemBelt(true);
+                log.malasActual(bagID);
                 return bagCollect.MINE;
             } else {
                 return bagCollect.UNSUCCESSFUL;
@@ -132,6 +136,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      */
     @Override
     public synchronized bagDest carryItToAppropriateStore(LoggingBagageiroInterface log, Mala mala) {
+        
         if (mala == null) {
             //System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
@@ -141,17 +146,22 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         //System.out.println("CarryBag "+ mala.getOwner());
         if (mala.inTransit()) {
             nMalasStore++;
+            log.reportState(bagState.AT_THE_STOREROOM);
             log.bagagemStore();
             return bagDest.STOREROOM;
         } else {
             //System.out.println(mala.getOwner());
             belt.put(mala.getOwner(), belt.get(mala.getOwner()) + 1);
+            log.reportState(bagState.AT_THE_LUGGAGE_BELT_CONVERYOR);
             log.bagagemBelt(false);
             notifyAll();
             return bagDest.BELT;
         }
     }
 
+    /**
+     * Função auxiliar utilizada a cada iteração da simulação
+     */
     public synchronized void resetNoMoreBags() {
         this.noMoreBags = false;
     }
@@ -168,11 +178,12 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      *
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
+     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     @Override
-    public synchronized void reportMissingBags(int passageiroID, int malasPerdidas) {
-        //System.out.println("Report missing bags. Passageiro: "+passageiroID+" Perdidas: " + malasPerdidas);
-        //Imprimir malas perdidas    
+    public synchronized void reportMissingBags(int passageiroID, int malasPerdidas,LoggingPassageiroInterface log) {
+        log.missingBags(malasPerdidas);    
+        log.reportState(passageiroID, passState.AT_THE_BAGGAGE_RECLAIM_OFFICE);
     }
 
     /**

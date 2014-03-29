@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Estruturas.Mala;
+
 /**
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o
  * monitor <b>Porão</b>
@@ -19,11 +20,7 @@ public interface PoraoBagageiroInterface {
      * vazio recolhe uma mala
      *
      * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
-     * @return
-     * <ul>
-     * <li>Mala que apanhou no porão
-     * <li>NULL, caso o porão se encontre vazio
-     * </ul>
+     * @return Mala que o bagageiro apanhou do porão e informação sobre o estado do mesmo
      */
     public Mala tryToCollectABag(LoggingBagageiroInterface log);
 }

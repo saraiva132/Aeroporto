@@ -1,7 +1,6 @@
 package Interfaces;
 
 import Estruturas.AuxInfo;
-import java.util.LinkedList;
 
 /**
  * Identifica e descreve as operações que o passageiro pode realizar sobre o monitor <b>Logging</b>
@@ -41,37 +40,8 @@ public interface LoggingPassageiroInterface {
      * <p>Passageiro reporta quantas malas tem em sua posse.
      * 
      * @param passID identificador do passageiro
-     * @param nMalas número de malas que passageiro tem em sua posse
      */
-    public void malasActual(int passID, int nMalas);
-
-    /**
-     * Reportar número de malas total.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>Passageiro reporta quantas malas tem no total.
-     * 
-     * @param passID identificador do passageiro
-     * @param nMalas número de malas totais que petencem ao passageiro
-     */
-    public void malasInicial(int passID, int nMalas);
-
-    /**
-     * Reportar tipo de passageiro.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>Passageiro reporta se está em trânsito  ou se este aeroporto corresponde ao seu destino.
-     * 
-     * @param passID identificador do passageiro
-     * @param destino 
-     * <ul>
-     * <li>FALSE caso esteja em trânsito
-     * <li>TRUE caso contrário
-     * </ul>
-     */
-    public void destino(int passID, Boolean destino);
+    public void malasActual(int passID);
 
     /**
      * Reportar entrada para a fila de espera.
@@ -97,11 +67,21 @@ public interface LoggingPassageiroInterface {
     /**
      * Reportar o estado dos assentos do autocarro.
      * 
-     * Invocador: Passageiro
+     * <p>Invocador: Passageiro
      * 
      * <p>Passageiro, após sair do autocarro no terminal de partida, reporta o estado
      * do mesmo.
      * @param seats assentos do autocarro
      */
     public void autocarroState(int[] seats);
+    
+    /**
+     *  Reportar falta de malas
+     * 
+     * <p>Invocador: Passageiro
+     * 
+     * <p> Passageiro antes de sair do aeroporto reporta que perdeu malas
+     * @param malasPerdidas número de malas perdidas
+     */
+    public void missingBags(int malasPerdidas);
 }
