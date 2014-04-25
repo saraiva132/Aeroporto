@@ -25,13 +25,15 @@ public class PoraoMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Porao porao = null;
-        ServerPoraoInterface poraoInter = new ServerPoraoInterface(porao);
+        Porao porao;
+        ServerPoraoInterface poraoInter;
         ServerCom scon, sconi;
         ServerPoraoProxy poraoProxy;
-        
         scon = new ServerCom(portNumber[MON_PORAO]);
         scon.start();
+        
+        porao = new Porao();
+        poraoInter = new ServerPoraoInterface(porao);
         
         GenericIO.writelnString ("O serviço Porao foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");

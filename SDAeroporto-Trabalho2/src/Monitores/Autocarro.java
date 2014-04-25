@@ -166,7 +166,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      */
     @Override
     public void goToArrivalTerminal() {
-        //log.reportState(AuxInfo.motState.DRIVING_BACKWARD);
+        log.reportState(AuxInfo.motState.DRIVING_BACKWARD);
     }
 
     /**

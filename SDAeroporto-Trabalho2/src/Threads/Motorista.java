@@ -7,6 +7,9 @@ package Threads;
 
 import ClientSide.InterfaceMotorista;
 import Estruturas.AuxInfo.motState;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Identifica o tipo de dados motorista
@@ -38,13 +41,23 @@ public class Motorista extends Thread {
      */
     @Override
     public void run() {
-
-        while (!motoristaI.hasDaysWorkEnded()) {            
-            motoristaI.announcingBusBoardingWaiting(motoristaI.announcingBusBoardingShouting());
-            motoristaI.goToDepartureTerminal();            
-            motoristaI.parkTheBusAndLetPassOff();            
-            motoristaI.goToArrivalTerminal();            
-            motoristaI.parkTheBus();            
+        Random r = new Random();
+        while (!motoristaI.hasDaysWorkEnded()) {
+            try{
+                Thread.sleep(r.nextInt(100));
+                int nTickets = motoristaI.announcingBusBoardingShouting();
+                Thread.sleep(r.nextInt(100));
+                motoristaI.announcingBusBoardingWaiting(nTickets);
+                Thread.sleep(r.nextInt(100));
+                motoristaI.goToDepartureTerminal();
+                Thread.sleep(r.nextInt(100));
+                motoristaI.parkTheBusAndLetPassOff();
+                Thread.sleep(r.nextInt(100));
+                motoristaI.goToArrivalTerminal();  
+                Thread.sleep(r.nextInt(100));
+                motoristaI.parkTheBus();
+                Thread.sleep(r.nextInt(100));
+            } catch (InterruptedException ex) {}
         }
     }
 }

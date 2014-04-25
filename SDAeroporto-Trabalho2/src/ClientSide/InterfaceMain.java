@@ -13,8 +13,6 @@ import Message.Response;
 import genclass.GenericIO;
 import static java.lang.Thread.sleep;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -146,13 +144,7 @@ public class InterfaceMain {
         Object [] obj = new Object[malas.size()];
         
         for(int i = 0; i<malas.size();i++){
-            try {
-                obj[i] = malas.get(i).clone();
-            } catch (CloneNotSupportedException ex) {
-                GenericIO.writelnString ("Erro a enviar as malas para o porão!");
-                GenericIO.writelnString ("A terminar operações!");
-                System.exit(0);
-            }
+                obj[i] = malas.get(i);
         }
         
         request = new Request(SEND_LUGAGES, obj);

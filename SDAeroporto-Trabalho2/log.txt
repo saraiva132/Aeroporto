@@ -1,258 +1,347 @@
 |PLANE |   PORTER       DRIVER                                       PASSENGERS
 |FN  BN| Stat CB SR     Stat      Q0Q1Q2Q3Q4Q5             S0S1S2     St0 Si0 NR0 NA0|St1 Si1 NR1 NA1|St2 Si2 NR2 NA2|St3 Si3 NR3 NA3|St4 Si4 NR4 NA4|St5 Si5 NR5 NA5|
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ FDT  1   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 0 0 0 ] autocarro: [0 4 0 ]  RCL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 0 0 0 ] autocarro: [0 4 0 ]  RCL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 4 0 ]  RCL FDT  2   0 |BEL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 4 0 ]  RCL FDT  2   0 |RCL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 4 0 ]  HOM FDT  2   0 |RCL FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 4 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |BUS TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |DTT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [3 6 5 3 2 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 6 5 3 2 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [6 5 3 2 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [5 3 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [5 3 2 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [5 3 2 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [5 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |ATT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [5 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  DRF fila: [3 2 0 0 0 0 0 ] autocarro: [5 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [5 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 3 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |DTT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |DTT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 6 ]  HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |EDT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |EDT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |
-| 6   0| W4P   0   0 |  PAT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |EDT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |
-| 6   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |HOM FDT  1   0 |EDT TRT  1   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  1   0 |ADZ FDT  0   0 |ADZ FDT  0   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |ADZ FDT  0   0 |ADZ FDT  0   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |ADZ FDT  0   0 |ADZ FDT  0   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |ADZ FDT  0   0 |ADZ FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |ADZ FDT  0   0 |ADZ FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |ADZ FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  ATT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BUS TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ADZ TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  DRB fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PAT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |BUS TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |BUS TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |BUS TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |BUS TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |DTT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ADZ TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   3| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   3| W4P   0   0 |  DRB fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   3| APH   0   0 |  DRB fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   3| APH   0   0 |  PAT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   2| APH   0   0 |  PAT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   2| APH   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   2| STR   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   2| STR   0   1 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   2| APH   0   1 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   1| APH   0   1 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   1| STR   0   1 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   1| STR   0   2 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   1| APH   0   2 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| APH   0   2 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| STR   0   2 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| STR   0   3 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |ATT TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |BUS TRT  0   0 |
+| 1   0| W4P   0   3 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |BUS TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |BUS TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |BUS TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |DTT TRT  0   0 |
+| 1   0| W4P   0   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  1   0 |HOM FDT  0   0 |HOM FDT  0   0 |EDT TRT  2   0 |HOM FDT  0   0 |EDT TRT  0   0 |
 |PLANE |   PORTER       DRIVER                                       PASSENGERS
 |FN  BN| Stat CB SR     Stat      Q0Q1Q2Q3Q4Q5             S0S1S2     St0 Si0 NR0 NA0|St1 Si1 NR1 NA1|St2 Si2 NR2 NA2|St3 Si3 NR3 NA3|St4 Si4 NR4 NA4|St5 Si5 NR5 NA5|
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  1   0 |ADZ TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  1   0 |ATT TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  1   0 |ATT TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  1   0 |ATT TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  ADZ FDT  1   0 |ATT TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  ADZ FDT  1   0 |BUS TRT  1   0 |ADZ FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  ADZ FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  ADZ FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ADZ TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [4 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |ADZ FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [4 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |BUS TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |DTT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |DTT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |ATT TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |ADZ FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |BEL FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |BEL FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |BEL FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |RCL FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |RCL FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |BEL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 0 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |RCL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  BEL FDT  1   0 |EDT TRT  1   0 |RCL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  RCL FDT  1   0 |EDT TRT  1   0 |RCL FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  RCL FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  DRF fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 4 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |BUS TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |DTT TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |EDT TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PAT fila: [2 2 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |EDT TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
-|12   0| W4P   0   0 |  PDT fila: [2 2 2 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  1   0 |EDT TRT  1   0 |HOM FDT  1   0 |EDT TRT  2   0 |HOM FDT  0   0 |HOM FDT  1   0 |
+| 2   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |BEL FDT  1   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ADZ TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   6| W4P   0   0 |  DRB fila: [2 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   6| APH   0   0 |  DRB fila: [2 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ADZ TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   6| APH   0   0 |  DRB fila: [2 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   6| APH   0   0 |  PAT fila: [2 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   6| APH   0   0 |  PAT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   5| APH   0   0 |  PAT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   5| APH   0   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   5| BEL   0   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   5| BEL   1   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   5| APH   1   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   4| APH   1   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   4| BEL   1   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   4| BEL   2   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   4| APH   2   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   3| APH   2   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   3| STR   2   0 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   3| STR   2   1 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   3| APH   2   1 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   2| APH   2   1 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   2| STR   2   1 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   2| STR   2   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   2| APH   2   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   1| APH   2   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   1| BEL   2   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   1| BEL   3   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   1| APH   3   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| APH   3   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| BEL   4   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [2 6 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [6 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   0 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [6 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   1 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [6 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |ATT TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   1 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [6 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   1 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |BEL FDT  1   1 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |ATT TRT  0   0 |
+| 2   0| BEL   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |ATT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |ATT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |ATT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [3 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |ATT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [3 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |BUS TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [3 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |BUS TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [3 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |BUS TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |BUS TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 6 ]  BEL FDT  2   0 |BUS TRT  0   0 |DTT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |DTT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |BUS TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |DTT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |DTT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |BUS TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |DTT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  DRB fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |BEL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |RCL FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
+| 2   0| W4P   3   2 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |EDT TRT  0   0 |EDT TRT  2   0 |HOM FDT  1   0 |HOM FDT  1   1 |EDT TRT  0   0 |
 |PLANE |   PORTER       DRIVER                                       PASSENGERS
 |FN  BN| Stat CB SR     Stat      Q0Q1Q2Q3Q4Q5             S0S1S2     St0 Si0 NR0 NA0|St1 Si1 NR1 NA1|St2 Si2 NR2 NA2|St3 Si3 NR3 NA3|St4 Si4 NR4 NA4|St5 Si5 NR5 NA5|
-|17   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |ADZ FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ADZ TRT  1   0 |ADZ TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ADZ TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ADZ TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ADZ TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 3 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 3 5 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 3 5 0 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [2 3 3 5 3 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 3 5 3 0 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |BEL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 3 5 3 0 0 0 ] autocarro: [0 0 0 ]  RCL FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 3 5 3 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 3 5 3 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 5 3 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |ATT TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [3 5 3 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |ATT TRT  0   0 |RCL FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |ATT TRT  0   0 |HOM FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |ATT TRT  0   0 |HOM FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [5 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |ATT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [5 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |BUS TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  DRF fila: [5 3 0 0 0 0 0 ] autocarro: [5 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |BUS TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [5 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |BUS TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |BUS TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 3 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |DTT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |BUS TRT  0   0 |HOM FDT  2   0 |DTT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |DTT TRT  0   0 |HOM FDT  2   0 |DTT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |DTT TRT  0   0 |HOM FDT  2   0 |DTT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |BUS TRT  1   0 |DTT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |DTT TRT  1   0 |DTT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |DTT TRT  1   0 |EDT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |DTT TRT  1   0 |EDT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PAT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |EDT TRT  1   0 |EDT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
-|17   0| W4P   0   0 |  PDT fila: [5 3 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   0 |EDT TRT  1   0 |EDT TRT  0   0 |HOM FDT  2   0 |EDT TRT  0   0 |HOM FDT  0   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ADZ FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ADZ FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ADZ TRT  2   0 |ATT TRT  0   0 |ADZ FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ADZ TRT  2   0 |ATT TRT  0   0 |ADZ FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ADZ FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |ADZ FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  0   0 |ATT TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 2 ]  HOM FDT  0   0 |ATT TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 2 ]  HOM FDT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 2 ]  HOM FDT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 2 ]  HOM FDT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  0   0 |BUS TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  0   0 |DTT TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  DRB fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ADZ TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ATT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ATT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ATT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |ATT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |BUS TRT  2   0 |
+| 3   7| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |BUS TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |BUS TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |BUS TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |DTT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   7| W4P   0   0 |  DRB fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   7| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   7| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   7| APH   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   6| APH   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   6| STR   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   6| STR   0   1 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   6| APH   0   1 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   5| APH   0   1 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   5| STR   0   1 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   5| STR   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   5| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| BEL   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   0 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   4| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |BEL FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| BEL   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   3| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   2| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   0 |EDT TRT  2   0 |
+| 3   2| APH   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   2| BEL   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   2| BEL   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   2| APH   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   1| APH   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   1| STR   1   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   1| STR   1   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   1| APH   1   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| APH   1   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| STR   1   3 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| STR   1   4 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| STR   1   4 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| W4P   1   4 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |BEL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| W4P   1   4 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |RCL FDT  2   1 |EDT TRT  2   0 |
+| 3   0| W4P   1   4 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |HOM FDT  1   1 |HOM FDT  2   1 |EDT TRT  2   0 |
 |PLANE |   PORTER       DRIVER                                       PASSENGERS
 |FN  BN| Stat CB SR     Stat      Q0Q1Q2Q3Q4Q5             S0S1S2     St0 Si0 NR0 NA0|St1 Si1 NR1 NA1|St2 Si2 NR2 NA2|St3 Si3 NR3 NA3|St4 Si4 NR4 NA4|St5 Si5 NR5 NA5|
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  2   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  2   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  ATT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BUS TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ATT TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |ADZ FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ATT TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ATT TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ADZ TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 3 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |BEL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 3 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |RCL FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 3 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [5 4 6 3 2 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [4 6 3 2 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [4 6 3 2 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |RCL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [4 6 3 2 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |RCL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [6 3 2 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |RCL FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [6 3 2 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  0   0 |ATT TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [6 3 2 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  0   0 |BUS TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  0   0 |BUS TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |ATT TRT  0   0 |BUS TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [6 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |ATT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [6 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |BUS TRT  1   0 |
-|22   0| W4P   0   0 |  DRF fila: [3 2 0 0 0 0 0 ] autocarro: [6 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |BUS TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [6 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |BUS TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |BUS TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 4 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |DTT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |DTT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |BUS TRT  0   0 |BUS TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 5 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |BUS TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |BUS TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |DTT TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PAT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |DTT TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |DTT TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |DTT TRT  0   0 |EDT TRT  1   0 |EDT TRT  1   0 |
-|22   0| W4P   0   0 |  PDT fila: [3 2 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  2   0 |HOM FDT  1   0 |EDT TRT  0   0 |EDT TRT  1   0 |EDT TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ FDT  2   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ADZ TRT  2   0 |ADZ FDT  1   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ADZ TRT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ADZ TRT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| W4P   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| APH   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ADZ TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   6| APH   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 4 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 4 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| BEL   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| BEL   1   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| BEL   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   0 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   5| APH   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   4| APH   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   4| BEL   0   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   4| BEL   1   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   4| APH   1   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   3| APH   1   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   3| STR   1   0 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   3| STR   1   1 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   3| APH   1   1 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   2| APH   1   1 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   2| STR   1   1 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   2| STR   1   2 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   2| APH   1   2 |  PAT fila: [2 4 6 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   2| APH   1   2 |  PAT fila: [4 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| APH   1   2 |  PAT fila: [4 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| APH   1   2 |  PAT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| BEL   1   2 |  PAT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| BEL   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| BEL   2   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| BEL   2   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| BEL   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| APH   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   0 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   1| APH   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| APH   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |BEL FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| APH   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| STR   1   2 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| STR   1   3 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| STR   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  BEL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| STR   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  RCL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  RCL FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   1 |ATT TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [0 2 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 4 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PAT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 4 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  DRF fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 4 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 4 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 2 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |DTT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 0 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |DTT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 0 0 ]  HOM FDT  2   1 |BUS TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [6 0 0 ]  HOM FDT  2   1 |DTT TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   1 |DTT TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   1 |DTT TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |DTT TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   1 |EDT TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |DTT TRT  1   0 |
+| 4   0| W4P   1   3 |  PDT fila: [2 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  HOM FDT  2   1 |EDT TRT  2   0 |HOM FDT  1   1 |EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  1   0 |
 |PLANE |   PORTER       DRIVER                                       PASSENGERS
 |FN  BN| Stat CB SR     Stat      Q0Q1Q2Q3Q4Q5             S0S1S2     St0 Si0 NR0 NA0|St1 Si1 NR1 NA1|St2 Si2 NR2 NA2|St3 Si3 NR3 NA3|St4 Si4 NR4 NA4|St5 Si5 NR5 NA5|
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [3 5 1 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [5 1 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [5 1 0 0 0 0 0 ] autocarro: [0 3 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [5 1 0 0 0 0 0 ] autocarro: [0 3 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |ATT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 5 ]  ATT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 5 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 5 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 5 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |BUS TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |DTT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 3 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 0 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [1 0 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ADZ TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [4 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ADZ TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |ATT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |BUS TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  DRF fila: [6 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |BUS TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 4 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |BUS TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |BUS TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |DTT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [6 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |ATT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-|26   0| W4P   0   0 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 6 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |BUS TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |DTT TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |DTT TRT  0   0 |
-|26   0| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |EDT TRT  0   0 |
-|26   0| W4P   0   0 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  2   0 |EDT TRT  0   0 |
+| 5   2| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ADZ TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ADZ TRT  0   0 |
+| 5   2| W4P   0   0 |  PAT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ADZ TRT  0   0 |
+| 5   2| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ADZ TRT  0   0 |
+| 5   2| W4P   0   0 |  PAT fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| W4P   0   0 |  DRB fila: [1 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| W4P   0   0 |  DRB fila: [1 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |ADZ FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| W4P   0   0 |  DRB fila: [1 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  0   0 |ADZ TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| W4P   0   0 |  DRB fila: [1 6 0 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| W4P   0   0 |  DRB fila: [1 6 4 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| APH   0   0 |  DRB fila: [1 6 4 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ADZ TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   2| APH   0   0 |  DRB fila: [1 6 4 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   1| APH   0   0 |  DRB fila: [1 6 4 0 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   1| APH   0   0 |  DRB fila: [1 6 4 3 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ADZ TRT  0   0 |ATT TRT  0   0 |
+| 5   1| APH   0   0 |  DRB fila: [1 6 4 3 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   1| STR   0   0 |  DRB fila: [1 6 4 3 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   1| STR   0   1 |  DRB fila: [1 6 4 3 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   1| STR   0   1 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   1| APH   0   1 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| APH   0   1 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| STR   0   1 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| STR   0   2 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  DRB fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PAT fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [1 6 4 3 5 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [6 4 3 5 0 0 0 ] autocarro: [0 0 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [6 4 3 5 0 0 0 ] autocarro: [0 1 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [4 3 5 0 0 0 0 ] autocarro: [0 1 0 ]  ATT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [4 3 5 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |ATT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [4 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |ATT TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [4 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |BUS TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  DRF fila: [3 5 0 0 0 0 0 ] autocarro: [4 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |BUS TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [4 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |BUS TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |BUS TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 6 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |DTT TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |DTT TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |BUS TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 1 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |DTT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  BUS TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |DTT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |DTT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  DTT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  DRB fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PAT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [3 5 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [5 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |ATT TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |ATT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  DRF fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 5 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |BUS TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 3 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |BUS TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |EDT TRT  2   0 |DTT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |DTT TRT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |EDT TRT  0   0 |
+| 5   0| W4P   0   2 |  PDT fila: [0 0 0 0 0 0 0 ] autocarro: [0 0 0 ]  EDT TRT  0   0 |HOM FDT  0   0 |EDT TRT  0   0 |EDT TRT  2   0 |EDT TRT  0   0 |EDT TRT  0   0 |
 Número total de chegadas de aviões: 5
 
 Número total de passageiros: 30
 
-	Número total de passageiros em trânsito: 18
+	Número total de passageiros em trânsito: 17
 
-	Número total de passageiros finais: 12
+	Número total de passageiros finais: 13
 
-Número total de malas carregadas pelo bagageiro:0
+Número total de malas carregadas pelo bagageiro:24
 
-	Número total de malas carregadas pelo bagageiro para a storeroom: 0
+	Número total de malas carregadas pelo bagageiro para a storeroom: 14
 
-	Número total de malas carregadas pelo bagageiro para a passadeira: 0
+	Número total de malas carregadas pelo bagageiro para a passadeira: 10
 
-	Número total de malas perdidas pelos passageiros: 13
+	Número total de malas perdidas pelos passageiros: 5

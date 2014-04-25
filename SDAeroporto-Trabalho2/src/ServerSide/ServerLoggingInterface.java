@@ -83,7 +83,7 @@ public class ServerLoggingInterface {
                 if(!(request.getArgs()[0] instanceof Integer))
                     throw new MessageRequestException("Leitura de tipo de objecto nMalasPorao inválido!",request);
                 int nMalasPorao = (int) request.getArgs()[0];
-                log.nVoo(nMalasPorao);
+                log.setPorao(nMalasPorao);
                 break;
                 
             case BAGAGEM_PORAO:

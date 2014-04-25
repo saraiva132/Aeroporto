@@ -12,10 +12,6 @@ import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.Porao;
-import genclass.GenericIO;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -34,31 +30,21 @@ public class ServerPoraoInterface {
         {   if(request.getArgs().length != 0)
                 throw new MessageRequestException("Formato do request TRY_TO_COLLECT_A_BAG inválido: "
                            + "esperam-se 0 parametros!",request);
-            Mala mala;
-            try
-            {   mala = porao.tryToCollectABag();
-            }catch(NullPointerException e)
-            {   mala = null;
-            }
+            Mala mala = porao.tryToCollectABag();
+            
             response = new Response(OK,mala);
         }else if(request.getMethodName() == SEND_LUGAGES)
         {
-            ArrayList<Mala> malas = new ArrayList<>();
+            Mala [] malas = new Mala[request.getArgs().length];
             for(int i = 0; i < request.getArgs().length;i++){
                 if(!(request.getArgs()[i] instanceof Mala))
                     throw new MessageRequestException("Leitura de tipo de objecto mala["+i+"] inválido!",request);
                 else{
-                    try {
-                        malas.add( ((Mala) request.getArgs()[i]).clone() );
-                    } catch (CloneNotSupportedException ex) {
-                        GenericIO.writelnString ("Erro a enviar as malas para o porão!");
-                        GenericIO.writelnString ("A terminar operações!");
-                        System.exit(0);
-                    }
-                    
+                    malas[i] = ((Mala) request.getArgs()[i]);                                      
                 }
             }
-            
+            porao.sendLuggages(malas);
+            response = new Response(OK,null);
         }else
             throw new MessageRequestException("Tipo de request inválido!",request);
         return response;

@@ -6,6 +6,7 @@ import Estruturas.Mala;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -28,10 +29,9 @@ public class Porao implements PoraoBagageiroInterface {
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
-     * @param malas malas que se encontram no porão
      */
-    public Porao(ArrayList<Mala> malas) {
-        this.malas = malas;
+    public Porao(){
+        this.malas = new ArrayList<>();
         log = new InterfaceMonitoresLogging("Porao");
     }
 
@@ -59,9 +59,15 @@ public class Porao implements PoraoBagageiroInterface {
         if (malas.isEmpty()) {
             return null;
         } else {
+            System.out.println("vim recolher mala");
             log.reportState(AuxInfo.bagState.AT_THE_PLANES_HOLD);
             log.bagagemPorao();
             return malas.remove(0);
         }
+    }
+    
+    public void sendLuggages(Mala [] malas){
+        this.malas.addAll(Arrays.asList(malas));
+        System.out.println("adicionei "+ malas.length+" malas.");
     }
 }

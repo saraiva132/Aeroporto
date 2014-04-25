@@ -151,8 +151,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      */
  @Override	
     public synchronized boolean hasDaysWorkEnded() {		
-        
-        
+
             while (true) {
                 try {
                     Reminder reminder = new Reminder(1);
