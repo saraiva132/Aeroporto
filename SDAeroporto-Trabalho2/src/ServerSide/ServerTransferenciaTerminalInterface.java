@@ -70,7 +70,7 @@ public class ServerTransferenciaTerminalInterface implements ServerInterface{
                 
                 if(nVoo<1 || nVoo > nChegadas)
                     throw new MessageRequestException("Número de voo inválido!",request);
-                if(nPass < 0 || nPass >= passMax)
+                if(nPass < 0 || nPass > passMax)
                     throw new MessageRequestException("Número de passageiros em trânsito inválido!",request);
                 transferencia.setnVoo(nVoo, nPass);
                 response = new Response(OK,null);
