@@ -6,6 +6,7 @@
 
 package ServerSide;
 
+import static Estruturas.AuxInfo.CLOSE;
 import static Estruturas.AuxInfo.NO_MORE_BAGS_TO_COLLECT;
 import static Estruturas.AuxInfo.OK;
 import static Estruturas.AuxInfo.TAKE_A_REST;
@@ -21,18 +22,19 @@ import Monitores.ZonaDesembarque;
  *
  * @author Hugo
  */
-public class ServerZonaDesembarqueInterface {
+public class ServerZonaDesembarqueInterface implements ServerInterface{
     private ZonaDesembarque desembarque;
 
     public ServerZonaDesembarqueInterface(ZonaDesembarque zona) {
         this.desembarque = zona;
     }
-    protected Response processAndReply(Request request) throws MessageRequestException {
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException {
         Response response = null;
         switch(request.getMethodName()){
             case TAKE_A_REST:
-                
-                response = new Response(OK,desembarque.takeARest());
+                desembarque.takeARest();
+                response = new Response(OK,null);
                 break;
                 
             case WHAT_SHOULD_I_DO:
@@ -58,6 +60,9 @@ public class ServerZonaDesembarqueInterface {
             case NO_MORE_BAGS_TO_COLLECT:
                 desembarque.noMoreBagsToCollect();
                 response = new Response(OK,null);
+                break;
+            case CLOSE:
+                response= new Response(OK,desembarque.shutdownMonitor());
                 break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

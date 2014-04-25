@@ -6,6 +6,8 @@
 
 package sdaeroporto;
 
+import ClientSide.InterfaceMain;
+import Estruturas.AuxInfo;
 import Threads.Motorista;
 import genclass.GenericIO;
 
@@ -22,6 +24,7 @@ public class MotoristaMain {
         GenericIO.writelnString ("O cliente MotoristaMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
         Motorista motorista = new Motorista();
+        InterfaceMain clientResquest = new InterfaceMain();
         motorista.start();
         try {
             motorista.join();
@@ -29,6 +32,8 @@ public class MotoristaMain {
             GenericIO.writelnString("Erro a terminar motorista!");
             System.exit(-1);
         }
+        for(int i = 0; i<AuxInfo.hostName.length;i++)
+            clientResquest.closeMonitor(i);
     }
     
 }

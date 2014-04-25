@@ -154,6 +154,18 @@ public class InterfaceMain {
         coni.close();
     }
     
+    public void closeMonitor(int monitorId){
+        ClientCom coni = new ClientCom(hostName[monitorId], portNumber[monitorId]);
+        Request request;
+        Response response;
+        open(coni);        
+        request = new Request(CLOSE, new Object[]{});
+        coni.writeObject(request);
+        response = (Response) coni.readObject();
+        checkStatus(response);
+        coni.close();
+    }
+    
     private void checkStatus(Response response) {
         if (response.getStatus() != OK) {
             GenericIO.writelnString("PassageiroMain: Status de mensagem de resposta errado!");
@@ -170,4 +182,5 @@ public class InterfaceMain {
             }
         }
     }
+    
 }

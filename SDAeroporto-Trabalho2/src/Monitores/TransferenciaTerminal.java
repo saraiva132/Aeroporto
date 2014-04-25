@@ -69,7 +69,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @serialField next
      */
     private boolean        next; 
-
+    private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
@@ -78,6 +78,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         nVoo = 1;
         passTRT = 99;
         fila = new LinkedList<>();
+        three_entities_ended=0;
         timeUp = false;
         canGo = false;
         next = false;
@@ -111,7 +112,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         int ticket;
         log.reportState(passageiroID, passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
         fila.add(passageiroID + 1);
-        System.out.println("vou apanhar o bus: "+passageiroID);
+        
         log.addfilaEspera(passageiroID);
         ticket = fila.size() % lotação;
 
@@ -234,8 +235,12 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
      * @param nvoo número de voo
      * @param nPassageiros número de passageiros em trânsito neste voo
      */
-    public void setnVoo(int nvoo,int nPassageiros) {
+    public synchronized void setnVoo(int nvoo,int nPassageiros) {
         this.nVoo = nvoo;
         this.passTRT = nPassageiros;
+    }
+    
+    public synchronized  boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
 }

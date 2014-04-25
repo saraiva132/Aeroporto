@@ -11,24 +11,28 @@ import static Estruturas.AuxInfo.portNumber;
 import Monitores.Autocarro;
 import ServerSide.ServerAutocarroInterface;
 import ServerSide.ServerAutocarroProxy;
+import ServerSide.ServerCom;
 import genclass.GenericIO;
-import serverSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class AutocarroMain {
-
+    
+   private ServerCom scon;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new AutocarroMain().listening();
+    }
+    
+    public void listening(){
         Autocarro auto;
         ServerAutocarroInterface autoInter;
-        ServerCom scon, sconi;
+        ServerCom sconi;
         ServerAutocarroProxy autoProxy;
-        
         auto = new Autocarro();
         autoInter = new ServerAutocarroInterface(auto);
         scon = new ServerCom(portNumber[MON_AUTOCARRO]);
@@ -38,9 +42,14 @@ public class AutocarroMain {
         
         while(true)
         {   sconi = scon.accept();
-            autoProxy = new ServerAutocarroProxy(sconi,autoInter);
+            autoProxy = new ServerAutocarroProxy(sconi,autoInter,this);
             autoProxy.start();
         }        
+    }
+    
+    public void close(){
+        scon.end();
+        System.exit(0);
     }
     
 }

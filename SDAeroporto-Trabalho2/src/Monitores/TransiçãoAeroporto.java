@@ -31,7 +31,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * 
      */
     private boolean canLeave;   
-    
+    private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     
     /**
@@ -40,6 +40,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
     public TransiçãoAeroporto() {
         nPassageiros = passMax;
         canLeave = false;
+        three_entities_ended=0;
         log = new InterfaceMonitoresLogging("TransicaoAeroporto");
     }
 
@@ -107,5 +108,8 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
         if (nPassageiros == passMax) {
             canLeave = false;
         }
+    }
+    public synchronized boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
 }

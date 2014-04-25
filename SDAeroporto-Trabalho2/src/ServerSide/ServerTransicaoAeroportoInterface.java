@@ -6,6 +6,7 @@
 
 package ServerSide;
 
+import static Estruturas.AuxInfo.CLOSE;
 import static Estruturas.AuxInfo.GO_HOME;
 import static Estruturas.AuxInfo.OK;
 import static Estruturas.AuxInfo.PREPARE_NEXT_LEG;
@@ -19,14 +20,21 @@ import Monitores.TransiçãoAeroporto;
  *
  * @author Hugo
  */
-public class ServerTransicaoAeroportoInterface {
+public class ServerTransicaoAeroportoInterface implements ServerInterface{
     private TransiçãoAeroporto transicao;
 
     public ServerTransicaoAeroportoInterface(TransiçãoAeroporto transicao) {
         this.transicao = transicao;
     }
     
-    protected Response processAndReply(Request request) throws MessageRequestException {
+    /**
+     *
+     * @param request
+     * @return
+     * @throws MessageRequestException
+     */
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException {
         Response response;
         int passageiroId=0;
         switch(request.getMethodName()){
@@ -49,12 +57,12 @@ public class ServerTransicaoAeroportoInterface {
                     throw new MessageRequestException("Id do passageiro inválido!",request);
                 transicao.prepareNextLeg(passageiroId);
                 break;
-                
+            case CLOSE:
+                return new Response(OK,transicao.shutdownMonitor());
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);
                 
         }
-        response = new Response(OK,null);
-        return response;
+        return new Response(OK,null);
     }
 }

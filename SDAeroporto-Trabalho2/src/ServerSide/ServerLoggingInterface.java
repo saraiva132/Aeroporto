@@ -17,15 +17,15 @@ import Monitores.Logging;
  *
  * @author Hugo
  */
-public class ServerLoggingInterface {
+public class ServerLoggingInterface implements ServerInterface{
     private Logging log;
 
     public ServerLoggingInterface(Logging log) {
         this.log = log;
     }
     
-    protected Response processAndReply(Request request) throws MessageRequestException{
-        Response response;
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException{
         int passId;
         
         switch(request.getMethodName()){
@@ -142,6 +142,7 @@ public class ServerLoggingInterface {
                         throw new MessageRequestException("Leitura de tipo de objecto malasPerdidas inválido!",request);
                 int malasPerdidas = (int) request.getArgs()[0];
                 log.missingBags(malasPerdidas);
+                break;
                 
             case ADD_FILA_ESPERA:
                 if(request.getArgs().length != 1)
@@ -167,17 +168,12 @@ public class ServerLoggingInterface {
                 }
                 log.autocarroState(seats);                
                 break;
-                
             case CLOSE:
-                log.close();
-                break;
-            case REPORT_FINAL_STATUS:
-                log.reportFinalStatus();
-                break;     
+                return new Response(OK,log.shutdownMonitor());
+                 
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);
         }
-        response = new Response(OK,null);
-        return response;
+        return new Response(OK,null);
     }
 }

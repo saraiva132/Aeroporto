@@ -44,7 +44,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * @serialField noMoreBags
      */
     private boolean noMoreBags;
-
+    private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
@@ -56,6 +56,7 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
             belt.put(i, 0);
         }
         noMoreBags = false;
+        three_entities_ended=0;
         log = new InterfaceMonitoresLogging("RecolhaBagagem");
     }
 
@@ -194,8 +195,12 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * <li>FALSE caso contrário
      * </ul>
      */
-    private boolean getBagChance() {
+    private synchronized boolean getBagChance() {
         return Math.random() > 0.2;
+    }
+    
+    public synchronized boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
     
 }

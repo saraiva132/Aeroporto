@@ -7,6 +7,7 @@
 package ServerSide;
 
 import static Estruturas.AuxInfo.ANNOUNCING_BUS_BOARDING_SHOUTING;
+import static Estruturas.AuxInfo.CLOSE;
 import static Estruturas.AuxInfo.HAS_DAYS_WORK_ENDED;
 import static Estruturas.AuxInfo.OK;
 import static Estruturas.AuxInfo.SET_N_VOO;
@@ -22,14 +23,15 @@ import Monitores.TransferenciaTerminal;
  *
  * @author Hugo
  */
-public class ServerTransferenciaTerminalInterface {
+public class ServerTransferenciaTerminalInterface implements ServerInterface{
     private TransferenciaTerminal transferencia;
 
     public ServerTransferenciaTerminalInterface(TransferenciaTerminal transferencia) {
         this.transferencia = transferencia;
     }
     
-    protected Response processAndReply(Request request) throws MessageRequestException{
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException{
         Response response = null;
         switch(request.getMethodName()){
             case TAKE_A_BUS:
@@ -68,11 +70,13 @@ public class ServerTransferenciaTerminalInterface {
                 
                 if(nVoo<1 || nVoo > nChegadas)
                     throw new MessageRequestException("Número de voo inválido!",request);
-                
                 if(nPass < 0 || nPass >= passMax)
                     throw new MessageRequestException("Número de passageiros em trânsito inválido!",request);
                 transferencia.setnVoo(nVoo, nPass);
                 response = new Response(OK,null);
+                break;
+            case CLOSE:
+                response= new Response(OK,transferencia.shutdownMonitor());
                 break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

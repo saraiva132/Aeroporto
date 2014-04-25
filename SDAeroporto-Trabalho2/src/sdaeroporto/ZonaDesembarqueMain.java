@@ -12,21 +12,25 @@ import Monitores.ZonaDesembarque;
 import ServerSide.ServerZonaDesembarqueInterface;
 import ServerSide.ServerZonaDesembarqueProxy;
 import genclass.GenericIO;
-import serverSide.ServerCom;
+import ServerSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class ZonaDesembarqueMain {
-
+    private ServerCom scon;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new ZonaDesembarqueMain().listening();
+    }
+    
+    private void listening(){
         ZonaDesembarque desembarque = new ZonaDesembarque();
         ServerZonaDesembarqueInterface desembarqueInter = new ServerZonaDesembarqueInterface(desembarque);
-        ServerCom scon, sconi;
+        ServerCom sconi;
         ServerZonaDesembarqueProxy desembarqueProxy;
         
         scon = new ServerCom(portNumber[MON_ZONA_DESEMBARQUE]);
@@ -37,10 +41,14 @@ public class ZonaDesembarqueMain {
         
         while(true)
         {   sconi = scon.accept();
-            desembarqueProxy = new ServerZonaDesembarqueProxy(sconi,desembarqueInter);
+            desembarqueProxy = new ServerZonaDesembarqueProxy(sconi,desembarqueInter,this);
             desembarqueProxy.start();
         }
-        
+    }
+    
+    public void close(){
+        scon.end();
+        System.exit(0);
     }
     
 }

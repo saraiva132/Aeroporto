@@ -10,24 +10,28 @@ import static Estruturas.AuxInfo.portNumber;
 import Monitores.Logging;
 import ServerSide.ServerLoggingInterface;
 import ServerSide.ServerLoggingProxy;
-import genclass.GenericIO;
 import java.io.PrintStream;
-import serverSide.ServerCom;
+import ServerSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class LoggingMain {
-
+    private ServerCom scon;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new LoggingMain().listening();
+    }
+    
+    public void listening(){
+        
         PrintStream stdout = System.out;
         Logging log = new Logging();
         ServerLoggingInterface logInter = new ServerLoggingInterface(log);
-        ServerCom scon, sconi;
+        ServerCom sconi;
         ServerLoggingProxy logProxy;
         scon = new ServerCom(portNumber[MON_LOGGING]);
         scon.start();
@@ -36,10 +40,14 @@ public class LoggingMain {
 
         while (true) {
             sconi = scon.accept();
-            logProxy = new ServerLoggingProxy(sconi, logInter,stdout);
+            logProxy = new ServerLoggingProxy(sconi, logInter,stdout,this);
             logProxy.start();
         }
-
+    }
+    
+    public void close(){
+        scon.end();
+        System.exit(0);
     }
 
 }

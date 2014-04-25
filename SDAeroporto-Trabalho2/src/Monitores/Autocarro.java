@@ -47,7 +47,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
      * @serialField bilhetesVendidos
      */
     private int bilhetesVendidos;
-
+private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     
     /**
@@ -62,6 +62,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         for (int i = 0; i < lotação; i++) {
             seat[i] = 0; // Autocarro inicialmente encontra-se vazio.
         }
+        three_entities_ended=0;
         log =new InterfaceMonitoresLogging("Autocarro");
     }
 
@@ -203,6 +204,10 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
         } catch (InterruptedException ex) {
         }
         hasEnded = false;
+    }
+    
+    public synchronized boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
 
 }

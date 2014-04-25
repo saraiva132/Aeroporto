@@ -6,6 +6,8 @@
 
 package sdaeroporto;
 
+import ClientSide.InterfaceMain;
+import Estruturas.AuxInfo;
 import Threads.Bagageiro;
 import genclass.GenericIO;
 
@@ -21,6 +23,7 @@ public class BagageiroMain {
         GenericIO.writelnString ("O cliente BagageiroMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
         Bagageiro bagageiro = new Bagageiro();
+        InterfaceMain clientResquest = new InterfaceMain();
         bagageiro.start();
         try {
             bagageiro.join();
@@ -28,5 +31,7 @@ public class BagageiroMain {
             GenericIO.writelnString("Erro a terminar bagageiro!");
             System.exit(-1);
         }
+        for(int i = 0; i<AuxInfo.hostName.length;i++)
+            clientResquest.closeMonitor(i);
     }
 }

@@ -1,4 +1,4 @@
-package serverSide;
+package ServerSide;
 
 import genclass.GenericIO;
 import java.io.*;
@@ -11,7 +11,7 @@ import java.net.*;
  */
 
 public class ServerCom
-{
+{    
   /**
    *  Socket de escuta
    *    @serialField listeningSocket
@@ -242,7 +242,7 @@ public class ServerCom
 
       return fromClient;
    }
-
+   
   /**
    *  Escrita de um objecto no canal de comunicação.
    *

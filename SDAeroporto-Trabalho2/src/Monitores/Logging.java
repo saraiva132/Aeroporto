@@ -44,21 +44,21 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Número de voo
-     * 
+     *
      * @serialField nVoo
      */
     private int nVoo;
 
     /**
      * Número de malas no porão.
-     * 
+     *
      * @serialField nMalasPorao
      */
     private int nMalasPorao;
 
     /**
      * Número de malas na passadeira de recolha de bagagens.
-     * 
+     *
      * @serialField nMalasBelt
      *
      */
@@ -66,21 +66,21 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Número de malas na storeroom.
-     * 
+     *
      * @serialField nMalasStore
      */
     private int nMalasStore;
 
     /**
      * Fila de passageiros no passeio.
-     * 
+     *
      * @serialField fila
      */
     private int[] fila;
 
     /**
      * Estado de ocupação do Autocarro.
-     * 
+     *
      * @serialField assentos
      */
     private int[] assentos;
@@ -88,60 +88,65 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     /**
      * Destino do passageiro. FDT se for destino final. TRT se estiver
      * IN_TRANSIT.
-     * 
+     *
      * @serialField passDest
      */
     private String[] passDest;
 
     /**
      * Número de malas total dos passageiros.
-     * 
+     *
      * @serialField nMalasTotal
      */
     private int[] nMalasTotal;
 
     /**
      * Número de malas actual dos passageiros.
-     * 
+     *
      * @serialField nMalasActual
      */
     private int[] nMalasActual;
-    
+
     /**
      * Número de total de passageiros em trânsito
-     * 
-     * @serialField  nTotalPassageirosTransito
+     *
+     * @serialField nTotalPassageirosTransito
      */
     private int nTotalPassageirosTransito;
-    
+
     /**
-     * Número de total de passageiros cujo destino final corresponde a este aeroporto
-     * 
-     * @serialField  nTotalPassageirosFinal
+     * Número de total de passageiros cujo destino final corresponde a este
+     * aeroporto
+     *
+     * @serialField nTotalPassageirosFinal
      */
     private int nTotalPassageirosFinal;
-    
+
     /**
-     * Número total de malas carregadas pelo bagageiro para a sala de armazenamento temporário
-     * 
+     * Número total de malas carregadas pelo bagageiro para a sala de
+     * armazenamento temporário
+     *
      * @serialField nTotalMalasStoreroom
      */
     private int nTotalMalasStoreroom;
-    
+
     /**
-     * Número total de malas carregadas pelo bagageiro para a passadeira de recolha de bagagens
-     * 
+     * Número total de malas carregadas pelo bagageiro para a passadeira de
+     * recolha de bagagens
+     *
      * @serialField nTotalMalasBelt
      */
     private int nTotalMalasBelt;
-    
+
     /**
      * Número total de malas perdidas pelos passageiros
-     * 
+     *
      * @serialField nTotalMalasPerdidas
      */
     private int nTotalMalasPerdidas;
-    
+
+    private int three_entities_ended;
+
     private PrintStream fic;
 
     /**
@@ -156,18 +161,19 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         }
         System.setOut(fic);
         pstate = new passState[passMax];
-        fila = new int[passMax + 1];
+        fila = new int[passMax];
         nMalasTotal = new int[passMax];
         nMalasActual = new int[passMax];
         passDest = new String[passMax];
         assentos = new int[lotação];
         nTotalPassageirosTransito = 0;
-        nTotalPassageirosFinal=0;
-        nTotalMalasStoreroom=0;
-        nTotalMalasBelt=0;
-        nTotalMalasPerdidas=0;
+        nTotalPassageirosFinal = 0;
+        nTotalMalasStoreroom = 0;
+        nTotalMalasBelt = 0;
+        nTotalMalasPerdidas = 0;
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        three_entities_ended = 3;
     }
 
     /**
@@ -189,7 +195,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             fic.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
         }
         fic.println();
-        
+
         for (int i = 0; i < passMax; i++) {
             pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
             nMalasActual[i] = 0;
@@ -207,7 +213,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Auxilia a reportar uma actualização do estado geral do problema
      */
     private synchronized void reportStatus() {
-        
+
         fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
         for (int i = 0; i < fila.length; i++) {
             fic.printf("%1d ", fila[i]);
@@ -224,14 +230,16 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
         fic.println();
     }
-    
+
     /**
      * Reportar mudança de estado.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>O passageiro reporta a mudança do seu estado.
-     * 
+     *
+     * <p>
+     * Invocador: Passageiro
+     *
+     * <p>
+     * O passageiro reporta a mudança do seu estado.
+     *
      * @param passID identificador do passageiro
      * @param state novo estado do passageiro
      */
@@ -245,9 +253,10 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      * Reportar mudança de estado.
      * <p>
      * Invocador: Motorista
-     * 
-     * <p>Motorista reporta mudança do seu estado.
-     * 
+     *
+     * <p>
+     * Motorista reporta mudança do seu estado.
+     *
      * @param state novo estado do motorista
      */
     @Override
@@ -258,11 +267,13 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar mudança de estado.
-     * 
-     * <p>Invocador: Bagageiro
-     * 
-     * <p>Bagageiro reporta mudança do seu estado
-     * 
+     *
+     * <p>
+     * Invocador: Bagageiro
+     *
+     * <p>
+     * Bagageiro reporta mudança do seu estado
+     *
      * @param state novo estado do bagageiro
      */
     @Override
@@ -282,7 +293,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Definir o número de malas que vem no porão do avião que acabou de aterrar
-     * 
+     *
      * @param nMalasPorao número de malas no porão
      */
     public synchronized void setPorao(int nMalasPorao) {
@@ -291,10 +302,12 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar retirada de uma mala do porão.
-     * 
-     * <p>Invocador: Bagageiro
-     * 
-     * <p>Bagageiro reporta que retirou uma mala do porão do avião.
+     *
+     * <p>
+     * Invocador: Bagageiro
+     *
+     * <p>
+     * Bagageiro reporta que retirou uma mala do porão do avião.
      */
     @Override
     public synchronized void bagagemPorao() {
@@ -304,12 +317,18 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar retiro de bagagem.
-     * 
-     * <p>Invocador: Passageiro, Bagageiro
-     * 
-     * <p> Passageiro reporta que tirou uma bagagem sua da passadeira de recolha de bagagens.
-     * <p> Bagageiro reporta que colocou uma bagagem na passadeira de recolha de bagagens.
-     * @param take 
+     *
+     * <p>
+     * Invocador: Passageiro, Bagageiro
+     *
+     * <p>
+     * Passageiro reporta que tirou uma bagagem sua da passadeira de recolha de
+     * bagagens.
+     * <p>
+     * Bagageiro reporta que colocou uma bagagem na passadeira de recolha de
+     * bagagens.
+     *
+     * @param take
      * <ul>
      * <li>TRUE caso tenha sido retirada da passadeira
      * <li>FALSE caso tenha sido depositada na passadeira
@@ -328,10 +347,13 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar depósito de bagagem.
-     * 
-     * <p>Invocador: Bagageiro
-     * 
-     * <p> Bagageiro reporta que colocou uma bagagem na zona de armazenamento temporário de bagagens.
+     *
+     * <p>
+     * Invocador: Bagageiro
+     *
+     * <p>
+     * Bagageiro reporta que colocou uma bagagem na zona de armazenamento
+     * temporário de bagagens.
      */
     @Override
     public synchronized void bagagemStore() {
@@ -342,11 +364,13 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar número de malas em posse.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>Passageiro reporta quantas malas tem em sua posse.
-     * 
+     *
+     * <p>
+     * Invocador: Passageiro
+     *
+     * <p>
+     * Passageiro reporta quantas malas tem em sua posse.
+     *
      * @param passID identificador do passageiro
      */
     @Override
@@ -357,30 +381,33 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar número de malas total.
-     * 
-     * <p>No início de cada simulação é necessário reportar o número de malas total de cada passageiro.
-     * 
+     *
+     * <p>
+     * No início de cada simulação é necessário reportar o número de malas total
+     * de cada passageiro.
+     *
      * @param nMalas número de malas totais que petencem aos passageiros
      */
-    public synchronized void malasInicial(int [] nMalas) {
-        System.arraycopy(nMalas, 0, nMalasTotal, 0, passMax); 
+    public synchronized void malasInicial(int[] nMalas) {
+        System.arraycopy(nMalas, 0, nMalasTotal, 0, passMax);
     }
 
     /**
      * Reportar tipo de passageiro.
-     * 
-     * <p>No início de cada simulação é necessário reportar o estado dos passageiros:
-     * se estão em trânsito ou se este aeroporto corresponde ao seu destino
-     * 
-     * @param destino 
+     *
+     * <p>
+     * No início de cada simulação é necessário reportar o estado dos
+     * passageiros: se estão em trânsito ou se este aeroporto corresponde ao seu
+     * destino
+     *
+     * @param destino
      * <ul>
      * <li>FALSE caso esteja em trânsito
      * <li>TRUE caso contrário
      * </ul>
      */
-    
-    public synchronized void destino(boolean [] destino) {
-        for(int i = 0; i< passMax; i++){
+    public synchronized void destino(boolean[] destino) {
+        for (int i = 0; i < passMax; i++) {
             if (destino[i]) {
                 this.passDest[i] = "FDT";
                 nTotalPassageirosFinal++;
@@ -390,28 +417,33 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             }
         }
     }
-    
+
     /**
-     *  Reportar falta de malas
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p> Passageiro antes de sair do aeroporto reporta que perdeu malas
+     * Reportar falta de malas
+     *
+     * <p>
+     * Invocador: Passageiro
+     *
+     * <p>
+     * Passageiro antes de sair do aeroporto reporta que perdeu malas
+     *
      * @param malasPerdidas número de malas perdidas
      */
     @Override
-    public synchronized void missingBags(int malasPerdidas){
-        nTotalMalasPerdidas+=malasPerdidas;
+    public synchronized void missingBags(int malasPerdidas) {
+        nTotalMalasPerdidas += malasPerdidas;
     }
 
     /**
      * Reportar entrada para a fila de espera.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>Passageiro reporta que se encontra na fila na zona de transferência 
-     * entre terminais à espera de entrar para o autocarro.
-     * 
+     *
+     * <p>
+     * Invocador: Passageiro
+     *
+     * <p>
+     * Passageiro reporta que se encontra na fila na zona de transferência entre
+     * terminais à espera de entrar para o autocarro.
+     *
      * @param id identificador do passageiro
      */
     @Override
@@ -429,10 +461,12 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar saída da fila de espera.
-     * 
-     * <p>Invocador: Passageiro
-     * 
-     * <p>Passageiro reporta que saiu da fila de espera para entrar no autocarro.
+     *
+     * <p>
+     * Invocador: Passageiro
+     *
+     * <p>
+     * Passageiro reporta que saiu da fila de espera para entrar no autocarro.
      */
     @Override
     public synchronized void removefilaEspera() {
@@ -448,11 +482,13 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
 
     /**
      * Reportar o estado dos assentos do autocarro.
-     * 
+     *
      * Invocador: Passageiro
-     * 
-     * <p>Passageiro, após sair do autocarro no terminal de partida, reporta o estado
-     * do mesmo.
+     *
+     * <p>
+     * Passageiro, após sair do autocarro no terminal de partida, reporta o
+     * estado do mesmo.
+     *
      * @param seats assentos do autocarro
      */
     @Override
@@ -460,22 +496,29 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         System.arraycopy(seats, 0, this.assentos, 0, seats.length);
         reportStatus();
     }
-    
+
     /**
      * Fechar a stream
      */
-    public synchronized void close(){
+    private synchronized void close() {
         fic.close();
     }
 
-    public synchronized void reportFinalStatus(){
-        fic.println("Número total de chegadas de aviões: "+nChegadas);
-        fic.println("\nNúmero total de passageiros: "+ (nChegadas * passMax));
-        fic.println("\n\tNúmero total de passageiros em trânsito: "+nTotalPassageirosTransito);
-        fic.println("\n\tNúmero total de passageiros finais: "+nTotalPassageirosFinal);
-        fic.println("\nNúmero total de malas carregadas pelo bagageiro:"+(nTotalMalasStoreroom+nTotalMalasBelt));
-        fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a storeroom: "+nTotalMalasStoreroom);
-        fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a passadeira: "+nTotalMalasBelt);
-        fic.println("\n\tNúmero total de malas perdidas pelos passageiros: "+nTotalMalasPerdidas);
+    public synchronized boolean shutdownMonitor() {
+        three_entities_ended--;
+        if (three_entities_ended == 0) 
+        {   fic.println("Número total de chegadas de aviões: " + nChegadas);
+            fic.println("\nNúmero total de passageiros: " + (nChegadas * passMax));
+            fic.println("\n\tNúmero total de passageiros em trânsito: " + nTotalPassageirosTransito);
+            fic.println("\n\tNúmero total de passageiros finais: " + nTotalPassageirosFinal);
+            fic.println("\nNúmero total de malas carregadas pelo bagageiro:" + (nTotalMalasStoreroom + nTotalMalasBelt));
+            fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a storeroom: " + nTotalMalasStoreroom);
+            fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a passadeira: " + nTotalMalasBelt);
+            fic.println("\n\tNúmero total de malas perdidas pelos passageiros: " + nTotalMalasPerdidas);
+            close();
+            return true;
+        }
+        return false;
+        
     }
 }

@@ -28,7 +28,7 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
      * @serialField canGo
      */
     private boolean canGo;
-    private int nVoo;
+    private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
@@ -38,7 +38,7 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
     public ZonaDesembarque() {
         nPass = passMax;
         canGo = false;
-        nVoo = -1;
+        three_entities_ended=0;
         log = new InterfaceMonitoresLogging("ZonaDesembarque");
     }
 
@@ -52,7 +52,7 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
      * @return numero do voo em que a simulacao se encontra
      */
     @Override
-    public synchronized int takeARest() {
+    public synchronized void takeARest() {
         //System.out.println("Taking a Rest guys...");
         try {
             while (!canGo) {
@@ -61,7 +61,6 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
         } catch (InterruptedException ex) {
         }
         canGo = false;
-        return nVoo;
     }
 
     /**
@@ -90,10 +89,6 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
     @Override
     public synchronized destination whatShouldIDo(int passageiroID, boolean dest, int nMalas) {
     //System.out.println("What should i do!");
-
-        if (nPass == passMax) {
-            nVoo++;
-        }
 
         nPass--;
         if (nPass == 0) {
@@ -126,6 +121,10 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
     public synchronized void noMoreBagsToCollect() {
     //System.out.println("No more bags to collect!");
     log.reportState(AuxInfo.bagState.WAITING_FOR_A_PLANE_TO_LAND);
+    }
+    
+    public synchronized boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
 
 }

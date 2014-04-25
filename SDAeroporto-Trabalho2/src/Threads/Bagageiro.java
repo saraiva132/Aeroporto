@@ -16,18 +16,10 @@ public class Bagageiro extends Thread {
     private InterfaceBagageiro bagageiroI = null;
     
     /**
-     * Número de voo que já aterrou
-     * 
-     * @serialField nVoo
-     */
-    private int nVoo;
-
-    /**
      * Instanciação e inicialização do bagageiro
      */
     public Bagageiro() {
         bagageiroI = new InterfaceBagageiro();
-        this.nVoo = 0;
     }
 
     /**
@@ -36,8 +28,10 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
-        while(nVoo < nChegadas) {
-            nVoo = bagageiroI.takeARest();
+        int i =0;
+        while(i < nChegadas) {
+            i++;
+            bagageiroI.takeARest();
             mala = bagageiroI.tryToCollectABag();
             bagDest nextState;
             do {

@@ -16,14 +16,15 @@ import Monitores.Autocarro;
  *
  * @author Hugo
  */
-public class ServerAutocarroInterface {
+public class ServerAutocarroInterface implements ServerInterface {
     private Autocarro auto;
 
     public ServerAutocarroInterface(Autocarro auto) {
         this.auto = auto;
     }
     
-    protected Response processAndReply(Request request) throws MessageRequestException{
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException{
        int ticketID=0,passageiroId=0,bilhetesVendidos=0;
         
        /*validacao da mensagem recebida*/       
@@ -103,6 +104,8 @@ public class ServerAutocarroInterface {
                            + "esperam-se 0 parametros!",request);
                auto.parkTheBusAndLetPassOff();
                break;
+           case CLOSE:
+               return new Response(OK,auto.shutdownMonitor());
            default:
                throw new MessageRequestException("Tipo de request inválido!",request);
        }

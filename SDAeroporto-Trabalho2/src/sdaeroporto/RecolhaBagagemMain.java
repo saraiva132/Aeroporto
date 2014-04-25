@@ -12,21 +12,24 @@ import Monitores.RecolhaBagagem;
 import ServerSide.ServerRecolhaBagagemInterface;
 import ServerSide.ServerRecolhaBagagemProxy;
 import genclass.GenericIO;
-import serverSide.ServerCom;
+import ServerSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class RecolhaBagagemMain {
-
+   private ServerCom scon;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        RecolhaBagagem recolha = new RecolhaBagagem();
+        new RecolhaBagagemMain().listening();
+    }
+    public void listening(){
+      RecolhaBagagem recolha = new RecolhaBagagem();
         ServerRecolhaBagagemInterface recolhaInter = new ServerRecolhaBagagemInterface(recolha);
-        ServerCom scon, sconi;
+        ServerCom sconi;
         ServerRecolhaBagagemProxy recolhaProxy;
         
         scon = new ServerCom(portNumber[MON_RECOLHA_BAGAGEM]);
@@ -37,9 +40,14 @@ public class RecolhaBagagemMain {
         
         while(true)
         {   sconi = scon.accept();
-            recolhaProxy = new ServerRecolhaBagagemProxy(sconi,recolhaInter);
+            recolhaProxy = new ServerRecolhaBagagemProxy(sconi,recolhaInter,this);
             recolhaProxy.start();
         }
+    }
+    
+    public void close() {
+        scon.end();
+        System.exit(0);
     }
     
 }

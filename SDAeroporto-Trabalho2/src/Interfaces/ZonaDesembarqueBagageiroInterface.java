@@ -16,9 +16,8 @@ public interface ZonaDesembarqueBagageiroInterface {
      * <p>
      * O bagageiro descansa enquanto o próximo voo não chega e o último 
      * passageiro não sai do avião
-     * @return numero do voo em que a simulacao se encontra
      */
-    public int takeARest();
+    public void takeARest();
     
     /**
      * Não existem mais malas para apanhar

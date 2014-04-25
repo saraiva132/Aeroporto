@@ -64,7 +64,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
     }
 
     @Override
-    public int takeARest() {
+    public void takeARest() {
         ClientCom con = new ClientCom(hostName[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
         Request request;
         Response response;
@@ -77,11 +77,6 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }
-        if (!(response.getAns() instanceof Integer)) {
-            GenericIO.writelnString("Bagageiro: Estava a espera de um int!");
-            System.exit(1);
-        }
-        return (int) response.getAns();
     }
 
     @Override

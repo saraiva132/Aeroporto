@@ -325,7 +325,7 @@ public class AuxInfo {
     public static final int ADD_FILA_ESPERA = 13;
     public static final int REMOVE_FILA_ESPERA = 14;
     public static final int AUTOCARRO_STATE = 15;
-    public static final int CLOSE = 16;
+    public static final int CLOSE = 99;
     public static final int REPORT_FINAL_STATUS = 17;
     
     

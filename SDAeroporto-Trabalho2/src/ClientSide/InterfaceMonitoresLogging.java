@@ -71,6 +71,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         Request request;
         Response response;
         open();
+        System.out.println("vou apanhar o bus: "+id);
         request = new Request(ADD_FILA_ESPERA, new Object[]{id});
         con.writeObject(request);
         response = (Response) con.readObject();

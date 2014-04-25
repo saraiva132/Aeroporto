@@ -6,6 +6,7 @@
 package sdaeroporto;
 
 import ClientSide.InterfaceMain;
+import Estruturas.AuxInfo;
 import static Estruturas.AuxInfo.*;
 import Estruturas.Mala;
 import Threads.Passageiro;
@@ -26,7 +27,7 @@ public class PassageiroMain {
         GenericIO.writelnString ("O cliente PassageiroMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
         
-        InterfaceMain clientResquest = new InterfaceMain();
+        InterfaceMain clientRequest = new InterfaceMain();
         Passageiro[] passageiro = new Passageiro[passMax];
         int[] nMalasPass = new int[passMax];
         boolean[] dest = new boolean[passMax];
@@ -46,23 +47,23 @@ public class PassageiroMain {
                 }
             }
             
-            clientResquest.sendLuggages(malas);
+            clientRequest.sendLuggages(malas);
             
-            clientResquest.nVoo(i + 1);
+            clientRequest.nVoo(i + 1);
 
-            clientResquest.setPorao(malas.size());
+            clientRequest.setPorao(malas.size());
 
-            clientResquest.malasInicial(nMalasPass);
+            clientRequest.malasInicial(nMalasPass);
 
-            clientResquest.destino(dest);
+            clientRequest.destino(dest);
 
-            clientResquest.reportInitialStatus();
+            clientRequest.reportInitialStatus();
 
             for (int j = 0; j < passMax; j++) {
                 passageiro[j] = new Passageiro(nMalasPass[j], j, i + 1, dest[j]);
             }
 
-            clientResquest.setnVoo(i + 1, passTRT);
+            clientRequest.setnVoo(i + 1, passTRT);
             passTRT = 0;
 
             /* arranque da simulação */
@@ -77,11 +78,11 @@ public class PassageiroMain {
                 }
                 //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
             }
-            clientResquest.resetNoMoreBags();
+            clientRequest.resetNoMoreBags();
             malas.clear();
         }
-        clientResquest.reportFinalStatus();
-        clientResquest.close();
+        for(int i = 0; i<AuxInfo.hostName.length;i++)
+            clientRequest.closeMonitor(i);
     }
 
     public static boolean getRandomBoolean() {

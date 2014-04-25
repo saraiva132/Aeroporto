@@ -3,7 +3,6 @@ package Monitores;
 import ClientSide.InterfaceMonitoresLogging;
 import Estruturas.AuxInfo;
 import Estruturas.Mala;
-import Interfaces.LoggingBagageiroInterface;
 import Interfaces.PoraoBagageiroInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +22,7 @@ public class Porao implements PoraoBagageiroInterface {
      * @serialField malas
      */
     ArrayList<Mala> malas;
-    
+    private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     
     /**
@@ -32,6 +31,7 @@ public class Porao implements PoraoBagageiroInterface {
      */
     public Porao(){
         this.malas = new ArrayList<>();
+        three_entities_ended=0;
         log = new InterfaceMonitoresLogging("Porao");
     }
 
@@ -69,5 +69,9 @@ public class Porao implements PoraoBagageiroInterface {
     public void sendLuggages(Mala [] malas){
         this.malas.addAll(Arrays.asList(malas));
         System.out.println("adicionei "+ malas.length+" malas.");
+    }
+    
+    public synchronized boolean shutdownMonitor(){
+        return (++three_entities_ended >= 3);   
     }
 }

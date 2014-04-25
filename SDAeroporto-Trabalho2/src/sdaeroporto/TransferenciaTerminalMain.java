@@ -6,34 +6,33 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_RECOLHA_BAGAGEM;
 import static Estruturas.AuxInfo.MON_TRANSFERENCIA_TERMINAL;
 import static Estruturas.AuxInfo.portNumber;
-import Monitores.RecolhaBagagem;
 import Monitores.TransferenciaTerminal;
-import ServerSide.ServerRecolhaBagagemInterface;
-import ServerSide.ServerRecolhaBagagemProxy;
 import ServerSide.ServerTransferenciaTerminalInterface;
 import ServerSide.ServerTransferenciaTerminalProxy;
 import genclass.GenericIO;
-import java.io.IOException;
-import java.net.ServerSocket;
-import serverSide.ServerCom;
+import ServerSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class TransferenciaTerminalMain {
-
+    private ServerCom scon;
+    private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new TransferenciaTerminalMain().listening();
+    }
+    
+    private void listening(){
         TransferenciaTerminal transferencia = new TransferenciaTerminal();
         ServerTransferenciaTerminalInterface transferenciaInter = 
                                             new ServerTransferenciaTerminalInterface(transferencia);
-        ServerCom scon, sconi;
+        ServerCom  sconi;
         ServerTransferenciaTerminalProxy transferenciaProxy;
         
         scon = new ServerCom(portNumber[MON_TRANSFERENCIA_TERMINAL]);
@@ -45,9 +44,14 @@ public class TransferenciaTerminalMain {
         
         while(true)
         {   sconi = scon.accept();
-            transferenciaProxy = new ServerTransferenciaTerminalProxy(sconi,transferenciaInter);
+            transferenciaProxy = new ServerTransferenciaTerminalProxy(sconi,transferenciaInter,this);
             transferenciaProxy.start();
         }
+    }
+    
+    public void close(){
+        scon.end();
+        System.exit(0);
     }
     
 }

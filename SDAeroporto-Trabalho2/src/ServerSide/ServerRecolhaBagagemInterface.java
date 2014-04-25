@@ -7,6 +7,7 @@
 package ServerSide;
 
 import static Estruturas.AuxInfo.CARRY_IT_TO_APPROPRIATE_STORE;
+import static Estruturas.AuxInfo.CLOSE;
 import static Estruturas.AuxInfo.GO_COLLECT_A_BAG;
 import static Estruturas.AuxInfo.OK;
 import static Estruturas.AuxInfo.REPORT_MISSING_BAGS;
@@ -22,14 +23,15 @@ import Monitores.RecolhaBagagem;
  *
  * @author Hugo
  */
-public class ServerRecolhaBagagemInterface {
+public class ServerRecolhaBagagemInterface implements ServerInterface{
     private RecolhaBagagem recolha;
 
     public ServerRecolhaBagagemInterface(RecolhaBagagem recolha) {
         this.recolha = recolha;
     }
     
-    protected Response processAndReply(Request request) throws MessageRequestException{
+    @Override
+    public Response processAndReply(Request request) throws MessageRequestException{
         Response response = null;
         
         switch(request.getMethodName()){
@@ -79,7 +81,9 @@ public class ServerRecolhaBagagemInterface {
                 recolha.reportMissingBags(passId, nMalasPerdidas);
                 response = new Response(OK,null);
                 break;
-                
+            case CLOSE:
+                response= new Response(OK,recolha.shutdownMonitor());               
+                break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);
         }        

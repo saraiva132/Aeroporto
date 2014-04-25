@@ -12,21 +12,25 @@ import Monitores.TransiçãoAeroporto;
 import ServerSide.ServerTransicaoAeroportoInterface;
 import ServerSide.ServerTransicaoAeroportoProxy;
 import genclass.GenericIO;
-import serverSide.ServerCom;
+import ServerSide.ServerCom;
 
 /**
  *
  * @author Hugo
  */
 public class TransicaoAeroportoMain {
-
+    private ServerCom scon;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        new TransicaoAeroportoMain().listening();
+    }
+    
+    private void listening(){
         TransiçãoAeroporto recolha = new TransiçãoAeroporto();
         ServerTransicaoAeroportoInterface recolhaInter = new ServerTransicaoAeroportoInterface(recolha);
-        ServerCom scon, sconi;
+        ServerCom sconi;
         ServerTransicaoAeroportoProxy recolhaProxy;
         
         scon = new ServerCom(portNumber[MON_TRANSICAO_AEROPORTO]);
@@ -37,9 +41,14 @@ public class TransicaoAeroportoMain {
         
         while(true)
         {   sconi = scon.accept();
-            recolhaProxy = new ServerTransicaoAeroportoProxy(sconi,recolhaInter);
+            recolhaProxy = new ServerTransicaoAeroportoProxy(sconi,recolhaInter,this);
             recolhaProxy.start();
         }
+    }
+    
+    public void close(){
+        scon.end();
+        System.exit(0);
     }
     
 }
