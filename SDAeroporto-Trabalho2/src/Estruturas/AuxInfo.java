@@ -22,21 +22,21 @@ public class AuxInfo {
      * 
      * @serialField chegadas
      */
-    public static final int nChegadas = 5;
+    public static final int nChegadas = 50;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 2;
+    public static final int bagMax = 4;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 3;
+    public static final int lotação = 5;
     
     /**
      * Identificação do número de passageiros que chega por voo
@@ -281,10 +281,22 @@ public class AuxInfo {
     
     
     /*resposta do servidor para os clientes quando está tudo OK*/
+    
+    /**
+     * Não ocorreu erro na troca de mensagens.
+     */
     public static final int OK = 0;
+    
+    /**
+     * Ocorreu um erro na troca de mensagens.
+     */
     public static final int ERROR = 1;
     
     /*operacoes realizadas sobre os monitores*/
+    
+    /**
+     * Invocações remotas de métodos sobre os monitores
+     */
     public static final int ANNOUNCING_BUS_BOARDING_WAITING = 0;
     public static final int GO_TO_DEPARTURE_TERMINAL = 1;
     public static final int GO_TO_ARRIVAL_TERMINAL = 2;
@@ -304,11 +316,20 @@ public class AuxInfo {
     public static final int NO_MORE_BAGS_TO_COLLECT = 17;
     public static final int WHAT_SHOULD_I_DO = 18;
     public static final int TAKE_A_REST = 19;
+    
     /*auxs*/
+    /**
+     * Invocações remotas auxiliares de métodos sobre os monitores
+     */
     public static final int RESET_NOMORE_BAGS = 20;
     public static final int SET_N_VOO = 21;
     public static final int SEND_LUGAGES = 17;
+    
     /*operacoes realizadas sobre o logging*/
+    
+    /**
+     * Actualização remota de informação no repositório geral
+     */
     public static final int REPORT_INITIAL_STATUS = 0;
     public static final int REPORT_STATE_PASSAGEIRO = 1;
     public static final int REPORT_STATE_MOTORISTA = 2;
@@ -339,6 +360,9 @@ public class AuxInfo {
     public static final int MON_TRANSICAO_AEROPORTO = 5;
     public static final int MON_LOGGING = 6;
     
+    /**
+     * Endereços dos monitores remotos
+     */
     public static final String [] hostName = { "127.0.0.1",
                                         "127.0.0.1",
                                         "127.0.0.1",
@@ -347,6 +371,9 @@ public class AuxInfo {
                                         "127.0.0.1",
                                         "127.0.0.1",};
     
+    /**
+     * Portas
+     */
     public static final int [] portNumber = {4000,
                                        4001,
                                        4002,

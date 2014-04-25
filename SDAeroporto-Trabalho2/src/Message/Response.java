@@ -10,7 +10,8 @@ import java.io.Serializable;
 
 /**
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class Response implements Serializable{
     

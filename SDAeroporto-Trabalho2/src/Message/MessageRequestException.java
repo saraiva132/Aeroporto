@@ -7,17 +7,27 @@ package Message;
 
 /**
  *
- * @author rafael
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class MessageRequestException extends Exception {
 
     private Request msg;
 
+    /**
+     * 
+     * @param errorMessage - Mensagem de erro
+     * @param message - Mensagem que originou o erro.
+     */
     public MessageRequestException(String errorMessage, Request message) {
         super(errorMessage);
         this.msg = message;
     }
-
+    
+    /**
+     * Retorna a mensagem que originou o erro.
+     * @return 
+     */
     public Request getRequestErrorMessage() {
         return (msg);
     }    
