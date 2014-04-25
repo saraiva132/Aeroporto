@@ -19,6 +19,7 @@ import ServerSide.ServerCom;
  */
 public class LoggingMain {
     private ServerCom scon;
+    private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
@@ -38,7 +39,7 @@ public class LoggingMain {
         stdout.println("O serviço Logging foi estabelecido!");
         stdout.println("O servidor esta em escuta.");
 
-        while (true) {
+        while (!canEnd) {
             sconi = scon.accept();
             logProxy = new ServerLoggingProxy(sconi, logInter,stdout,this);
             logProxy.start();
@@ -46,7 +47,8 @@ public class LoggingMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
 

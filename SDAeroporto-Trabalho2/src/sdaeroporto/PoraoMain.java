@@ -20,6 +20,7 @@ import ServerSide.ServerCom;
  */
 public class PoraoMain {
    private ServerCom scon;
+   private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
@@ -41,7 +42,7 @@ public class PoraoMain {
         GenericIO.writelnString ("O serviço Porao foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             poraoProxy = new ServerPoraoProxy(sconi,poraoInter,this);
             poraoProxy.start();
@@ -49,7 +50,8 @@ public class PoraoMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
     

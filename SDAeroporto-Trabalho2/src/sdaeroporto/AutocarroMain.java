@@ -19,7 +19,7 @@ import genclass.GenericIO;
  * @author Hugo
  */
 public class AutocarroMain {
-    
+    private boolean canEnd=false;
    private ServerCom scon;
     /**
      * @param args the command line arguments
@@ -40,7 +40,7 @@ public class AutocarroMain {
         GenericIO.writelnString ("O serviço Autocarro foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             autoProxy = new ServerAutocarroProxy(sconi,autoInter,this);
             autoProxy.start();
@@ -48,7 +48,8 @@ public class AutocarroMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
     

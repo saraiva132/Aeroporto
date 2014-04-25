@@ -20,6 +20,7 @@ import ServerSide.ServerCom;
  */
 public class TransicaoAeroportoMain {
     private ServerCom scon;
+    private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
@@ -39,7 +40,7 @@ public class TransicaoAeroportoMain {
         GenericIO.writelnString ("O serviço TransicaoAeroporto foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             recolhaProxy = new ServerTransicaoAeroportoProxy(sconi,recolhaInter,this);
             recolhaProxy.start();
@@ -47,7 +48,8 @@ public class TransicaoAeroportoMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
     

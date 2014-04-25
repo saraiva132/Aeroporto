@@ -20,6 +20,7 @@ import ServerSide.ServerCom;
  */
 public class ZonaDesembarqueMain {
     private ServerCom scon;
+    private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
@@ -39,7 +40,7 @@ public class ZonaDesembarqueMain {
         GenericIO.writelnString ("O serviço ZonaDesembarque foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             desembarqueProxy = new ServerZonaDesembarqueProxy(sconi,desembarqueInter,this);
             desembarqueProxy.start();
@@ -47,7 +48,8 @@ public class ZonaDesembarqueMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
     

@@ -20,6 +20,7 @@ import ServerSide.ServerCom;
  */
 public class RecolhaBagagemMain {
    private ServerCom scon;
+   private boolean canEnd=false;
     /**
      * @param args the command line arguments
      */
@@ -38,7 +39,7 @@ public class RecolhaBagagemMain {
         GenericIO.writelnString ("O serviço RecolhaBagagem foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             recolhaProxy = new ServerRecolhaBagagemProxy(sconi,recolhaInter,this);
             recolhaProxy.start();
@@ -46,7 +47,8 @@ public class RecolhaBagagemMain {
     }
     
     public void close() {
-        scon.end();
+        canEnd=true;
+       // scon.end();
         System.exit(0);
     }
     

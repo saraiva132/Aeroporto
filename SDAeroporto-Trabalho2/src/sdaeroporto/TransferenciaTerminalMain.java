@@ -42,7 +42,7 @@ public class TransferenciaTerminalMain {
         GenericIO.writelnString ("O serviço TransferenciaTerminal foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(true)
+        while(!canEnd)
         {   sconi = scon.accept();
             transferenciaProxy = new ServerTransferenciaTerminalProxy(sconi,transferenciaInter,this);
             transferenciaProxy.start();
@@ -50,7 +50,8 @@ public class TransferenciaTerminalMain {
     }
     
     public void close(){
-        scon.end();
+        canEnd=true;
+        //scon.end();
         System.exit(0);
     }
     
