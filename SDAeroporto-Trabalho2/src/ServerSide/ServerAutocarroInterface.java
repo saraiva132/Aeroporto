@@ -45,6 +45,7 @@ public class ServerAutocarroInterface {
                    throw new MessageRequestException("Id do ticket inválido!",request);
                if(passageiroId<0 || passageiroId>=passMax)
                    throw new MessageRequestException("Id do passageiro inválido!",request);
+               auto.enterTheBus(ticketID, passageiroId);
                break;
            case LEAVE_THE_BUS: 
                if(request.getArgs().length != 2)
@@ -63,6 +64,7 @@ public class ServerAutocarroInterface {
                    throw new MessageRequestException("Id do ticket inválido!",request);
                if(passageiroId<0 || passageiroId>=passMax)
                    throw new MessageRequestException("Id do passageiro inválido!",request);
+               auto.leaveTheBus(passageiroId, ticketID); 
                break;
            case ANNOUNCING_BUS_BOARDING_WAITING:
                if(request.getArgs().length != 1)
@@ -75,46 +77,36 @@ public class ServerAutocarroInterface {
                bilhetesVendidos = (int) request.getArgs()[0];
                if(bilhetesVendidos<0 || bilhetesVendidos>=passMax)
                    throw new MessageRequestException("Número de bilhetes vendidos inválido!",request);
+               auto.announcingBusBoardingWaiting(bilhetesVendidos); 
                break;
            case GO_TO_DEPARTURE_TERMINAL:
+               if(request.getArgs().length != 0)
+                   throw new MessageRequestException("Formato do request ENTER_THE_BUS inválido: "
+                           + "esperam-se 0 parametros!",request);
+               auto.goToDepartureTerminal();
+               break;
            case GO_TO_ARRIVAL_TERMINAL:
+               if(request.getArgs().length != 0)
+                   throw new MessageRequestException("Formato do request ENTER_THE_BUS inválido: "
+                           + "esperam-se 0 parametros!",request);
+               auto.goToArrivalTerminal();
+               break;
            case PARK_THE_BUS:
+               if(request.getArgs().length != 0)
+                   throw new MessageRequestException("Formato do request ENTER_THE_BUS inválido: "
+                           + "esperam-se 0 parametros!",request);
+               auto.parkTheBus();
+               break;
            case PARK_THE_BUS_AND_LET_PASS_OFF:
+               if(request.getArgs().length != 0)
+                   throw new MessageRequestException("Formato do request ENTER_THE_BUS inválido: "
+                           + "esperam-se 0 parametros!",request);
+               auto.parkTheBusAndLetPassOff();
                break;
            default:
                throw new MessageRequestException("Tipo de request inválido!",request);
-               
        }
-       
-       switch(request.getMethodName()){
-            case ENTER_THE_BUS:
-                auto.enterTheBus(ticketID, passageiroId);                
-                break;
-                
-            case LEAVE_THE_BUS:
-                auto.leaveTheBus(passageiroId, ticketID);   
-                break;
-                
-            case ANNOUNCING_BUS_BOARDING_WAITING:
-                auto.announcingBusBoardingWaiting(bilhetesVendidos);                  
-                break;
-                
-            case GO_TO_DEPARTURE_TERMINAL:
-                auto.goToDepartureTerminal();
-                break;
-                
-            case GO_TO_ARRIVAL_TERMINAL:
-                auto.goToArrivalTerminal();
-                break;
-                
-            case PARK_THE_BUS:
-                auto.parkTheBus();
-           case PARK_THE_BUS_AND_LET_PASS_OFF:
-               auto.parkTheBusAndLetPassOff();
-                    
-        }
-        Response response = new Response(OK,null);
-        return response;
+        return new Response(OK,null);
     }
     
 }

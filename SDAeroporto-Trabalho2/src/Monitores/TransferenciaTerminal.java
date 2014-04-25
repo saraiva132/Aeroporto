@@ -8,8 +8,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-
 /**
+
  * Monitor que simula a interacção entre os passageiros e o motorista na zona de
  * transferência entre os terminais de chegada e partida
  *

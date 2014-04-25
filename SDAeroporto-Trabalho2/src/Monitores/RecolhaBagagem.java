@@ -94,8 +94,8 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         }
         if (belt.get(bagID) > 0) {
             belt.put(bagID, belt.get(bagID) - 1);
-            if (getBagChance()) {
-                log.bagagemBelt(true);
+            log.bagagemBelt(true);
+            if (getBagChance()) {                
                 log.malasActual(bagID);
                 return bagCollect.MINE;
             } else {

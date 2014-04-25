@@ -41,7 +41,7 @@ public class ServerTransferenciaTerminalInterface {
                 
                 int passageiroId = (int) request.getArgs()[0];
                 
-                if(passageiroId <0 || passageiroId>passMax)
+                if(passageiroId < 0 || passageiroId>passMax)
                     throw new MessageRequestException("Id do passageiro inválido!",request);
                 
                 response = new Response(OK,transferencia.takeABus(passageiroId));

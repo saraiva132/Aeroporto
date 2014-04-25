@@ -166,6 +166,8 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         nTotalMalasStoreroom=0;
         nTotalMalasBelt=0;
         nTotalMalasPerdidas=0;
+        bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
+        mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
     }
 
     /**
@@ -187,8 +189,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
             fic.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
         }
         fic.println();
-        bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
-        mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
+        
         for (int i = 0; i < passMax; i++) {
             pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
             nMalasActual[i] = 0;
@@ -205,7 +206,7 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
     /**
      * Auxilia a reportar uma actualização do estado geral do problema
      */
-    private void reportStatus() {
+    private synchronized void reportStatus() {
         
         fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
         for (int i = 0; i < fila.length; i++) {

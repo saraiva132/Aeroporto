@@ -94,13 +94,6 @@ public class Bagageiro extends Thread {
             mala = porao.tryToCollectABag(log);
             bagDest nextState;
             do {
-//                if(mala.poraoIsEmpty()){
-//                    recolha.carryItToAppropriateStore(log,mala.getMalaIsBeingCarried());
-//                    nextState = recolha.carryItToAppropriateStore(log,null);
-//                }else{
-//                    nextState = recolha.carryItToAppropriateStore(log,mala.getMalaIsBeingCarried());
-//                    mala = porao.tryToCollectABag(log);
-//                }
                 nextState = recolha.carryItToAppropriateStore(log,mala);
                 mala = porao.tryToCollectABag(log);
                 

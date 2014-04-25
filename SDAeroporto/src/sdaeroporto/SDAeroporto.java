@@ -70,7 +70,6 @@ public class SDAeroporto {
         recolha = new RecolhaBagagem();
         transferencia = new TransferenciaTerminal();
         transicao = new TransiçãoAeroporto();
-//        log.reportInitialStatus();
         /*Inicialização dos elementos activos*/
         bagageiro = new Bagageiro(zona, porao, recolha, log);
         motorista = new Motorista(auto, transferencia, log);
@@ -116,8 +115,6 @@ public class SDAeroporto {
                 //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
             }
             recolha.resetNoMoreBags();
-//            if(j< nChegadas -1)
-//                log.reportInitialStatus();
         }
         try {
             motorista.join();
