@@ -111,6 +111,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         int ticket;
         log.reportState(passageiroID, passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
         fila.add(passageiroID + 1);
+        System.out.println("vou apanhar o bus: "+passageiroID);
         log.addfilaEspera(passageiroID);
         ticket = fila.size() % lotação;
 

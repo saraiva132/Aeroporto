@@ -83,6 +83,7 @@ public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassagei
     public synchronized void enterTheBus(int ticketID,int passageiroId) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
         nOcupantes++;
+        
         seat[ticketID] = passageiroId+1;
         log.autocarroState(seat);
         log.reportState(passageiroId, AuxInfo.passState.TERMINAL_TRANSFER);
