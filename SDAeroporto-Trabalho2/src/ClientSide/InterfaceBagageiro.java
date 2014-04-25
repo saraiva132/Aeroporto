@@ -17,10 +17,15 @@ import static java.lang.Thread.sleep;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagageiroInterface, ZonaDesembarqueBagageiroInterface {
 
+    /**
+     * Chamada remota para tryToCollectABag()
+     * @return 
+     */
     @Override
     public Mala tryToCollectABag() {
         ClientCom con = new ClientCom(hostName[MON_PORAO], portNumber[MON_PORAO]);
@@ -41,7 +46,12 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         con.close();
         return (Mala) response.getAns();
     }
-
+    
+    /**
+     * Chamada remota para carryItToAppropriateStore()
+     * @param mala
+     * @return 
+     */
     @Override
     public bagDest carryItToAppropriateStore(Mala mala) {
         ClientCom con = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
@@ -62,7 +72,11 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         }
         return (bagDest) response.getAns();
     }
-
+    
+    /**
+     * Chamada remota para takeARest()
+     * @return 
+     */
     @Override
     public void takeARest() {
         ClientCom con = new ClientCom(hostName[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
@@ -78,7 +92,10 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
             System.exit(1);
         }
     }
-
+    
+    /**
+     * Chamada remota para noMoreBagsToCollect()
+     */
     @Override
     public void noMoreBagsToCollect() {
         ClientCom con = new ClientCom(hostName[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
@@ -95,6 +112,10 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         }
     }
     
+    /**
+     * Metodo que bloqueia o programa enquanto espera que a comunicação seja estabelecida
+     * @param con 
+     */
     private void open(ClientCom con) {
         while (!con.open()) // aguarda ligação
         {

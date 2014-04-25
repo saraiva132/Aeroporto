@@ -19,10 +19,15 @@ import static java.lang.Thread.sleep;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class InterfaceMotorista implements AutocarroMotoristaInterface,TransferenciaMotoristaInterface{
-
+    
+    /**
+     * 
+     * @param bilhetesvendidos 
+     */
     @Override
     public void announcingBusBoardingWaiting(int bilhetesvendidos) {
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -38,7 +43,10 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
             System.exit(1);
         }
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void goToDepartureTerminal() {
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -55,7 +63,10 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
             System.exit(1);
         }
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void goToArrivalTerminal() {
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -72,7 +83,10 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
             System.exit(1);
         }
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void parkTheBus() {
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -89,7 +103,10 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
             System.exit(1);
         }
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void parkTheBusAndLetPassOff() {
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -106,7 +123,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
             System.exit(1);
         }
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public boolean hasDaysWorkEnded() {
         ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
@@ -130,7 +151,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         
         return (boolean) response.getAns();
     }
-
+    
+    /**
+     * 
+     * @return 
+     */
     @Override
     public int announcingBusBoardingShouting() {
         ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
@@ -155,6 +180,10 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         return (int) response.getAns();
     }
     
+    /**
+     * Metodo que bloqueia o programa enquanto espera que a comunicação seja estabelecida
+     * @param con 
+     */
     private void open(ClientCom con) {
         while (!con.open()) // aguarda ligação
         {

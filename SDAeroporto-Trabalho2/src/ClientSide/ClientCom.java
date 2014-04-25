@@ -5,9 +5,6 @@
  */
 package ClientSide;
 
-import Message.Request;
-import Message.Response;
-import genclass.GenericIO;
 import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.NotSerializableException;
@@ -23,7 +20,8 @@ import java.net.UnknownHostException;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ClientCom {
     

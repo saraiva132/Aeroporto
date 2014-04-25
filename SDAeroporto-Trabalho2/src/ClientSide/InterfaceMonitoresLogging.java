@@ -17,7 +17,8 @@ import static java.lang.Thread.sleep;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, LoggingBagageiroInterface, LoggingMotoristaInterface {
 
@@ -28,7 +29,12 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         this.name = name;
         con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
     }
-
+    
+    /**
+     * 
+     * @param passID
+     * @param state 
+     */
     @Override
     public void reportState(int passID, AuxInfo.passState state) {
         Request request;
@@ -40,7 +46,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param take 
+     */
     @Override
     public void bagagemBelt(boolean take) {
 
@@ -53,7 +63,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param passID 
+     */
     @Override
     public void malasActual(int passID) {
         Request request;
@@ -65,7 +79,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param id 
+     */
     @Override
     public void addfilaEspera(int id) {
         Request request;
@@ -78,7 +96,10 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void removefilaEspera() {
         Request request;
@@ -90,7 +111,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param seats 
+     */
     @Override
     public void autocarroState(int[] seats) {
         Request request;
@@ -107,7 +132,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param malasPerdidas 
+     */
     @Override
     public void missingBags(int malasPerdidas) {
         Request request;
@@ -120,7 +149,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         con.close();
 
     }
-
+    
+    /**
+     * 
+     * @param state 
+     */
     @Override
     public void reportState(AuxInfo.bagState state) {
         Request request;
@@ -132,7 +165,10 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void bagagemPorao() {
         Request request;
@@ -145,7 +181,10 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         con.close();
 
     }
-
+    
+    /**
+     * 
+     */
     @Override
     public void bagagemStore() {
         Request request;
@@ -158,7 +197,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         con.close();
 
     }
-
+    
+    /**
+     * 
+     * @param state 
+     */
     @Override
     public void reportState(AuxInfo.motState state) {
         Request request;
@@ -170,7 +213,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         checkStatus(response);
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param response 
+     */
     private void checkStatus(Response response) {
         if (response.getStatus() != OK) {
             GenericIO.writelnString(name + ": Status de mensagem de resposta errado!");
@@ -178,6 +225,10 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         }
     }
     
+    /**
+     * Metodo que bloqueia o programa enquanto espera que a comunicação seja estabelecida
+     * @param con 
+     */
     private void open(){
         while (!con.open()) // aguarda ligação
         {

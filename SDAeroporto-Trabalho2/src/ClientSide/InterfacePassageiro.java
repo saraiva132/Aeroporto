@@ -25,7 +25,8 @@ import static java.lang.Thread.sleep;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class InterfacePassageiro implements AutocarroPassageiroInterface, RecolhaPassageiroInterface, TransferenciaPassageiroInterface, TransicaoPassageiroInterface, ZonaDesembarquePassageiroInterface{
     private String name;
@@ -34,6 +35,11 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         this.name = name;
     }
     
+    /**
+     * 
+     * @param ticketID
+     * @param passageiroId 
+     */
     @Override
     public void enterTheBus(int ticketID, int passageiroId){
         ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
@@ -51,7 +57,12 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param passageiroId
+     * @param ticketID 
+     */
     @Override
     public void leaveTheBus(int passageiroId, int ticketID) {
     
@@ -70,7 +81,12 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param bagID
+     * @return 
+     */
     @Override
     public bagCollect goCollectABag(int bagID) {
         ClientCom con = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
@@ -94,7 +110,12 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.close();
         return (bagCollect) response.getAns();
     }
-
+    
+    /**
+     * 
+     * @param passageiroID
+     * @param malasPerdidas 
+     */
     @Override
     public void reportMissingBags(int passageiroID, int malasPerdidas) {
         ClientCom con = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
@@ -112,7 +133,12 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param passageiroID
+     * @return 
+     */
     @Override
     public int takeABus(int passageiroID) {
         ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
@@ -135,7 +161,11 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.close();
         return (int) response.getAns();
     }
-
+    
+    /**
+     * 
+     * @param passageiroId 
+     */
     @Override
     public void goHome(int passageiroId) {
         ClientCom con = new ClientCom(hostName[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
@@ -153,7 +183,11 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param passageiroId 
+     */
     @Override
     public void prepareNextLeg(int passageiroId) {
         ClientCom con = new ClientCom(hostName[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
@@ -171,7 +205,14 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         con.close();
     }
-
+    
+    /**
+     * 
+     * @param passageiroID
+     * @param dest
+     * @param nMalas
+     * @return 
+     */
     @Override
     public destination whatShouldIDo(int passageiroID, boolean dest, int nMalas) {
         ClientCom con = new ClientCom(hostName[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
@@ -195,7 +236,11 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         
         return (destination) response.getAns();
     }
-
+    
+    /**
+     * Metodo que bloqueia o programa enquanto espera que a comunicação seja estabelecida
+     * @param con 
+     */
     private void open(ClientCom con) {
         while (!con.open()) // aguarda ligação
         {
