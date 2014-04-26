@@ -10,7 +10,8 @@ import sdaeroporto.RecolhaBagagemMain;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerRecolhaBagagemProxy extends ServerProxy{
     private final RecolhaBagagemMain recolhaMain;

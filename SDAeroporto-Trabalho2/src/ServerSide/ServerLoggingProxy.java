@@ -10,7 +10,8 @@ import java.io.PrintStream;
 import sdaeroporto.LoggingMain;
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerLoggingProxy extends ServerProxy{
 

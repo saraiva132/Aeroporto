@@ -15,7 +15,8 @@ import Monitores.Logging;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerLoggingInterface implements ServerInterface{
     private Logging log;

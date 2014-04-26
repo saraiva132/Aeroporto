@@ -10,7 +10,8 @@ import sdaeroporto.TransicaoAeroportoMain;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerTransicaoAeroportoProxy extends ServerProxy{
     private final TransicaoAeroportoMain transicaoMain;

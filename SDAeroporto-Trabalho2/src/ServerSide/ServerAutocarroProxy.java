@@ -4,7 +4,8 @@ import sdaeroporto.AutocarroMain;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerAutocarroProxy extends ServerProxy{
 

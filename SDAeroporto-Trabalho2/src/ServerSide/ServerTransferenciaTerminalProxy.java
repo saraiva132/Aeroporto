@@ -11,7 +11,8 @@ import sdaeroporto.TransferenciaTerminalMain;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ServerTransferenciaTerminalProxy extends ServerProxy{
     private TransferenciaTerminalMain transferenciaMain;

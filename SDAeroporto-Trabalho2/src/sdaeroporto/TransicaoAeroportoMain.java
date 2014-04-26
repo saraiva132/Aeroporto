@@ -16,7 +16,8 @@ import ServerSide.ServerCom;
 
 /**
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class TransicaoAeroportoMain {
     private ServerCom scon;
