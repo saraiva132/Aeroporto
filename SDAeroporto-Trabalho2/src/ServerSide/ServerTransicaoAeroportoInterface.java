@@ -6,6 +6,7 @@
 
 package ServerSide;
 
+import static Estruturas.AuxInfo.BAGAGEIRO_DONE;
 import static Estruturas.AuxInfo.CLOSE;
 import static Estruturas.AuxInfo.GO_HOME;
 import static Estruturas.AuxInfo.OK;
@@ -56,6 +57,10 @@ public class ServerTransicaoAeroportoInterface implements ServerInterface{
                 if(passageiroId <0 || passageiroId >=passMax)
                     throw new MessageRequestException("Id do passageiro inválido!",request);
                 transicao.prepareNextLeg(passageiroId);
+                break;
+            case BAGAGEIRO_DONE:
+                System.out.println("Bagageiro acabou!(ServerInterface)");
+                transicao.bagageiroTerminou();
                 break;
             case CLOSE:
                 return new Response(OK,transicao.shutdownMonitor());

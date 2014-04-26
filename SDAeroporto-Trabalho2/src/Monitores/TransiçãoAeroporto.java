@@ -31,6 +31,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * 
      */
     private boolean canLeave;   
+    private boolean bagageiroDone;
     private int three_entities_ended;
     private InterfaceMonitoresLogging log;
     
@@ -38,6 +39,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
      * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
      */
     public TransiçãoAeroporto() {
+        bagageiroDone = false;
         nPassageiros = passMax;
         canLeave = false;
         three_entities_ended=0;
@@ -66,7 +68,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
             notifyAll();
         }
         try {
-            while (!canLeave) {
+            while (!canLeave || !bagageiroDone) {
                 wait();
             }
         } catch (InterruptedException ex) {
@@ -99,7 +101,7 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
             notifyAll();
         }
         try {
-            while (!canLeave) {
+            while (!canLeave || !bagageiroDone) {
                 wait();
             }
         } catch (InterruptedException ex) {
@@ -107,8 +109,17 @@ public class TransiçãoAeroporto implements TransicaoPassageiroInterface {
         nPassageiros++;
         if (nPassageiros == passMax) {
             canLeave = false;
+            bagageiroDone = false;
         }
     }
+    
+    public synchronized void bagageiroTerminou()
+    {
+        System.out.println("Bagageiro acabou!(monitor)");
+        bagageiroDone = true;
+        notifyAll();
+    }
+    
     public synchronized boolean shutdownMonitor(){
         return (++three_entities_ended >= 3);   
     }

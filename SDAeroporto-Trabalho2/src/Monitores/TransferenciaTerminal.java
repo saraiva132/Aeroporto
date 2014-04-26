@@ -240,6 +240,7 @@ public class TransferenciaTerminal implements TransferenciaMotoristaInterface, T
         this.passTRT = nPassageiros;
     }
     
+    
     public synchronized  boolean shutdownMonitor(){
         return (++three_entities_ended >= 3);   
     }

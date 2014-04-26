@@ -31,6 +31,7 @@ public class Bagageiro extends Thread {
         int i =0;
         while(i < nChegadas) {
             i++;
+            System.out.println("Bagageiro encontra-se no voo numero: "+i);
             bagageiroI.takeARest();
             mala = bagageiroI.tryToCollectABag();
             bagDest nextState;
@@ -39,6 +40,7 @@ public class Bagageiro extends Thread {
                 mala = bagageiroI.tryToCollectABag();
                 
             } while (nextState != bagDest.LOBBYCLEAN);
+            bagageiroI.bagageiroAcabou();
             bagageiroI.noMoreBagsToCollect();
         }
     }

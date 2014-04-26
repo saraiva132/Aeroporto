@@ -22,28 +22,28 @@ public class AuxInfo {
      * 
      * @serialField chegadas
      */
-    public static final int nChegadas = 50;
+    public static final int nChegadas = 40;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 4;
+    public static final int bagMax = 5;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 5;
+    public static final int lotação = 10;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static final int passMax = 6;
+    public static final int passMax = 50;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  
@@ -316,6 +316,7 @@ public class AuxInfo {
     public static final int NO_MORE_BAGS_TO_COLLECT = 17;
     public static final int WHAT_SHOULD_I_DO = 18;
     public static final int TAKE_A_REST = 19;
+    public static final int BAGAGEIRO_DONE = 20;
     
     /*auxs*/
     /**

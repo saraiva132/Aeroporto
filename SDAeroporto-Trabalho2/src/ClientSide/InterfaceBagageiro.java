@@ -112,6 +112,21 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         }
     }
     
+    public void bagageiroAcabou(){
+        ClientCom con = new ClientCom(hostName[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
+        Request request;
+        Response response;
+        open(con);
+        request = new Request(BAGAGEIRO_DONE, new Object[]{});
+        System.out.println("Bagageiro acabou!(ClientInterface)");
+        con.writeObject(request);
+        response = (Response) con.readObject();
+        con.close();
+        if (response.getStatus() != OK) {
+            GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
+            System.exit(1);
+        }
+    }
     /**
      * Metodo que bloqueia o programa enquanto espera que a comunicação seja estabelecida
      * @param con 
