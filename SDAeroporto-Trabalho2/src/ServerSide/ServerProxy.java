@@ -70,9 +70,11 @@ public class ServerProxy extends Thread {
         } catch (MessageRequestException e) {
             GenericIO.writelnString("Thread " + name + ": " + e.getMessage() + "!");
             GenericIO.writelnString(e.getRequestErrorMessage().toString());
+            System.err.println(e);
             System.exit(1);
         }catch(Exception e){
             GenericIO.writelnString("Thread " + name + ": " + request.toString() + "!");
+            System.err.println(e);
             System.exit(1);
         }
         sconi.writeObject(response);
