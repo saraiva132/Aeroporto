@@ -22,28 +22,28 @@ public class AuxInfo {
      * 
      * @serialField chegadas
      */
-    public static final int nChegadas = 40;
+    public static final int nChegadas = 2;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 5;
+    public static final int bagMax = 50;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 10;
+    public static final int lotação = 20;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static final int passMax = 50;
+    public static final int passMax = 80;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  
@@ -364,24 +364,36 @@ public class AuxInfo {
     /**
      * Endereços dos monitores remotos
      */
+    
+    
     public static final String [] hostName = { "127.0.0.1",
-                                        "127.0.0.1",
-                                        "127.0.0.1",
-                                        "127.0.0.1",
-                                        "127.0.0.1",
-                                        "127.0.0.1",
-                                        "127.0.0.1",};
+                                               "127.0.0.1",
+                                               "127.0.0.1",
+                                               "127.0.0.1",
+                                               "127.0.0.1",
+                                               "127.0.0.1",
+                                               "127.0.0.1",};
+    
+    /*
+    public static final String [] hostName = { "l040101-ws1.clients.ua.pt",
+                                        "l040101-ws2.clients.ua.pt",
+                                        "l040101-ws3.clients.ua.pt",
+                                        "l040101-ws4.clients.ua.pt",
+                                        "l040101-ws5.clients.ua.pt",
+                                        "l040101-ws7.clients.ua.pt",
+                                        "l040101-ws8.clients.ua.pt",};
+    */
     
     /**
      * Portas
      */
-    public static final int [] portNumber = {4000,
-                                       4001,
-                                       4002,
-                                       4003,
-                                       4004,
-                                       4005,
-                                       4006 };
+    public static final int [] portNumber = {22250,
+                                       22251,
+                                       22252,
+                                       22253,
+                                       22254,
+                                       22255,
+                                       22256 };
     
     
 }

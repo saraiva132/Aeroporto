@@ -87,6 +87,6 @@ public class PassageiroMain {
     }
 
     public static boolean getRandomBoolean() {
-        return new Random().nextInt(1) < 0.5;
+        return (new Random().nextInt()) < 0.5;
     }
 }
