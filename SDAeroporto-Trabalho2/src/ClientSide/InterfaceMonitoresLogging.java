@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClientSide;
 
-import Estruturas.AuxInfo;
-import static Estruturas.AuxInfo.*;
+import Estruturas.Globals;
+import static Estruturas.Globals.*;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
@@ -16,27 +11,51 @@ import genclass.GenericIO;
 import static java.lang.Thread.sleep;
 
 /**
+ * Comunicação monitores.
+ * <p>
+ * Responsável pela comunicaçao entre os monitores <i>Autocarro</i>, <i>Porao</i>, 
+ * <i>RecolhaBagagem</i>, <i>TransferenciaTerminal</i>, <i>TransicaoAeroporto</i> 
+ * e <i>ZonaDesembarque</i> com o monitor <i>Logging</i> (corrrespondente ao estado
+ * geral do problema <b>Rapsódia no Aeroporto</b>) no âmbito das operações realizadas neles.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, LoggingBagageiroInterface, LoggingMotoristaInterface {
 
+    /**
+     * Identificador do monitor
+     * 
+     * @serialField name
+     */
     private String name;
+    
+    /**
+     * Canal de comunicação, do lado do cliente.
+     * 
+     * @serialField con
+     */
     ClientCom con;
+    
+    /**
+     * Instanciação da <i>InterfaceMonitoresLogging</i>.
+     * 
+     * @param name identificiador do monitor
+     */
 
     public InterfaceMonitoresLogging(String name) {
         this.name = name;
-        con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>reportState</i>
      * 
-     * @param passID
-     * @param state 
+     * @param passID identificador do passageiro
+     * @param state estado do passageiro
      */
     @Override
-    public void reportState(int passID, AuxInfo.passState state) {
+    public void reportState(int passID, Globals.passState state) {
         Request request;
         Response response;
         open();
@@ -48,8 +67,13 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>bagagemBelt</i>
      * 
      * @param take 
+     * <ul>
+     * <li>TRUE caso tenha sido retirada da passadeira
+     * <li>FALSE caso tenha sido depositada na passadeira
+     * </ul>
      */
     @Override
     public void bagagemBelt(boolean take) {
@@ -65,8 +89,9 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>malasActual</i>
      * 
-     * @param passID 
+     * @param passID identificador do passageiro
      */
     @Override
     public void malasActual(int passID) {
@@ -81,8 +106,9 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>addFilaEspera</i>
      * 
-     * @param id 
+     * @param id identificador do passageiro
      */
     @Override
     public void addfilaEspera(int id) {
@@ -98,7 +124,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>removeFilaEspera</i>
      */
     @Override
     public void removefilaEspera() {
@@ -113,8 +139,9 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>autocarroState</i>
      * 
-     * @param seats 
+     * @param seats assentos do autocarro
      */
     @Override
     public void autocarroState(int[] seats) {
@@ -134,8 +161,9 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>missingBags</i>
      * 
-     * @param malasPerdidas 
+     * @param malasPerdidas número de malas perdidas
      */
     @Override
     public void missingBags(int malasPerdidas) {
@@ -151,11 +179,12 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>reportState</i>
      * 
-     * @param state 
+     * @param state estado do bagageiro
      */
     @Override
-    public void reportState(AuxInfo.bagState state) {
+    public void reportState(Globals.bagState state) {
         Request request;
         Response response;
         open();
@@ -167,7 +196,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>bagagemPorao</i>
      */
     @Override
     public void bagagemPorao() {
@@ -183,7 +212,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>bagagemStore</i>
      */
     @Override
     public void bagagemStore() {
@@ -199,11 +228,11 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
-     * 
-     * @param state 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>reportState</i>
+     * @param state estado do motorista
      */
     @Override
-    public void reportState(AuxInfo.motState state) {
+    public void reportState(Globals.motState state) {
         Request request;
         Response response;
         open();
@@ -215,8 +244,9 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
     }
     
     /**
+     * Verificar o estado da mensagem resposta do servidor.
      * 
-     * @param response 
+     * @param response mensagem de resposta do servidor
      */
     private void checkStatus(Response response) {
         if (response.getStatus() != OK) {

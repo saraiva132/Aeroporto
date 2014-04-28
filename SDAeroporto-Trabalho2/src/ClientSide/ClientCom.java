@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClientSide;
 
 import java.io.IOException;
@@ -19,9 +14,10 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 /**
+ * Este tipo de dados implementa o canal de comunicação, lado do cliente, para uma comunicação baseada em passagem de
+ *   mensagens sobre sockets usando o protocolo TCP.
+ *   A transferência de dados é baseada em objectos, um objecto de cada vez.
  *
- * @author Rafael Figueiredo 59863
- * @author Hugo Frade 59399
  */
 public class ClientCom {
     

@@ -6,10 +6,10 @@
 
 package ClientSide;
 
-import static Estruturas.AuxInfo.*;
-import static Estruturas.AuxInfo.OK;
-import static Estruturas.AuxInfo.hostName;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.*;
+import static Estruturas.Globals.OK;
+import static Estruturas.Globals.hostNames;
+import static Estruturas.Globals.portNumber;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
 import Message.Request;
@@ -18,6 +18,12 @@ import genclass.GenericIO;
 import static java.lang.Thread.sleep;
 
 /**
+ * Comunicação Motorista.
+ * <p>
+ * Responsável pela comunicação entre o motorista e os monitores com os quais interage.
+ * Cada operação que o motorista necessita de realizar sobre cada monitor corresponde ao 
+ * estabelecimento de uma conexão e respectiva comunicação entre o Sistema Computacional onde
+ * está a correr a thread <i>Motorista</i> e o Sistema Computacional onde corre o respectivo monitor.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
@@ -25,12 +31,14 @@ import static java.lang.Thread.sleep;
 public class InterfaceMotorista implements AutocarroMotoristaInterface,TransferenciaMotoristaInterface{
     
     /**
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>announcingBusBoardingWaiting</i>
      * 
-     * @param bilhetesvendidos 
+     * @param bilhetesvendidos Número de bilhetes vendidos (corresponde ao número de
+     * passageiros que estão à espera)
      */
     @Override
     public void announcingBusBoardingWaiting(int bilhetesvendidos) {
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -45,11 +53,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>goToDepartureTerminal</i>
      */
     @Override
     public void goToDepartureTerminal() {
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -65,11 +73,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>goToArrivalTerminal</i>
      */
     @Override
     public void goToArrivalTerminal() {
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -85,11 +93,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>parkTheBus</i>
      */
     @Override
     public void parkTheBus() {
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -105,11 +113,11 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>parkTheBusAndLetPassOff</i>
      */
     @Override
     public void parkTheBusAndLetPassOff() {
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -125,12 +133,16 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>TransferenciaTerminal</b> no âmbito da operação <i>hasDaysWorkEnded</i>
      * @return 
+     * <ul>
+     * <li>TRUE, se o dia de trabalho acabou
+     * <li>FALSE, caso contrário
+     * </ul>
      */
     @Override
     public boolean hasDaysWorkEnded() {
-        ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
+        ClientCom con = new ClientCom(hostNames[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
         Request request;
         Response response;
         open(con);
@@ -153,12 +165,14 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
     }
     
     /**
-     * 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>announcingBusBoardingShouting</i>
      * @return 
+     * Número de passageiros que tomaram interesse em participar na viagem
+     * (limitado à lotação do Autocarro)
      */
     @Override
     public int announcingBusBoardingShouting() {
-        ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
+        ClientCom con = new ClientCom(hostNames[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
         Request request;
         Response response;
         open(con);

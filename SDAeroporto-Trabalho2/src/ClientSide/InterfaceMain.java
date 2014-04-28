@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientSide;
 
-import static Estruturas.AuxInfo.*;
+import static Estruturas.Globals.*;
 import Estruturas.Mala;
 import Message.Request;
 import Message.Response;
@@ -15,22 +9,34 @@ import static java.lang.Thread.sleep;
 import java.util.ArrayList;
 
 /**
+ * Comunicação Main's.
+ * <p>
+ * Responsável pela comunicação entre as mains <i>PassageiroMain</i>, <i>BagageiroMain</i> e <i>MotoristaMain</i> 
+ * e os servidores encarregues pela comunicação dos respectivos monitores com Sistemas 
+ * Computacionais distintos.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class InterfaceMain {
-    
-
+    /**
+     * Instanciação da <b>InterfaceMain</b>
+     */
     public InterfaceMain() {
     }
     
     /**
-     * Actualização do número de voo no repositório geral
-     * @param nVoo 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>nVoo</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>nVoo</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param nVoo número de voo em que a simulação se encontra
      */
     public void nVoo(int nVoo){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -42,12 +48,17 @@ public class InterfaceMain {
     }
     
     /**
-     * Actualização do número de malas no porão para o repositório geral
-     * (actualizado no inicio de cada voo)
-     * @param nMalas 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>setPorao</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>setPorao</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param nMalas número de malas no porão
      */
     public void setPorao(int nMalas){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -59,12 +70,17 @@ public class InterfaceMain {
     }
     
     /**
-     * Actualização do número de malas iniciais de cada passageiro para o repositório geral
-     * (actualizado no inicio de cada voo)
-     * @param nMalasPass 
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>malasInicial</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>malasInicial</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param nMalasPass número de malas totais que petencem aos passageiros
      */
     public void malasInicial(int[] nMalasPass){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -78,12 +94,21 @@ public class InterfaceMain {
     }
     
     /**
-     * Actualização do destino de cada passageiro para o repositório geral
-     * (actualizado no inicio de cada voo)
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>destino</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>destino</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
      * @param dest 
+     * <ul>
+     * <li>FALSE caso esteja em trânsito
+     * <li>TRUE caso contrário
+     * </ul>
      */
     public void destino(boolean [] dest){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -97,11 +122,15 @@ public class InterfaceMain {
     }
     
     /**
-     * Método que indica ao repositório geral o ínicio de um novo voo.
-     * Limpa os valores das variáveis.
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>reportInitialStatus</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>reportInitialStatus</i>
+     * <li> Espera pela resposta do servidor
+     * </ul>
      */
     public void reportInitialStatus(){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -113,10 +142,15 @@ public class InterfaceMain {
     }
     
     /**
-     * Método que indica ao repositório geral o fim de um voo.
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>reportFinalStatus</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>reportFinalStatus</i>
+     * <li> Espera pela resposta do servidor
+     * </ul>
      */
     public void reportFinalStatus(){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
@@ -128,14 +162,19 @@ public class InterfaceMain {
     }
     
     /**
-     * Indica ao repositório geral que a simulação terminou.
+     * Chamada remota ao monitor <b>Logging</b> no âmbito da operação <i>shutdownMonitor</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>close</i>
+     * <li> Espera pela resposta do servidor
+     * </ul>
      */
     public void close(){
-        ClientCom con = new ClientCom(hostName[MON_LOGGING], portNumber[MON_LOGGING]);
+        ClientCom con = new ClientCom(hostNames[MON_LOGGING], portNumber[MON_LOGGING]);
         Request request;
         Response response;
         open(con);
-        request = new Request(CLOSE, new Object[]{});
+        request = new Request(SHUTDOWN_MONITOR, new Object[]{});
         con.writeObject(request);
         response = (Response) con.readObject();
         checkStatus(response);
@@ -143,13 +182,18 @@ public class InterfaceMain {
     }  
     
     /** 
-     * Actualiza, por cada voo, o monitor de transferencia de terminal com o número de voo 
-     * e os passageiros em transito.
-     * @param nVoo
-     * @param passTRT 
+     * Chamada remota ao monitor <b>TransferenciaTerminal</b> no âmbito da operação <i>setnVoo</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>setnVoo</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param nVoo número de  voo
+     * @param passTRT número de passageiros em trânsito neste voo
      */
     public void setnVoo(int nVoo,int passTRT){
-        ClientCom coni = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
+        ClientCom coni = new ClientCom(hostNames[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
         Request request;
         Response response;
         open(coni);
@@ -161,10 +205,15 @@ public class InterfaceMain {
     }
     
     /**
-     * ???
+     * Chamada remota ao monitor <b>RecolhaBagagem</b> no âmbito da operação <i>resetNoMoreBags</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>reseltNoMoreBags</i>
+     * <li> Espera pela resposta do servidor
+     * </ul>
      */
     public void resetNoMoreBags(){
-        ClientCom coni = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
+        ClientCom coni = new ClientCom(hostNames[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
         Request request;
         Response response;
         open(coni);
@@ -176,11 +225,17 @@ public class InterfaceMain {
     }
     
     /**
-     * Metodo que preenche o porao com as malas de cada voo.
-     * @param malas 
+     * Chamada remota ao monitor <b>Porao</b> no âmbito da operação <i>sendLuggages</i>
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>sendLuggages</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param malas malas dos passageiros que acabaram de aterrar
      */
     public void sendLuggages(ArrayList<Mala> malas){
-        ClientCom coni = new ClientCom(hostName[MON_PORAO], portNumber[MON_PORAO]);
+        ClientCom coni = new ClientCom(hostNames[MON_PORAO], portNumber[MON_PORAO]);
         Request request;
         Response response;
         open(coni);
@@ -198,22 +253,31 @@ public class InterfaceMain {
     }
     
     /**
-     * Verifica se uma mensagem de resposta não devolveu uma mensagem de erro.
-     * @param response 
+     * Chamada remota ao monitor com o objectivo de o terminar
+     * <ul>
+     * <li> Estabelece a ligação com o respectivo monitor
+     * <li> Envia uma mensagem que representa a chamada à função <i>shutdownMonitor</i>; 
+     * a mensagem contém os argumentos necessários para a chamada à função
+     * <li> Espera pela resposta do servidor
+     * </ul>
+     * @param monitorId identificador do monitor
      */
-
     public void closeMonitor(int monitorId){
-        ClientCom coni = new ClientCom(hostName[monitorId], portNumber[monitorId]);
+        ClientCom coni = new ClientCom(hostNames[monitorId], portNumber[monitorId]);
         Request request;
         Response response;
         open(coni);        
-        request = new Request(CLOSE, new Object[]{});
+        request = new Request(SHUTDOWN_MONITOR, new Object[]{});
         coni.writeObject(request);
         response = (Response) coni.readObject();
         checkStatus(response);
         coni.close();
     }
-    
+    /**
+     * Verificar o estado da mensagem resposta do servidor.
+     * 
+     * @param response mensagem de resposta do servidor
+     */
     private void checkStatus(Response response) {
         if (response.getStatus() != OK) {
             GenericIO.writelnString("PassageiroMain: Status de mensagem de resposta errado!");
