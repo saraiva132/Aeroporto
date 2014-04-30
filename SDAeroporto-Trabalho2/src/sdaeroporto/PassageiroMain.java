@@ -6,8 +6,8 @@
 package sdaeroporto;
 
 import ClientSide.InterfaceMain;
-import Estruturas.AuxInfo;
-import static Estruturas.AuxInfo.*;
+import Estruturas.Globals;
+import static Estruturas.Globals.*;
 import Estruturas.Mala;
 import Threads.Passageiro;
 import genclass.GenericIO;
@@ -77,13 +77,14 @@ public class PassageiroMain {
                     passageiro[j].join();
                 } catch (InterruptedException e) {
                 }
-                //GenericIO.writelnString("O passageiro " + i + " do voo " + (j + 1) + " terminou.");
+                
             }
             clientRequest.resetNoMoreBags();
             malas.clear();
         }
-        for(int i = 0; i<AuxInfo.hostName.length;i++)
+        for(int i = 0; i<Globals.hostNames.length;i++)
             clientRequest.closeMonitor(i);
+        
     }
 
     public static boolean getRandomBoolean() {

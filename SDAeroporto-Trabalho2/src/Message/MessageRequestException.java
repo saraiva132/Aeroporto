@@ -1,23 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Message;
 
 /**
+ * Tipo de dados que define uma excepção lançada quando o formato da mensagem Request é inválido. 
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class MessageRequestException extends Exception {
 
+    /**
+     * Mensagem Request que originou a excepção.
+     * 
+     * @serialField msg
+     */
     private Request msg;
 
     /**
-     * 
-     * @param errorMessage - Mensagem de erro
-     * @param message - Mensagem que originou o erro.
+     * Instanciação da MessageRequestException
+     * @param errorMessage - Mensagem indicadora da condição de erro
+     * @param message - Mensagem Request que originou o erro.
      */
     public MessageRequestException(String errorMessage, Request message) {
         super(errorMessage);
@@ -25,8 +26,8 @@ public class MessageRequestException extends Exception {
     }
     
     /**
-     * Retorna a mensagem que originou o erro.
-     * @return 
+     * Obter a mensagem Request que originou o erro.
+     * @return Mensagem que originou o erro
      */
     public Request getRequestErrorMessage() {
         return (msg);

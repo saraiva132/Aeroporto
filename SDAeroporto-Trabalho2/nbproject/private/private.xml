@@ -20,15 +20,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/sdaeroporto/PassageiroMain.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/Estruturas/AuxInfo.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ClientSide/InterfaceBagageiro.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/ServerTransferenciaTerminalInterface.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/Monitores/TransferenciaTerminal.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/ServerLoggingInterface.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ClientSide/InterfaceMain.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/package-info.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/ServerProxy.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/ServerAutocarroInterface.java</file>
             <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ServerSide/ServerAutocarroProxy.java</file>
-            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/sdaeroporto/AutocarroMain.java</file>
         </group>
     </open-files>
 </project-private>

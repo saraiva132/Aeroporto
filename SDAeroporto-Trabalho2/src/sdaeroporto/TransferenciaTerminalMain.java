@@ -6,8 +6,8 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_TRANSFERENCIA_TERMINAL;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_TRANSFERENCIA_TERMINAL;
+import static Estruturas.Globals.portNumber;
 import Monitores.TransferenciaTerminal;
 import ServerSide.ServerTransferenciaTerminalInterface;
 import ServerSide.ServerTransferenciaTerminalProxy;
@@ -20,7 +20,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class TransferenciaTerminalMain {
-    private ServerCom scon;
+    private ServerCom listenngSocket;
     private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -33,19 +33,19 @@ public class TransferenciaTerminalMain {
         TransferenciaTerminal transferencia = new TransferenciaTerminal();
         ServerTransferenciaTerminalInterface transferenciaInter = 
                                             new ServerTransferenciaTerminalInterface(transferencia);
-        ServerCom  sconi;
+        ServerCom  commSocket;
         ServerTransferenciaTerminalProxy transferenciaProxy;
         
-        scon = new ServerCom(portNumber[MON_TRANSFERENCIA_TERMINAL]);
+        listenngSocket = new ServerCom(portNumber[MON_TRANSFERENCIA_TERMINAL]);
         
-        scon.start();
+        listenngSocket.start();
         
         GenericIO.writelnString ("O serviço TransferenciaTerminal foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
         while(!canEnd)
-        {   sconi = scon.accept();
-            transferenciaProxy = new ServerTransferenciaTerminalProxy(sconi,transferenciaInter,this);
+        {   commSocket = listenngSocket.accept();
+            transferenciaProxy = new ServerTransferenciaTerminalProxy(commSocket,transferenciaInter,this);
             transferenciaProxy.start();
         }
     }

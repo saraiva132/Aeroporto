@@ -19,7 +19,7 @@ public interface PoraoBagageiroInterface {
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre
      * vazio recolhe uma mala
      *
-     * @return Mala que o bagageiro apanhou do porão e informação sobre o estado do mesmo
+     * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se encontrar vazio
      */
     public Mala tryToCollectABag();
 }

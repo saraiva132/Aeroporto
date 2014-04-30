@@ -5,8 +5,8 @@
  */
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_LOGGING;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_LOGGING;
+import static Estruturas.Globals.portNumber;
 import Monitores.Logging;
 import ServerSide.ServerLoggingInterface;
 import ServerSide.ServerLoggingProxy;
@@ -19,7 +19,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class LoggingMain {
-    private ServerCom scon;
+    private ServerCom listeningSocket;
     private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -33,16 +33,16 @@ public class LoggingMain {
         PrintStream stdout = System.out;
         Logging log = new Logging();
         ServerLoggingInterface logInter = new ServerLoggingInterface(log);
-        ServerCom sconi;
+        ServerCom commSocket;
         ServerLoggingProxy logProxy;
-        scon = new ServerCom(portNumber[MON_LOGGING]);
-        scon.start();
+        listeningSocket = new ServerCom(portNumber[MON_LOGGING]);
+        listeningSocket.start();
         stdout.println("O serviço Logging foi estabelecido!");
         stdout.println("O servidor esta em escuta.");
 
         while (!canEnd) {
-            sconi = scon.accept();
-            logProxy = new ServerLoggingProxy(sconi, logInter,stdout,this);
+            commSocket = listeningSocket.accept();
+            logProxy = new ServerLoggingProxy(commSocket, logInter,stdout,this);
             logProxy.start();
         }
     }

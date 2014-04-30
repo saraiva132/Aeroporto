@@ -6,8 +6,8 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_RECOLHA_BAGAGEM;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_RECOLHA_BAGAGEM;
+import static Estruturas.Globals.portNumber;
 import Monitores.RecolhaBagagem;
 import ServerSide.ServerRecolhaBagagemInterface;
 import ServerSide.ServerRecolhaBagagemProxy;
@@ -20,7 +20,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class RecolhaBagagemMain {
-   private ServerCom scon;
+   private ServerCom listeningSocket;
    private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -29,20 +29,20 @@ public class RecolhaBagagemMain {
         new RecolhaBagagemMain().listening();
     }
     public void listening(){
-      RecolhaBagagem recolha = new RecolhaBagagem();
+        RecolhaBagagem recolha = new RecolhaBagagem();
         ServerRecolhaBagagemInterface recolhaInter = new ServerRecolhaBagagemInterface(recolha);
-        ServerCom sconi;
+        ServerCom commSocket;
         ServerRecolhaBagagemProxy recolhaProxy;
         
-        scon = new ServerCom(portNumber[MON_RECOLHA_BAGAGEM]);
-        scon.start();
+        listeningSocket = new ServerCom(portNumber[MON_RECOLHA_BAGAGEM]);
+        listeningSocket.start();
         
         GenericIO.writelnString ("O serviço RecolhaBagagem foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
         while(!canEnd)
-        {   sconi = scon.accept();
-            recolhaProxy = new ServerRecolhaBagagemProxy(sconi,recolhaInter,this);
+        {   commSocket = listeningSocket.accept();
+            recolhaProxy = new ServerRecolhaBagagemProxy(commSocket,recolhaInter,this);
             recolhaProxy.start();
         }
     }

@@ -1,9 +1,9 @@
 package Threads;
 
 import ClientSide.InterfaceBagageiro;
-import Estruturas.AuxInfo.bagDest;
+import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
-import static Estruturas.AuxInfo.nChegadas;
+import static Estruturas.Globals.nChegadas;
 
 /**
  * Identifica o tipo de dados bagageiro
@@ -40,7 +40,7 @@ public class Bagageiro extends Thread {
                 mala = bagageiroI.tryToCollectABag();
                 
             } while (nextState != bagDest.LOBBYCLEAN);
-            bagageiroI.bagageiroAcabou();
+            bagageiroI.bagageiroDone();
             bagageiroI.noMoreBagsToCollect();
         }
     }

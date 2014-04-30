@@ -6,8 +6,8 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_PORAO;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import Monitores.Porao;
 import ServerSide.ServerPoraoInterface;
 import ServerSide.ServerPoraoProxy;
@@ -20,7 +20,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class PoraoMain {
-   private ServerCom scon;
+   private ServerCom listeningSocket;
    private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -32,10 +32,10 @@ public class PoraoMain {
     public void listening(){
         Porao porao;
         ServerPoraoInterface poraoInter;
-        ServerCom sconi;
+        ServerCom commSocket;
         ServerPoraoProxy poraoProxy;
-        scon = new ServerCom(portNumber[MON_PORAO]);
-        scon.start();
+        listeningSocket = new ServerCom(portNumber[MON_PORAO]);
+        listeningSocket.start();
         
         porao = new Porao();
         poraoInter = new ServerPoraoInterface(porao);
@@ -44,8 +44,8 @@ public class PoraoMain {
         GenericIO.writelnString ("O servidor esta em escuta.");
         
         while(!canEnd)
-        {   sconi = scon.accept();
-            poraoProxy = new ServerPoraoProxy(sconi,poraoInter,this);
+        {   commSocket = listeningSocket.accept();
+            poraoProxy = new ServerPoraoProxy(commSocket,poraoInter,this);
             poraoProxy.start();
         }
     }

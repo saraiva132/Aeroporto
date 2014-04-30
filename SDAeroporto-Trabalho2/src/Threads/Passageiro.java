@@ -1,9 +1,9 @@
 package Threads;
 
 import ClientSide.InterfacePassageiro;
-import Estruturas.AuxInfo.bagCollect;
-import Estruturas.AuxInfo.destination;
-import Estruturas.AuxInfo.passState;
+import Estruturas.Globals.bagCollect;
+import Estruturas.Globals.destination;
+import Estruturas.Globals.passState;
 
 /**
  * Identifica o tipo de dados passageiro

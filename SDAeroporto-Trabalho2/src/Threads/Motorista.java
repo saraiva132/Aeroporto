@@ -6,7 +6,7 @@
 package Threads;
 
 import ClientSide.InterfaceMotorista;
-import Estruturas.AuxInfo.motState;
+import Estruturas.Globals.motState;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;

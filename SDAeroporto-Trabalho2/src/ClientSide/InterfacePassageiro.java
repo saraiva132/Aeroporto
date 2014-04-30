@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ClientSide;
 
 
-import static Estruturas.AuxInfo.*;
-import static Estruturas.AuxInfo.OK;
-import Estruturas.AuxInfo.bagCollect;
-import Estruturas.AuxInfo.destination;
-import static Estruturas.AuxInfo.hostName;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.*;
+import static Estruturas.Globals.OK;
+import Estruturas.Globals.bagCollect;
+import Estruturas.Globals.destination;
+import static Estruturas.Globals.hostNames;
+import static Estruturas.Globals.portNumber;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import Interfaces.TransferenciaPassageiroInterface;
@@ -24,25 +18,40 @@ import genclass.GenericIO;
 import static java.lang.Thread.sleep;
 
 /**
+ * Comunicação Passageiro.
+ * <p>  
+ * Responsável pela comunicação entre o passageiro e os monitores com os quais interage.
+ * Cada operação que um passageiro necessita de realizar sobre cada monitor corresponde ao 
+ * estabelecimento de uma conexão e respectiva comunicação entre o Sistema Computacional onde
+ * está a correr a thread <i>Passageiro</i> e o Sistema Computacional onde corre o respectivo monitor.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class InterfacePassageiro implements AutocarroPassageiroInterface, RecolhaPassageiroInterface, TransferenciaPassageiroInterface, TransicaoPassageiroInterface, ZonaDesembarquePassageiroInterface{
-    private String name;
+    /**
+     * Identificador do passageiro
+     * 
+     * @serialField name
+     */
+    private final String name;
 
+    /**
+     * Instanciação da <i>InterfacePassageiro</i>
+     * @param name identificador do passageiro
+     */
     public InterfacePassageiro(String name) {
         this.name = name;
     }
     
     /**
-     * 
-     * @param ticketID
-     * @param passageiroId 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>enterTheBus</i>
+     * @param ticketID lugar onde o passageiro se pode sentar
+     * @param passageiroId identificador do passageiro
      */
     @Override
     public void enterTheBus(int ticketID, int passageiroId){
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -59,14 +68,14 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
-     * 
-     * @param passageiroId
-     * @param ticketID 
+     * Chamada remota ao monitor <b>Autocarro</b> no âmbito da operação <i>leaveTheBus</i>
+     * @param passageiroId identificador do passageiro
+     * @param ticketID lugar onde o passageiro estava sentado
      */
     @Override
     public void leaveTheBus(int passageiroId, int ticketID) {
     
-        ClientCom con = new ClientCom(hostName[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
+        ClientCom con = new ClientCom(hostNames[MON_AUTOCARRO], portNumber[MON_AUTOCARRO]);
         Request request;
         Response response;
         open(con);
@@ -83,13 +92,23 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
+     * Chamada remota ao monitor <b>RecolhaBagagem</b> no âmbito da operação <i>goToCollectABag</i>
      * 
-     * @param bagID
-     * @return 
+     * @param bagID identificador da mala
+     * @return Forma como conseguiu apanhar a sua mala: 
+     * <ul>
+     * <li>MINE, com sucesso 
+     * <li>UNSUCCESSFUL, sem sucesso 
+     * </ul> 
+     * <p>Alternativamente, a informação de que já não vale a 
+     * pena continuar a espera da(s) sua(s) mala(s) que lhe falta(m):
+     * <ul>
+     * <li>NOMORE
+     * </ul>
      */
     @Override
     public bagCollect goCollectABag(int bagID) {
-        ClientCom con = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
+        ClientCom con = new ClientCom(hostNames[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
         Request request;
         Response response;
         open(con);
@@ -112,13 +131,13 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
-     * 
-     * @param passageiroID
-     * @param malasPerdidas 
+     * Chamada remota ao monitor <b>RecolhaBagagem</b> no âmbito da operação <i>reportMissingBags</i>
+     * @param passageiroID identificador do passageiro
+     * @param malasPerdidas número de malas perdidas
      */
     @Override
     public void reportMissingBags(int passageiroID, int malasPerdidas) {
-        ClientCom con = new ClientCom(hostName[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
+        ClientCom con = new ClientCom(hostNames[MON_RECOLHA_BAGAGEM], portNumber[MON_RECOLHA_BAGAGEM]);
         Request request;
         Response response;
         open(con);
@@ -135,13 +154,13 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
-     * 
-     * @param passageiroID
-     * @return 
+     * Chamada remota ao monitor <b>TransferenciaTerminal</b> no âmbito da operação <i>takeABus</i>
+     * @param passageiroID identificador do passageiro
+     * @return Posição do seu assento no autocarro
      */
     @Override
     public int takeABus(int passageiroID) {
-        ClientCom con = new ClientCom(hostName[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
+        ClientCom con = new ClientCom(hostNames[MON_TRANSFERENCIA_TERMINAL], portNumber[MON_TRANSFERENCIA_TERMINAL]);
         Request request;
         Response response;
         open(con);
@@ -163,12 +182,13 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
+     * Chamada remota ao monitor <b>TransicaoAeroporto</b> no âmbito da operação <i>goHome</i>
      * 
-     * @param passageiroId 
+     * @param passageiroId identificador do passageiro
      */
     @Override
     public void goHome(int passageiroId) {
-        ClientCom con = new ClientCom(hostName[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
+        ClientCom con = new ClientCom(hostNames[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
         Request request;
         Response response;
         open(con);
@@ -185,12 +205,13 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
+     * Chamada remota ao monitor <b>TransicaoAeroporto</b> no âmbito da operação <i>prepareNextLeg</i>
      * 
-     * @param passageiroId 
+     * @param passageiroId identificador do passageiro
      */
     @Override
     public void prepareNextLeg(int passageiroId) {
-        ClientCom con = new ClientCom(hostName[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
+        ClientCom con = new ClientCom(hostNames[MON_TRANSICAO_AEROPORTO], portNumber[MON_TRANSICAO_AEROPORTO]);
         Request request;
         Response response;
         open(con);
@@ -207,15 +228,25 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
     }
     
     /**
+     * Chamada remota ao monitor <b>ZonaDesembarque</b> no âmbito da operação <i>whatShouldIDo</i>
      * 
-     * @param passageiroID
-     * @param dest
-     * @param nMalas
-     * @return 
+     * @param passageiroID identificador do passageiro
+     * @param dest 
+     * <ul>
+     * <li>TRUE se este aeroporto é o seu destino
+     * <li>FALSE caso contrário
+     * </ul>
+     * @param nMalas número de malas que o passageiro contém
+     * @return  Qual o seu próximo passo dependendo da sua condição:
+     * <ul>
+     * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens
+     * <li> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
+     * <li> IN_TRANSIT caso esteja em trânsito
+     * </ul>
      */
     @Override
     public destination whatShouldIDo(int passageiroID, boolean dest, int nMalas) {
-        ClientCom con = new ClientCom(hostName[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
+        ClientCom con = new ClientCom(hostNames[MON_ZONA_DESEMBARQUE], portNumber[MON_ZONA_DESEMBARQUE]);
         Request request;
         Response response;
         open(con);

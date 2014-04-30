@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo;
+import Estruturas.Globals;
 
 /**
  * Identifica e descreve as operações que o motorista pode realizar sobre o monitor <b>Logging</b>
@@ -19,5 +19,5 @@ public interface LoggingMotoristaInterface {
      * 
      * @param state novo estado do motorista
      */
-    public void reportState(AuxInfo.motState state);
+    public void reportState(Globals.motState state);
 }

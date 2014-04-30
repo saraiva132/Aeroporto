@@ -6,8 +6,8 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_ZONA_DESEMBARQUE;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_ZONA_DESEMBARQUE;
+import static Estruturas.Globals.portNumber;
 import Monitores.ZonaDesembarque;
 import ServerSide.ServerZonaDesembarqueInterface;
 import ServerSide.ServerZonaDesembarqueProxy;
@@ -20,7 +20,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class ZonaDesembarqueMain {
-    private ServerCom scon;
+    private ServerCom listeningSocket;
     private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -32,18 +32,18 @@ public class ZonaDesembarqueMain {
     private void listening(){
         ZonaDesembarque desembarque = new ZonaDesembarque();
         ServerZonaDesembarqueInterface desembarqueInter = new ServerZonaDesembarqueInterface(desembarque);
-        ServerCom sconi;
+        ServerCom commSocket;
         ServerZonaDesembarqueProxy desembarqueProxy;
         
-        scon = new ServerCom(portNumber[MON_ZONA_DESEMBARQUE]);
-        scon.start();
+        listeningSocket = new ServerCom(portNumber[MON_ZONA_DESEMBARQUE]);
+        listeningSocket.start();
         
         GenericIO.writelnString ("O serviço ZonaDesembarque foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
         while(!canEnd)
-        {   sconi = scon.accept();
-            desembarqueProxy = new ServerZonaDesembarqueProxy(sconi,desembarqueInter,this);
+        {   commSocket = listeningSocket.accept();
+            desembarqueProxy = new ServerZonaDesembarqueProxy(commSocket,desembarqueInter,this);
             desembarqueProxy.start();
         }
     }

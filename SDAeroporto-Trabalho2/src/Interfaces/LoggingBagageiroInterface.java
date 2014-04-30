@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo;
+import Estruturas.Globals;
 
 /**
  * Identifica e descreve as operações que o bagageiro pode realizar sobre o monitor <b>Logging</b>
@@ -19,7 +19,7 @@ public interface LoggingBagageiroInterface {
      * 
      * @param state novo estado do bagageiro
      */
-    public void reportState(AuxInfo.bagState state);
+    public void reportState(Globals.bagState state);
 
     /**
      * Reportar retirada de uma mala do porão.

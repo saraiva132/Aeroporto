@@ -1,39 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ServerSide;
 
-import static Estruturas.AuxInfo.BAGAGEIRO_DONE;
-import static Estruturas.AuxInfo.CLOSE;
-import static Estruturas.AuxInfo.GO_HOME;
-import static Estruturas.AuxInfo.OK;
-import static Estruturas.AuxInfo.PREPARE_NEXT_LEG;
-import static Estruturas.AuxInfo.passMax;
+import static Estruturas.Globals.BAGAGEIRO_DONE;
+import static Estruturas.Globals.SHUTDOWN_MONITOR;
+import static Estruturas.Globals.GO_HOME;
+import static Estruturas.Globals.OK;
+import static Estruturas.Globals.PREPARE_NEXT_LEG;
+import static Estruturas.Globals.passMax;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.TransiçãoAeroporto;
 
 /**
- *
+ * Este tipo de dados define o interface ao monitor <i>TransicaoAeroporto</i> do problema <b>Rapsódia no Aeroporto</b>.
+ * <p>
+ * Está encarregue de para cada mensagem do tipo <i>Request</i> validá-la e realizar a operação pedida na mesma
+ * sobre o montior <i>TransicaoAeroporto</i> devolvendo uma mensagem do tipo <i>Response</i> que que contém (no caso de haver) 
+ * o objecto devolvido pela operação que foi invocada no monitor.  
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ServerTransicaoAeroportoInterface implements ServerInterface{
-    private TransiçãoAeroporto transicao;
+    /**
+     * Monitor TransicaoAeroporto (representa o serviço a ser prestado)
+     * 
+     * @serialField transicao
+     */
+    private final TransiçãoAeroporto transicao;
 
+    /**
+     * Instanciação do interface ao monitor TransicaoAeroporto
+     * 
+     * @param transicao Monitor TransicaoAeroporto
+     */
     public ServerTransicaoAeroportoInterface(TransiçãoAeroporto transicao) {
         this.transicao = transicao;
     }
     
     /**
-     *
-     * @param request
-     * @return
-     * @throws MessageRequestException
+     * Processamento das mensagens através da execução da operação correspondente.
+     * Geração de uma mensagem de resposta.
+     * 
+     * @param request mensagem com o pedido e (eventualmente) os parâmetros necessários para a realização da operação requerida sobre o monitor
+     * @return mensagem de resposta
+     * @throws MessageRequestException 
      */
     @Override
     public Response processAndReply(Request request) throws MessageRequestException {
@@ -61,9 +72,9 @@ public class ServerTransicaoAeroportoInterface implements ServerInterface{
                 break;
             case BAGAGEIRO_DONE:
                 System.out.println("Bagageiro acabou!(ServerInterface)");
-                transicao.bagageiroTerminou();
+                transicao.bagageiroDone();
                 break;
-            case CLOSE:
+            case SHUTDOWN_MONITOR:
                 return new Response(OK,transicao.shutdownMonitor());
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

@@ -1,30 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ServerSide;
 
-import Estruturas.AuxInfo;
-import static Estruturas.AuxInfo.*;
+import Estruturas.Globals;
+import static Estruturas.Globals.*;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.Logging;
 
 /**
- *
+ * Este tipo de dados define o interface ao monitor <i>Logging</i> do problema <b>Rapsódia no Aeroporto</b>.
+ * <p>
+ * Está encarregue de para cada mensagem do tipo <i>Request</i> validá-la e realizar a operação pedida na mesma
+ * sobre o montior <i>Autocarro</i> devolvendo uma mensagem do tipo <i>Response</i> que que contém (no caso de haver) 
+ * o objecto devolvido pela operação que foi invocada no monitor.
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ServerLoggingInterface implements ServerInterface{
-    private Logging log;
+    /**
+     * Monitor Logging (representa o serviço a ser prestado)
+     * 
+     * @serialField log
+     */
+    private final Logging log;
 
+    /**
+     * Instanciação do interface ao monitor Logging
+     * 
+     * @param log Monitor Logging
+     */
     public ServerLoggingInterface(Logging log) {
         this.log = log;
     }
-    
+    /**
+     * Processamento das mensagens através da execução da operação correspondente.
+     * Geração de uma mensagem de resposta.
+     * 
+     * @param request mensagem com o pedido e (eventualmente) os parâmetros necessários para a realização da operação requerida sobre o monitor
+     * @return mensagem de resposta
+     * @throws MessageRequestException 
+     */
     @Override
     public Response processAndReply(Request request) throws MessageRequestException{
         int passId;
@@ -39,10 +55,10 @@ public class ServerLoggingInterface implements ServerInterface{
                            + "esperam-se 2 parametros!",request);
                 if(!(request.getArgs()[0] instanceof Integer))
                     throw new MessageRequestException("Leitura de tipo de objecto pState inválido!",request);
-                if(!(request.getArgs()[1] instanceof AuxInfo.passState))
+                if(!(request.getArgs()[1] instanceof Globals.passState))
                     throw new MessageRequestException("Leitura de tipo de objecto passId inválido!",request);
 
-                AuxInfo.passState pState = (AuxInfo.passState) request.getArgs()[1];
+                Globals.passState pState = (Globals.passState) request.getArgs()[1];
                 passId = (int) request.getArgs()[0];
                 log.reportState(passId, pState);
                 
@@ -51,9 +67,9 @@ public class ServerLoggingInterface implements ServerInterface{
                 if(request.getArgs().length != 1)
                    throw new MessageRequestException("Formato do request REPORT_STATE_MOTORISTA inválido: "
                            + "espera-se 1 parametro!",request);
-                if(!(request.getArgs()[0] instanceof AuxInfo.motState))
+                if(!(request.getArgs()[0] instanceof Globals.motState))
                     throw new MessageRequestException("Leitura de tipo de objecto mState inválido!",request);
-                AuxInfo.motState mState = (AuxInfo.motState) request.getArgs()[0];
+                Globals.motState mState = (Globals.motState) request.getArgs()[0];
                 log.reportState(mState);
                 break;
                 
@@ -61,9 +77,9 @@ public class ServerLoggingInterface implements ServerInterface{
                 if(request.getArgs().length != 1)
                    throw new MessageRequestException("Formato do request REPORT_STATE_BAGAGEIRO inválido: "
                            + "espera-se 1 parametro!",request);
-                if(!(request.getArgs()[0] instanceof AuxInfo.bagState))
+                if(!(request.getArgs()[0] instanceof Globals.bagState))
                     throw new MessageRequestException("Leitura de tipo de objecto bState inválido!",request);
-                AuxInfo.bagState bState = (AuxInfo.bagState) request.getArgs()[0];
+                Globals.bagState bState = (Globals.bagState) request.getArgs()[0];
                 log.reportState(bState);
                 break;
                 
@@ -169,7 +185,7 @@ public class ServerLoggingInterface implements ServerInterface{
                 }
                 log.autocarroState(seats);                
                 break;
-            case CLOSE:
+            case SHUTDOWN_MONITOR:
                 return new Response(OK,log.shutdownMonitor());
                  
             default:

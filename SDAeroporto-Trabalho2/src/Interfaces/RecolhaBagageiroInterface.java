@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo.bagDest;
+import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
 
 /**

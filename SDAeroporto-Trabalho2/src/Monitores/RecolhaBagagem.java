@@ -1,7 +1,7 @@
 package Monitores;
 
 import ClientSide.InterfaceMonitoresLogging;
-import static Estruturas.AuxInfo.*;
+import static Estruturas.Globals.*;
 import Estruturas.Mala;
 import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
@@ -44,8 +44,25 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
      * @serialField noMoreBags
      */
     private boolean noMoreBags;
+    /**
+     * Identifica quantas entidades activas instanciadas (passageiro, bagageiro e motorista)
+     * já terminaram o seu ciclo de vida.
+     * <p>
+     * Necessário para a terminação do monitor.
+     * 
+     * @serialField three_entities_ended
+     */
     private int three_entities_ended;
-    private InterfaceMonitoresLogging log;
+    /**
+     * Instância da comunicação monitores.
+     * <p>
+     * Necessário para a comunicação com o monitor <i>Logging</i>, no âmbito da 
+     * actualização do estado geral do problema aquando das operações realizadas 
+     * sobre o monitor.
+     * 
+     * @serialField log
+     */
+    private final InterfaceMonitoresLogging log;
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
      */
@@ -199,6 +216,21 @@ public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassage
         return Math.random() > 0.2;
     }
     
+    /**
+     * Terminar o monitor.
+     * <p>
+     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * <p>
+     * No final da execução da simulação, para o fechar o monitor os 3 lançadores 
+     * das threads correspondentes ao passageiro, bagageiro e motorista necessitam de 
+     * fechar os monitores.
+     * 
+     * @return Informação se pode ou não terminar o monitor.
+     * <ul>
+     * <li>TRUE, caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     */
     public synchronized boolean shutdownMonitor(){
         return (++three_entities_ended >= 3);   
     }

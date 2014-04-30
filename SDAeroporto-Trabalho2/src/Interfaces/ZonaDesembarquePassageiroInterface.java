@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo.destination;
+import Estruturas.Globals.destination;
 
 /**
  * Identifica as operações que um passageiro pode realizar no monitor 
@@ -27,7 +27,6 @@ public interface ZonaDesembarquePassageiroInterface {
      * <li>FALSE caso contrário
      * </ul>
      * @param nMalas número de malas que o passageiro contém
-     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @return  Qual o seu próximo passo dependendo da sua condição:
      * <ul>
      * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens

@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo;
+import Estruturas.Globals;
 
 /**
  * Identifica e descreve as operações que o passageiro pode realizar sobre o monitor <b>Logging</b>
@@ -20,7 +20,7 @@ public interface LoggingPassageiroInterface {
      * @param passID identificador do passageiro
      * @param state novo estado do passageiro
      */
-    public void reportState(int passID, AuxInfo.passState state);
+    public void reportState(int passID, Globals.passState state);
     
     /**
      * Reportar retiro de bagagem.

@@ -1,10 +1,10 @@
 package Monitores;
 
-import Estruturas.AuxInfo.*;
-import static Estruturas.AuxInfo.fileName;
-import static Estruturas.AuxInfo.lotação;
-import static Estruturas.AuxInfo.nChegadas;
-import static Estruturas.AuxInfo.passMax;
+import Estruturas.Globals.*;
+import static Estruturas.Globals.fileName;
+import static Estruturas.Globals.lotação;
+import static Estruturas.Globals.nChegadas;
+import static Estruturas.Globals.passMax;
 import Interfaces.LoggingBagageiroInterface;
 import Interfaces.LoggingMotoristaInterface;
 import Interfaces.LoggingPassageiroInterface;
@@ -145,6 +145,14 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
      */
     private int nTotalMalasPerdidas;
 
+    /**
+     * Identifica quantas entidades activas instanciadas (passageiro, bagageiro e motorista)
+     * já terminaram o seu ciclo de vida.
+     * <p>
+     * Necessário para a terminação do monitor.
+     * 
+     * @serialField three_entities_ended
+     */
     private int three_entities_ended;
 
     private PrintStream fic;
@@ -504,6 +512,21 @@ public class Logging implements LoggingBagageiroInterface, LoggingMotoristaInter
         fic.close();
     }
 
+    /**
+     * Terminar o monitor.
+     * <p>
+     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * <p>
+     * No final da execução da simulação, para o fechar o monitor os 3 lançadores 
+     * das threads correspondentes ao passageiro, bagageiro e motorista necessitam de 
+     * fechar os monitores.
+     * 
+     * @return Informação se pode ou não terminar o monitor.
+     * <ul>
+     * <li>TRUE, caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     */
     public synchronized boolean shutdownMonitor() {
         three_entities_ended--;
         if (three_entities_ended == 0) 

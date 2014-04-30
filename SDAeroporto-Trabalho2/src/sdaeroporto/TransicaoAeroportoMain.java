@@ -6,8 +6,8 @@
 
 package sdaeroporto;
 
-import static Estruturas.AuxInfo.MON_TRANSICAO_AEROPORTO;
-import static Estruturas.AuxInfo.portNumber;
+import static Estruturas.Globals.MON_TRANSICAO_AEROPORTO;
+import static Estruturas.Globals.portNumber;
 import Monitores.TransiçãoAeroporto;
 import ServerSide.ServerTransicaoAeroportoInterface;
 import ServerSide.ServerTransicaoAeroportoProxy;
@@ -20,7 +20,7 @@ import ServerSide.ServerCom;
  * @author Hugo Frade 59399
  */
 public class TransicaoAeroportoMain {
-    private ServerCom scon;
+    private ServerCom listeningSocket;
     private boolean canEnd=false;
     /**
      * @param args the command line arguments
@@ -30,21 +30,21 @@ public class TransicaoAeroportoMain {
     }
     
     private void listening(){
-        TransiçãoAeroporto recolha = new TransiçãoAeroporto();
-        ServerTransicaoAeroportoInterface recolhaInter = new ServerTransicaoAeroportoInterface(recolha);
-        ServerCom sconi;
-        ServerTransicaoAeroportoProxy recolhaProxy;
+        TransiçãoAeroporto transicao = new TransiçãoAeroporto();
+        ServerTransicaoAeroportoInterface transicaoInter = new ServerTransicaoAeroportoInterface(transicao);
+        ServerCom commSocket;
+        ServerTransicaoAeroportoProxy transicaoProxy;
         
-        scon = new ServerCom(portNumber[MON_TRANSICAO_AEROPORTO]);
-        scon.start();
+        listeningSocket = new ServerCom(portNumber[MON_TRANSICAO_AEROPORTO]);
+        listeningSocket.start();
         
         GenericIO.writelnString ("O serviço TransicaoAeroporto foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
         while(!canEnd)
-        {   sconi = scon.accept();
-            recolhaProxy = new ServerTransicaoAeroportoProxy(sconi,recolhaInter,this);
-            recolhaProxy.start();
+        {   commSocket = listeningSocket.accept();
+            transicaoProxy = new ServerTransicaoAeroportoProxy(commSocket,transicaoInter,this);
+            transicaoProxy.start();
         }
     }
     

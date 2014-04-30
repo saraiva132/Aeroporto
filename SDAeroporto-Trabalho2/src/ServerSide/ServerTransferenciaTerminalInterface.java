@@ -1,36 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ServerSide;
 
-import static Estruturas.AuxInfo.ANNOUNCING_BUS_BOARDING_SHOUTING;
-import static Estruturas.AuxInfo.CLOSE;
-import static Estruturas.AuxInfo.HAS_DAYS_WORK_ENDED;
-import static Estruturas.AuxInfo.OK;
-import static Estruturas.AuxInfo.SET_N_VOO;
-import static Estruturas.AuxInfo.TAKE_A_BUS;
-import static Estruturas.AuxInfo.nChegadas;
-import static Estruturas.AuxInfo.passMax;
+import static Estruturas.Globals.ANNOUNCING_BUS_BOARDING_SHOUTING;
+import static Estruturas.Globals.SHUTDOWN_MONITOR;
+import static Estruturas.Globals.HAS_DAYS_WORK_ENDED;
+import static Estruturas.Globals.OK;
+import static Estruturas.Globals.SET_N_VOO;
+import static Estruturas.Globals.TAKE_A_BUS;
+import static Estruturas.Globals.nChegadas;
+import static Estruturas.Globals.passMax;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.TransferenciaTerminal;
 
 /**
- *
+ * Este tipo de dados define o interface ao monitor <i>TranferenciaTerminal</i> do problema <b>Rapsódia no Aeroporto</b>.
+ * <p>
+ * Está encarregue de para cada mensagem do tipo <i>Request</i> validá-la e realizar a operação pedida na mesma
+ * sobre o montior <i>TransferenciaTerminal</i> devolvendo uma mensagem do tipo <i>Response</i> que que contém (no caso de haver) 
+ * o objecto devolvido pela operação que foi invocada no monitor.  
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ServerTransferenciaTerminalInterface implements ServerInterface{
-    private TransferenciaTerminal transferencia;
+    /**
+     * Monitor TransferenciaTerminal (representa o serviço a ser prestado)
+     * 
+     * @serialField transferencia
+     */
+    private final TransferenciaTerminal transferencia;
 
+    /**
+     * Instanciação do interface ao monitor TransferenciaTerminal
+     * 
+     * @param transferencia Monitor TransferenciaTerminal
+     */
     public ServerTransferenciaTerminalInterface(TransferenciaTerminal transferencia) {
         this.transferencia = transferencia;
     }
-    
+    /**
+     * Processamento das mensagens através da execução da operação correspondente.
+     * Geração de uma mensagem de resposta.
+     * 
+     * @param request mensagem com o pedido e (eventualmente) os parâmetros necessários para a realização da operação requerida sobre o monitor
+     * @return mensagem de resposta
+     * @throws MessageRequestException 
+     */
     @Override
     public Response processAndReply(Request request) throws MessageRequestException{
         Response response = null;
@@ -76,7 +92,7 @@ public class ServerTransferenciaTerminalInterface implements ServerInterface{
                 transferencia.setnVoo(nVoo, nPass);
                 response = new Response(OK,null);
                 break;
-            case CLOSE:
+            case SHUTDOWN_MONITOR:
                 response= new Response(OK,transferencia.shutdownMonitor());
                 break;
             default:

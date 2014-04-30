@@ -1,34 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ServerSide;
 
-import static Estruturas.AuxInfo.CLOSE;
-import static Estruturas.AuxInfo.NO_MORE_BAGS_TO_COLLECT;
-import static Estruturas.AuxInfo.OK;
-import static Estruturas.AuxInfo.TAKE_A_REST;
-import static Estruturas.AuxInfo.WHAT_SHOULD_I_DO;
-import static Estruturas.AuxInfo.bagMax;
-import static Estruturas.AuxInfo.passMax;
+import static Estruturas.Globals.SHUTDOWN_MONITOR;
+import static Estruturas.Globals.NO_MORE_BAGS_TO_COLLECT;
+import static Estruturas.Globals.OK;
+import static Estruturas.Globals.TAKE_A_REST;
+import static Estruturas.Globals.WHAT_SHOULD_I_DO;
+import static Estruturas.Globals.bagMax;
+import static Estruturas.Globals.passMax;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.ZonaDesembarque;
 
 /**
- *
+ * Este tipo de dados define o interface ao monitor <i>ZonaDesembarque</i> do problema <b>Rapsódia no Aeroporto</b>.
+ * <p>
+ * Está encarregue de para cada mensagem do tipo <i>Request</i> validá-la e realizar a operação pedida na mesma
+ * sobre o montior <i>ZonaDesembarque</i> devolvendo uma mensagem do tipo <i>Response</i> que que contém (no caso de haver) 
+ * o objecto devolvido pela operação que foi invocada no monitor.  
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ServerZonaDesembarqueInterface implements ServerInterface{
-    private ZonaDesembarque desembarque;
+    /**
+     * Monitor ZonaDesembarque (representa o serviço a ser prestado)
+     * 
+     * @serialField desembarque
+     */
+    private final ZonaDesembarque desembarque;
 
+    /**
+     * Instanciação do interface ao monitor ZonaDesembarque
+     * 
+     * @param zona Monitor ZonaDesembarque
+     */
     public ServerZonaDesembarqueInterface(ZonaDesembarque zona) {
         this.desembarque = zona;
     }
+    /**
+     * Processamento das mensagens através da execução da operação correspondente.
+     * Geração de uma mensagem de resposta.
+     * 
+     * @param request mensagem com o pedido e (eventualmente) os parâmetros necessários para a realização da operação requerida sobre o monitor
+     * @return mensagem de resposta
+     * @throws MessageRequestException 
+     */
     @Override
     public Response processAndReply(Request request) throws MessageRequestException {
         Response response = null;
@@ -62,7 +79,7 @@ public class ServerZonaDesembarqueInterface implements ServerInterface{
                 desembarque.noMoreBagsToCollect();
                 response = new Response(OK,null);
                 break;
-            case CLOSE:
+            case SHUTDOWN_MONITOR:
                 response= new Response(OK,desembarque.shutdownMonitor());
                 break;
             default:

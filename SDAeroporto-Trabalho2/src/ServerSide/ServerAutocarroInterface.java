@@ -1,29 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package ServerSide;
 
-import static Estruturas.AuxInfo.*;
+import static Estruturas.Globals.*;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import Monitores.Autocarro;
 
 /**
- *
+ * Este tipo de dados define o interface ao monitor <i>Autocarro</i> do problema <b>Rapsódia no Aeroporto</b>.
+ * <p>
+ * Está encarregue de para cada mensagem do tipo <i>Request</i> validá-la e realizar a operação pedida na mesma
+ * sobre o montior <i>Autocarro</i> devolvendo uma mensagem do tipo <i>Response</i> que que contém (no caso de haver) 
+ * o objecto devolvido pela operação que foi invocada no monitor.  
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ServerAutocarroInterface implements ServerInterface {
-    private Autocarro auto;
+    /**
+     * Monitor Autocarro (representa o serviço a ser prestado)
+     * 
+     * @serialField auto
+     */
+    private final Autocarro auto;
 
+    /**
+     * Instanciação do interface ao monitor Autocarro
+     * 
+     * @param auto Monitor Autocarro
+     */
     public ServerAutocarroInterface(Autocarro auto) {
         this.auto = auto;
     }
     
+    /**
+     * Processamento das mensagens através da execução da operação correspondente.
+     * Geração de uma mensagem de resposta.
+     * 
+     * @param request mensagem com o pedido e (eventualmente) os parâmetros necessários para a realização da operação requerida sobre o monitor
+     * @return mensagem de resposta
+     * @throws MessageRequestException 
+     */
     @Override
     public Response processAndReply(Request request) throws MessageRequestException{
        int ticketID=0,passageiroId=0,bilhetesVendidos=0;
@@ -105,7 +123,7 @@ public class ServerAutocarroInterface implements ServerInterface {
                            + "esperam-se 0 parametros!",request);
                auto.parkTheBusAndLetPassOff();
                break;
-           case CLOSE:
+           case SHUTDOWN_MONITOR:
                return new Response(OK,auto.shutdownMonitor());
            default:
                throw new MessageRequestException("Tipo de request inválido!",request);

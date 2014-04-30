@@ -1,9 +1,9 @@
 package Monitores;
 
 import ClientSide.InterfaceMonitoresLogging;
-import Estruturas.AuxInfo;
-import Estruturas.AuxInfo.destination;
-import static Estruturas.AuxInfo.passMax;
+import Estruturas.Globals;
+import Estruturas.Globals.destination;
+import static Estruturas.Globals.passMax;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
 
@@ -28,8 +28,26 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
      * @serialField canGo
      */
     private boolean canGo;
+    /**
+     * Identifica quantas entidades activas instanciadas (passageiro, bagageiro e motorista)
+     * já terminaram o seu ciclo de vida.
+     * <p>
+     * Necessário para a terminação do monitor.
+     * 
+     * @serialField three_entities_ended
+     */
     private int three_entities_ended;
-    private InterfaceMonitoresLogging log;
+    
+    /**
+     * Instância da comunicação monitores.
+     * <p>
+     * Necessário para a comunicação com o monitor <i>Logging</i>, no âmbito da 
+     * actualização do estado geral do problema aquando das operações realizadas 
+     * sobre o monitor.
+     * 
+     * @serialField log
+     */
+    private final InterfaceMonitoresLogging log;
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
      */
@@ -49,7 +67,6 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
      * <p>
      * O bagageiro descansa enquanto o próximo voo não chega e o último
      * passageiro não sai do avião
-     * @return numero do voo em que a simulacao se encontra
      */
     @Override
     public synchronized void takeARest() {
@@ -100,7 +117,7 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
         if (dest && nMalas == 0) {
             return destination.WITHOUT_BAGGAGE;
         } else if (dest) {
-        log.reportState(passageiroID, AuxInfo.passState.AT_THE_LUGGAGE_COLLECTION_POINT);
+        log.reportState(passageiroID, Globals.passState.AT_THE_LUGGAGE_COLLECTION_POINT);
             return destination.WITH_BAGGAGE;
 
         } else {
@@ -120,9 +137,24 @@ public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, Zona
     @Override
     public synchronized void noMoreBagsToCollect() {
     //System.out.println("No more bags to collect!");
-    log.reportState(AuxInfo.bagState.WAITING_FOR_A_PLANE_TO_LAND);
+    log.reportState(Globals.bagState.WAITING_FOR_A_PLANE_TO_LAND);
     }
     
+    /**
+     * Terminar o monitor.
+     * <p>
+     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * <p>
+     * No final da execução da simulação, para o fechar o monitor os 3 lançadores 
+     * das threads correspondentes ao passageiro, bagageiro e motorista necessitam de 
+     * fechar os monitores.
+     * 
+     * @return Informação se pode ou não terminar o monitor.
+     * <ul>
+     * <li>TRUE, caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     */
     public synchronized boolean shutdownMonitor(){
         return (++three_entities_ended >= 3);   
     }

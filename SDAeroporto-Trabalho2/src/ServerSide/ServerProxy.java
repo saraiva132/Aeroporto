@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServerSide;
 
-import static Estruturas.AuxInfo.CLOSE;
+import static Estruturas.Globals.SHUTDOWN_MONITOR;
 import Message.MessageRequestException;
 import Message.Request;
 import Message.Response;
 import genclass.GenericIO;
 
 /**
+ * Este tipo de dados define a classe mãe de todos os threads agentes prestadores de serviços <i>Server*Monitor_Name*Proxy</i>.
+ * <p>
+ * 
+ * 
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
@@ -65,7 +64,7 @@ public class ServerProxy extends Thread {
         boolean canEnd=false;
         try {
             response = monInterface.processAndReply(request);
-            if(request.getMethodName() == CLOSE)
+            if(request.getMethodName() == SHUTDOWN_MONITOR)
                 canEnd=(Boolean) response.getAns();
         } catch (MessageRequestException e) {
             GenericIO.writelnString("Thread " + name + ": " + e.getMessage() + "!");

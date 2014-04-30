@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Estruturas.AuxInfo.bagCollect;
+import Estruturas.Globals.bagCollect;
 
 /**
  * Identifica e descreve as operações que um passageiro pode realizar sobre o 
@@ -24,7 +24,6 @@ public interface RecolhaPassageiroInterface {
      * bem sucedida.
      * 
      * @param bagID identificador da mala
-     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      * @return Forma como conseguiu apanhar a sua mala: 
      * <ul>
      * <li>MINE, com sucesso 
@@ -50,7 +49,6 @@ public interface RecolhaPassageiroInterface {
      * 
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
-     * @param log referência para o monitor de logging; utilizado para reportar a evolução do estado global do problema
      */
     public void reportMissingBags(int passageiroID,int malasPerdidas);
 

@@ -7,7 +7,7 @@
 package sdaeroporto;
 
 import ClientSide.InterfaceMain;
-import Estruturas.AuxInfo;
+import Estruturas.Globals;
 import Threads.Bagageiro;
 import genclass.GenericIO;
 
@@ -32,7 +32,7 @@ public class BagageiroMain {
             GenericIO.writelnString("Erro a terminar bagageiro!");
             System.exit(-1);
         }
-        for(int i = 0; i<AuxInfo.hostName.length;i++)
+        for(int i = 0; i<Globals.hostNames.length;i++)
             clientResquest.closeMonitor(i);
     }
 }

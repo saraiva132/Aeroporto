@@ -51,10 +51,5 @@ public class Mala implements Serializable {
     public boolean inTransit() {
         return transit;
     }
-    
-    @Override
-    public Mala clone() throws CloneNotSupportedException{
-        return (Mala) super.clone();
-    }
 
 }
