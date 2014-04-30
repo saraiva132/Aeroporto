@@ -21,6 +21,7 @@ public class MotoristaMain {
     public static void main(String[] args) {
         GenericIO.writelnString ("O cliente MotoristaMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
+        Globals.xmlParser();
         Motorista motorista = new Motorista();
         InterfaceMain clientResquest = new InterfaceMain();
         motorista.start();

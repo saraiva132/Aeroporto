@@ -1,5 +1,6 @@
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_TRANSFERENCIA_TERMINAL;
 import static Estruturas.Globals.portNumber;
 import Monitores.TransferenciaTerminal;
@@ -26,6 +27,7 @@ public class TransferenciaTerminalMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new TransferenciaTerminalMain().listening();
     }
     /**

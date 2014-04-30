@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<conf>
+    <monitores>
+        <ZonaDesembarque>
+            <nome>l040101-ws1.clients.ua.pt</nome>
+        </ZonaDesembarque>
+        <RecolhaBagagem>
+            <nome>l040101-ws2.clients.ua.pt</nome>
+        </RecolhaBagagem>
+        <Porao>
+            <nome>l040101-ws3.clients.ua.pt</nome>
+        </Porao>
+        <TransferenciaTerminal>
+            <nome>l040101-ws4.clients.ua.pt</nome>
+        </TransferenciaTerminal>
+        <Autocarro>
+            <nome>l040101-ws5.clients.ua.pt</nome>
+        </Autocarro>
+        <TransicaoAeroporto>
+            <nome>l040101-ws7.clients.ua.pt</nome>
+        </TransicaoAeroporto>
+        <Logging>
+            <nome>l040101-ws8.clients.ua.pt</nome>
+        </Logging>
+    </monitores>
+    <Simulation>
+        <voo>10</voo>
+        <bag>2</bag>
+        <pass>20</pass>
+        <lotacao>5</lotacao>     
+    </Simulation>
+</conf>

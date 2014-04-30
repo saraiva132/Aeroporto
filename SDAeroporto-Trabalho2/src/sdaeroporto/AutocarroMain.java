@@ -1,5 +1,6 @@
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_AUTOCARRO;
 import static Estruturas.Globals.portNumber;
 import Monitores.Autocarro;
@@ -27,6 +28,7 @@ public class AutocarroMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new AutocarroMain().listening();
     }
     
@@ -36,6 +38,7 @@ public class AutocarroMain {
      * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
      */
     public void listening(){
+        
         Autocarro auto;
         ServerAutocarroInterface autoInter;
         ServerCom commSocket;

@@ -25,7 +25,7 @@ public class PassageiroMain {
     public static void main(String[] args) {
         GenericIO.writelnString ("O cliente PassageiroMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
-        
+        Globals.xmlParser();
         InterfaceMain clientRequest = new InterfaceMain();
         Passageiro[] passageiro = new Passageiro[passMax];
         int[] nMalasPass = new int[passMax];

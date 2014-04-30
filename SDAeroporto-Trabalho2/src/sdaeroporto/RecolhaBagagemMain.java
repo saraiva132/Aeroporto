@@ -6,6 +6,7 @@
 
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_RECOLHA_BAGAGEM;
 import static Estruturas.Globals.portNumber;
 import Monitores.RecolhaBagagem;
@@ -26,6 +27,7 @@ public class RecolhaBagagemMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new RecolhaBagagemMain().listening();
     }
     /**

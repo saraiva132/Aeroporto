@@ -1,5 +1,6 @@
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
 import static Estruturas.Globals.portNumber;
 import Monitores.Porao;
@@ -26,6 +27,7 @@ public class PoraoMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new PoraoMain().listening();
     }
     /**

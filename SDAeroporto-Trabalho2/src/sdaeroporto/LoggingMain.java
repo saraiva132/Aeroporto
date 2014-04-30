@@ -1,5 +1,6 @@
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_LOGGING;
 import static Estruturas.Globals.portNumber;
 import Monitores.Logging;
@@ -25,6 +26,7 @@ public class LoggingMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new LoggingMain().listening();
     }
     /**

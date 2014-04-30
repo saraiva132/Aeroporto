@@ -6,6 +6,7 @@
 
 package sdaeroporto;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.MON_ZONA_DESEMBARQUE;
 import static Estruturas.Globals.portNumber;
 import Monitores.ZonaDesembarque;
@@ -32,6 +33,7 @@ public class ZonaDesembarqueMain {
      * Programa Principal.
      */
     public static void main(String[] args) {
+        Globals.xmlParser();
         new ZonaDesembarqueMain().listening();
     }
     /**

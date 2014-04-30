@@ -21,6 +21,7 @@ public class BagageiroMain {
     public static void main(String[] args) {
         GenericIO.writelnString ("O cliente BagageiroMain foi estabelecido!");
         GenericIO.writelnString ("A iniciar operacoes.");
+        Globals.xmlParser();
         Bagageiro bagageiro = new Bagageiro();
         InterfaceMain clientResquest = new InterfaceMain();
         bagageiro.start();
