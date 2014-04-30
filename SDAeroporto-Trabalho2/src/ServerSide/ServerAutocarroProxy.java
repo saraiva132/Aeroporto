@@ -24,19 +24,19 @@ public class ServerAutocarroProxy extends ServerProxy{
     private final AutocarroMain autocarroMain;
 
     /**
-     * Instanciação do interface ao Autocarro
+     * Instanciação do interface ao monitor Autocarro
      * 
      * @param sconi canal de comunicação
      * @param autoInter insterface ao Autocarro
      * @param autocarroMain referência para o tipo de dados <i>AutocarroMain</i>
      */
     public ServerAutocarroProxy(ServerCom sconi, ServerAutocarroInterface autoInter,AutocarroMain autocarroMain) {
-        super(sconi,autoInter,"AutocarroProxy_");
+        super(sconi,autoInter,"AutocarroProxy");
         this.autocarroMain = autocarroMain;
     }      
     
     /**
-     * Ciclo de vida do thread agente prestador de serviçoes do monitor <i>Autocarro</i>.
+     * Ciclo de vida do thread agente prestador de serviços do monitor <i>Autocarro</i>.
      */
     @Override
     public void run(){

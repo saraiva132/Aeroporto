@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import static Estruturas.Globals.MON_LOGGING;
@@ -14,20 +9,29 @@ import java.io.PrintStream;
 import ServerSide.ServerCom;
 
 /**
- *
+ * Este tipo de dados simula a solução do lado do servidor referente ao monitor <i>Logging</i> do problema
+ * <b>Rapsódia no Aeroporto</b>.
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class LoggingMain {
-    private ServerCom listeningSocket;
-    private boolean canEnd=false;
     /**
-     * @param args the command line arguments
+     * Canal de escuta.
+     * 
+     * @serialField listeningSocket
+     */
+    private ServerCom listeningSocket;
+    /**
+     * Programa Principal.
      */
     public static void main(String[] args) {
         new LoggingMain().listening();
     }
-    
+    /**
+     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>Logging</i> e ainda do canal de escuta.
+     * <p>
+     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     */
     public void listening(){
         
         PrintStream stdout = System.out;
@@ -40,16 +44,16 @@ public class LoggingMain {
         stdout.println("O serviço Logging foi estabelecido!");
         stdout.println("O servidor esta em escuta.");
 
-        while (!canEnd) {
+        while (true) {
             commSocket = listeningSocket.accept();
             logProxy = new ServerLoggingProxy(commSocket, logInter,stdout,this);
             logProxy.start();
         }
     }
-    
+    /**
+     * Terminar a execução do serviço referente ao monitor <i>Logging</i>.
+     */
     public void close(){
-        canEnd=true;
-        //scon.end();
         System.exit(0);
     }
 

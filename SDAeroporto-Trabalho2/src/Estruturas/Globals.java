@@ -22,28 +22,28 @@ public class Globals {
      * 
      * @serialField chegadas
      */
-    public static final int nChegadas = 2;
+    public static final int nChegadas = 5;
     
     /**
      * Identificação do número máximo de bagagens por passageiro
      * 
      * @serialField bagMax
      */
-    public static final int bagMax = 50;
+    public static final int bagMax = 3;
     
     /**
      * Identificação da lotação máxima do autocarro
      * 
      * @serialField lotação
      */
-    public static final int lotação = 20;
+    public static final int lotação = 3;
     
     /**
      * Identificação do número de passageiros que chega por voo
      * 
      * @serialField passMax
      */
-    public static final int passMax = 80;
+    public static final int passMax = 6;
     
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu  
@@ -564,16 +564,17 @@ public class Globals {
      * </ul>
      * @serialField hostNames
      */
-   /* public static final String [] hostNames = { "127.0.0.1",
-                                               "127.0.0.1",
-                                               "127.0.0.1",
-                                               "127.0.0.1",
-                                               "127.0.0.1",
-                                               "127.0.0.1",
-                                               "127.0.0.1",};*/
+    
+//    public static final String [] hostNames = { "127.0.0.1",
+//                                               "127.0.0.1",
+//                                               "127.0.0.1",
+//                                               "127.0.0.1",
+//                                               "127.0.0.1",
+//                                               "127.0.0.1",
+//                                               "127.0.0.1",};
     
     
-    public static final String [] hostNames = { "l040101-ws1.clients.ua.pt",
+   public static final String [] hostNames = { "l040101-ws1.clients.ua.pt",
                                         "l040101-ws2.clients.ua.pt",
                                         "l040101-ws3.clients.ua.pt",
                                         "l040101-ws4.clients.ua.pt",

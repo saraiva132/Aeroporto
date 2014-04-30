@@ -41,23 +41,15 @@ public class Motorista extends Thread {
      */
     @Override
     public void run() {
-        Random r = new Random();
         while (!motoristaI.hasDaysWorkEnded()) {
-            try{
-                Thread.sleep(r.nextInt(100));
+            
                 int nTickets = motoristaI.announcingBusBoardingShouting();
-                Thread.sleep(r.nextInt(100));
                 motoristaI.announcingBusBoardingWaiting(nTickets);
-                Thread.sleep(r.nextInt(100));
                 motoristaI.goToDepartureTerminal();
-                Thread.sleep(r.nextInt(100));
                 motoristaI.parkTheBusAndLetPassOff();
-                Thread.sleep(r.nextInt(100));
                 motoristaI.goToArrivalTerminal();  
-                Thread.sleep(r.nextInt(100));
                 motoristaI.parkTheBus();
-                Thread.sleep(r.nextInt(100));
-            } catch (InterruptedException ex) {}
+            
         }
     }
 }

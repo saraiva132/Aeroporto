@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package sdaeroporto;
 
 import ClientSide.InterfaceMain;
@@ -12,13 +6,17 @@ import Threads.Bagageiro;
 import genclass.GenericIO;
 
 /**
+ * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b> do 
+ * lado do cliente correspondente ao <i>bagageiro</i>.
+ * <p>
+ * A comunicação baseia-se em passagem de mensagens sobre sockets usando o protocolo TCP.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class BagageiroMain {
     /**
-     * @param args the command line arguments
+     * Programa Principal
      */
     public static void main(String[] args) {
         GenericIO.writelnString ("O cliente BagageiroMain foi estabelecido!");

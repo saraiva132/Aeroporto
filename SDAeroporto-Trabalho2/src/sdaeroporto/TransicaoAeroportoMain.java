@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package sdaeroporto;
 
 import static Estruturas.Globals.MON_TRANSICAO_AEROPORTO;
@@ -15,20 +9,30 @@ import genclass.GenericIO;
 import ServerSide.ServerCom;
 
 /**
- *
+ * Este tipo de dados simula a solução do lado do servidor referente ao monitor <i>TransicaoAeroporto</i> do problema
+ * <b>Rapsódia no Aeroporto</b>.
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class TransicaoAeroportoMain {
-    private ServerCom listeningSocket;
-    private boolean canEnd=false;
     /**
-     * @param args the command line arguments
+     * Canal de escuta.
+     * 
+     * @serialField listeningSocket
+     */
+    private ServerCom listeningSocket;
+    /**
+     * Programa Principal.
      */
     public static void main(String[] args) {
         new TransicaoAeroportoMain().listening();
     }
-    
+    /**
+     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>TransicaoAeroporto</i> e ainda do canal de escuta.
+     * <p>
+     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     */
     private void listening(){
         TransiçãoAeroporto transicao = new TransiçãoAeroporto();
         ServerTransicaoAeroportoInterface transicaoInter = new ServerTransicaoAeroportoInterface(transicao);
@@ -41,16 +45,16 @@ public class TransicaoAeroportoMain {
         GenericIO.writelnString ("O serviço TransicaoAeroporto foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(!canEnd)
+        while(true)
         {   commSocket = listeningSocket.accept();
             transicaoProxy = new ServerTransicaoAeroportoProxy(commSocket,transicaoInter,this);
             transicaoProxy.start();
         }
     }
-    
+    /**
+     * Terminar a execução do serviço referente ao monitor <i>TransicaoAeroporto</i>.
+     */
     public void close(){
-        canEnd=true;
-        //scon.end();
         System.exit(0);
     }
     

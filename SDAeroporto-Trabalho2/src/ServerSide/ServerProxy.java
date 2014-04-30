@@ -7,10 +7,11 @@ import Message.Response;
 import genclass.GenericIO;
 
 /**
- * Este tipo de dados define a classe mãe de todos os threads agentes prestadores de serviços <i>Server*Monitor_Name*Proxy</i>.
+ * Este tipo de dados define a classe mãe de todos os threads agentes prestadores 
+ * de serviços <i>Server*Monitor_Name*Proxy</i> para a solução do problema <b>Rapsódia no Aeroporto</b>.
  * <p>
- * 
- * 
+ * É responsável por ler o pedido do cliente, delegar o ser processamento ao <i>Server*Monitor_Name*Interface</i>
+ * e enviar uma mensagem de resposta de volta ao cliente. * 
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
@@ -23,40 +24,52 @@ public class ServerProxy extends Thread {
      * @serialField nProxy
      */
     private static int nProxy=0;
-    
+    /**
+     * Instância da interface a um monitor genérico.
+     * 
+     * @serialField monInterface
+     */
     private ServerInterface monInterface=null;
-    private String name=null;
-    private ServerSide.ServerCom sconi=null;
     
+    /**
+     * Identificador da thread.
+     * 
+     * @serialField name
+     */
+    private String name=null;
+    /**
+     * Canal de comunicação.
+     * 
+     * @serialField sconi
+     */
+    private ServerSide.ServerCom sconi=null;
+    /**
+     * 
+     * @param sconi canal de comunicação
+     * @param monInterface interface a um monitor genérico no âmbito do problema <b>Rapsódia no Aeroporto</b>
+     * @param name identificador da thread
+     */
     public ServerProxy(ServerCom sconi, ServerInterface monInterface, String name) {
-        this.name =name+getProxyId(); 
+        this.name =name; 
         this.monInterface = monInterface;
         this.sconi = sconi;
     }
     
-    
-    private static int getProxyId() {
-        Class<ServerSide.ServerAutocarroProxy> cl = null;             // representação do tipo de dados ServerAutocarroProxy na máquina
-        //   virtual de Java
-        int proxyId;                                         // identificador da instanciação
-
-        try {
-            cl = (Class<ServerSide.ServerAutocarroProxy>) Class.forName("ServerSide.ServerAutocarroProxy");
-        } catch (ClassNotFoundException e) {
-            GenericIO.writelnString("O tipo de dados ServerAutocarroProxy não foi encontrado!");
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-        synchronized (cl) {
-            proxyId = nProxy;
-            nProxy += 1;
-        }
-
-        return proxyId;
-    }
-    
-    
+    /**
+     * Operação a ser realizada durante o ciclo de vida de um thread agente prestador de serviços:
+     * <ul>
+     * <li>ler pedido do cliente;
+     * <li>processar pedido do cliente;
+     * <li>enviar resposta para o cliente;
+     * <li>fechar canal de comunicação.
+     * </ul>
+     * @return Informação se o servidor pode terminar a sua execução:
+     * <ul>
+     * <li>TRUE, caso possa
+     * <li>FALSE, caso contrário
+     * </ul>
+     * 
+     */
     protected boolean requestAndReply(){
         Request request;
         Response response = null;
@@ -80,5 +93,4 @@ public class ServerProxy extends Thread {
         sconi.close();              
         return canEnd;
     }
-
 }

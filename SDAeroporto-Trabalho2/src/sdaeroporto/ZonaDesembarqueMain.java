@@ -15,20 +15,30 @@ import genclass.GenericIO;
 import ServerSide.ServerCom;
 
 /**
- *
+ * Este tipo de dados simula a solução do lado do servidor referente ao monitor <i>ZonaDesembarque</i> do problema
+ * <b>Rapsódia no Aeroporto</b>.
+ * 
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ZonaDesembarqueMain {
-    private ServerCom listeningSocket;
-    private boolean canEnd=false;
     /**
-     * @param args the command line arguments
+     * Canal de escuta.
+     * 
+     * @serialField listeningSocket
+     */
+    private ServerCom listeningSocket;
+    /**
+     * Programa Principal.
      */
     public static void main(String[] args) {
         new ZonaDesembarqueMain().listening();
     }
-    
+    /**
+     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>ZonaDesembarques</i> e ainda do canal de escuta.
+     * <p>
+     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     */
     private void listening(){
         ZonaDesembarque desembarque = new ZonaDesembarque();
         ServerZonaDesembarqueInterface desembarqueInter = new ServerZonaDesembarqueInterface(desembarque);
@@ -41,16 +51,16 @@ public class ZonaDesembarqueMain {
         GenericIO.writelnString ("O serviço ZonaDesembarque foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(!canEnd)
+        while(true)
         {   commSocket = listeningSocket.accept();
             desembarqueProxy = new ServerZonaDesembarqueProxy(commSocket,desembarqueInter,this);
             desembarqueProxy.start();
         }
     }
-    
+    /**
+     * Terminar a execução do serviço referente ao monitor <i>ZonaDesembarque</i>.
+     */
     public void close(){
-        canEnd=true;
-        //scon.end();
         System.exit(0);
     }
     

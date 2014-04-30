@@ -23,11 +23,16 @@ public class RecolhaBagagemMain {
    private ServerCom listeningSocket;
    private boolean canEnd=false;
     /**
-     * @param args the command line arguments
+     * Programa Principal.
      */
     public static void main(String[] args) {
         new RecolhaBagagemMain().listening();
     }
+    /**
+     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>RecolhaBagagem</i> e ainda do canal de escuta.
+     * <p>
+     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     */
     public void listening(){
         RecolhaBagagem recolha = new RecolhaBagagem();
         ServerRecolhaBagagemInterface recolhaInter = new ServerRecolhaBagagemInterface(recolha);

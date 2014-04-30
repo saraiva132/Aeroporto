@@ -1,5 +1,5 @@
 /**
- * Contém a <i>main</i> da nossa solução ao problema <b>Rapsódia no Aeroporto</b>.
+ * Contém as <i>mains</i> da nossa solução ao problema <b>Rapsódia no Aeroporto</b>.
  * 
  * <p> É aqui que é criado e simulado o ciclo de vida de um aeroporto ao qual vão 
  * chegando aviões e os respectivos passageiros vão desembarcando e seguindo o curso
@@ -11,10 +11,11 @@
  * 
  * <p> Esta solução foi implementada com recurso a monitores, em <i>Java</i>. 
  * 
+ * <p>
+ * Para a impementação de uma solução distribuida necessitámos de criar uma main 
+ * reponsável por inicializar e instanciar os diferentes serviços e monitores e 
+ * as 3 entidades do nosso problema: passageiro, bagageiro e motorista. 
+ * 
  */
 
 package sdaeroporto;
-
-/*
-preciso de aceder à thread bagageiro e actualizar o nVoo
-*/

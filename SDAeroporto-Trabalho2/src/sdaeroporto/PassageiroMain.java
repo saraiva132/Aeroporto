@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sdaeroporto;
 
 import ClientSide.InterfaceMain;
@@ -15,14 +10,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
+ * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b> do 
+ * lado do cliente correspondente ao <i>passageiro</i>.
+ * <p>
+ * A comunicação baseia-se em passagem de mensagens sobre sockets usando o protocolo TCP.
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class PassageiroMain {
 
     /**
-     * @param args the command line arguments
+     * Programa Principal
      */
     public static void main(String[] args) {
         GenericIO.writelnString ("O cliente PassageiroMain foi estabelecido!");
@@ -38,8 +36,8 @@ public class PassageiroMain {
         for (int i = 0; i < nChegadas; i++) {
             
             for (int j = 0; j < passMax; j++) {
-                nMalasPass[j] = new Random().nextInt(bagMax + 1);
-                dest[j] = getRandomBoolean();
+                nMalasPass[j] = Math.abs( new Random().nextInt()%(bagMax+1));
+                dest[j] = getRandomDestination();
                 if (!dest[j]) {
                     passTRT++;
                 }
@@ -49,7 +47,7 @@ public class PassageiroMain {
             }
             
             clientRequest.sendLuggages(malas);
-            
+            System.out.println("malas size: "+malas.size());
             clientRequest.nVoo(i + 1);
 
             clientRequest.setPorao(malas.size());
@@ -87,7 +85,16 @@ public class PassageiroMain {
         
     }
 
-    public static boolean getRandomBoolean() {
-        return (new Random().nextInt()) < 0.5;
+    /**
+     * Gerar aleatoriamente o destino de um passageiro com a probabilidade de 70% de ser destino final e com probabilidade de 30% de estar em trânsito.
+     * 
+     * @return Informação sobre o tipo do passageiro:
+     * <ul>
+     * <li>TRUE, caso este seja o aeroporto de destino do passageiro
+     * <li>FALSE, caso o passageiro esteja em trânsito
+     * </ul>
+     */
+    public static boolean getRandomDestination() {
+        return (Math.abs( new Random().nextInt()%2)) < 0.7;
     }
 }

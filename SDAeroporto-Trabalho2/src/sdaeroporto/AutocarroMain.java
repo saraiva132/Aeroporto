@@ -9,20 +9,32 @@ import ServerSide.ServerCom;
 import genclass.GenericIO;
 
 /**
+ * Este tipo de dados simula a solução do lado do servidor referente ao monitor <i>Autocarro</i> do problema
+ * <b>Rapsódia no Aeroporto</b>.
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class AutocarroMain {
-    private boolean canEnd=false;
+    
+    /**
+     * Canal de escuta.
+     * 
+     * @serialField listeningSocket
+     */
    private ServerCom listeningSocket;
     /**
-     * @param args the command line arguments
+     * Programa Principal.
      */
     public static void main(String[] args) {
         new AutocarroMain().listening();
     }
     
+    /**
+     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>Autocarro</i> e ainda do canal de escuta.
+     * <p>
+     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     */
     public void listening(){
         Autocarro auto;
         ServerAutocarroInterface autoInter;
@@ -35,16 +47,17 @@ public class AutocarroMain {
         GenericIO.writelnString ("O serviço Autocarro foi estabelecido!");
         GenericIO.writelnString ("O servidor esta em escuta.");
         
-        while(!canEnd)
+        while(true)
         {   commSocket = listeningSocket.accept();
             autoProxy = new ServerAutocarroProxy(commSocket,autoInter,this);
             autoProxy.start();
         }        
     }
     
+    /**
+     * Terminar a execução do serviço referente ao monitor <i>Autocarro</i>.
+     */
     public void close(){
-        canEnd=true;
-        //scon.end();
         System.exit(0);
     }
     
