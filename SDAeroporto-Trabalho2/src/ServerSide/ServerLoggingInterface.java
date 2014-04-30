@@ -186,11 +186,11 @@ public class ServerLoggingInterface implements ServerInterface{
                 log.autocarroState(seats);                
                 break;
             case SHUTDOWN_MONITOR:
-                return new Response(OK,log.shutdownMonitor());
+                return new Response(OK,request.getSerial(),log.shutdownMonitor());
                  
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);
         }
-        return new Response(OK,null);
+        return new Response(OK,request.getSerial(),null);
     }
 }

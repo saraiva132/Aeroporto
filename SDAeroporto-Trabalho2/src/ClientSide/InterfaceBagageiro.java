@@ -47,7 +47,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         request = new Request(TRY_TO_COLLECT_A_BAG, new Object[]{});
         con.writeObject(request);
         response = (Response) con.readObject();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -89,7 +89,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         con.writeObject(request);
         response = (Response) con.readObject();
         con.close();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -118,7 +118,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         con.writeObject(request);
         response = (Response) con.readObject();
         con.close();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -142,7 +142,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         con.writeObject(request);
         response = (Response) con.readObject();
         con.close();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -167,7 +167,7 @@ public class InterfaceBagageiro implements PoraoBagageiroInterface, RecolhaBagag
         con.writeObject(request);
         response = (Response) con.readObject();
         con.close();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Bagageiro: Status de mensagem de resposta errado!");
             System.exit(1);
         }    

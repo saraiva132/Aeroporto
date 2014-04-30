@@ -52,7 +52,7 @@ public class ServerZonaDesembarqueInterface implements ServerInterface{
         switch(request.getMethodName()){
             case TAKE_A_REST:
                 desembarque.takeARest();
-                response = new Response(OK,null);
+                response = new Response(OK,request.getSerial(),null);
                 break;
                 
             case WHAT_SHOULD_I_DO:
@@ -73,14 +73,14 @@ public class ServerZonaDesembarqueInterface implements ServerInterface{
                     throw new MessageRequestException("Id do passageiro inválido",request);
                 if(nMalas<0 || nMalas>bagMax)
                     throw new MessageRequestException("Número de malas inválido",request);
-                response = new Response(OK,desembarque.whatShouldIDo(passId, dest, nMalas));
+                response = new Response(OK,request.getSerial(),desembarque.whatShouldIDo(passId, dest, nMalas));
                 break;
             case NO_MORE_BAGS_TO_COLLECT:
                 desembarque.noMoreBagsToCollect();
-                response = new Response(OK,null);
+                response = new Response(OK,request.getSerial(),null);
                 break;
             case SHUTDOWN_MONITOR:
-                response= new Response(OK,desembarque.shutdownMonitor());
+                response= new Response(OK,request.getSerial(),desembarque.shutdownMonitor());
                 break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

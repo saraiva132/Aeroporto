@@ -24,15 +24,17 @@ public class Response implements Serializable {
      * @serialField ans
      */
     private final Object ans;
-
+    
+    private int serial;
     /**
      * Instanciação de uma mensagem do tipo Response
      * @param status status com que foi realizada a operação
      * @param ans resposta do monitor
      */
-    public Response(int status, Object ans) {
+    public Response(int status,int serial, Object ans) {
         this.status = status;
         this.ans = ans;
+        this.serial = serial;
     }
 
     /**
@@ -43,7 +45,11 @@ public class Response implements Serializable {
     public int getStatus() {
         return status;
     }
-
+    
+    public int getSerial(){
+        return serial;
+    }
+    
     /**
      * Obter conteúdo da resposta enviada pelo monitor no âmbito da operação realizada sobre ele.
      * @return Resposta enviada pelo monitor

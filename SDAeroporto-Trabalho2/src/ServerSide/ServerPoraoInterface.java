@@ -50,7 +50,7 @@ public class ServerPoraoInterface implements ServerInterface{
                if(request.getArgs().length != 0)
                    throw new MessageRequestException("Formato do request TRY_TO_COLLECT_A_BAG inválido: "
                            + "esperam-se 0 parametros!",request);
-                response = new Response(OK,porao.tryToCollectABag());
+                response = new Response(OK,request.getSerial(),porao.tryToCollectABag());
                break;
            case SEND_LUGAGES:
                Mala [] malas = new Mala[request.getArgs().length];
@@ -62,10 +62,10 @@ public class ServerPoraoInterface implements ServerInterface{
                 }
             }
             porao.sendLuggages(malas);
-            response = new Response(OK,null);
+            response = new Response(OK,request.getSerial(),null);
                break;
            case SHUTDOWN_MONITOR:
-               response= new Response(OK,porao.shutdownMonitor());
+               response= new Response(OK,request.getSerial(),porao.shutdownMonitor());
                break;
            default:
                throw new MessageRequestException("Tipo de request inválido!",request);

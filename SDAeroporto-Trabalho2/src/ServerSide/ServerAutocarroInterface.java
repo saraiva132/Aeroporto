@@ -124,11 +124,11 @@ public class ServerAutocarroInterface implements ServerInterface {
                auto.parkTheBusAndLetPassOff();
                break;
            case SHUTDOWN_MONITOR:
-               return new Response(OK,auto.shutdownMonitor());
+               return new Response(OK,request.getSerial(),auto.shutdownMonitor());
            default:
                throw new MessageRequestException("Tipo de request inválido!",request);
        }
-        return new Response(OK,null);
+        return new Response(OK,request.getSerial(),null);
     }
     
 }

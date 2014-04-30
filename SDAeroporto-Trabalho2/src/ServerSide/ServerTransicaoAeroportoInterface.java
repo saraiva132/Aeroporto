@@ -75,11 +75,11 @@ public class ServerTransicaoAeroportoInterface implements ServerInterface{
                 transicao.bagageiroDone();
                 break;
             case SHUTDOWN_MONITOR:
-                return new Response(OK,transicao.shutdownMonitor());
+                return new Response(OK,request.getSerial(),transicao.shutdownMonitor());
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);
                 
         }
-        return new Response(OK,null);
+        return new Response(OK,request.getSerial(),null);
     }
 }

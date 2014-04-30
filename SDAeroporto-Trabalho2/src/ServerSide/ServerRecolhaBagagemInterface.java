@@ -63,7 +63,7 @@ public class ServerRecolhaBagagemInterface implements ServerInterface{
                 if(bagID <0 || bagID>passMax)
                     throw new MessageRequestException("Id da bag inválido!",request);
                 
-                response = new Response(OK,recolha.goCollectABag(bagID));
+                response = new Response(OK,request.getSerial(),recolha.goCollectABag(bagID));
                 break;
                 
             case CARRY_IT_TO_APPROPRIATE_STORE:
@@ -75,12 +75,12 @@ public class ServerRecolhaBagagemInterface implements ServerInterface{
                 
                 Mala mala = (Mala) request.getArgs()[0];
                 
-                response = new Response(OK,recolha.carryItToAppropriateStore(mala));
+                response = new Response(OK,request.getSerial(),recolha.carryItToAppropriateStore(mala));
                 break;
                 
             case RESET_NOMORE_BAGS:
                 recolha.resetNoMoreBags();
-                response = new Response(OK,null);
+                response = new Response(OK,request.getSerial(),null);
                 break;
                 
             case REPORT_MISSING_BAGS:
@@ -96,10 +96,10 @@ public class ServerRecolhaBagagemInterface implements ServerInterface{
                 if(passId < 0 || passId >= passMax)
                     throw new MessageRequestException("Id de passageiro inválido!",request);
                 recolha.reportMissingBags(passId, nMalasPerdidas);
-                response = new Response(OK,null);
+                response = new Response(OK,request.getSerial(),null);
                 break;
             case SHUTDOWN_MONITOR:
-                response= new Response(OK,recolha.shutdownMonitor());               
+                response= new Response(OK,request.getSerial(),recolha.shutdownMonitor());               
                 break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

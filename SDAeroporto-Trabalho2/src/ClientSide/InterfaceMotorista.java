@@ -46,7 +46,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         con.writeObject(request);
         response = (Response) con.readObject();
         con.close();
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -66,7 +66,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -86,7 +86,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -106,7 +106,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -126,7 +126,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -151,7 +151,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -181,7 +181,7 @@ public class InterfaceMotorista implements AutocarroMotoristaInterface,Transfere
         response = (Response) con.readObject();
         con.close();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString("Motorista: Status de mensagem de resposta errado!");
             System.exit(1);
         }

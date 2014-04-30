@@ -63,13 +63,13 @@ public class ServerTransferenciaTerminalInterface implements ServerInterface{
                 if(passageiroId < 0 || passageiroId>passMax)
                     throw new MessageRequestException("Id do passageiro inválido!",request);
                 
-                response = new Response(OK,transferencia.takeABus(passageiroId));
+                response = new Response(OK,request.getSerial(),transferencia.takeABus(passageiroId));
                 break;                
             case HAS_DAYS_WORK_ENDED:
-                response = new Response(OK,transferencia.hasDaysWorkEnded());
+                response = new Response(OK,request.getSerial(),transferencia.hasDaysWorkEnded());
                 break;                
             case ANNOUNCING_BUS_BOARDING_SHOUTING:
-                response = new Response(OK,transferencia.announcingBusBoardingShouting());
+                response = new Response(OK,request.getSerial(),transferencia.announcingBusBoardingShouting());
                 break;
                 
             case SET_N_VOO:
@@ -90,10 +90,10 @@ public class ServerTransferenciaTerminalInterface implements ServerInterface{
                 if(nPass < 0 || nPass > passMax)
                     throw new MessageRequestException("Número de passageiros em trânsito inválido!",request);
                 transferencia.setnVoo(nVoo, nPass);
-                response = new Response(OK,null);
+                response = new Response(OK,request.getSerial(),null);
                 break;
             case SHUTDOWN_MONITOR:
-                response= new Response(OK,transferencia.shutdownMonitor());
+                response= new Response(OK,request.getSerial(),transferencia.shutdownMonitor());
                 break;
             default:
                 throw new MessageRequestException("Tipo de request inválido!",request);

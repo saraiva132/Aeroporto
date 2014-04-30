@@ -279,7 +279,7 @@ public class InterfaceMain {
      * @param response mensagem de resposta do servidor
      */
     private void checkStatus(Response response) {
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK ) {
             GenericIO.writelnString("PassageiroMain: Status de mensagem de resposta errado!");
             System.exit(1);
         }

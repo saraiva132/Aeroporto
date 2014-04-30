@@ -1,6 +1,7 @@
 package Message;
 
 import java.io.Serializable;
+import java.util.Random;
 
 /**
  * Formato de uma mensagem enviada por um <i>cliente</i> quando pretende realizar uma operação
@@ -35,7 +36,8 @@ public class Request implements Serializable{
      * @serialField args
      */
     private final Object[] args;
-
+    
+    private final int serial;
     /**
      * Instanciação de uma mensagem do tipo Request.
      * 
@@ -45,6 +47,7 @@ public class Request implements Serializable{
     public Request(int method, Object... args) {
         this.method = method;
         this.args = args;
+        serial = new Random().nextInt();
     }
     /**
      * Obter o identificador da operação a invocar.
@@ -61,6 +64,10 @@ public class Request implements Serializable{
      */
     public Object[] getArgs() {
         return args;
+    }
+    
+    public int getSerial(){
+        return serial;
     }
 
     /**

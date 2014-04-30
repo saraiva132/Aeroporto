@@ -59,7 +59,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -83,7 +83,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -116,7 +116,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -145,7 +145,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -168,7 +168,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -196,7 +196,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -219,7 +219,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }
@@ -254,7 +254,7 @@ public class InterfacePassageiro implements AutocarroPassageiroInterface, Recolh
         con.writeObject(request);
         response = (Response) con.readObject();
         
-        if (response.getStatus() != OK) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name+": Status de mensagem de resposta errado!");
             System.exit(1);
         }

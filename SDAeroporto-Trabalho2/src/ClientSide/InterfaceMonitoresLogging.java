@@ -62,7 +62,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(REPORT_STATE_PASSAGEIRO, new Object[]{passID,state});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -84,7 +84,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(BAGAGEM_BELT, new Object[]{take});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -101,7 +101,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(MALAS_ACTUAL, new Object[]{passID});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -119,7 +119,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(ADD_FILA_ESPERA, new Object[]{id});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -134,7 +134,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(REMOVE_FILA_ESPERA, new Object[]{});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -156,7 +156,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(AUTOCARRO_STATE, obj);
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -173,7 +173,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(MISSING_BAGS, new Object[]{malasPerdidas});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
 
     }
@@ -191,7 +191,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(REPORT_STATE_BAGAGEIRO, new Object[]{state});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -206,7 +206,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(BAGAGEM_PORAO, new Object[]{});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
 
     }
@@ -222,7 +222,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(BAGAGEM_STORE, new Object[]{});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
 
     }
@@ -239,7 +239,7 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
         request = new Request(REPORT_STATE_MOTORISTA, new Object[]{state});
         con.writeObject(request);
         response = (Response) con.readObject();
-        checkStatus(response);
+        checkStatus(request,response);
         con.close();
     }
     
@@ -248,8 +248,8 @@ public class InterfaceMonitoresLogging implements LoggingPassageiroInterface, Lo
      * 
      * @param response mensagem de resposta do servidor
      */
-    private void checkStatus(Response response) {
-        if (response.getStatus() != OK) {
+    private void checkStatus(Request request, Response response) {
+        if (response.getStatus() != OK || request.getSerial() != response.getSerial()) {
             GenericIO.writelnString(name + ": Status de mensagem de resposta errado!");
             System.exit(1);
         }
