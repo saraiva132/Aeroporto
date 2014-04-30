@@ -20,36 +20,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/Message/MessageResponseException.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/nbproject/build-impl.xml</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/MotoristaMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/TransferenciaTerminalMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerCom.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/ZonaDesembarqueMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/Estruturas/AuxInfo.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/TransicaoAeroportoMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ClientSide/InterfaceMonitoresLogging.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/PassageiroMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerAutocarroProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ClientSide/InterfaceBagageiro.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerZonaDesembarqueProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerPoraoProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/Interfaces/AutocarroMotoristaInterface.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerPoraoInterface.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/manifest.mf</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ClientSide/ClientCom.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ClientSide/InterfacePassageiro.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/BagageiroMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/AutocarroMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/sdaeroporto/PoraoMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerLoggingProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerLoggingInterface.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerTransferenciaTerminalProxy.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ServerSide/ServerZonaDesembarqueInterface.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/Monitores/Autocarro.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/ClientSide/InterfaceMain.java</file>
-            <file>file:/home/rafael/NetBeansProjects/SDAeroporto-Trabalho2/src/Monitores/Porao.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ClientSide/InterfaceMonitoresLogging.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/ClientSide/InterfaceMain.java</file>
+            <file>file:/C:/Users/Hugo/Desktop/sd-aeroporto-g7/SDAeroporto-Trabalho2/src/Monitores/RecolhaBagagem.java</file>
         </group>
     </open-files>
 </project-private>

@@ -47,7 +47,7 @@ public class PassageiroMain {
             }
             
             clientRequest.sendLuggages(malas);
-            System.out.println("malas size: "+malas.size());
+            
             clientRequest.nVoo(i + 1);
 
             clientRequest.setPorao(malas.size());
