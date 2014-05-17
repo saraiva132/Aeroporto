@@ -23,6 +23,9 @@ public interface TransferenciaPassageiroInterface extends Remote{
      * 
      * @param passageiroID identificador do passageiro
      * @return Posição do seu assento no autocarro
+     * @throws java.rmi.RemoteException
      */
     public int takeABus(int passageiroID) throws RemoteException;
+    
+    public void setnVoo(int nvoo, int transit) throws RemoteException;
 }

@@ -73,12 +73,6 @@ public class TransferenciaTerminalMain {
         Register register = null;
 
         try {
-            registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-        } catch (RemoteException e) {
-            System.exit(1);
-        }
-
-        try {
             register = (Register) registry.lookup(nameEntryBase);
         } catch (RemoteException e) {
             GenericIO.writelnString("RegisterRemoteObject lookup exception: " + e.getMessage());

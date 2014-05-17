@@ -31,6 +31,9 @@ public class MotoristaMain {
         GenericIO.writelnString("O cliente MotoristaMain foi estabelecido!");
         GenericIO.writelnString("A iniciar operacoes.");
         Globals.xmlParser();
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
         Registry registry;
         AutocarroMotoristaInterface auto = null;
         TransferenciaMotoristaInterface transferencia = null;

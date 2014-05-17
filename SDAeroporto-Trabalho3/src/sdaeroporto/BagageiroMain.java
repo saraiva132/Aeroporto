@@ -33,6 +33,9 @@ public class BagageiroMain {
         GenericIO.writelnString("O cliente BagageiroMain foi estabelecido!");
         GenericIO.writelnString("A iniciar operacoes.");
         Globals.xmlParser();
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
         Registry registry;
         PoraoBagageiroInterface porao = null;
         RecolhaBagageiroInterface recolha = null;

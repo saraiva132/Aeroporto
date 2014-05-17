@@ -53,5 +53,6 @@ public interface RecolhaPassageiroInterface extends Remote{
      * @param malasPerdidas número de malas perdidas
      */
     public void reportMissingBags(int passageiroID,int malasPerdidas)throws RemoteException;
-
+    
+    public void resetNoMoreBags() throws RemoteException;
 }

@@ -76,11 +76,6 @@ public class ZonaDesembarqueMain {
         String entry = "ZonaDesembarque";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
-        try {
-            registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-        } catch (RemoteException e) {
-            System.exit(1);
-        }
 
         try {
             register = (Register) registry.lookup(nameEntryBase);

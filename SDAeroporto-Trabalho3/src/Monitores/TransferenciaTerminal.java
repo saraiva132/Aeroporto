@@ -3,6 +3,7 @@ package Monitores;
 import static Estruturas.Globals.*;
 import Estruturas.Globals.passState;
 import Interfaces.LoggingInterface;
+import Interfaces.TransferenciaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import java.rmi.RemoteException;
@@ -19,7 +20,7 @@ import java.util.TimerTask;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class TransferenciaTerminal implements TransferenciaMotoristaInterface, TransferenciaPassageiroInterface {
+public class TransferenciaTerminal implements  TransferenciaInterface {
 
     /**
      * Fila de espera que se forma à entrada do autocarro. cada posição é

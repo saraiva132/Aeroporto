@@ -8,6 +8,7 @@ import Estruturas.Globals.passState;
 import Estruturas.Mala;
 import Interfaces.LoggingInterface;
 import Interfaces.RecolhaBagageiroInterface;
+import Interfaces.RecolhaInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import java.rmi.RemoteException;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ import java.util.HashMap;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class RecolhaBagagem implements RecolhaBagageiroInterface, RecolhaPassageiroInterface {
+public class RecolhaBagagem implements  RecolhaInterface {
 
     /**
      * Passadeira de bagagens na zona de recolha de bagagens. Cada key do

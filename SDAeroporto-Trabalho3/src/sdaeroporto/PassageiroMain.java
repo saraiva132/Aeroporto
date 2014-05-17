@@ -4,10 +4,13 @@ import Estruturas.Globals;
 import static Estruturas.Globals.*;
 import Estruturas.Mala;
 import Interfaces.AutocarroPassageiroInterface;
+import Interfaces.LoggingInterface;
+import Interfaces.PoraoPassageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import Interfaces.TransferenciaPassageiroInterface;
 import Interfaces.TransicaoPassageiroInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
+import Monitores.Logging;
 import Threads.Passageiro;
 import genclass.GenericIO;
 import java.rmi.NotBoundException;
@@ -36,11 +39,41 @@ public class PassageiroMain {
         GenericIO.writelnString("O cliente PassageiroMain foi estabelecido!");
         GenericIO.writelnString("A iniciar operacoes.");
         Globals.xmlParser();
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
         Passageiro[] passageiro = new Passageiro[passMax];
         int[] nMalasPass = new int[passMax];
         boolean[] dest = new boolean[passMax];
         int passTRT = 0;
         ArrayList<Mala> malas = new ArrayList();
+
+        Registry registry;
+        AutocarroPassageiroInterface auto = null;
+        RecolhaPassageiroInterface recolha = null;
+        TransicaoPassageiroInterface transicao = null;
+        ZonaDesembarquePassageiroInterface zona = null;
+        TransferenciaPassageiroInterface transferencia = null;
+        PoraoPassageiroInterface porao = null;
+        LoggingInterface log = null;
+        try {
+            registry = LocateRegistry.getRegistry(registryHostname, registryPort);
+            porao = (PoraoPassageiroInterface) registry.lookup("Porao");
+            log = (LoggingInterface) registry.lookup("Logging");
+            auto = (AutocarroPassageiroInterface) registry.lookup("Autocarro");
+            recolha = (RecolhaPassageiroInterface) registry.lookup("RecolhaBagagem");
+            transicao = (TransicaoPassageiroInterface) registry.lookup("TransiçãoAeroporto");
+            zona = (ZonaDesembarquePassageiroInterface) registry.lookup("ZonaDesembarque");
+            transferencia = (TransferenciaPassageiroInterface) registry.lookup("TransferenciaTerminal");
+        } catch (RemoteException e) {
+            GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
+            e.printStackTrace();
+            System.exit(1);
+        } catch (NotBoundException e) {
+            GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
+            e.printStackTrace();
+            System.exit(1);
+        }
 
         for (int i = 0; i < nChegadas; i++) {
 
@@ -54,39 +87,21 @@ public class PassageiroMain {
                     malas.add(new Mala(j, !dest[j]));
                 }
             }
+            
+            Object[] obj = new Object[malas.size()];
 
-            /*clientRequest.sendLuggages(malas);
-             System.out.println("malas size: "+malas.size());
-             clientRequest.nVoo(i + 1);
-
-             clientRequest.setPorao(malas.size());
-
-             clientRequest.malasInicial(nMalasPass);
-
-             clientRequest.destino(dest);
-
-             clientRequest.reportInitialStatus();*/
-            Registry registry;
-            AutocarroPassageiroInterface auto = null;
-            RecolhaPassageiroInterface recolha = null;
-            TransicaoPassageiroInterface transicao = null;
-            ZonaDesembarquePassageiroInterface zona = null;
-            TransferenciaPassageiroInterface transferencia = null;
-
+            for (int k = 0; k < malas.size(); k++) {
+                obj[k] = malas.get(k);
+            }
             try {
-                registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-                auto = (AutocarroPassageiroInterface) registry.lookup("Autocarro");
-                recolha = (RecolhaPassageiroInterface) registry.lookup("RecolhaBagagem");
-                transicao = (TransicaoPassageiroInterface) registry.lookup("TransiçãoAeroporto");
-                zona = (ZonaDesembarquePassageiroInterface) registry.lookup("ZonaDesembarque");
-                transferencia = (TransferenciaPassageiroInterface) registry.lookup("TransferenciaTerminal");
+
+                porao.sendLuggages((Mala[]) obj);
+                log.nVoo(i + 1);
+                log.setPorao(malas.size());
+                log.malasInicial(nMalasPass);
+                log.destino(dest);
+                log.reportInitialStatus();
             } catch (RemoteException e) {
-                GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
-                e.printStackTrace();
-                System.exit(1);
-            } catch (NotBoundException e) {
-                GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
-                e.printStackTrace();
                 System.exit(1);
             }
 
@@ -94,7 +109,11 @@ public class PassageiroMain {
                 passageiro[j] = new Passageiro(nMalasPass[j], j, i + 1, dest[j], zona, auto, transicao, recolha, transferencia);
             }
 
-            //clientRequest.setnVoo(i + 1, passTRT);
+            try {
+                transferencia.setnVoo(i + 1, passTRT);
+            } catch (RemoteException e) {
+                System.exit(1);
+            }
             passTRT = 0;
 
             /* arranque da simulação */
@@ -109,12 +128,17 @@ public class PassageiroMain {
                 }
 
             }
-            //clientRequest.resetNoMoreBags();
+            try {
+                recolha.resetNoMoreBags();
+            } catch (RemoteException e) {
+                System.exit(1);
+            }
+
             malas.clear();
         }
         for (int i = 0; i < Globals.hostNames.length; i++) //clientRequest.closeMonitor(i);
         {
-
+            //clientRequest.closeMonitor(i); //easy. add close to interfaces
         }
     }
 

@@ -3,8 +3,7 @@ package Monitores;
 import static Estruturas.Globals.*;
 import static Estruturas.Globals.passState.*;
 import Interfaces.LoggingInterface;
-import Interfaces.TransicaoBagageiroInterface;
-import Interfaces.TransicaoPassageiroInterface;
+import Interfaces.TransicaoInterface;
 import java.rmi.RemoteException;
 
 /**
@@ -13,7 +12,7 @@ import java.rmi.RemoteException;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class TransiçãoAeroporto implements TransicaoPassageiroInterface, TransicaoBagageiroInterface {
+public class TransiçãoAeroporto implements TransicaoInterface {
 
     /**
      * Número de passageiros que faltam chegar à saída do aeroporto

@@ -131,4 +131,16 @@ public interface LoggingInterface extends Remote{
      * @param malasPerdidas número de malas perdidas
      */
     public void missingBags(int malasPerdidas) throws RemoteException;
+    
+    public void nVoo(int nvoo) throws RemoteException;
+    
+    public void setPorao(int nMalas) throws RemoteException;
+    
+    public void malasInicial(int[] nMalas) throws RemoteException;
+    
+    public void destino(boolean[] dest) throws RemoteException;
+    
+    public void reportInitialStatus() throws RemoteException;
+    
+    
 }

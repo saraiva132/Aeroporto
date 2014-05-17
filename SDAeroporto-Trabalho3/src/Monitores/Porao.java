@@ -3,7 +3,7 @@ package Monitores;
 import Estruturas.Globals;
 import Estruturas.Mala;
 import Interfaces.LoggingInterface;
-import Interfaces.PoraoBagageiroInterface;
+import Interfaces.PoraoInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class Porao implements PoraoBagageiroInterface {
+public class Porao implements PoraoInterface {
 
     /**
      * Conjunto de malas que estão no porão do avião

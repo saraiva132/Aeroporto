@@ -2,8 +2,7 @@ package Monitores;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
-import Interfaces.AutocarroMotoristaInterface;
-import Interfaces.AutocarroPassageiroInterface;
+import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import java.rmi.RemoteException;
 
@@ -14,7 +13,7 @@ import java.rmi.RemoteException;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class Autocarro implements AutocarroMotoristaInterface, AutocarroPassageiroInterface {
+public class Autocarro implements AutocarroInterface {
 
     /**
      * Número de passageiros correntemente no autocarro

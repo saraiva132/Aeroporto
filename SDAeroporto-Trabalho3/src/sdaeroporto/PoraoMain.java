@@ -69,12 +69,6 @@ public class PoraoMain {
             System.exit(1);
         }
         String entry = "Porao";
-
-        try {
-            registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-        } catch (RemoteException e) {
-            System.exit(1);
-        }
         String nameEntryBase = "RegisterHandler";
         Register register = null;
 

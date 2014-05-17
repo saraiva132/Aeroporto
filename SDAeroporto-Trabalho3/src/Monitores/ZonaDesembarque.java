@@ -5,6 +5,7 @@ import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
+import Interfaces.ZonaDesembarqueInterface;
 import Interfaces.ZonaDesembarquePassageiroInterface;
 import java.rmi.RemoteException;
 
@@ -15,7 +16,7 @@ import java.rmi.RemoteException;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class ZonaDesembarque implements ZonaDesembarquePassageiroInterface, ZonaDesembarqueBagageiroInterface {
+public class ZonaDesembarque implements ZonaDesembarqueInterface {
 
     /**
      * Número de passageiros que faltam passar pela zona de desembarque.
