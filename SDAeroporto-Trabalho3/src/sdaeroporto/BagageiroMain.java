@@ -42,7 +42,7 @@ public class BagageiroMain {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
             porao = (PoraoBagageiroInterface) registry.lookup("Porao");
             recolha = (RecolhaBagageiroInterface) registry.lookup("RecolhaBagagem");
-            transicao = (TransicaoBagageiroInterface) registry.lookup("Transição");
+            transicao = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
             zona = (ZonaDesembarqueBagageiroInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
             GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");

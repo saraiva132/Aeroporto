@@ -30,9 +30,6 @@ public class AutocarroMain {
      */
     public static void main(String[] args) {
         Globals.xmlParser();
-        if (System.getSecurityManager() == null) {
-            System.setSecurityManager(new RMISecurityManager());
-        }
         new AutocarroMain().listening();
     }
 

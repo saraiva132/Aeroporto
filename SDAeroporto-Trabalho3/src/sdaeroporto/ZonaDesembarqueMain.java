@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sdaeroporto;
 
 import Estruturas.Globals;
@@ -21,13 +20,15 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- * Este tipo de dados simula a solução do lado do servidor referente ao monitor <i>ZonaDesembarque</i> do problema
+ * Este tipo de dados simula a solução do lado do servidor referente ao monitor
+ * <i>ZonaDesembarque</i> do problema
  * <b>Rapsódia no Aeroporto</b>.
- * 
+ *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class ZonaDesembarqueMain {
+
     /**
      * Programa Principal.
      */
@@ -35,13 +36,17 @@ public class ZonaDesembarqueMain {
         Globals.xmlParser();
         new ZonaDesembarqueMain().listening();
     }
+
     /**
-     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>ZonaDesembarques</i> e ainda do canal de escuta.
+     * Responsável pela inicialização e instanciação do agente prestador de
+     * serviço, do monitor e da interface ao <i>ZonaDesembarques</i> e ainda do
+     * canal de escuta.
      * <p>
-     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     * É responsável também pelo processo de escuta e do lançamento do agente
+     * prestador de serviço.
      */
-    private void listening(){
-        ZonaDesembarque desembarque ;
+    private void listening() {
+        ZonaDesembarque desembarque;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -77,16 +82,18 @@ public class ZonaDesembarqueMain {
         } catch (AlreadyBoundException e) {
             System.exit(1);
         }
-        
-        GenericIO.writelnString ("O serviço ZonaDesembarque foi estabelecido!");
-        GenericIO.writelnString ("O servidor esta em escuta.");
+
+        GenericIO.writelnString("O serviço ZonaDesembarque foi estabelecido!");
+        GenericIO.writelnString("O servidor esta em escuta.");
 
     }
+
     /**
-     * Terminar a execução do serviço referente ao monitor <i>ZonaDesembarque</i>.
+     * Terminar a execução do serviço referente ao monitor
+     * <i>ZonaDesembarque</i>.
      */
-    public void close(){
+    public void close() {
         System.exit(0);
     }
-    
+
 }
