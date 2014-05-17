@@ -46,4 +46,5 @@ public interface TransferenciaMotoristaInterface extends Remote{
      */
     public int announcingBusBoardingShouting() throws RemoteException;
     
+    public boolean shutdownMonitor() throws RemoteException;
 }

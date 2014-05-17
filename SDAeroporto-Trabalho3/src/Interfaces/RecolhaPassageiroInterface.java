@@ -55,4 +55,5 @@ public interface RecolhaPassageiroInterface extends Remote{
     public void reportMissingBags(int passageiroID,int malasPerdidas)throws RemoteException;
     
     public void resetNoMoreBags() throws RemoteException;
+    public boolean shutdownMonitor() throws RemoteException;
 }

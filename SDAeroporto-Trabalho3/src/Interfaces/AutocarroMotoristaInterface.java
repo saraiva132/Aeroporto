@@ -62,4 +62,6 @@ public interface AutocarroMotoristaInterface extends Remote {
      * até que o último passageiro saia do autocarro e o acorde.
      */
     public void parkTheBusAndLetPassOff() throws RemoteException;
+    
+    public boolean shutdownMonitor() throws RemoteException;
 }

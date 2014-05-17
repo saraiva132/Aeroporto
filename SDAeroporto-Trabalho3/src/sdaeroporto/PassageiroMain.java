@@ -136,9 +136,16 @@ public class PassageiroMain {
 
             malas.clear();
         }
-        for (int i = 0; i < Globals.hostNames.length; i++) //clientRequest.closeMonitor(i);
-        {
-            //clientRequest.closeMonitor(i); //easy. add close to interfaces
+       try {
+            log.shutdownMonitor();
+            transferencia.shutdownMonitor();
+            auto.shutdownMonitor();
+            porao.shutdownMonitor();
+            recolha.shutdownMonitor();
+            transicao.shutdownMonitor();
+            zona.shutdownMonitor();
+        } catch (RemoteException e) {
+            System.exit(1);
         }
     }
 

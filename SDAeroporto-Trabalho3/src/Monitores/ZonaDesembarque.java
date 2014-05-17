@@ -4,9 +4,7 @@ import Estruturas.Globals;
 import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
 import Interfaces.LoggingInterface;
-import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarqueInterface;
-import Interfaces.ZonaDesembarquePassageiroInterface;
 import java.rmi.RemoteException;
 
 /**

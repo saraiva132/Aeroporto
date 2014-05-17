@@ -24,4 +24,5 @@ public interface PoraoBagageiroInterface extends Remote{
      * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se encontrar vazio
      */
     public Mala tryToCollectABag() throws RemoteException;
+    public boolean shutdownMonitor() throws RemoteException;
 }

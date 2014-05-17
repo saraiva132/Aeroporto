@@ -37,4 +37,6 @@ public interface ZonaDesembarquePassageiroInterface extends Remote{
      * </ul>
      */
     public destination whatShouldIDo(int passageiroID, boolean dest,int nMalas) throws RemoteException;
+    
+    public boolean shutdownMonitor() throws RemoteException;
 }

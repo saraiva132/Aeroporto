@@ -20,4 +20,7 @@ public interface TransicaoBagageiroInterface extends Remote{
      * as malas do porão do avião em que chegaram e que, assim sendo, eles podem sair do aeroporto
      */
     public void bagageiroDone() throws RemoteException;
+    
+     public boolean shutdownMonitor() throws RemoteException;
+     
 }

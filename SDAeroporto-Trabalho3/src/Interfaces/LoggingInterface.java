@@ -142,5 +142,5 @@ public interface LoggingInterface extends Remote{
     
     public void reportInitialStatus() throws RemoteException;
     
-    
+    public boolean shutdownMonitor() throws RemoteException;
 }

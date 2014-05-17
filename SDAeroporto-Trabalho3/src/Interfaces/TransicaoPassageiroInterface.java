@@ -37,5 +37,6 @@ public interface TransicaoPassageiroInterface extends Remote{
      * @param passageiroId identificador do passageiro
      */
     public void prepareNextLeg(int passageiroId) throws RemoteException;
-
+    
+     public boolean shutdownMonitor() throws RemoteException;
 }

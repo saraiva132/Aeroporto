@@ -28,4 +28,6 @@ public interface TransferenciaPassageiroInterface extends Remote{
     public int takeABus(int passageiroID) throws RemoteException;
     
     public void setnVoo(int nvoo, int transit) throws RemoteException;
+    
+    public boolean shutdownMonitor() throws RemoteException;
 }

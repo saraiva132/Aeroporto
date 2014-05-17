@@ -40,7 +40,8 @@ public interface RecolhaBagageiroInterface extends Remote{
      * <ul>
      * <li>LOBBYCLEAN
      * </ul>
+     * @throws java.rmi.RemoteException
      */
     public bagDest carryItToAppropriateStore(Mala mala) throws RemoteException;
-     
+     public boolean shutdownMonitor() throws RemoteException;
 }

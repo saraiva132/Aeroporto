@@ -31,4 +31,6 @@ public interface ZonaDesembarqueBagageiroInterface extends Remote{
      * sua sala de espera
      */
     public void noMoreBagsToCollect() throws RemoteException;
+    
+    public boolean shutdownMonitor() throws RemoteException;
 }

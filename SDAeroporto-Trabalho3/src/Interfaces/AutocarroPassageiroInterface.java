@@ -42,5 +42,5 @@ public interface AutocarroPassageiroInterface extends Remote{
     
     public void leaveTheBus(int passageiroId, int ticketID) throws RemoteException;
 
-            
+    public boolean shutdownMonitor() throws RemoteException;        
 }

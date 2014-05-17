@@ -3,8 +3,19 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
+import Interfaces.AutocarroBagageiroInterface;
 import Interfaces.AutocarroMotoristaInterface;
+import Interfaces.LoggingInterface;
+import Interfaces.PoraoBagageiroInterface;
+import Interfaces.PoraoMotoristaInterface;
+import Interfaces.RecolhaBagageiroInterface;
+import Interfaces.RecolhaMotoristaInterface;
+import Interfaces.TransferenciaBagageiroInterface;
 import Interfaces.TransferenciaMotoristaInterface;
+import Interfaces.TransicaoBagageiroInterface;
+import Interfaces.TransicaoMotoristaInterface;
+import Interfaces.ZonaDesembarqueBagageiroInterface;
+import Interfaces.ZonaDesembarqueMotoristaInterface;
 import Threads.Motorista;
 import genclass.GenericIO;
 import java.rmi.NotBoundException;
@@ -37,10 +48,20 @@ public class MotoristaMain {
         Registry registry;
         AutocarroMotoristaInterface auto = null;
         TransferenciaMotoristaInterface transferencia = null;
+        PoraoMotoristaInterface porao = null;
+        RecolhaMotoristaInterface recolha = null;
+        TransicaoMotoristaInterface transicao = null;
+        ZonaDesembarqueMotoristaInterface zona = null;
+        LoggingInterface log = null;
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
+            log = (LoggingInterface) registry.lookup("Logging");
+            transferencia = (TransferenciaMotoristaInterface) registry.lookup("TransferenciaTerminal");
             auto = (AutocarroMotoristaInterface) registry.lookup("Autocarro");
-            transferencia = (TransferenciaMotoristaInterface) registry.lookup("Transferencia");
+            porao = (PoraoMotoristaInterface) registry.lookup("Porao");
+            recolha = (RecolhaMotoristaInterface) registry.lookup("RecolhaBagagem");
+            transicao = (TransicaoMotoristaInterface) registry.lookup("TransiçãoAeroporto");
+            zona = (ZonaDesembarqueMotoristaInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
             GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
             e.printStackTrace();
@@ -58,9 +79,16 @@ public class MotoristaMain {
             GenericIO.writelnString("Erro a terminar motorista!");
             System.exit(-1);
         }
-        for (int i = 0; i < Globals.hostNames.length; i++) //clientResquest.closeMonitor(i);
-        {
-            
+        try {
+            log.shutdownMonitor();
+            transferencia.shutdownMonitor();
+            auto.shutdownMonitor();
+            porao.shutdownMonitor();
+            recolha.shutdownMonitor();
+            transicao.shutdownMonitor();
+            zona.shutdownMonitor();
+        } catch (RemoteException e) {
+            System.exit(1);
         }
     }
 

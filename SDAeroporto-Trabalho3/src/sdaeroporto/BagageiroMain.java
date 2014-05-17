@@ -3,10 +3,14 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
+import Interfaces.AutocarroBagageiroInterface;
+import Interfaces.LoggingInterface;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
+import Interfaces.TransferenciaBagageiroInterface;
 import Interfaces.TransicaoBagageiroInterface;
 import Interfaces.ZonaDesembarqueBagageiroInterface;
+import Monitores.Logging;
 import Threads.Bagageiro;
 import genclass.GenericIO;
 import java.rmi.NotBoundException;
@@ -41,8 +45,15 @@ public class BagageiroMain {
         RecolhaBagageiroInterface recolha = null;
         TransicaoBagageiroInterface transicao = null;
         ZonaDesembarqueBagageiroInterface zona = null;
+        AutocarroBagageiroInterface auto = null;
+        TransferenciaBagageiroInterface transferencia = null;
+        LoggingInterface log = null;
+
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
+            log = (LoggingInterface) registry.lookup("Logging");
+            transferencia = (TransferenciaBagageiroInterface) registry.lookup("TransferenciaTerminal");
+            auto = (AutocarroBagageiroInterface) registry.lookup("Autocarro");
             porao = (PoraoBagageiroInterface) registry.lookup("Porao");
             recolha = (RecolhaBagageiroInterface) registry.lookup("RecolhaBagagem");
             transicao = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
@@ -64,9 +75,16 @@ public class BagageiroMain {
             GenericIO.writelnString("Erro a terminar bagageiro!");
             System.exit(-1);
         }
-        for (int i = 0; i < Globals.hostNames.length; i++) //clientResquest.closeMonitor(i);
-        {
-            
+        try {
+            log.shutdownMonitor();
+            transferencia.shutdownMonitor();
+            auto.shutdownMonitor();
+            porao.shutdownMonitor();
+            recolha.shutdownMonitor();
+            transicao.shutdownMonitor();
+            zona.shutdownMonitor();
+        } catch (RemoteException e) {
+            System.exit(1);
         }
     }
 }
