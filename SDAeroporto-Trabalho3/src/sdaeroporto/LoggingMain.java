@@ -5,9 +5,13 @@ import static Estruturas.Globals.MON_AUTOCARRO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
+import Interfaces.Register;
 import Monitores.Logging;
+import genclass.GenericIO;
 import java.io.PrintStream;
 import java.rmi.AlreadyBoundException;
+import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -33,27 +37,43 @@ public class LoggingMain {
      * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
      */
     public void listening(){
-        
+        if (System.getSecurityManager () == null)
+        System.setSecurityManager (new RMISecurityManager ());
+     GenericIO.writelnString ("Security manager was installed!");
+     
         PrintStream stdout = System.out;
         Logging log = null;
         Registry registry = null;
         LoggingInterface logInt = null;
         log = new Logging();
         try {
-            logInt = (LoggingInterface) UnicastRemoteObject.exportObject(log, MON_AUTOCARRO);
+            logInt = (LoggingInterface) UnicastRemoteObject.exportObject(log, Globals.MON_LOGGING);
         } catch (RemoteException e) {
             System.exit(1);
         }
         String entry = "Logging";
-        
+        String nameEntryBase = "RegisterHandler";
+        Register register = null;
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
         } catch (RemoteException e) {
             System.exit(1);
         }
-
+        
         try {
-            registry.bind(entry, logInt);
+            register = (Register) registry.lookup(nameEntryBase);
+        } catch (RemoteException e) {
+            GenericIO.writelnString("RegisterRemoteObject lookup exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        } catch (NotBoundException e) {
+            GenericIO.writelnString("RegisterRemoteObject not bound exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
+        
+        try {
+            register.bind(entry, logInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

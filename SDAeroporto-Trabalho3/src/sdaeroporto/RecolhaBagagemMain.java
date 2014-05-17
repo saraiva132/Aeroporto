@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package sdaeroporto;
 
 import Estruturas.Globals;
@@ -11,10 +10,12 @@ import static Estruturas.Globals.MON_PORAO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
+import Interfaces.Register;
 import Monitores.RecolhaBagagem;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -26,7 +27,9 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class RecolhaBagagemMain {
-   private boolean canEnd=false;
+
+    private boolean canEnd = false;
+
     /**
      * Programa Principal.
      */
@@ -34,12 +37,20 @@ public class RecolhaBagagemMain {
         Globals.xmlParser();
         new RecolhaBagagemMain().listening();
     }
+
     /**
-     * Responsável pela inicialização e instanciação do agente prestador de serviço, do monitor e da interface ao <i>RecolhaBagagem</i> e ainda do canal de escuta.
+     * Responsável pela inicialização e instanciação do agente prestador de
+     * serviço, do monitor e da interface ao <i>RecolhaBagagem</i> e ainda do
+     * canal de escuta.
      * <p>
-     * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
+     * É responsável também pelo processo de escuta e do lançamento do agente
+     * prestador de serviço.
      */
-    public void listening(){
+    public void listening() {
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new RMISecurityManager());
+        }
+        GenericIO.writelnString("Security manager was installed!");
         RecolhaBagagem recolha = null;
         Registry registry = null;
         LoggingInterface log = null;
@@ -57,12 +68,13 @@ public class RecolhaBagagemMain {
         }
         recolha = new RecolhaBagagem(log);
         try {
-            recolha = (RecolhaBagagem) UnicastRemoteObject.exportObject(recolha, MON_PORAO);
+            recolha = (RecolhaBagagem) UnicastRemoteObject.exportObject(recolha, Globals.MON_RECOLHA_BAGAGEM);
         } catch (RemoteException e) {
             System.exit(1);
         }
         String entry = "RecolhaBagagem";
-        
+        String nameEntryBase = "RegisterHandler";
+        Register register = null;
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
         } catch (RemoteException e) {
@@ -70,21 +82,33 @@ public class RecolhaBagagemMain {
         }
 
         try {
-            registry.bind(entry, recolha);
+            register = (Register) registry.lookup(nameEntryBase);
+        } catch (RemoteException e) {
+            GenericIO.writelnString("RegisterRemoteObject lookup exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        } catch (NotBoundException e) {
+            GenericIO.writelnString("RegisterRemoteObject not bound exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            register.bind(entry, recolha);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {
             System.exit(1);
         }
-        
-        GenericIO.writelnString ("O serviço RecolhaBagagem foi estabelecido!");
-        GenericIO.writelnString ("O servidor esta em escuta.");
+
+        GenericIO.writelnString("O serviço RecolhaBagagem foi estabelecido!");
+        GenericIO.writelnString("O servidor esta em escuta.");
     }
-    
+
     public void close() {
-        canEnd=true;
-       // scon.end();
+        canEnd = true;
+        // scon.end();
         System.exit(0);
     }
-    
+
 }

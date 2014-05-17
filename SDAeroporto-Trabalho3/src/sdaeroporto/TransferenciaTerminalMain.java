@@ -5,10 +5,12 @@ import static Estruturas.Globals.MON_PORAO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
+import Interfaces.Register;
 import Monitores.TransferenciaTerminal;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -41,6 +43,10 @@ public class TransferenciaTerminalMain {
      * prestador de serviço.
      */
     private void listening() {
+        if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new RMISecurityManager());
+        }
+        GenericIO.writelnString("Security manager was installed!");
         TransferenciaTerminal transferencia;
         Registry registry = null;
         LoggingInterface log = null;
@@ -58,11 +64,13 @@ public class TransferenciaTerminalMain {
         }
         transferencia = new TransferenciaTerminal(log);
         try {
-            transferencia = (TransferenciaTerminal) UnicastRemoteObject.exportObject(transferencia, MON_PORAO);
+            transferencia = (TransferenciaTerminal) UnicastRemoteObject.exportObject(transferencia, Globals.MON_TRANSFERENCIA_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
         }
         String entry = "TransferenciaTerminal";
+        String nameEntryBase = "RegisterHandler";
+        Register register = null;
 
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
@@ -71,7 +79,19 @@ public class TransferenciaTerminalMain {
         }
 
         try {
-            registry.bind(entry, transferencia);
+            register = (Register) registry.lookup(nameEntryBase);
+        } catch (RemoteException e) {
+            GenericIO.writelnString("RegisterRemoteObject lookup exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        } catch (NotBoundException e) {
+            GenericIO.writelnString("RegisterRemoteObject not bound exception: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        try {
+            register.bind(entry, transferencia);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {
