@@ -5,13 +5,11 @@ import static Estruturas.Globals.MON_AUTOCARRO;
 import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
-import Estruturas.ShutdownException;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
 import Monitores.Autocarro;
 import genclass.GenericIO;
-import static java.lang.Thread.currentThread;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RMISecurityManager;
@@ -19,8 +17,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução do lado do servidor referente ao monitor

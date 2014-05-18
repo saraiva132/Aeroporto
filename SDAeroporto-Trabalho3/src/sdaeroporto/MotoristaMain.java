@@ -3,19 +3,12 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
-import Estruturas.ShutdownException;
-import Interfaces.AutocarroBagageiroInterface;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.LoggingInterface;
-import Interfaces.PoraoBagageiroInterface;
 import Interfaces.PoraoMotoristaInterface;
-import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.RecolhaMotoristaInterface;
-import Interfaces.TransferenciaBagageiroInterface;
 import Interfaces.TransferenciaMotoristaInterface;
-import Interfaces.TransicaoBagageiroInterface;
 import Interfaces.TransicaoMotoristaInterface;
-import Interfaces.ZonaDesembarqueBagageiroInterface;
 import Interfaces.ZonaDesembarqueMotoristaInterface;
 import Threads.Motorista;
 import genclass.GenericIO;
@@ -23,8 +16,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b>

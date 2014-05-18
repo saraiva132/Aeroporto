@@ -3,7 +3,6 @@ package Monitores;
 import Estruturas.Globals;
 import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
-import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueInterface;
 import java.rmi.RemoteException;

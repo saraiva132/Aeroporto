@@ -2,12 +2,9 @@ package Monitores;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
-import Estruturas.ShutdownException;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sdaeroporto.AutocarroMain;
 
 /**

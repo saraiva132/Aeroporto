@@ -2,7 +2,6 @@ package Interfaces;
 
 import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
-import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

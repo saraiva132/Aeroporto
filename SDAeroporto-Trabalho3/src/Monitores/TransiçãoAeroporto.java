@@ -2,7 +2,6 @@ package Monitores;
 
 import static Estruturas.Globals.*;
 import static Estruturas.Globals.passState.*;
-import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
 import java.rmi.RemoteException;

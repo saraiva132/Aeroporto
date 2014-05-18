@@ -6,7 +6,6 @@
 
 package Interfaces;
 
-import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

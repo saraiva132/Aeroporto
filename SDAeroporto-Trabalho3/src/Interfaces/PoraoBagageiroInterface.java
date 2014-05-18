@@ -1,7 +1,6 @@
 package Interfaces;
 
 import Estruturas.Mala;
-import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

@@ -2,7 +2,6 @@ package Monitores;
 
 import Estruturas.Globals;
 import Estruturas.Mala;
-import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoInterface;
 import java.rmi.RemoteException;
