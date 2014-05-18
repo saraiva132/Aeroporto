@@ -6,6 +6,7 @@ import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
+import Interfaces.TransicaoInterface;
 import Monitores.TransiçãoAeroporto;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
@@ -48,6 +49,7 @@ public class TransicaoAeroportoMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         TransiçãoAeroporto transicao;
+        TransicaoInterface transInt = null;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -64,7 +66,7 @@ public class TransicaoAeroportoMain {
         }
         transicao = new TransiçãoAeroporto(log);
         try {
-            transicao = (TransiçãoAeroporto) UnicastRemoteObject.exportObject(transicao, Globals.MON_TRANSICAO_AEROPORTO);
+            transInt = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, Globals.MON_TRANSICAO_AEROPORTO);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -85,7 +87,7 @@ public class TransicaoAeroportoMain {
         }
 
         try {
-            register.bind(entry, transicao);
+            register.bind(entry, transInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

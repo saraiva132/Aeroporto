@@ -21,14 +21,20 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ServerRegisterRemoteObject {
 
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+
     public static void main(String[] args) {
 
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
+
         RegisterRemoteObject regEngine = new RegisterRemoteObject(registryHostname, registryPort);
-        int listeningPort = 22000;   //define in global
+        int listeningPort = 22005;   //define in global
         Register regEngineStub = null;
+
         try {
             regEngineStub = (Register) UnicastRemoteObject.exportObject(regEngine, listeningPort);
         } catch (RemoteException e) {
@@ -38,6 +44,7 @@ public class ServerRegisterRemoteObject {
 
         String nameEntry = "RegisterHandler";
         Registry registry = null;
+
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
         } catch (RemoteException e) {

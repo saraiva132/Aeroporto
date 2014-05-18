@@ -5,6 +5,7 @@ import static Estruturas.Globals.MON_PORAO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
+import Interfaces.PoraoInterface;
 import Interfaces.Register;
 import Monitores.Porao;
 import genclass.GenericIO;
@@ -48,6 +49,7 @@ public class PoraoMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         Porao porao;
+        PoraoInterface poraoInt = null;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -64,7 +66,7 @@ public class PoraoMain {
         }
         porao = new Porao(log);
         try {
-            porao = (Porao) UnicastRemoteObject.exportObject(porao, MON_PORAO);
+            poraoInt = (PoraoInterface) UnicastRemoteObject.exportObject(porao, MON_PORAO);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -85,7 +87,7 @@ public class PoraoMain {
         }
 
         try {
-            register.bind(entry, porao);
+            register.bind(entry, poraoInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

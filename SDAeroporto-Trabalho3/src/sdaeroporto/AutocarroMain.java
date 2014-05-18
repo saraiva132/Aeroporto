@@ -4,6 +4,7 @@ import Estruturas.Globals;
 import static Estruturas.Globals.MON_AUTOCARRO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
+import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
 import Monitores.Autocarro;
@@ -50,6 +51,7 @@ public class AutocarroMain {
         GenericIO.writelnString("Security manager was installed!");
 
         Autocarro auto = null;
+        AutocarroInterface autoInt = null;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -66,7 +68,7 @@ public class AutocarroMain {
         }
         auto = new Autocarro(log);
         try {
-            auto = (Autocarro) UnicastRemoteObject.exportObject(auto, MON_AUTOCARRO);
+            autoInt = (AutocarroInterface) UnicastRemoteObject.exportObject(auto, MON_AUTOCARRO);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -87,7 +89,7 @@ public class AutocarroMain {
         }
 
         try {
-            register.bind(entry, auto);
+            register.bind(entry, autoInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

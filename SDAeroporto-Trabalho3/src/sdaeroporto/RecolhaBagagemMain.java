@@ -10,6 +10,7 @@ import static Estruturas.Globals.MON_PORAO;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
+import Interfaces.RecolhaInterface;
 import Interfaces.Register;
 import Monitores.RecolhaBagagem;
 import genclass.GenericIO;
@@ -52,6 +53,7 @@ public class RecolhaBagagemMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         RecolhaBagagem recolha = null;
+        RecolhaInterface recolhaInt = null;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -68,7 +70,7 @@ public class RecolhaBagagemMain {
         }
         recolha = new RecolhaBagagem(log);
         try {
-            recolha = (RecolhaBagagem) UnicastRemoteObject.exportObject(recolha, Globals.MON_RECOLHA_BAGAGEM);
+            recolhaInt = (RecolhaInterface) UnicastRemoteObject.exportObject(recolha, Globals.MON_RECOLHA_BAGAGEM);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -89,7 +91,7 @@ public class RecolhaBagagemMain {
         }
 
         try {
-            register.bind(entry, recolha);
+            register.bind(entry, recolhaInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

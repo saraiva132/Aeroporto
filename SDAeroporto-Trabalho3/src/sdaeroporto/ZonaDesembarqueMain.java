@@ -11,6 +11,7 @@ import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
+import Interfaces.ZonaDesembarqueInterface;
 import Monitores.ZonaDesembarque;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
@@ -53,6 +54,7 @@ public class ZonaDesembarqueMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         ZonaDesembarque desembarque;
+        ZonaDesembarqueInterface zonaInt =  null;
         Registry registry = null;
         LoggingInterface log = null;
         try {
@@ -69,7 +71,7 @@ public class ZonaDesembarqueMain {
         }
         desembarque = new ZonaDesembarque(log);
         try {
-            desembarque = (ZonaDesembarque) UnicastRemoteObject.exportObject(desembarque, Globals.MON_ZONA_DESEMBARQUE);
+            zonaInt = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, Globals.MON_ZONA_DESEMBARQUE);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -90,7 +92,7 @@ public class ZonaDesembarqueMain {
         }
 
         try {
-            register.bind(entry, desembarque);
+            register.bind(entry, zonaInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

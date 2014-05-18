@@ -21,6 +21,7 @@ import Interfaces.Register;
 
 public class RegisterRemoteObject implements Register
 {
+    
   /**
    *  Name of local host
    *
