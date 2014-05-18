@@ -2,6 +2,7 @@ package Monitores;
 
 import static Estruturas.Globals.*;
 import Estruturas.Globals.passState;
+import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.TransferenciaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
@@ -11,6 +12,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import sdaeroporto.TransferenciaTerminalMain;
 
 /**
  *
@@ -97,11 +99,13 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-
+    
+    
+    private TransferenciaTerminalMain transf;
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
      */
-    public TransferenciaTerminal(LoggingInterface log) {
+    public TransferenciaTerminal(LoggingInterface log,TransferenciaTerminalMain transf) {
         nVoo = 1;
         passTRT = 99;
         fila = new LinkedList<>();
@@ -110,6 +114,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
         canGo = false;
         next = false;
         this.log = log;
+        this.transf = transf;
     }
 
     /**
@@ -294,7 +299,9 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            transf.close();
+        }
     }
 }

@@ -7,6 +7,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -31,7 +32,11 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class ZonaDesembarqueMain {
-
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal.
      */
@@ -69,9 +74,9 @@ public class ZonaDesembarqueMain {
             e.printStackTrace();
             System.exit(1);
         }
-        desembarque = new ZonaDesembarque(log);
+        desembarque = new ZonaDesembarque(log,this);
         try {
-            zonaInt = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, Globals.MON_ZONA_DESEMBARQUE);
+            zonaInt = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, portNumber[Globals.MON_ZONA_DESEMBARQUE]);
         } catch (RemoteException e) {
             System.exit(1);
         }

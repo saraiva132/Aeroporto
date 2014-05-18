@@ -2,6 +2,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_AUTOCARRO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -24,6 +25,11 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class LoggingMain {
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal.
      */
@@ -45,10 +51,11 @@ public class LoggingMain {
         Logging log = null;
         Registry registry = null;
         LoggingInterface logInt = null;
-        log = new Logging();
+        log = new Logging(this);
         try {
-            logInt = (LoggingInterface) UnicastRemoteObject.exportObject(log, Globals.MON_LOGGING);
+            logInt = (LoggingInterface) UnicastRemoteObject.exportObject(log, portNumber[Globals.MON_LOGGING]);
         } catch (RemoteException e) {
+            e.printStackTrace();
             System.exit(1);
         }
         String entry = "Logging";
@@ -57,6 +64,7 @@ public class LoggingMain {
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
         } catch (RemoteException e) {
+            e.printStackTrace();
             System.exit(1);
         }
         

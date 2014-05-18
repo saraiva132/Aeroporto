@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -29,5 +30,5 @@ public interface TransferenciaPassageiroInterface extends Remote{
     
     public void setnVoo(int nvoo, int transit) throws RemoteException;
     
-    public boolean shutdownMonitor() throws RemoteException;
+    public void shutdownMonitor() throws RemoteException;
 }

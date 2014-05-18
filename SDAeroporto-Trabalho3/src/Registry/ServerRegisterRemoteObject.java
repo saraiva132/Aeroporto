@@ -14,6 +14,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,9 +32,13 @@ public class ServerRegisterRemoteObject {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
-
+        try {
+            LocateRegistry.createRegistry(registryPort);
+        } catch (RemoteException ex) {
+            System.out.printf("Could not create Registry");
+        }
         RegisterRemoteObject regEngine = new RegisterRemoteObject(registryHostname, registryPort);
-        int listeningPort = 22005;   //define in global
+        int listeningPort = 22000;   //define in global
         Register regEngineStub = null;
 
         try {

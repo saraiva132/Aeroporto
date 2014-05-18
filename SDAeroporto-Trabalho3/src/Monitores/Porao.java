@@ -2,11 +2,13 @@ package Monitores;
 
 import Estruturas.Globals;
 import Estruturas.Mala;
+import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import sdaeroporto.PoraoMain;
 
 /**
  *
@@ -43,15 +45,17 @@ public class Porao implements PoraoInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-
+    
+    private PoraoMain porao;
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
      */
-    public Porao(LoggingInterface log) {
+    public Porao(LoggingInterface log,PoraoMain porao) {
         this.malas = new ArrayList<>();
         three_entities_ended = 0;
         this.log = log;
+        this.porao = porao;
     }
 
     /**
@@ -102,7 +106,9 @@ public class Porao implements PoraoInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            porao.close();
+        }
     }
 }

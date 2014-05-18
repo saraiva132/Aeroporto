@@ -10,6 +10,6 @@ package Interfaces;
  *
  * @author rafael
  */
-public interface ZonaDesembarqueInterface extends ZonaDesembarquePassageiroInterface,ZonaDesembarqueBagageiroInterface{
+public interface ZonaDesembarqueInterface extends ZonaDesembarquePassageiroInterface,ZonaDesembarqueBagageiroInterface,ZonaDesembarqueMotoristaInterface{
     
 }

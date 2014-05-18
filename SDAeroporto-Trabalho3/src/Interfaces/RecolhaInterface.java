@@ -10,6 +10,6 @@ package Interfaces;
  *
  * @author rafael
  */
-public interface RecolhaInterface extends RecolhaBagageiroInterface, RecolhaPassageiroInterface{
+public interface RecolhaInterface extends RecolhaBagageiroInterface, RecolhaPassageiroInterface,RecolhaMotoristaInterface{
     
 }

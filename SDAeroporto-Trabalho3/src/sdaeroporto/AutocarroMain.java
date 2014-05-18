@@ -2,8 +2,10 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_AUTOCARRO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
+import Estruturas.ShutdownException;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
@@ -26,6 +28,10 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class AutocarroMain {
+
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
 
     /**
      * Programa Principal.
@@ -66,9 +72,9 @@ public class AutocarroMain {
             e.printStackTrace();
             System.exit(1);
         }
-        auto = new Autocarro(log);
+        auto = new Autocarro(log,this);
         try {
-            autoInt = (AutocarroInterface) UnicastRemoteObject.exportObject(auto, MON_AUTOCARRO);
+            autoInt = (AutocarroInterface) UnicastRemoteObject.exportObject(auto, portNumber[MON_AUTOCARRO]);
         } catch (RemoteException e) {
             System.exit(1);
         }
@@ -103,6 +109,7 @@ public class AutocarroMain {
      * Terminar a execução do serviço referente ao monitor <i>Autocarro</i>.
      */
     public void close() {
+        
         System.exit(0);
     }
 

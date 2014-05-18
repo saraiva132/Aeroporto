@@ -2,6 +2,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -26,7 +27,11 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class PoraoMain {
-
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal.
      */
@@ -64,9 +69,9 @@ public class PoraoMain {
             e.printStackTrace();
             System.exit(1);
         }
-        porao = new Porao(log);
+        porao = new Porao(log,this);
         try {
-            poraoInt = (PoraoInterface) UnicastRemoteObject.exportObject(porao, MON_PORAO);
+            poraoInt = (PoraoInterface) UnicastRemoteObject.exportObject(porao, portNumber[MON_PORAO]);
         } catch (RemoteException e) {
             System.exit(1);
         }

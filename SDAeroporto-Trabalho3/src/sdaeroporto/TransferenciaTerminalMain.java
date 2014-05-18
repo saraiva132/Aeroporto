@@ -2,6 +2,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -27,6 +28,10 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class TransferenciaTerminalMain {
 
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal.
      */
@@ -64,9 +69,9 @@ public class TransferenciaTerminalMain {
             e.printStackTrace();
             System.exit(1);
         }
-        transferencia = new TransferenciaTerminal(log);
+        transferencia = new TransferenciaTerminal(log,this);
         try {
-            transfInt = (TransferenciaInterface) UnicastRemoteObject.exportObject(transferencia, Globals.MON_TRANSFERENCIA_TERMINAL);
+            transfInt = (TransferenciaInterface) UnicastRemoteObject.exportObject(transferencia, portNumber[Globals.MON_TRANSFERENCIA_TERMINAL]);
         } catch (RemoteException e) {
             System.exit(1);
         }

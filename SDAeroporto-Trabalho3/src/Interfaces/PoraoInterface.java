@@ -10,6 +10,6 @@ package Interfaces;
  *
  * @author rafael
  */
-public interface PoraoInterface extends PoraoPassageiroInterface,PoraoBagageiroInterface{
+public interface PoraoInterface extends PoraoPassageiroInterface,PoraoBagageiroInterface,PoraoMotoristaInterface{
     
 }

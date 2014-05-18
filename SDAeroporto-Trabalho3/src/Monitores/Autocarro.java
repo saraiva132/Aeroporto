@@ -2,9 +2,13 @@ package Monitores;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
+import Estruturas.ShutdownException;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sdaeroporto.AutocarroMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros e o motorista no âmbito
@@ -71,10 +75,11 @@ public class Autocarro implements AutocarroInterface {
      */
     private final LoggingInterface log;
 
+    private final AutocarroMain auto;
     /**
      * Instanciação e inicialização do monitor <b>Autocarro</b>
      */
-    public Autocarro(LoggingInterface log) {
+    public Autocarro(LoggingInterface log,AutocarroMain auto) {
         hasEnded = false;
         bilhetesVendidos = 0;
         nOcupantes = 0;
@@ -84,6 +89,7 @@ public class Autocarro implements AutocarroInterface {
         }
         three_entities_ended = 0;
         this.log = log;
+        this.auto = auto;
     }
 
     /**
@@ -263,9 +269,13 @@ public class Autocarro implements AutocarroInterface {
      * <li>TRUE, caso possa
      * <li>FALSE, caso contrário
      * </ul>
+     * @throws Estruturas.ShutdownException
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            auto.close();
+        }
+        System.out.print(three_entities_ended);
     }
 
 }

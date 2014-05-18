@@ -3,6 +3,7 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
+import Estruturas.ShutdownException;
 import Interfaces.AutocarroBagageiroInterface;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.LoggingInterface;
@@ -22,6 +23,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b>
@@ -34,6 +37,10 @@ import java.rmi.registry.Registry;
  * @author Hugo Frade 59399
  */
 public class MotoristaMain {
+
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
 
     /**
      * Programa Principal
@@ -77,17 +84,19 @@ public class MotoristaMain {
             motorista.join();
         } catch (InterruptedException ex) {
             GenericIO.writelnString("Erro a terminar motorista!");
-            System.exit(-1);
+            System.exit(1);
         }
         try {
-            log.shutdownMonitor();
             transferencia.shutdownMonitor();
             auto.shutdownMonitor();
             porao.shutdownMonitor();
             recolha.shutdownMonitor();
             transicao.shutdownMonitor();
             zona.shutdownMonitor();
+            log.shutdownMonitor();
         } catch (RemoteException e) {
+            System.out.print("Cant shutdown Monitor");
+            e.printStackTrace();
             System.exit(1);
         }
     }

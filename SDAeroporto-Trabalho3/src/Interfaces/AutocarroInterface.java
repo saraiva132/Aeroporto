@@ -10,6 +10,6 @@ package Interfaces;
  *
  * @author rafael
  */
-public interface AutocarroInterface extends AutocarroMotoristaInterface,AutocarroPassageiroInterface{
+public interface AutocarroInterface extends AutocarroMotoristaInterface,AutocarroPassageiroInterface,AutocarroBagageiroInterface{
     
 }

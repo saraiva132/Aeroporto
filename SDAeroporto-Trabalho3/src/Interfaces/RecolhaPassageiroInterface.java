@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Estruturas.Globals.bagCollect;
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -55,5 +56,6 @@ public interface RecolhaPassageiroInterface extends Remote{
     public void reportMissingBags(int passageiroID,int malasPerdidas)throws RemoteException;
     
     public void resetNoMoreBags() throws RemoteException;
-    public boolean shutdownMonitor() throws RemoteException;
+    
+    public void shutdownMonitor() throws RemoteException;
 }

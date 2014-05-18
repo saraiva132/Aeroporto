@@ -6,12 +6,14 @@ import Estruturas.Globals.bagDest;
 import Estruturas.Globals.bagState;
 import Estruturas.Globals.passState;
 import Estruturas.Mala;
+import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.RecolhaInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import java.rmi.RemoteException;
 import java.util.HashMap;
+import sdaeroporto.RecolhaBagagemMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros e o bagageiro na zona de
@@ -69,11 +71,12 @@ public class RecolhaBagagem implements  RecolhaInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-
+    
+    private RecolhaBagagemMain recolha;
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
      */
-    public RecolhaBagagem(LoggingInterface log) {
+    public RecolhaBagagem(LoggingInterface log,RecolhaBagagemMain recolha) {
         nMalasStore = 0;
         belt = new HashMap<>(nChegadas * passMax);
         for (int i = 0; i < passMax; i++) {
@@ -82,6 +85,7 @@ public class RecolhaBagagem implements  RecolhaInterface {
         noMoreBags = false;
         three_entities_ended = 0;
         this.log = log;
+        this.recolha = recolha;
     }
 
     /**
@@ -255,8 +259,10 @@ public class RecolhaBagagem implements  RecolhaInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            recolha.close();
+        }
     }
 
 }

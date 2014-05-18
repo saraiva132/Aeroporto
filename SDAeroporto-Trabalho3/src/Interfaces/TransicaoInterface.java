@@ -10,6 +10,6 @@ package Interfaces;
  *
  * @author rafael
  */
-public interface TransicaoInterface extends TransicaoBagageiroInterface,TransicaoPassageiroInterface{
+public interface TransicaoInterface extends TransicaoBagageiroInterface,TransicaoPassageiroInterface,TransicaoMotoristaInterface{
     
 }

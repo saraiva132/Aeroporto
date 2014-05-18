@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Estruturas.Globals;
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -142,5 +143,5 @@ public interface LoggingInterface extends Remote{
     
     public void reportInitialStatus() throws RemoteException;
     
-    public boolean shutdownMonitor() throws RemoteException;
+    public void shutdownMonitor() throws RemoteException;
 }

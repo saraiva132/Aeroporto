@@ -2,6 +2,7 @@ package Interfaces;
 
 import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -43,5 +44,5 @@ public interface RecolhaBagageiroInterface extends Remote{
      * @throws java.rmi.RemoteException
      */
     public bagDest carryItToAppropriateStore(Mala mala) throws RemoteException;
-     public boolean shutdownMonitor() throws RemoteException;
+     public void shutdownMonitor() throws RemoteException ;
 }

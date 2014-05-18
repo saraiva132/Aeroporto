@@ -7,6 +7,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -28,7 +29,11 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class RecolhaBagagemMain {
-
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     private boolean canEnd = false;
 
     /**
@@ -68,9 +73,9 @@ public class RecolhaBagagemMain {
             e.printStackTrace();
             System.exit(1);
         }
-        recolha = new RecolhaBagagem(log);
+        recolha = new RecolhaBagagem(log,this);
         try {
-            recolhaInt = (RecolhaInterface) UnicastRemoteObject.exportObject(recolha, Globals.MON_RECOLHA_BAGAGEM);
+            recolhaInt = (RecolhaInterface) UnicastRemoteObject.exportObject(recolha, portNumber[Globals.MON_RECOLHA_BAGAGEM]);
         } catch (RemoteException e) {
             System.exit(1);
         }

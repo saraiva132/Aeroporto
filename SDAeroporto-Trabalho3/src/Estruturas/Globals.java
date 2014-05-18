@@ -16,9 +16,9 @@ import org.w3c.dom.NodeList;
  */
 public class Globals {
     
-    public static String registryHostname = "here";
+    public static String registryHostname = "192.168.0.186";
     
-    public static int registryPort = 1000; //sup
+    public static int registryPort = 15000; //sup
     
     /**
      * Nome do ficheiro de logging

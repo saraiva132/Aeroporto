@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Estruturas.Globals.destination;
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -38,5 +39,5 @@ public interface ZonaDesembarquePassageiroInterface extends Remote{
      */
     public destination whatShouldIDo(int passageiroID, boolean dest,int nMalas) throws RemoteException;
     
-    public boolean shutdownMonitor() throws RemoteException;
+    public void shutdownMonitor() throws RemoteException;
 }

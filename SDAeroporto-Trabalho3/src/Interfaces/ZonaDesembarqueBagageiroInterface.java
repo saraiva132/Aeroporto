@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -32,5 +33,5 @@ public interface ZonaDesembarqueBagageiroInterface extends Remote{
      */
     public void noMoreBagsToCollect() throws RemoteException;
     
-    public boolean shutdownMonitor() throws RemoteException;
+    public void shutdownMonitor() throws RemoteException;
 }

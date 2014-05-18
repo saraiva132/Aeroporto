@@ -3,6 +3,7 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
 import Estruturas.Mala;
+import Estruturas.ShutdownException;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoPassageiroInterface;
@@ -19,6 +20,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b>
@@ -31,7 +34,11 @@ import java.util.Random;
  * @author Hugo Frade 59399
  */
 public class PassageiroMain {
-
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal
      */
@@ -88,14 +95,14 @@ public class PassageiroMain {
                 }
             }
             
-            Object[] obj = new Object[malas.size()];
+            Mala[] obj = new Mala[malas.size()];
 
             for (int k = 0; k < malas.size(); k++) {
                 obj[k] = malas.get(k);
             }
             try {
 
-                porao.sendLuggages((Mala[]) obj);
+                porao.sendLuggages(obj);
                 log.nVoo(i + 1);
                 log.setPorao(malas.size());
                 log.malasInicial(nMalasPass);
@@ -145,6 +152,8 @@ public class PassageiroMain {
             transicao.shutdownMonitor();
             zona.shutdownMonitor();
         } catch (RemoteException e) {
+            System.out.printf("Cant shutdown Monitor");
+            e.printStackTrace();
             System.exit(1);
         }
     }

@@ -1,14 +1,18 @@
 package Monitores;
 
 import Estruturas.Globals.*;
+import Estruturas.Globals.bagState;
 import static Estruturas.Globals.fileName;
 import static Estruturas.Globals.lotação;
+import Estruturas.Globals.motState;
 import static Estruturas.Globals.nChegadas;
 import static Estruturas.Globals.passMax;
+import Estruturas.Globals.passState;
 import Interfaces.LoggingInterface;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import sdaeroporto.LoggingMain;
 
 /**
  * Monitor correspondente ao Repositório Geral de Informação. Necessário apenas
@@ -154,12 +158,13 @@ public class Logging implements LoggingInterface {
     private int three_entities_ended;
 
     private PrintStream fic;
-
+    
+    private LoggingMain log;
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
      */
-    public Logging() {
+    public Logging(LoggingMain log) {
         try {
             fic = new PrintStream(new FileOutputStream(fileName, false));
         } catch (FileNotFoundException ex) {
@@ -180,6 +185,7 @@ public class Logging implements LoggingInterface {
         bstate = bagState.WAITING_FOR_A_PLANE_TO_LAND;
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         three_entities_ended = 3;
+        this.log = log;
     }
 
     /**
@@ -525,7 +531,7 @@ public class Logging implements LoggingInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
+    public synchronized void shutdownMonitor() {
         three_entities_ended--;
         if (three_entities_ended == 0) 
         {   fic.println("Número total de chegadas de aviões: " + nChegadas);
@@ -537,9 +543,7 @@ public class Logging implements LoggingInterface {
             fic.println("\n\tNúmero total de malas carregadas pelo bagageiro para a passadeira: " + nTotalMalasBelt);
             fic.println("\n\tNúmero total de malas perdidas pelos passageiros: " + nTotalMalasPerdidas);
             close();
-            return true;
-        }
-        return false;
-        
+            log.close();
+        }    
     }
 }

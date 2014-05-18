@@ -2,6 +2,7 @@ package sdaeroporto;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.MON_PORAO;
+import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
@@ -26,7 +27,11 @@ import java.rmi.server.UnicastRemoteObject;
  * @author Hugo Frade 59399
  */
 public class TransicaoAeroportoMain {
-
+    
+    static {
+        System.setProperty("java.security.policy", "java.policy");
+    }
+    
     /**
      * Programa Principal.
      */
@@ -64,9 +69,9 @@ public class TransicaoAeroportoMain {
             e.printStackTrace();
             System.exit(1);
         }
-        transicao = new TransiçãoAeroporto(log);
+        transicao = new TransiçãoAeroporto(log,this);
         try {
-            transInt = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, Globals.MON_TRANSICAO_AEROPORTO);
+            transInt = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, portNumber[Globals.MON_TRANSICAO_AEROPORTO]);
         } catch (RemoteException e) {
             System.exit(1);
         }

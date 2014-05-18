@@ -2,9 +2,11 @@ package Monitores;
 
 import static Estruturas.Globals.*;
 import static Estruturas.Globals.passState.*;
+import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
 import java.rmi.RemoteException;
+import sdaeroporto.TransicaoAeroportoMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros à saída do aeroporto
@@ -58,18 +60,21 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-
+    
+    
+    private TransicaoAeroportoMain transicao;
     /**
      * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
      *
      * @param log
      */
-    public TransiçãoAeroporto(LoggingInterface log) {
+    public TransiçãoAeroporto(LoggingInterface log,TransicaoAeroportoMain transicao) {
         bagageiroDone = false;
         nPassageiros = passMax;
         canLeave = false;
         three_entities_ended = 0;
         this.log = log;
+        this.transicao = transicao;
     }
 
     /**
@@ -184,7 +189,9 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            transicao.close();
+        }
     }
 }

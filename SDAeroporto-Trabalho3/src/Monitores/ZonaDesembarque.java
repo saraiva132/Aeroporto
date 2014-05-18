@@ -3,9 +3,11 @@ package Monitores;
 import Estruturas.Globals;
 import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
+import Estruturas.ShutdownException;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueInterface;
 import java.rmi.RemoteException;
+import sdaeroporto.ZonaDesembarqueMain;
 
 /**
  * Monitor que simula a zona de interacção entre os passageiros e o bagageiro na
@@ -48,15 +50,18 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-
+    
+    
+    private ZonaDesembarqueMain zona;
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
      */
-    public ZonaDesembarque(LoggingInterface log) {
+    public ZonaDesembarque(LoggingInterface log,ZonaDesembarqueMain zona) {
         nPass = passMax;
         canGo = false;
         three_entities_ended = 0;
         this.log = log;
+        this.zona = zona;
     }
 
     /**
@@ -162,8 +167,10 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized boolean shutdownMonitor() {
-        return (++three_entities_ended >= 3);
+    public synchronized void shutdownMonitor() {
+        if (++three_entities_ended >= 3) {
+            zona.close();
+        }
     }
 
 }

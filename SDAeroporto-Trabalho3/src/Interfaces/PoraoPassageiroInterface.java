@@ -7,6 +7,7 @@
 package Interfaces;
 
 import Estruturas.Mala;
+import Estruturas.ShutdownException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -17,5 +18,5 @@ import java.rmi.RemoteException;
 public interface PoraoPassageiroInterface extends Remote{
     
     public void sendLuggages(Mala[] malas) throws RemoteException;
-    public boolean shutdownMonitor() throws RemoteException;
+    public void shutdownMonitor() throws RemoteException;
 }
