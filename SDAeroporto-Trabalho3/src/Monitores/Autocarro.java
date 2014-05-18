@@ -275,7 +275,6 @@ public class Autocarro implements AutocarroInterface {
         if (++three_entities_ended >= 3) {
             auto.close();
         }
-        System.out.print(three_entities_ended);
     }
 
 }

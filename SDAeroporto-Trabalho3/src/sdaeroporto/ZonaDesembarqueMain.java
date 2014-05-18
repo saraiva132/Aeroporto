@@ -37,6 +37,8 @@ public class ZonaDesembarqueMain {
         System.setProperty("java.security.policy", "java.policy");
     }
     
+    boolean canEnd = false;
+    
     /**
      * Programa Principal.
      */
@@ -53,7 +55,7 @@ public class ZonaDesembarqueMain {
      * É responsável também pelo processo de escuta e do lançamento do agente
      * prestador de serviço.
      */
-    private void listening() {
+    private synchronized void listening() {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
@@ -106,6 +108,21 @@ public class ZonaDesembarqueMain {
 
         GenericIO.writelnString("O serviço ZonaDesembarque foi estabelecido!");
         GenericIO.writelnString("O servidor esta em escuta.");
+        
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+        }
+        if (canEnd) {
+            try {
+                register.unbind(entry);
+            } catch (RemoteException ex) {
+                System.exit(1);
+            } catch (NotBoundException ex) {
+                System.exit(1);
+            }
+            System.exit(0);
+        }
 
     }
 
@@ -113,8 +130,10 @@ public class ZonaDesembarqueMain {
      * Terminar a execução do serviço referente ao monitor
      * <i>ZonaDesembarque</i>.
      */
-    public void close() {
-        System.exit(0);
+   public synchronized void close() {
+        canEnd = true;
+        notify();
+        System.out.printf("Closing...");
     }
 
 }

@@ -36,6 +36,7 @@ public class BagageiroMain {
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
+    
     /**
      * Programa Principal
      */

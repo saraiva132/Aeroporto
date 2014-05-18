@@ -11,6 +11,7 @@ import Interfaces.LoggingInterface;
 import Interfaces.Register;
 import Monitores.Autocarro;
 import genclass.GenericIO;
+import static java.lang.Thread.currentThread;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RMISecurityManager;
@@ -18,6 +19,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução do lado do servidor referente ao monitor
@@ -32,6 +35,7 @@ public class AutocarroMain {
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
+    boolean canEnd = false;
 
     /**
      * Programa Principal.
@@ -49,7 +53,7 @@ public class AutocarroMain {
      * É responsável também pelo processo de escuta e do lançamento do agente
      * prestador de serviço.
      */
-    public void listening() {
+    public synchronized void listening() {
 
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
@@ -72,7 +76,7 @@ public class AutocarroMain {
             e.printStackTrace();
             System.exit(1);
         }
-        auto = new Autocarro(log,this);
+        auto = new Autocarro(log, this);
         try {
             autoInt = (AutocarroInterface) UnicastRemoteObject.exportObject(auto, portNumber[MON_AUTOCARRO]);
         } catch (RemoteException e) {
@@ -103,14 +107,30 @@ public class AutocarroMain {
         }
         GenericIO.writelnString("O serviço Autocarro foi estabelecido!");
         GenericIO.writelnString("O servidor esta em escuta.");
+
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+        }
+        if (canEnd) {
+            try {
+                register.unbind(entry);
+            } catch (RemoteException ex) {
+                System.exit(1);
+            } catch (NotBoundException ex) {
+                System.exit(1);
+            }
+            System.exit(0);
+        }
     }
 
     /**
      * Terminar a execução do serviço referente ao monitor <i>Autocarro</i>.
      */
-    public void close() {
-        
-        System.exit(0);
+    public synchronized void close() {
+        canEnd = true;
+        notify();
+        System.out.printf("Closing...");
     }
 
 }

@@ -41,7 +41,8 @@ public class MotoristaMain {
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-
+    
+    
     /**
      * Programa Principal
      */
@@ -87,13 +88,13 @@ public class MotoristaMain {
             System.exit(1);
         }
         try {
+            log.shutdownMonitor();
             transferencia.shutdownMonitor();
             auto.shutdownMonitor();
             porao.shutdownMonitor();
             recolha.shutdownMonitor();
             transicao.shutdownMonitor();
             zona.shutdownMonitor();
-            log.shutdownMonitor();
         } catch (RemoteException e) {
             System.out.print("Cant shutdown Monitor");
             e.printStackTrace();

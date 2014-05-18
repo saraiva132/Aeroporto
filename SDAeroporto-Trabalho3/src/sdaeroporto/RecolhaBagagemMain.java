@@ -52,7 +52,7 @@ public class RecolhaBagagemMain {
      * É responsável também pelo processo de escuta e do lançamento do agente
      * prestador de serviço.
      */
-    public void listening() {
+    public synchronized void listening() {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
@@ -105,12 +105,27 @@ public class RecolhaBagagemMain {
 
         GenericIO.writelnString("O serviço RecolhaBagagem foi estabelecido!");
         GenericIO.writelnString("O servidor esta em escuta.");
+        
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+        }
+        if (canEnd) {
+            try {
+                register.unbind(entry);
+            } catch (RemoteException ex) {
+                System.exit(1);
+            } catch (NotBoundException ex) {
+                System.exit(1);
+            }
+            System.exit(0);
+        }
     }
 
-    public void close() {
+   public synchronized void close() {
         canEnd = true;
-        // scon.end();
-        System.exit(0);
+        notify();
+        System.out.printf("Closing...");
     }
 
 }

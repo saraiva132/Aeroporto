@@ -32,6 +32,8 @@ public class TransicaoAeroportoMain {
         System.setProperty("java.security.policy", "java.policy");
     }
     
+    boolean canEnd = false;
+    
     /**
      * Programa Principal.
      */
@@ -48,7 +50,7 @@ public class TransicaoAeroportoMain {
      * É responsável também pelo processo de escuta e do lançamento do agente
      * prestador de serviço.
      */
-    private void listening() {
+    private  synchronized void listening() {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
@@ -100,6 +102,21 @@ public class TransicaoAeroportoMain {
         }
         GenericIO.writelnString("O serviço TransicaoAeroporto foi estabelecido!");
         GenericIO.writelnString("O servidor esta em escuta.");
+        
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+        }
+        if (canEnd) {
+            try {
+                register.unbind(entry);
+            } catch (RemoteException ex) {
+                System.exit(1);
+            } catch (NotBoundException ex) {
+                System.exit(1);
+            }
+            System.exit(0);
+        }
 
     }
 
@@ -107,8 +124,10 @@ public class TransicaoAeroportoMain {
      * Terminar a execução do serviço referente ao monitor
      * <i>TransicaoAeroporto</i>.
      */
-    public void close() {
-        System.exit(0);
+    public synchronized void close() {
+        canEnd = true;
+        notify();
+        System.out.printf("Closing...");
     }
 
 }

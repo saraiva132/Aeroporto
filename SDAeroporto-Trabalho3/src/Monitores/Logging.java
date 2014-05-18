@@ -533,6 +533,7 @@ public class Logging implements LoggingInterface {
      */
     public synchronized void shutdownMonitor() {
         three_entities_ended--;
+        System.out.print(three_entities_ended);
         if (three_entities_ended == 0) 
         {   fic.println("Número total de chegadas de aviões: " + nChegadas);
             fic.println("\nNúmero total de passageiros: " + (nChegadas * passMax));

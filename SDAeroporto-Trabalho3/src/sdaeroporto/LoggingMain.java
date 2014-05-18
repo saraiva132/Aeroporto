@@ -30,6 +30,8 @@ public class LoggingMain {
         System.setProperty("java.security.policy", "java.policy");
     }
     
+    boolean canEnd = false;
+    
     /**
      * Programa Principal.
      */
@@ -42,7 +44,7 @@ public class LoggingMain {
      * <p>
      * É responsável também pelo processo de escuta e do lançamento do agente prestador de serviço.
      */
-    public void listening(){
+    public synchronized void listening(){
         if (System.getSecurityManager () == null)
         System.setSecurityManager (new RMISecurityManager ());
      GenericIO.writelnString ("Security manager was installed!");
@@ -89,13 +91,30 @@ public class LoggingMain {
         }
         stdout.println("O serviço Logging foi estabelecido!");
         stdout.println("O servidor esta em escuta.");
-
+        
+        try {
+            wait();
+        } catch (InterruptedException ex) {
+        }
+        if (canEnd) {
+            try {
+                register.unbind(entry);
+            } catch (RemoteException ex) {
+                System.exit(1);
+            } catch (NotBoundException ex) {
+                System.exit(1);
+            }
+            System.exit(0);
+        }
+        
     }
     /**
      * Terminar a execução do serviço referente ao monitor <i>Logging</i>.
      */
-    public void close(){
-        System.exit(0);
+    public synchronized void close() {
+        canEnd = true;
+        notify();
+        System.out.printf("Closing...");
     }
 
 }
