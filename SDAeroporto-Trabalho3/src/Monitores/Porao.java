@@ -1,6 +1,7 @@
 package Monitores;
 
 import Estruturas.Globals;
+import static Estruturas.Globals.MON_PORAO;
 import Estruturas.Mala;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
@@ -84,6 +85,7 @@ public class Porao implements PoraoInterface {
         } else {
             System.out.println("vim recolher mala");
             try {
+                log.UpdateVectorCLK(vc, MON_PORAO);
                 log.reportState(Globals.bagState.AT_THE_PLANES_HOLD);
                 log.bagagemPorao();
             } catch (RemoteException e) {

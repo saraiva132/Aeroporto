@@ -1,6 +1,7 @@
 package Interfaces;
 
 import Estruturas.Globals;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -143,4 +144,6 @@ public interface LoggingInterface extends Remote{
     public void reportInitialStatus() throws RemoteException;
     
     public void shutdownMonitor() throws RemoteException;
+    
+    public void UpdateVectorCLK(VectorCLK ts,int id) throws RemoteException;
 }

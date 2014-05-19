@@ -7,6 +7,8 @@ import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sdaeroporto.TransicaoAeroportoMain;
 
 /**
@@ -101,6 +103,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +EXITING_THE_ARRIVAL_TERMINAL);
         try {
+            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
             log.reportState(passageiroId, EXITING_THE_ARRIVAL_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
@@ -143,6 +146,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +ENTERING_THE_DEPARTURE_TERMINAL);
         try {
+            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
             log.reportState(passageiroId, ENTERING_THE_DEPARTURE_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
@@ -174,10 +178,17 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * Bagageiro dirige-se anuncia aos passageiros de que já acabou de recolher
      * as malas do porão do avião em que chegaram e que, assim sendo, eles podem
      * sair do aeroporto
+     * @param ts
+     * @return 
      */
     @Override
     public synchronized VectorCLK bagageiroDone(VectorCLK ts) {
         vc.CompareVector(ts.getVc());
+        try {
+            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
+        } catch (RemoteException ex) {
+            System.exit(0);
+        }
         System.out.println("Bagageiro acabou!(monitor)");
         bagageiroDone = true;
         notifyAll();

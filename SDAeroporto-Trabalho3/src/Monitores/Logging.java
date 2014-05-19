@@ -8,6 +8,7 @@ import Estruturas.Globals.motState;
 import static Estruturas.Globals.nChegadas;
 import static Estruturas.Globals.passMax;
 import Estruturas.Globals.passState;
+import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -160,6 +161,8 @@ public class Logging implements LoggingInterface {
     private PrintStream fic;
     
     private LoggingMain log;
+    
+    private VectorCLK [] vc;
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
@@ -186,6 +189,7 @@ public class Logging implements LoggingInterface {
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         three_entities_ended = 3;
         this.log = log;
+        vc = new VectorCLK[6];
     }
 
     /**
@@ -239,7 +243,19 @@ public class Logging implements LoggingInterface {
         for (int i = 0; i < passMax; i++) {
             fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
-
+        /*int mon=0,val=0;
+        for(int j = 0;j<6;j++){
+             for(int i = 0;i<passMax+2;i++){
+                 if(vc[j].getVc()[i]>val){                  
+                     val = vc[j].getVc()[i];
+                     mon = j;
+                 }
+             }
+        }*/
+        fic.print("CLK: ");
+        for(int i = 0;i<passMax+2;i++){
+            fic.printf("%3s",vc[3S].getVc()[i]);
+        }
         fic.println();
     }
 
@@ -546,5 +562,10 @@ public class Logging implements LoggingInterface {
             close();
             log.close();
         }    
+    }
+    
+    @Override
+    public synchronized void UpdateVectorCLK(VectorCLK ts,int id){
+        vc[id] = ts;
     }
 }

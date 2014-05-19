@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sdaeroporto.TransferenciaTerminalMain;
 
 /**
@@ -146,6 +148,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         //System.out.println("Take the bus");
         int ticket;
         try {
+            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
             log.reportState(passageiroID, passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
             fila.add(passageiroID + 1);
 
@@ -201,7 +204,11 @@ public class TransferenciaTerminal implements TransferenciaInterface {
     @Override
     public synchronized Reply hasDaysWorkEnded(VectorCLK ts) {
         vc.CompareVector(ts.getVc());
-
+        try {
+            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
+        } catch (RemoteException ex) {
+            System.exit(0);
+        }
         while (true) {
             try {
                 Reminder reminder = new Reminder(1);
@@ -233,6 +240,11 @@ public class TransferenciaTerminal implements TransferenciaInterface {
     @Override
     public synchronized Reply announcingBusBoardingShouting(VectorCLK ts) {
         vc.CompareVector(ts.getVc());
+        try {
+            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
+        } catch (RemoteException ex) {
+            System.exit(0);
+        }
         //System.out.println("ALL ABOAAARD!: passageiros à espera: " + fila.size());
         int pass = 0;
         int npass = fila.size();
@@ -304,7 +316,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-     public synchronized void shutdownMonitor() {
+    public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             transf.close();
         }

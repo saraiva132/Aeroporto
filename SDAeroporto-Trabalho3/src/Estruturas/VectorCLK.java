@@ -18,6 +18,9 @@ public class VectorCLK implements Comparable,Serializable{
 
     public VectorCLK() {
         vc = new int[passMax + 2];
+        for(int i = 0;i<vc.length;i++){
+            vc[i] = 0;
+        }
     }
 
     public int[] getVc() {
@@ -50,6 +53,6 @@ public class VectorCLK implements Comparable,Serializable{
 
     @Override
     public int compareTo(Object t) {
-        
+        return 0;
     }
 }

@@ -1,5 +1,6 @@
 package Monitores;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.*;
 import Estruturas.Globals.bagCollect;
 import Estruturas.Globals.bagDest;
@@ -12,6 +13,8 @@ import Interfaces.LoggingInterface;
 import Interfaces.RecolhaInterface;
 import java.rmi.RemoteException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sdaeroporto.RecolhaBagagemMain;
 
 /**
@@ -119,6 +122,11 @@ public class RecolhaBagagem implements RecolhaInterface {
     @Override
     public synchronized Reply goCollectABag(VectorCLK ts, int bagID) {
         vc.CompareVector(ts.getVc());
+        try {
+            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
+        } catch (RemoteException ex) {
+             System.exit(1);
+        }
         while ((belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
             try {
                 wait();                            //os passageiros são acordados
@@ -173,6 +181,11 @@ public class RecolhaBagagem implements RecolhaInterface {
     @Override
     public synchronized Reply carryItToAppropriateStore(VectorCLK ts, Mala mala) {
         vc.CompareVector(ts.getVc());
+        try {
+            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
+        } catch (RemoteException ex) {
+            System.exit(1);
+        }
         if (mala == null) {
             //System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
@@ -230,6 +243,7 @@ public class RecolhaBagagem implements RecolhaInterface {
     public synchronized VectorCLK reportMissingBags(VectorCLK ts, int passageiroID, int malasPerdidas) {
         vc.CompareVector(ts.getVc());
         try {
+            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
             log.missingBags(malasPerdidas);
             log.reportState(passageiroID, passState.AT_THE_BAGGAGE_RECLAIM_OFFICE);
         } catch (RemoteException e) {
@@ -266,7 +280,7 @@ public class RecolhaBagagem implements RecolhaInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-   public synchronized void shutdownMonitor() {
+    public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             recolha.close();
         }

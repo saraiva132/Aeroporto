@@ -1,6 +1,7 @@
 package Monitores;
 
 import Estruturas.Globals;
+import static Estruturas.Globals.MON_ZONA_DESEMBARQUE;
 import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
 import Estruturas.Reply;
@@ -8,6 +9,8 @@ import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueInterface;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sdaeroporto.ZonaDesembarqueMain;
 
 /**
@@ -81,6 +84,12 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         vc.CompareVector(ts.getVc());
         //System.out.println("Taking a Rest guys...");
         try {
+            //System.out.println("What should i do!");
+            log.UpdateVectorCLK(vc, MON_ZONA_DESEMBARQUE);
+        } catch (RemoteException ex) {
+            System.exit(0);
+        }
+        try {
             while (!canGo) {
                 wait();
             }
@@ -116,8 +125,12 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
     @Override
     public synchronized Reply whatShouldIDo(VectorCLK ts, int passageiroID, boolean dest, int nMalas) {
         vc.CompareVector(ts.getVc());
-        //System.out.println("What should i do!");
-
+        try {
+            //System.out.println("What should i do!");
+            log.UpdateVectorCLK(vc, MON_ZONA_DESEMBARQUE);
+        } catch (RemoteException ex) {
+            System.exit(0);
+        }
         nPass--;
         if (nPass == 0) {
             //reset da variavel nPass
@@ -154,6 +167,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         vc.CompareVector(ts.getVc());
         //System.out.println("No more bags to collect!");
         try {
+            log.UpdateVectorCLK(vc, MON_ZONA_DESEMBARQUE);
             log.reportState(Globals.bagState.WAITING_FOR_A_PLANE_TO_LAND);
         } catch (RemoteException e) {
             System.exit(1);
