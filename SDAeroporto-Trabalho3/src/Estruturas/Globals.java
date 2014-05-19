@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
  */
 public class Globals {
     
-    public static String registryHostname = "192.168.0.186";
+    public static String registryHostname = "localhost";
     
     public static int registryPort = 15000; //sup
     

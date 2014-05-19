@@ -28,11 +28,11 @@ import java.rmi.registry.Registry;
  * @author Hugo Frade 59399
  */
 public class BagageiroMain {
-    
+
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-    
+
     /**
      * Programa Principal
      */
@@ -62,11 +62,11 @@ public class BagageiroMain {
             transicao = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
             zona = (ZonaDesembarqueBagageiroInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
-            GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
+            GenericIO.writelnString("Excepção na localização do Monitor: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         } catch (NotBoundException e) {
-            GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
+            GenericIO.writelnString("Um monitor não está registado: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         }

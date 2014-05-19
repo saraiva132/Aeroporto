@@ -16,6 +16,7 @@ import Interfaces.Register;
 import Monitores.RecolhaBagagem;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
+import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
@@ -107,18 +108,22 @@ public class RecolhaBagagemMain {
         GenericIO.writelnString("O servidor esta em escuta.");
         
         try {
-            wait();
-        } catch (InterruptedException ex) {
-        }
-        if (canEnd) {
-            try {
-                register.unbind(entry);
-            } catch (RemoteException ex) {
-                System.exit(1);
-            } catch (NotBoundException ex) {
-                System.exit(1);
+            while (!canEnd) {
+                wait();
             }
-            System.exit(0);
+        } catch (InterruptedException ex) {
+
+        }
+        try {
+            register.unbind(entry);
+        } catch (RemoteException ex) {
+            System.exit(1);
+        } catch (NotBoundException ex) {
+            System.exit(1);
+        }
+        try {
+            UnicastRemoteObject.unexportObject(recolha, false);
+        } catch (NoSuchObjectException ex) {
         }
     }
 

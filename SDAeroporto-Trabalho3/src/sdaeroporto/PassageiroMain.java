@@ -69,11 +69,11 @@ public class PassageiroMain {
             zona = (ZonaDesembarquePassageiroInterface) registry.lookup("ZonaDesembarque");
             transferencia = (TransferenciaPassageiroInterface) registry.lookup("TransferenciaTerminal");
         } catch (RemoteException e) {
-            GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
+            GenericIO.writelnString("Excepção na localização do Monitor: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         } catch (NotBoundException e) {
-            GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
+            GenericIO.writelnString("Um monitor não está registado: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         }

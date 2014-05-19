@@ -11,12 +11,15 @@ import Interfaces.Register;
 import Monitores.Autocarro;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
+import java.rmi.NoSuchObjectException;
 import java.rmi.NotBoundException;
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Este tipo de dados simula a solução do lado do servidor referente ao monitor
@@ -31,6 +34,7 @@ public class AutocarroMain {
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
+
     boolean canEnd = false;
 
     /**
@@ -105,18 +109,22 @@ public class AutocarroMain {
         GenericIO.writelnString("O servidor esta em escuta.");
 
         try {
-            wait();
-        } catch (InterruptedException ex) {
-        }
-        if (canEnd) {
-            try {
-                register.unbind(entry);
-            } catch (RemoteException ex) {
-                System.exit(1);
-            } catch (NotBoundException ex) {
-                System.exit(1);
+            while (!canEnd) {
+                wait();
             }
-            System.exit(0);
+        } catch (InterruptedException ex) {
+
+        }
+        try {
+            register.unbind(entry);
+        } catch (RemoteException ex) {
+            System.exit(1);
+        } catch (NotBoundException ex) {
+            System.exit(1);
+        }
+        try {
+            UnicastRemoteObject.unexportObject(auto, false);
+        } catch (NoSuchObjectException ex) {
         }
     }
 
@@ -127,6 +135,7 @@ public class AutocarroMain {
         canEnd = true;
         notify();
         System.out.printf("Closing...");
+        
     }
 
 }

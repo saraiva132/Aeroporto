@@ -62,11 +62,11 @@ public class MotoristaMain {
             transicao = (TransicaoMotoristaInterface) registry.lookup("TransiçãoAeroporto");
             zona = (ZonaDesembarqueMotoristaInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
-            GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
+            GenericIO.writelnString("Excepção na localização do monitor: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         } catch (NotBoundException e) {
-            GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
+            GenericIO.writelnString("Um monitor não está registado: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         }
