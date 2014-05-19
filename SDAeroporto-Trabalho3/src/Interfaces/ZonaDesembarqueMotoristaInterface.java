@@ -6,6 +6,7 @@
 
 package Interfaces;
 
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

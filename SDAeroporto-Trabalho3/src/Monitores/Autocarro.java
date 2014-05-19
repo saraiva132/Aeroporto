@@ -2,6 +2,7 @@ package Monitores;
 
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
+import Estruturas.VectorCLK;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import java.rmi.RemoteException;
@@ -73,10 +74,13 @@ public class Autocarro implements AutocarroInterface {
     private final LoggingInterface log;
 
     private final AutocarroMain auto;
+
+    private VectorCLK vc;
+
     /**
      * Instanciação e inicialização do monitor <b>Autocarro</b>
      */
-    public Autocarro(LoggingInterface log,AutocarroMain auto) {
+    public Autocarro(LoggingInterface log, AutocarroMain auto) {
         hasEnded = false;
         bilhetesVendidos = 0;
         nOcupantes = 0;
@@ -87,6 +91,7 @@ public class Autocarro implements AutocarroInterface {
         three_entities_ended = 0;
         this.log = log;
         this.auto = auto;
+        vc = new VectorCLK();
     }
 
     /**
@@ -99,12 +104,15 @@ public class Autocarro implements AutocarroInterface {
      * motorista que já se sentou e espera que o motorista o leve até à zona de
      * transferência do terminal de partida.
      *
+     * @param ts
      * @param ticketID lugar onde o passageiro se pode sentar
      * @param passageiroId identificador do passageiro
+     * @return
      */
     @Override
-    public synchronized void enterTheBus(int ticketID, int passageiroId) {
+    public synchronized VectorCLK enterTheBus(VectorCLK ts, int ticketID, int passageiroId) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
+        vc.CompareVector(ts.getVc());
         nOcupantes++;
 
         seat[ticketID] = passageiroId + 1;
@@ -118,6 +126,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == bilhetesVendidos) {
             notifyAll();
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -128,11 +137,14 @@ public class Autocarro implements AutocarroInterface {
      * O passageiro sai do autocarro e caso seja o último a sair notifica o
      * motorista de que já não há mais ninguém no autocarro.
      *
+     * @param ts
      * @param ticketID lugar onde o passageiro estava sentado
+     * @return
      */
     @Override
-    public synchronized void leaveTheBus(int passageiroId, int ticketID) {
+    public synchronized VectorCLK leaveTheBus(VectorCLK ts, int passageiroId, int ticketID) {
         //System.out.println("IM OUT!Shitty bus");
+        vc.CompareVector(ts.getVc());
         while (!hasEnded) {
             try {
                 wait();
@@ -150,6 +162,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == 0) {
             notify();
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -164,9 +177,10 @@ public class Autocarro implements AutocarroInterface {
      * número de passageiros que estão à espera)
      */
     @Override
-    public synchronized void announcingBusBoardingWaiting(int bilhetesvendidos) {
+    public synchronized VectorCLK announcingBusBoardingWaiting(VectorCLK ts, int bilhetesvendidos) {
 
         // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
+        vc.CompareVector(ts.getVc());
         this.bilhetesVendidos = bilhetesvendidos;
         while (nOcupantes < bilhetesVendidos) {
             try {
@@ -174,6 +188,7 @@ public class Autocarro implements AutocarroInterface {
             } catch (InterruptedException ex) {
             }
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -185,12 +200,14 @@ public class Autocarro implements AutocarroInterface {
      *
      */
     @Override
-    public void goToDepartureTerminal() {
+    public VectorCLK goToDepartureTerminal(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         try {
             log.reportState(Globals.motState.DRIVING_FORWARD);
         } catch (RemoteException e) {
             System.exit(1);
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -201,12 +218,14 @@ public class Autocarro implements AutocarroInterface {
      * Motorista retorna ao terminal de chegada.
      */
     @Override
-    public void goToArrivalTerminal() {
+    public VectorCLK goToArrivalTerminal(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         try {
             log.reportState(Globals.motState.DRIVING_BACKWARD);
         } catch (RemoteException e) {
             System.exit(1);
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -217,12 +236,14 @@ public class Autocarro implements AutocarroInterface {
      * Motorista estaciona o autocarro no terminal de chegada.
      */
     @Override
-    public void parkTheBus() {
+    public VectorCLK parkTheBus(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         try {
             log.reportState(Globals.motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -234,7 +255,8 @@ public class Autocarro implements AutocarroInterface {
      * que o ultimo passageiro saia do Autocarro e o acorde.
      */
     @Override
-    public synchronized void parkTheBusAndLetPassOff() {
+    public synchronized VectorCLK parkTheBusAndLetPassOff(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("OUT OUT OUT!");
         try {
             log.reportState(Globals.motState.PARKING_AT_THE_DEPARTURE_TERMINAL);
@@ -250,6 +272,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (InterruptedException ex) {
         }
         hasEnded = false;
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -268,7 +291,8 @@ public class Autocarro implements AutocarroInterface {
      * </ul>
      * @throws Estruturas.ShutdownException
      */
-    public synchronized void shutdownMonitor() {
+    @Override
+     public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             auto.close();
         }

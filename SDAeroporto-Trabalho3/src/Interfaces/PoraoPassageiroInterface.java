@@ -7,6 +7,7 @@
 package Interfaces;
 
 import Estruturas.Mala;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

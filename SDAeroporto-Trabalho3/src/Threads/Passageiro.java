@@ -3,6 +3,8 @@ package Threads;
 import Estruturas.Globals.bagCollect;
 import Estruturas.Globals.destination;
 import Estruturas.Globals.passState;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.RecolhaPassageiroInterface;
 import Interfaces.TransferenciaPassageiroInterface;
@@ -95,7 +97,10 @@ public class Passageiro extends Thread {
      * @serialField transferencia
      */
     private TransferenciaPassageiroInterface transferencia;
-
+    
+    private VectorCLK vc;
+    
+    
     /**
      * Instanciação e inicialização do passageiro
      *
@@ -123,6 +128,7 @@ public class Passageiro extends Thread {
         this.finalDest = finalDest;
         this.nVoo = nVoo;   //not used for now
         this.id = id;
+        vc = new VectorCLK();
     }
 
     /**
@@ -130,15 +136,23 @@ public class Passageiro extends Thread {
      */
     @Override
     public void run() {
+        Reply temp;
         try {
-            destination nextState = desembarque.whatShouldIDo(id, finalDest, nMalasTotal);
+            vc.Add(id+2);
+            temp = desembarque.whatShouldIDo(vc,id, finalDest, nMalasTotal);
+            destination nextState = (destination) temp.getRetorno();
+            vc = temp.getTs();
             bagCollect getBag;
             switch (nextState) {
                 case WITH_BAGGAGE:
 
                     // System.out.println("tenho bagagem -----------------");
                     do {
-                        if ((getBag = recolha.goCollectABag(id)) == bagCollect.MINE) {
+                        vc.Add(id+2);
+                        temp = recolha.goCollectABag(vc,id);
+                        getBag = (bagCollect) temp.getRetorno();
+                        vc = temp.getTs();
+                        if ((getBag) == bagCollect.MINE) {
                             nMalasEmPosse++;
                         }
                         //System.out.println("ID: " + id + " posse: " + nMalasEmPosse + " total: " + nMalasTotal);
@@ -146,19 +160,28 @@ public class Passageiro extends Thread {
 
                     } while (nMalasEmPosse < nMalasTotal && getBag != bagCollect.NOMORE);
                     if (nMalasEmPosse < nMalasTotal) {
-                        recolha.reportMissingBags(id, nMalasTotal - nMalasEmPosse);
+                        vc.Add(id+2);
+                        vc = recolha.reportMissingBags(vc,id, nMalasTotal - nMalasEmPosse);
                     }
-                    transicao.goHome(id);
+                    vc.Add(id+2);
+                    vc = transicao.goHome(vc,id);
                     break;
                 case IN_TRANSIT:
                     int ticket; //bilhete para entrar no autocarro.
-                    ticket = transferencia.takeABus(id);
-                    auto.enterTheBus(ticket, id);
-                    auto.leaveTheBus(id, ticket);
-                    transicao.prepareNextLeg(id);
+                    vc.Add(id+2);
+                    temp = transferencia.takeABus(vc,id);
+                    ticket = (int) temp.getRetorno();
+                    vc = temp.getTs();
+                    vc.Add(id+2);
+                    vc = auto.enterTheBus(vc,ticket, id);
+                    vc.Add(id+2);
+                    vc = auto.leaveTheBus(vc,id, ticket);
+                    vc.Add(id+2);
+                    vc = transicao.prepareNextLeg(vc,id);
                     break;
                 case WITHOUT_BAGGAGE:
-                    transicao.goHome(id);
+                    vc.Add(id+2);
+                    vc = transicao.goHome(vc,id);
                     break;
             }
         } catch (RemoteException e) {

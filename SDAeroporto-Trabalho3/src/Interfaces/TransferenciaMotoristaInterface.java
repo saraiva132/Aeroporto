@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -29,8 +31,9 @@ public interface TransferenciaMotoristaInterface extends Remote{
      * <li>TRUE, se o dia de trabalho acabou
      * <li>FALSE, caso contrário
      * </ul>
+     * @throws java.rmi.RemoteException
      */
-    public boolean hasDaysWorkEnded() throws RemoteException;
+    public Reply hasDaysWorkEnded(VectorCLK ts) throws RemoteException;
     
    /**
     * Anunciar início de viagem
@@ -44,7 +47,7 @@ public interface TransferenciaMotoristaInterface extends Remote{
      * @return Número de passageiros que tomaram interesse em participar na viagem
      * (limitado à lotação do Autocarro)
      */
-    public int announcingBusBoardingShouting() throws RemoteException;
+    public Reply announcingBusBoardingShouting(VectorCLK vc) throws RemoteException;
     
     public void shutdownMonitor() throws RemoteException;
 }

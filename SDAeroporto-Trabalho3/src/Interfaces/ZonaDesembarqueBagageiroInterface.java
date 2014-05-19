@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -20,7 +21,7 @@ public interface ZonaDesembarqueBagageiroInterface extends Remote{
      * O bagageiro descansa enquanto o próximo voo não chega e o último 
      * passageiro não sai do avião
      */
-    public void takeARest() throws RemoteException;
+    public VectorCLK takeARest(VectorCLK ts) throws RemoteException;
     
     /**
      * Não existem mais malas para apanhar
@@ -30,7 +31,7 @@ public interface ZonaDesembarqueBagageiroInterface extends Remote{
      * O bagageiro, após verificar que o porão já se encontra vazio, dirige-se à
      * sua sala de espera
      */
-    public void noMoreBagsToCollect() throws RemoteException;
+    public VectorCLK noMoreBagsToCollect(VectorCLK vc) throws RemoteException;
     
     public void shutdownMonitor() throws RemoteException;
 }

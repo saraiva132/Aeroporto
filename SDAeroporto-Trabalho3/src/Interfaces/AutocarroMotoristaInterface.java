@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -23,7 +24,7 @@ public interface AutocarroMotoristaInterface extends Remote {
      * @param bilhetesvendidos Número de bilhetes vendidos (corresponde ao número de
      * passageiros que estão à espera)
      */
-    public void announcingBusBoardingWaiting(int bilhetesvendidos) throws RemoteException;
+    public VectorCLK announcingBusBoardingWaiting(VectorCLK vc, int bilhetesvendidos) throws RemoteException;
 
     /**
      * Dirigir-se ao terminal de partida
@@ -33,7 +34,7 @@ public interface AutocarroMotoristaInterface extends Remote {
      * Motorista conduz os passageiros que se encontram em trânsito para o terminal de partida.
      * 
      */
-    public void goToDepartureTerminal() throws RemoteException;
+    public VectorCLK goToDepartureTerminal(VectorCLK vc) throws RemoteException;
 
     /**
      * Dirigir-se ao terminal de chegada
@@ -42,7 +43,7 @@ public interface AutocarroMotoristaInterface extends Remote {
      * <p>
      * Motorista retorna ao terminal de chegada.
      */
-    public void goToArrivalTerminal() throws RemoteException;
+    public VectorCLK goToArrivalTerminal(VectorCLK vc) throws RemoteException;
 
     /**
      * Estacionar o autocarro no terminal de chegada
@@ -51,7 +52,7 @@ public interface AutocarroMotoristaInterface extends Remote {
      * <p>
      * Motorista estaciona o autocarro no terminal de chegada.
      */
-    public void parkTheBus() throws RemoteException;
+    public VectorCLK parkTheBus(VectorCLK vc) throws RemoteException;
 
      /**
       * Estacionar o autocarro no terminal de partida
@@ -61,7 +62,7 @@ public interface AutocarroMotoristaInterface extends Remote {
      * Motorista estaciona o autocarro e larga os passageiros; bloqueia
      * até que o último passageiro saia do autocarro e o acorde.
      */
-    public void parkTheBusAndLetPassOff() throws RemoteException;
+    public VectorCLK parkTheBusAndLetPassOff(VectorCLK vc) throws RemoteException;
     
     public void shutdownMonitor() throws RemoteException;
 }

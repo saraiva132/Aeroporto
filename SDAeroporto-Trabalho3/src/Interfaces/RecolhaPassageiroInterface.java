@@ -1,6 +1,8 @@
 package Interfaces;
 
 import Estruturas.Globals.bagCollect;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -25,6 +27,7 @@ public interface RecolhaPassageiroInterface extends Remote{
      * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de forma
      * bem sucedida.
      * 
+     * @param ts
      * @param bagID identificador da mala
      * @return Forma como conseguiu apanhar a sua mala: 
      * <ul>
@@ -36,8 +39,9 @@ public interface RecolhaPassageiroInterface extends Remote{
      * <ul>
      * <li>NOMORE
      * </ul>
+     * @throws java.rmi.RemoteException
      */
-    public bagCollect goCollectABag(int bagID) throws RemoteException;
+    public Reply goCollectABag(VectorCLK ts, int bagID) throws RemoteException;
     
     /**
      * Reportar a falta de mala(s)
@@ -52,7 +56,7 @@ public interface RecolhaPassageiroInterface extends Remote{
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
      */
-    public void reportMissingBags(int passageiroID,int malasPerdidas)throws RemoteException;
+    public VectorCLK reportMissingBags(VectorCLK vc, int passageiroID,int malasPerdidas)throws RemoteException;
     
     public void resetNoMoreBags() throws RemoteException;
     

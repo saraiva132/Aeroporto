@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -19,7 +20,7 @@ public interface TransicaoBagageiroInterface extends Remote{
      * Bagageiro dirige-se anuncia aos passageiros de que já acabou de recolher 
      * as malas do porão do avião em que chegaram e que, assim sendo, eles podem sair do aeroporto
      */
-    public void bagageiroDone() throws RemoteException;
+    public VectorCLK bagageiroDone(VectorCLK vc) throws RemoteException;
     
      public void shutdownMonitor() throws RemoteException;
      

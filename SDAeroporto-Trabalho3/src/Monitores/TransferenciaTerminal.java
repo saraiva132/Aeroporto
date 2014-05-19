@@ -2,6 +2,8 @@ package Monitores;
 
 import static Estruturas.Globals.*;
 import Estruturas.Globals.passState;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransferenciaInterface;
 import java.rmi.RemoteException;
@@ -19,7 +21,7 @@ import sdaeroporto.TransferenciaTerminalMain;
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
-public class TransferenciaTerminal implements  TransferenciaInterface {
+public class TransferenciaTerminal implements TransferenciaInterface {
 
     /**
      * Fila de espera que se forma à entrada do autocarro. cada posição é
@@ -96,13 +98,15 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-    
-    
+
     private TransferenciaTerminalMain transf;
+
+    private VectorCLK vc;
+
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
      */
-    public TransferenciaTerminal(LoggingInterface log,TransferenciaTerminalMain transf) {
+    public TransferenciaTerminal(LoggingInterface log, TransferenciaTerminalMain transf) {
         nVoo = 1;
         passTRT = 99;
         fila = new LinkedList<>();
@@ -112,6 +116,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
         next = false;
         this.log = log;
         this.transf = transf;
+        vc = new VectorCLK();
     }
 
     /**
@@ -136,7 +141,8 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * @return Posição do seu assento no autocarro
      */
     @Override
-    public synchronized int takeABus(int passageiroID) {
+    public synchronized Reply takeABus(VectorCLK ts, int passageiroID) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("Take the bus");
         int ticket;
         try {
@@ -168,7 +174,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
         }
         notifyAll();
         passTRT--;
-        return ticket;
+        return new Reply(new VectorCLK(vc.CloneVector()), (Object) ticket);
     }
 
     /**
@@ -193,7 +199,8 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * </ul>
      */
     @Override
-    public synchronized boolean hasDaysWorkEnded() {
+    public synchronized Reply hasDaysWorkEnded(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
 
         while (true) {
             try {
@@ -208,7 +215,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
         }
 
         timeUp = false;
-        return (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0);
+        return new Reply(new VectorCLK(vc.CloneVector()), (Object) (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0));
     }
 
     /**
@@ -224,7 +231,8 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * viagem (limitado à lotação do Autocarro)
      */
     @Override
-    public synchronized int announcingBusBoardingShouting() {
+    public synchronized Reply announcingBusBoardingShouting(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("ALL ABOAAARD!: passageiros à espera: " + fila.size());
         int pass = 0;
         int npass = fila.size();
@@ -242,7 +250,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
             pass++;
         }
         canGo = false;
-        return pass;
+        return new Reply(new VectorCLK(vc.CloneVector()), (Object) pass);
     }
 
     /**
@@ -296,7 +304,7 @@ public class TransferenciaTerminal implements  TransferenciaInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized void shutdownMonitor() {
+     public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             transf.close();
         }

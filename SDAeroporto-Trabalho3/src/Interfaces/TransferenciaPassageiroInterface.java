@@ -1,5 +1,7 @@
 package Interfaces;
 
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -25,7 +27,7 @@ public interface TransferenciaPassageiroInterface extends Remote{
      * @return Posição do seu assento no autocarro
      * @throws java.rmi.RemoteException
      */
-    public int takeABus(int passageiroID) throws RemoteException;
+    public Reply takeABus(VectorCLK vc, int passageiroID) throws RemoteException;
     
     public void setnVoo(int nvoo, int transit) throws RemoteException;
     

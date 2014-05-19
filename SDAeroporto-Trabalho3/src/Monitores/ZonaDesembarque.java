@@ -3,6 +3,8 @@ package Monitores;
 import Estruturas.Globals;
 import Estruturas.Globals.destination;
 import static Estruturas.Globals.passMax;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueInterface;
 import java.rmi.RemoteException;
@@ -52,6 +54,8 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
     
     
     private ZonaDesembarqueMain zona;
+    
+    private VectorCLK vc;
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
      */
@@ -61,6 +65,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         three_entities_ended = 0;
         this.log = log;
         this.zona = zona;
+        vc = new VectorCLK();
     }
 
     /**
@@ -72,7 +77,8 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * passageiro não sai do avião
      */
     @Override
-    public synchronized void takeARest() {
+    public synchronized VectorCLK takeARest(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("Taking a Rest guys...");
         try {
             while (!canGo) {
@@ -81,6 +87,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         } catch (InterruptedException ex) {
         }
         canGo = false;
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -107,7 +114,8 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * </ul>
      */
     @Override
-    public synchronized destination whatShouldIDo(int passageiroID, boolean dest, int nMalas) {
+    public synchronized Reply whatShouldIDo(VectorCLK ts, int passageiroID, boolean dest, int nMalas) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("What should i do!");
 
         nPass--;
@@ -118,17 +126,17 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
             notify();
         }
         if (dest && nMalas == 0) {
-            return destination.WITHOUT_BAGGAGE;
+            return new Reply(new VectorCLK(vc.CloneVector()), (Object) destination.WITHOUT_BAGGAGE);
         } else if (dest) {
             try {
                 log.reportState(passageiroID, Globals.passState.AT_THE_LUGGAGE_COLLECTION_POINT);
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            return destination.WITH_BAGGAGE;
+             return new Reply(new VectorCLK(vc.CloneVector()), (Object) destination.WITH_BAGGAGE);
 
         } else {
-            return destination.IN_TRANSIT;
+             return new Reply(new VectorCLK(vc.CloneVector()), (Object) destination.IN_TRANSIT);
         }
 
     }
@@ -142,13 +150,15 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * sua sala de espera
      */
     @Override
-    public synchronized void noMoreBagsToCollect() {
+    public synchronized VectorCLK noMoreBagsToCollect(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("No more bags to collect!");
         try {
             log.reportState(Globals.bagState.WAITING_FOR_A_PLANE_TO_LAND);
         } catch (RemoteException e) {
             System.exit(1);
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**

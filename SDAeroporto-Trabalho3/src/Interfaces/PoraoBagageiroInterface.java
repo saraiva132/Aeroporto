@@ -1,6 +1,8 @@
 package Interfaces;
 
 import Estruturas.Mala;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -23,6 +25,6 @@ public interface PoraoBagageiroInterface extends Remote{
      *
      * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se encontrar vazio
      */
-    public Mala tryToCollectABag() throws RemoteException;
+    public Reply tryToCollectABag(VectorCLK vc) throws RemoteException;
     public void shutdownMonitor() throws RemoteException ;
 }

@@ -3,6 +3,8 @@ package Threads;
 import Estruturas.Globals.bagDest;
 import static Estruturas.Globals.nChegadas;
 import Estruturas.Mala;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.PoraoBagageiroInterface;
 import Interfaces.RecolhaBagageiroInterface;
 import Interfaces.TransicaoBagageiroInterface;
@@ -44,6 +46,8 @@ public class Bagageiro extends Thread {
 
     private TransicaoBagageiroInterface transicao;
 
+    private VectorCLK vc;
+
     /**
      * Instanciação e inicialização do bagageiro
      *
@@ -58,6 +62,7 @@ public class Bagageiro extends Thread {
         this.porao = porao;
         this.recolha = recolha;
         this.transicao = transicao;
+        vc = new VectorCLK();
     }
 
     /**
@@ -66,21 +71,34 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
+        Reply tempRep;
         int i = 0;
         try {
             while (i < nChegadas) {
                 i++;
                 System.out.println("Bagageiro encontra-se no voo numero: " + i);
-                zona.takeARest();
-                mala = porao.tryToCollectABag();
+                vc.Add(0);
+                vc = zona.takeARest(vc);
+                vc.Add(0);
+                tempRep = porao.tryToCollectABag(vc);
+                mala = (Mala) tempRep.getRetorno();
+                vc = tempRep.getTs();
                 bagDest nextState;
                 do {
-                    nextState = recolha.carryItToAppropriateStore(mala);
-                    mala = porao.tryToCollectABag();
+                    vc.Add(0);
+                    tempRep = recolha.carryItToAppropriateStore(vc, mala);
+                    nextState = (bagDest) tempRep.getRetorno();
+                    vc = tempRep.getTs();
+                    vc.Add(0);
+                    tempRep = porao.tryToCollectABag(vc);
+                    mala = (Mala) tempRep.getRetorno();
+                    vc = tempRep.getTs();
 
                 } while (nextState != bagDest.LOBBYCLEAN);
-                transicao.bagageiroDone();
-                zona.noMoreBagsToCollect();
+                vc.Add(0);
+                vc = transicao.bagageiroDone(vc);
+                vc.Add(0);
+                vc = zona.noMoreBagsToCollect(vc);
             }
         } catch (RemoteException e) {
             e.printStackTrace();

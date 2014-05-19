@@ -2,6 +2,8 @@ package Monitores;
 
 import Estruturas.Globals;
 import Estruturas.Mala;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoInterface;
 import java.rmi.RemoteException;
@@ -44,17 +46,21 @@ public class Porao implements PoraoInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-    
+
+    private VectorCLK vc;
+
     private PoraoMain porao;
+
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
      */
-    public Porao(LoggingInterface log,PoraoMain porao) {
+    public Porao(LoggingInterface log, PoraoMain porao) {
         this.malas = new ArrayList<>();
         three_entities_ended = 0;
         this.log = log;
         this.porao = porao;
+        vc = new VectorCLK();
     }
 
     /**
@@ -69,10 +75,12 @@ public class Porao implements PoraoInterface {
      * encontrar vazio
      */
     @Override
-    public synchronized Mala tryToCollectABag() {
+    public synchronized Reply tryToCollectABag(VectorCLK ts) {
 
+        vc.CompareVector(ts.getVc());
         if (malas.isEmpty()) {
-            return null;
+            Reply rep = new Reply(new VectorCLK(vc.CloneVector()), null);
+            return rep;
         } else {
             System.out.println("vim recolher mala");
             try {
@@ -81,7 +89,8 @@ public class Porao implements PoraoInterface {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            return malas.remove(0);
+            Reply rep = new Reply(new VectorCLK(vc.CloneVector()), (Object) malas.remove(0));
+            return rep;
         }
     }
 
@@ -105,7 +114,7 @@ public class Porao implements PoraoInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized void shutdownMonitor() {
+      public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             porao.close();
         }

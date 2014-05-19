@@ -1,6 +1,8 @@
 package Interfaces;
 
 import Estruturas.Globals.destination;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -36,7 +38,7 @@ public interface ZonaDesembarquePassageiroInterface extends Remote{
      * <li> IN_TRANSIT caso esteja em trânsito
      * </ul>
      */
-    public destination whatShouldIDo(int passageiroID, boolean dest,int nMalas) throws RemoteException;
+    public Reply whatShouldIDo(VectorCLK vc, int passageiroID, boolean dest,int nMalas) throws RemoteException;
     
     public void shutdownMonitor() throws RemoteException;
 }

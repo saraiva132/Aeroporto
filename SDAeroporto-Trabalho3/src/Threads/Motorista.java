@@ -6,6 +6,8 @@
 package Threads;
 
 import Estruturas.Globals.motState;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.AutocarroMotoristaInterface;
 import Interfaces.TransferenciaMotoristaInterface;
 import java.rmi.RemoteException;
@@ -19,28 +21,31 @@ import java.rmi.RemoteException;
 public class Motorista extends Thread {
 
     /**
-     * Auxilia a simulação do ciclo de vida e as operações que o motorista pode 
+     * Auxilia a simulação do ciclo de vida e as operações que o motorista pode
      * realizar sobre o autocarro
-     * 
+     *
      * @serialField auto
      */
     private AutocarroMotoristaInterface auto;
-    
+
     /**
-     * Auxilia a simulação do ciclo de vida e as operações que o motorista pode 
-     * realizar sobre a zona de transferência entre os terminais de chegade e 
+     * Auxilia a simulação do ciclo de vida e as operações que o motorista pode
+     * realizar sobre a zona de transferência entre os terminais de chegade e
      * partida
-     * 
+     *
      * @serialField transferencia
      */
     private TransferenciaMotoristaInterface transferencia;
     
+    private VectorCLK vc;
+
     /**
      * Instanciação e inicialização do motorista
      */
-    public Motorista(AutocarroMotoristaInterface auto,TransferenciaMotoristaInterface transferencia) {
+    public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia) {
         this.auto = auto;
         this.transferencia = transferencia;
+        vc = new VectorCLK();
     }
 
     /**
@@ -48,18 +53,31 @@ public class Motorista extends Thread {
      */
     @Override
     public void run() {
-        try
-        {
-        while (!transferencia.hasDaysWorkEnded()) {
-            
-                int nTickets = transferencia.announcingBusBoardingShouting();
-                auto.announcingBusBoardingWaiting(nTickets);
-                auto.goToDepartureTerminal();
-                auto.parkTheBusAndLetPassOff();
-                auto.goToArrivalTerminal();  
-                auto.parkTheBus();  
-        }
-        }catch(RemoteException e){
+        boolean hasWork = true;
+        try {
+            while (hasWork) {
+                Reply temp;
+                vc.Add(1);
+                temp = transferencia.hasDaysWorkEnded(vc);
+                if ((boolean) temp.getRetorno()) {
+                    hasWork = false;
+                }
+                vc = temp.getTs();
+                vc.Add(1);
+                temp = transferencia.announcingBusBoardingShouting(vc);
+                vc = temp.getTs();
+                vc.Add(1);
+                vc = auto.announcingBusBoardingWaiting(vc, (int) temp.getRetorno());
+                vc.Add(1);
+                vc = auto.goToDepartureTerminal(vc);
+                vc.Add(1);
+                vc = auto.parkTheBusAndLetPassOff(vc);
+                vc.Add(1);
+                vc = auto.goToArrivalTerminal(vc);
+                vc.Add(1);
+                vc = auto.parkTheBus(vc);
+            }
+        } catch (RemoteException e) {
             e.printStackTrace();
             System.exit(1);
         }

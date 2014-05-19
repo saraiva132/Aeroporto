@@ -2,6 +2,8 @@ package Monitores;
 
 import static Estruturas.Globals.*;
 import static Estruturas.Globals.passState.*;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
 import java.rmi.RemoteException;
@@ -62,6 +64,8 @@ public class TransiçãoAeroporto implements TransicaoInterface {
     
     
     private TransicaoAeroportoMain transicao;
+    
+    private VectorCLK vc;
     /**
      * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
      *
@@ -74,6 +78,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
         three_entities_ended = 0;
         this.log = log;
         this.transicao = transicao;
+        vc = new VectorCLK();
     }
 
     /**
@@ -90,7 +95,8 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * @param passageiroId identificador do passageiro
      */
     @Override
-    public synchronized void goHome(int passageiroId) {
+    public synchronized VectorCLK goHome(VectorCLK ts,int passageiroId) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("GoHome!");
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +EXITING_THE_ARRIVAL_TERMINAL);
@@ -114,6 +120,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -130,7 +137,8 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * @param passageiroId identificador do passageiro
      */
     @Override
-    public synchronized void prepareNextLeg(int passageiroId) {
+    public synchronized VectorCLK prepareNextLeg(VectorCLK ts , int passageiroId) {
+        vc.CompareVector(ts.getVc());
         //System.out.println("Prepare next leg!");
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +ENTERING_THE_DEPARTURE_TERMINAL);
@@ -154,6 +162,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -167,10 +176,12 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * sair do aeroporto
      */
     @Override
-    public synchronized void bagageiroDone() {
+    public synchronized VectorCLK bagageiroDone(VectorCLK ts) {
+        vc.CompareVector(ts.getVc());
         System.out.println("Bagageiro acabou!(monitor)");
         bagageiroDone = true;
         notifyAll();
+        return new VectorCLK(vc.CloneVector());
     }
 
     /**
@@ -188,7 +199,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      * <li>FALSE, caso contrário
      * </ul>
      */
-    public synchronized void shutdownMonitor() {
+  public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             transicao.close();
         }

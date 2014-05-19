@@ -1,5 +1,6 @@
 package Interfaces;
 
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -26,7 +27,7 @@ public interface AutocarroPassageiroInterface extends Remote{
      * @param ticketID lugar onde o passageiro se pode sentar
      * @param passageiroId identificador do passageiro
      */
-    public void enterTheBus(int ticketID,int passageiroId) throws RemoteException;
+    public VectorCLK enterTheBus(VectorCLK ts, int ticketID,int passageiroId) throws RemoteException;
     
     /**
      * Sair do autocarro
@@ -40,7 +41,7 @@ public interface AutocarroPassageiroInterface extends Remote{
      * @param ticketID lugar onde o passageiro estava sentado 
      */
     
-    public void leaveTheBus(int passageiroId, int ticketID) throws RemoteException;
+    public VectorCLK leaveTheBus(VectorCLK ts, int passageiroId, int ticketID) throws RemoteException;
 
     public void shutdownMonitor() throws RemoteException;        
 }

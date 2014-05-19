@@ -2,6 +2,8 @@ package Interfaces;
 
 import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
+import Estruturas.Reply;
+import Estruturas.VectorCLK;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -42,6 +44,6 @@ public interface RecolhaBagageiroInterface extends Remote{
      * </ul>
      * @throws java.rmi.RemoteException
      */
-    public bagDest carryItToAppropriateStore(Mala mala) throws RemoteException;
+    public Reply carryItToAppropriateStore(VectorCLK vc, Mala mala) throws RemoteException;
      public void shutdownMonitor() throws RemoteException ;
 }
