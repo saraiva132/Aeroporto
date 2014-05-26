@@ -18,7 +18,7 @@ public class Globals {
     
     public static String registryHostname = "localhost";
     
-    public static int registryPort = 15000; //sup
+    public static int registryPort = 22257; //sup
     
     /**
      * Nome do ficheiro de logging

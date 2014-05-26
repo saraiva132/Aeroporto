@@ -12,13 +12,13 @@ import java.io.Serializable;
  *
  * @author rafael
  */
-public class VectorCLK implements Comparable,Serializable{
+public class VectorCLK implements Comparable<VectorCLK>, Serializable {
 
     private int[] vc;
 
     public VectorCLK() {
         vc = new int[passMax + 2];
-        for(int i = 0;i<vc.length;i++){
+        for (int i = 0; i < vc.length; i++) {
             vc[i] = 0;
         }
     }
@@ -26,8 +26,8 @@ public class VectorCLK implements Comparable,Serializable{
     public int[] getVc() {
         return vc;
     }
-    
-    public VectorCLK(int [] vc){
+
+    public VectorCLK(int[] vc) {
         this.vc = vc;
     }
 
@@ -52,7 +52,31 @@ public class VectorCLK implements Comparable,Serializable{
     }
 
     @Override
-    public int compareTo(Object t) {
-        return 0;
+    public int compareTo(VectorCLK ts) {
+        boolean older = false, conc = false, newer = false;
+
+        for (int i = 0; i < vc.length; i++) {
+            if (vc[i] > ts.getVc()[i]) {
+                for (int j = i; j < vc.length; j++) {
+                    if (vc[j] < ts.getVc()[j]) {
+                        conc = true;
+                        break;
+                    } else {
+                        newer = true;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        if(!conc && !newer) {older = true;}
+        
+        if (older) {
+            return -1;
+        } else if (conc) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

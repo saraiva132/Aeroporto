@@ -149,20 +149,21 @@ public class Logging implements LoggingInterface {
     private int nTotalMalasPerdidas;
 
     /**
-     * Identifica quantas entidades activas instanciadas (passageiro, bagageiro e motorista)
-     * já terminaram o seu ciclo de vida.
+     * Identifica quantas entidades activas instanciadas (passageiro, bagageiro
+     * e motorista) já terminaram o seu ciclo de vida.
      * <p>
      * Necessário para a terminação do monitor.
-     * 
+     *
      * @serialField three_entities_ended
      */
     private int three_entities_ended;
 
     private PrintStream fic;
-    
+
     private LoggingMain log;
-    
-    private VectorCLK [] vc;
+
+    private VectorCLK[] vc;
+
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
@@ -190,6 +191,10 @@ public class Logging implements LoggingInterface {
         three_entities_ended = 3;
         this.log = log;
         vc = new VectorCLK[6];
+        for(int i = 0;i<vc.length;i++)
+        {
+            vc[i] = new VectorCLK();
+        }
     }
 
     /**
@@ -243,18 +248,11 @@ public class Logging implements LoggingInterface {
         for (int i = 0; i < passMax; i++) {
             fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
-        /*int mon=0,val=0;
-        for(int j = 0;j<6;j++){
-             for(int i = 0;i<passMax+2;i++){
-                 if(vc[j].getVc()[i]>val){                  
-                     val = vc[j].getVc()[i];
-                     mon = j;
-                 }
-             }
-        }*/
+        VectorCLK ts = sort();
+        
         fic.print("CLK: ");
-        for(int i = 0;i<passMax+2;i++){
-            fic.printf("%3s",vc[3S].getVc()[i]);
+        for (int i = 0; i < passMax + 2; i++) {
+            fic.printf("%3s", ts.getVc()[i]);
         }
         fic.println();
     }
@@ -537,10 +535,10 @@ public class Logging implements LoggingInterface {
      * <p>
      * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3 lançadores 
-     * das threads correspondentes ao passageiro, bagageiro e motorista necessitam de 
-     * fechar os monitores.
-     * 
+     * No final da execução da simulação, para o fechar o monitor os 3
+     * lançadores das threads correspondentes ao passageiro, bagageiro e
+     * motorista necessitam de fechar os monitores.
+     *
      * @return Informação se pode ou não terminar o monitor.
      * <ul>
      * <li>TRUE, caso possa
@@ -550,8 +548,8 @@ public class Logging implements LoggingInterface {
     public synchronized void shutdownMonitor() {
         three_entities_ended--;
         System.out.print(three_entities_ended);
-        if (three_entities_ended == 0) 
-        {   fic.println("Número total de chegadas de aviões: " + nChegadas);
+        if (three_entities_ended == 0) {
+            fic.println("Número total de chegadas de aviões: " + nChegadas);
             fic.println("\nNúmero total de passageiros: " + (nChegadas * passMax));
             fic.println("\n\tNúmero total de passageiros em trânsito: " + nTotalPassageirosTransito);
             fic.println("\n\tNúmero total de passageiros finais: " + nTotalPassageirosFinal);
@@ -561,11 +559,27 @@ public class Logging implements LoggingInterface {
             fic.println("\n\tNúmero total de malas perdidas pelos passageiros: " + nTotalMalasPerdidas);
             close();
             log.close();
-        }    
+        }
     }
-    
+
     @Override
-    public synchronized void UpdateVectorCLK(VectorCLK ts,int id){
+    public synchronized void UpdateVectorCLK(VectorCLK ts, int id) {
         vc[id] = ts;
+    }
+
+    public VectorCLK sort() {
+        VectorCLK ts = new VectorCLK();
+        for (int i = 0; i < vc.length - 1; i++) {
+            if ((ts.compareTo(vc[i])) < 0) {
+                ts = vc[i];
+            } 
+        }
+        for(int i =vc.length-1;i>0;i++)
+        {
+          if ((ts.compareTo(vc[i])) < 0) {
+                ts = vc[i];
+            }   
+        }
+        return ts;
     }
 }
