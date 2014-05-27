@@ -1,0 +1,7 @@
+
+grant {   
+    permission java.net.SocketPermission "*:1024-65535", "connect,accept";
+    permission java.net.SocketPermission "*:22250-22259", "listen";
+    permission java.io.FilePermission "/-", "read,write";
+    permission java.lang.RuntimePermission "setIO";
+};

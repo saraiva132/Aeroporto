@@ -39,7 +39,7 @@ public class ServerRegisterRemoteObject {
             System.out.printf("Could not create Registry");
         }
         RegisterRemoteObject regEngine = new RegisterRemoteObject(registryHostname, registryPort);
-        int listeningPort = 22000;   //define in global
+        int listeningPort = 22259;   //define in global
         Register regEngineStub = null;
 
         try {

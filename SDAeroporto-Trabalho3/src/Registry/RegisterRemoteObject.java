@@ -36,7 +36,7 @@ public class RegisterRemoteObject implements Register
    *    @serialField sconi
    */
 
-   private int rmiRegPortNumb = 1099;
+   private int rmiRegPortNumb;
 
   /**
    *  Instantiation of a registering object.
