@@ -55,7 +55,7 @@ public class TransicaoAeroportoMain {
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
-        GenericIO.writelnString("Security manager was installed!");
+        //GenericIO.writelnString("Security manager was installed!");
         TransiçãoAeroporto transicao;
         TransicaoInterface transInt = null;
         Registry registry = null;
@@ -101,8 +101,8 @@ public class TransicaoAeroportoMain {
         } catch (AlreadyBoundException e) {
             System.exit(1);
         }
-        GenericIO.writelnString("O serviço TransicaoAeroporto foi estabelecido!");
-        GenericIO.writelnString("O servidor esta em escuta.");
+        //GenericIO.writelnString("O serviço TransicaoAeroporto foi estabelecido!");
+        //GenericIO.writelnString("O servidor esta em escuta.");
         
         try {
             while (!canEnd) {

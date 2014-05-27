@@ -16,8 +16,8 @@ import org.w3c.dom.NodeList;
  */
 public class Globals {
     
-    public static String registryHostname = "localhost";
-    
+    //public static String registryHostname = "l040101-ws1.clients.ua.pt";
+    public static String registryHostname;
     public static int registryPort = 22257; //sup
     
     /**
@@ -646,7 +646,7 @@ public class Globals {
      * @serialField MON_LOGGING
      */
     public static final int MON_LOGGING = 6;
-
+    
     /**
      * Endereços dos monitores remotos
      */
@@ -718,6 +718,11 @@ public class Globals {
                 NodeList address = monitorConfig.getElementsByTagName("nome");
                 hostNames[i] = address.item(0).getTextContent().replaceAll(" ", "").replaceAll("\n", "");
             }
+                NodeList monconf = doc.getDocumentElement().getElementsByTagName("Registry");
+                Element monitorConfig = (Element) monconf.item(0);
+                NodeList address = monitorConfig.getElementsByTagName("nome");
+                registryHostname = address.item(0).getTextContent().replaceAll(" ", "").replaceAll("\n", "");
+            
 
         } catch (Exception ex) {
             ex.printStackTrace();

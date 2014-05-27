@@ -3,6 +3,7 @@ package sdaeroporto;
 import Estruturas.Globals;
 import static Estruturas.Globals.*;
 import Estruturas.Mala;
+import Estruturas.VectorCLK;
 import Interfaces.AutocarroPassageiroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoPassageiroInterface;
@@ -77,7 +78,10 @@ public class PassageiroMain {
             e.printStackTrace();
             System.exit(1);
         }
-
+        VectorCLK [] clk = new VectorCLK[passMax];
+        for(int i = 0; i < clk.length;i++){
+            clk[i] = new VectorCLK();
+        }
         for (int i = 0; i < nChegadas; i++) {
 
             for (int j = 0; j < passMax; j++) {
@@ -109,7 +113,7 @@ public class PassageiroMain {
             }
 
             for (int j = 0; j < passMax; j++) {
-                passageiro[j] = new Passageiro(nMalasPass[j], j, i + 1, dest[j], zona, auto, transicao, recolha, transferencia);
+                passageiro[j] = new Passageiro(clk[j],nMalasPass[j], j, i + 1, dest[j], zona, auto, transicao, recolha, transferencia);
             }
 
             try {

@@ -115,7 +115,7 @@ public class Passageiro extends Thread {
      * @param recolha
      * @param transferencia
      */
-    public Passageiro(int nMalasTotal, int id, int nVoo, boolean finalDest, ZonaDesembarquePassageiroInterface zona, AutocarroPassageiroInterface auto,
+    public Passageiro(VectorCLK ts,int nMalasTotal, int id, int nVoo, boolean finalDest, ZonaDesembarquePassageiroInterface zona, AutocarroPassageiroInterface auto,
             TransicaoPassageiroInterface transicao, RecolhaPassageiroInterface recolha,
             TransferenciaPassageiroInterface transferencia) {
         this.desembarque = zona;
@@ -128,7 +128,7 @@ public class Passageiro extends Thread {
         this.finalDest = finalDest;
         this.nVoo = nVoo;   //not used for now
         this.id = id;
-        vc = new VectorCLK();
+        this.vc = ts;
     }
 
     /**

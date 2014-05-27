@@ -13,6 +13,8 @@ import Interfaces.LoggingInterface;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import sdaeroporto.LoggingMain;
 
 /**
@@ -191,8 +193,7 @@ public class Logging implements LoggingInterface {
         three_entities_ended = 3;
         this.log = log;
         vc = new VectorCLK[6];
-        for(int i = 0;i<vc.length;i++)
-        {
+        for (int i = 0; i < vc.length; i++) {
             vc[i] = new VectorCLK();
         }
     }
@@ -201,7 +202,7 @@ public class Logging implements LoggingInterface {
      * Auxilia na inicialização do logging
      */
     public synchronized void reportInitialStatus() {
-
+        
         fic.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
         fic.print("|FN  BN| Stat CB SR     Stat      ");
         for (int i = 0; i < passMax; i++) {
@@ -234,7 +235,17 @@ public class Logging implements LoggingInterface {
      * Auxilia a reportar uma actualização do estado geral do problema
      */
     private synchronized void reportStatus() {
+        ArrayList<VectorCLK> ts = sort();
 
+        fic.print("CLK:");
+        for (int j = 0; j < ts.size(); j++) {
+            for (int i = 0; i < passMax + 2; i++) {
+                fic.printf("%1s,", ts.get(j).getVc()[i]);
+            }
+            fic.printf("| ");
+        }
+
+        fic.println();
         fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
         for (int i = 0; i < fila.length; i++) {
             fic.printf("%1d ", fila[i]);
@@ -248,12 +259,7 @@ public class Logging implements LoggingInterface {
         for (int i = 0; i < passMax; i++) {
             fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
         }
-        VectorCLK ts = sort();
-        
-        fic.print("CLK: ");
-        for (int i = 0; i < passMax + 2; i++) {
-            fic.printf("%3s", ts.getVc()[i]);
-        }
+
         fic.println();
     }
 
@@ -567,19 +573,32 @@ public class Logging implements LoggingInterface {
         vc[id] = ts;
     }
 
-    public VectorCLK sort() {
-        VectorCLK ts = new VectorCLK();
+    public ArrayList<VectorCLK> sort() {
+        ArrayList<VectorCLK> clk = new ArrayList<>();
+        VectorCLK[] cpy = new VectorCLK[vc.length];
+        VectorCLK ts;
+
         for (int i = 0; i < vc.length - 1; i++) {
-            if ((ts.compareTo(vc[i])) < 0) {
-                ts = vc[i];
-            } 
+            cpy[i] = vc[i];
         }
-        for(int i =vc.length-1;i>0;i++)
-        {
-          if ((ts.compareTo(vc[i])) < 0) {
-                ts = vc[i];
-            }   
+
+        for (int j = 0; j < vc.length - 1; j++) {
+            for (int i = 0; i < vc.length - 2; i++) {
+                if (cpy[i].compareTo(cpy[i + 1]) < 0) {
+                    ts = cpy[i];
+                    cpy[i] = cpy[i + 1];
+                    cpy[i + 1] = ts;
+                }
+            }
         }
-        return ts;
+        clk.add(cpy[0]);
+        for (int i = 0; i < vc.length - 2; i++) {
+            if (cpy[i].compareTo(cpy[i + 1]) == 0) {
+                clk.add(cpy[i + 1]);
+            } else {
+                break;
+            }
+        }
+        return clk;
     }
 }

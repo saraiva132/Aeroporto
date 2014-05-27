@@ -52,31 +52,58 @@ public class VectorCLK implements Comparable<VectorCLK>, Serializable {
     }
 
     @Override
+    /*public int compareTo(VectorCLK ts) {
+        
+     int difM = 0;
+     int difm = 0;
+     for (int i = 0; i < vc.length; i++) {
+     if (vc[i] > ts.getVc()[i]) {
+     difM += vc[i] - ts.getVc()[i];
+     }
+            
+     if(vc[i] < ts.getVc()[i]){
+     difm += ts.getVc()[i] - vc[i];
+     }
+     }
+        
+     if(difM == 0 && difM < difm){
+     return -1;
+     }
+     else if(difm == 0 && difM > difm){
+     return 1;
+     }
+     else if(difm == difM){
+     return 0;
+     }
+     else{
+     return 0;
+     }
+     }*/
+
     public int compareTo(VectorCLK ts) {
         boolean older = false, conc = false, newer = false;
 
         for (int i = 0; i < vc.length; i++) {
             if (vc[i] > ts.getVc()[i]) {
+                newer = true;
                 for (int j = i; j < vc.length; j++) {
                     if (vc[j] < ts.getVc()[j]) {
                         conc = true;
                         break;
-                    } else {
-                        newer = true;
-                        break;
                     }
                 }
-                break;
             }
         }
-        if(!conc && !newer) {older = true;}
-        
-        if (older) {
-            return -1;
-        } else if (conc) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
+            if (!conc && !newer) {
+                older = true;
+            }
+
+            if (older) {
+                return -1;
+            } else if (conc) {
+                return 0;
+            } else {
+                return 1;
+            }
+    } 
 }

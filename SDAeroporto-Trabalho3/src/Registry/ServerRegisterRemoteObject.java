@@ -5,6 +5,7 @@
  */
 package Registry;
 
+import Estruturas.Globals;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
 import Interfaces.Register;
@@ -28,7 +29,7 @@ public class ServerRegisterRemoteObject {
     }
 
     public static void main(String[] args) {
-
+        Globals.xmlParser();
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new RMISecurityManager());
         }
