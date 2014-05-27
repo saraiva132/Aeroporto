@@ -62,11 +62,11 @@ public class BagageiroMain {
             transicao = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
             zona = (ZonaDesembarqueBagageiroInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
-            GenericIO.writelnString("Excepção na localização do Monitor: " + e.getMessage() + "!");
+            GenericIO.writelnString("Excepção na localização do Logging: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         } catch (NotBoundException e) {
-            GenericIO.writelnString("Um monitor não está registado: " + e.getMessage() + "!");
+            GenericIO.writelnString("O Logging não está registado: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         }

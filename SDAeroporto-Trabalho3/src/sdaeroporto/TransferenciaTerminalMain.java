@@ -64,11 +64,11 @@ public class TransferenciaTerminalMain {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
             log = (LoggingInterface) registry.lookup("Logging");
         } catch (RemoteException e) {
-            GenericIO.writelnString("Excepção na localização da barbearia: " + e.getMessage() + "!");
+            GenericIO.writelnString("Excepção na localização do Logging: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         } catch (NotBoundException e) {
-            GenericIO.writelnString("A barbearia não está registada: " + e.getMessage() + "!");
+            GenericIO.writelnString("O Logging não está registado: " + e.getMessage() + "!");
             e.printStackTrace();
             System.exit(1);
         }
