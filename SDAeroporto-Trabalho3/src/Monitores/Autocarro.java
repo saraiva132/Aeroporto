@@ -177,8 +177,10 @@ public class Autocarro implements AutocarroInterface {
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
+     * @param ts
      * @param bilhetesvendidos - Número de bilhetes vendidos (corresponde ao
      * número de passageiros que estão à espera)
+     * @return 
      */
     @Override
     public synchronized VectorCLK announcingBusBoardingWaiting(VectorCLK ts, int bilhetesvendidos) {

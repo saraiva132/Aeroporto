@@ -104,6 +104,7 @@ public class Passageiro extends Thread {
     /**
      * Instanciação e inicialização do passageiro
      *
+     * @param ts
      * @param nMalasTotal número de malas total do passageiro
      * @param id identificador do passageiro
      * @param nVoo número do voo em que o passageiro vem
@@ -129,6 +130,7 @@ public class Passageiro extends Thread {
         this.nVoo = nVoo;   //not used for now
         this.id = id;
         this.vc = ts;
+        System.out.println("pass: "+ id +" inicial: "+vc.getVc()[id+2]);
     }
 
     /**
@@ -141,7 +143,7 @@ public class Passageiro extends Thread {
             vc.Add(id+2);
             temp = desembarque.whatShouldIDo(vc,id, finalDest, nMalasTotal);
             destination nextState = (destination) temp.getRetorno();
-            vc = temp.getTs();
+            vc.CompareVector(temp.getTs().getVc());
             bagCollect getBag;
             switch (nextState) {
                 case WITH_BAGGAGE:
@@ -151,7 +153,7 @@ public class Passageiro extends Thread {
                         vc.Add(id+2);
                         temp = recolha.goCollectABag(vc,id);
                         getBag = (bagCollect) temp.getRetorno();
-                        vc = temp.getTs();
+                        vc.CompareVector(temp.getTs().getVc());
                         if ((getBag) == bagCollect.MINE) {
                             nMalasEmPosse++;
                         }
@@ -161,27 +163,32 @@ public class Passageiro extends Thread {
                     } while (nMalasEmPosse < nMalasTotal && getBag != bagCollect.NOMORE);
                     if (nMalasEmPosse < nMalasTotal) {
                         vc.Add(id+2);
-                        vc = recolha.reportMissingBags(vc,id, nMalasTotal - nMalasEmPosse);
+                        vc.CompareVector(recolha.reportMissingBags(vc,id, nMalasTotal - nMalasEmPosse).getVc());
                     }
                     vc.Add(id+2);
-                    vc = transicao.goHome(vc,id);
+                    vc.CompareVector(transicao.goHome(vc,id).getVc());
                     break;
                 case IN_TRANSIT:
                     int ticket; //bilhete para entrar no autocarro.
+                     System.out.println("pass: "+ id +" bef: "+vc.getVc()[id+2]);
                     vc.Add(id+2);
                     temp = transferencia.takeABus(vc,id);
                     ticket = (int) temp.getRetorno();
-                    vc = temp.getTs();
+                    vc.CompareVector(temp.getTs().getVc());
+                   
                     vc.Add(id+2);
-                    vc = auto.enterTheBus(vc,ticket, id);
+                    vc.CompareVector(auto.enterTheBus(vc,ticket, id).getVc());
+                   
                     vc.Add(id+2);
-                    vc = auto.leaveTheBus(vc,id, ticket);
+                    vc.CompareVector(auto.leaveTheBus(vc,id, ticket).getVc());
+                    
                     vc.Add(id+2);
-                    vc = transicao.prepareNextLeg(vc,id);
+                    vc.CompareVector(transicao.prepareNextLeg(vc,id).getVc());
+                    System.out.println("pass: "+ id +" aft: "+vc.getVc()[id+2]);
                     break;
                 case WITHOUT_BAGGAGE:
                     vc.Add(id+2);
-                    vc = transicao.goHome(vc,id);
+                    vc.CompareVector(transicao.goHome(vc,id).getVc());
                     break;
             }
         } catch (RemoteException e) {

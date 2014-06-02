@@ -111,7 +111,7 @@ public class PassageiroMain {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-
+            
             for (int j = 0; j < passMax; j++) {
                 passageiro[j] = new Passageiro(clk[j],nMalasPass[j], j, i + 1, dest[j], zona, auto, transicao, recolha, transferencia);
             }
