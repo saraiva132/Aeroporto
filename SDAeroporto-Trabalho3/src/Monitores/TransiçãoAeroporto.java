@@ -6,6 +6,7 @@ import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
+import Registry.TransicaoAeroportoRegister;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,7 +66,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
     private final LoggingInterface log;
     
     
-    private TransicaoAeroportoMain transicao;
+    private TransicaoAeroportoRegister transicao;
     
     private VectorCLK vc;
     /**
@@ -73,7 +74,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      *
      * @param log
      */
-    public TransiçãoAeroporto(LoggingInterface log,TransicaoAeroportoMain transicao) {
+    public TransiçãoAeroporto(LoggingInterface log,TransicaoAeroportoRegister transicao) {
         bagageiroDone = false;
         nPassageiros = passMax;
         canLeave = false;

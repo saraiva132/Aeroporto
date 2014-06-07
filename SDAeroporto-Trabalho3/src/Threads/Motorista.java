@@ -62,10 +62,10 @@ public class Motorista extends Thread {
                 if ((boolean) temp.getRetorno()) {
                     hasWork = false;
                 }
-                vc = temp.getTs();
+                vc = temp.getTimestamp();
                 vc.Add(1);
                 temp = transferencia.announcingBusBoardingShouting(vc);
-                vc = temp.getTs();
+                vc = temp.getTimestamp();
                 vc.Add(1);
                 vc = auto.announcingBusBoardingWaiting(vc, (int) temp.getRetorno());
                 vc.Add(1);

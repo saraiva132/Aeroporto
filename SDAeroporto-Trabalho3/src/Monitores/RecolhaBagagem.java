@@ -11,6 +11,7 @@ import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.RecolhaInterface;
+import Registry.RecolhaBagagemRegister;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -74,14 +75,14 @@ public class RecolhaBagagem implements RecolhaInterface {
      */
     private final LoggingInterface log;
 
-    private RecolhaBagagemMain recolha;
+    private RecolhaBagagemRegister recolha;
 
     private VectorCLK vc;
 
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
      */
-    public RecolhaBagagem(LoggingInterface log, RecolhaBagagemMain recolha) {
+    public RecolhaBagagem(LoggingInterface log, RecolhaBagagemRegister recolha) {
         vc = new VectorCLK();
         nMalasStore = 0;
         belt = new HashMap<>(nChegadas * passMax);

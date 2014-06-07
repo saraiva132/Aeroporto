@@ -143,7 +143,7 @@ public class Passageiro extends Thread {
             vc.Add(id+2);
             temp = desembarque.whatShouldIDo(vc,id, finalDest, nMalasTotal);
             destination nextState = (destination) temp.getRetorno();
-            vc.CompareVector(temp.getTs().getVc());
+            vc.CompareVector(temp.getTimestamp().getVc());
             bagCollect getBag;
             switch (nextState) {
                 case WITH_BAGGAGE:
@@ -153,7 +153,7 @@ public class Passageiro extends Thread {
                         vc.Add(id+2);
                         temp = recolha.goCollectABag(vc,id);
                         getBag = (bagCollect) temp.getRetorno();
-                        vc.CompareVector(temp.getTs().getVc());
+                        vc.CompareVector(temp.getTimestamp().getVc());
                         if ((getBag) == bagCollect.MINE) {
                             nMalasEmPosse++;
                         }
@@ -174,7 +174,7 @@ public class Passageiro extends Thread {
                     vc.Add(id+2);
                     temp = transferencia.takeABus(vc,id);
                     ticket = (int) temp.getRetorno();
-                    vc.CompareVector(temp.getTs().getVc());
+                    vc.CompareVector(temp.getTimestamp().getVc());
                    
                     vc.Add(id+2);
                     vc.CompareVector(auto.enterTheBus(vc,ticket, id).getVc());

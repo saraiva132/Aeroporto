@@ -8,6 +8,7 @@ import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.ZonaDesembarqueInterface;
+import Registry.ZonaDesembarqueRegister;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,13 +57,13 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
     private final LoggingInterface log;
     
     
-    private ZonaDesembarqueMain zona;
+    private ZonaDesembarqueRegister zona;
     
     private VectorCLK vc;
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
      */
-    public ZonaDesembarque(LoggingInterface log,ZonaDesembarqueMain zona) {
+    public ZonaDesembarque(LoggingInterface log,ZonaDesembarqueRegister zona) {
         nPass = passMax;
         canGo = false;
         three_entities_ended = 0;

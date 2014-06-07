@@ -82,17 +82,17 @@ public class Bagageiro extends Thread {
                 vc.Add(0);
                 tempRep = porao.tryToCollectABag(vc);
                 mala = (Mala) tempRep.getRetorno();
-                vc = tempRep.getTs();
+                vc = tempRep.getTimestamp();
                 bagDest nextState;
                 do {
                     vc.Add(0);
                     tempRep = recolha.carryItToAppropriateStore(vc, mala);
                     nextState = (bagDest) tempRep.getRetorno();
-                    vc = tempRep.getTs();
+                    vc = tempRep.getTimestamp();
                     vc.Add(0);
                     tempRep = porao.tryToCollectABag(vc);
                     mala = (Mala) tempRep.getRetorno();
-                    vc = tempRep.getTs();
+                    vc = tempRep.getTimestamp();
 
                 } while (nextState != bagDest.LOBBYCLEAN);
                 vc.Add(0);

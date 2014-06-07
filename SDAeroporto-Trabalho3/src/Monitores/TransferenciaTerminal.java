@@ -6,6 +6,7 @@ import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransferenciaInterface;
+import Registry.TransferenciaTerminalRegister;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -101,14 +102,14 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      */
     private final LoggingInterface log;
 
-    private TransferenciaTerminalMain transf;
+    private TransferenciaTerminalRegister transf;
 
     private VectorCLK vc;
 
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
      */
-    public TransferenciaTerminal(LoggingInterface log, TransferenciaTerminalMain transf) {
+    public TransferenciaTerminal(LoggingInterface log, TransferenciaTerminalRegister transf) {
         nVoo = 1;
         passTRT = 99;
         fila = new LinkedList<>();

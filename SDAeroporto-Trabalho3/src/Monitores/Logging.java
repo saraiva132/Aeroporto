@@ -10,12 +10,11 @@ import static Estruturas.Globals.passMax;
 import Estruturas.Globals.passState;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
+import Registry.LoggingRegister;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
-import sdaeroporto.LoggingMain;
 
 /**
  * Monitor correspondente ao Repositório Geral de Informação. Necessário apenas
@@ -162,7 +161,7 @@ public class Logging implements LoggingInterface {
 
     private PrintStream fic;
 
-    private LoggingMain log;
+    private LoggingRegister log;
 
     private VectorCLK[] vc;
 
@@ -170,7 +169,7 @@ public class Logging implements LoggingInterface {
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
      */
-    public Logging(LoggingMain log) {
+    public Logging(LoggingRegister log) {
         try {
             fic = new PrintStream(new FileOutputStream(fileName, false));
         } catch (FileNotFoundException ex) {

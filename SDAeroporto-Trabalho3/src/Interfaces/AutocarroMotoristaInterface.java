@@ -21,8 +21,11 @@ public interface AutocarroMotoristaInterface extends Remote {
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
+     * @param vc 
      * @param bilhetesvendidos Número de bilhetes vendidos (corresponde ao número de
      * passageiros que estão à espera)
+     * @return 
+     * @throws java.rmi.RemoteException
      */
     public VectorCLK announcingBusBoardingWaiting(VectorCLK vc, int bilhetesvendidos) throws RemoteException;
 

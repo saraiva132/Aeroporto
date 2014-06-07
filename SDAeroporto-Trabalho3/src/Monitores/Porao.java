@@ -7,6 +7,7 @@ import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.PoraoInterface;
+import Registry.PoraoRegister;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,13 +51,13 @@ public class Porao implements PoraoInterface {
 
     private VectorCLK vc;
 
-    private PoraoMain porao;
+    private PoraoRegister porao;
 
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
      */
-    public Porao(LoggingInterface log, PoraoMain porao) {
+    public Porao(LoggingInterface log, PoraoRegister porao) {
         this.malas = new ArrayList<>();
         three_entities_ended = 0;
         this.log = log;

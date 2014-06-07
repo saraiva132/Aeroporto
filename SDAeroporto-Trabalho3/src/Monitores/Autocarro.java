@@ -5,6 +5,7 @@ import static Estruturas.Globals.*;
 import Estruturas.VectorCLK;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
+import Registry.AutocarroRegister;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,14 +76,14 @@ public class Autocarro implements AutocarroInterface {
      */
     private final LoggingInterface log;
 
-    private final AutocarroMain auto;
+    private final AutocarroRegister auto;
 
     private VectorCLK vc;
 
     /**
      * Instanciação e inicialização do monitor <b>Autocarro</b>
      */
-    public Autocarro(LoggingInterface log, AutocarroMain auto) {
+    public Autocarro(LoggingInterface log, AutocarroRegister auto) {
         hasEnded = false;
         bilhetesVendidos = 0;
         nOcupantes = 0;

@@ -15,10 +15,19 @@ import org.w3c.dom.NodeList;
  * @author Hugo Frade 59399
  */
 public class Globals {
+    /**
+     * Host for remote registry
+     * 
+     * @serialField registryHostname
+     */
     
-    //public static String registryHostname = "l040101-ws1.clients.ua.pt";
     public static String registryHostname;
-    public static int registryPort = 22257; //sup
+    /**
+     * Port on which the registry accepts requests
+     * 
+     * @serialField registryPort
+     */
+    public static int registryPort = 22257;
     
     /**
      * Nome do ficheiro de logging
@@ -46,12 +55,15 @@ public class Globals {
      *
      * @serialField lotação
      */
+    
+    public static int lotação;
+    
     /**
      * Identificação do número de passageiros que chega por voo
      *
      * @serialField passMax
      */
-    public static int lotação;
+    public static int passMax;
 
     /**
      * Identificação dos possíveis estados de um passageiro ao longo do seu
@@ -288,313 +300,6 @@ public class Globals {
         UNSUCCESSFUL,
     }
 
-    /*resposta do servidor para os clientes quando está tudo OK*/
-    /**
-     * Não ocorreu erro na troca de mensagens.
-     *
-     * @serialField OK
-     */
-    public static final int OK = 0;
-
-    /**
-     * Ocorreu um erro na troca de mensagens.
-     *
-     * @serialField ERROR
-     */
-    public static final int ERROR = 1;
-
-    /*operacoes realizadas sobre os monitores*/
-    /**
-     * Identificador da invocação remota do método
-     * <i>announcingBusBoardingWaiting</i> ao monitor <i>Autocarro</i>
-     *
-     * @serialField ANNOUNCING_BUS_BOARDING_WAITING
-     */
-    public static final int ANNOUNCING_BUS_BOARDING_WAITING = 0;
-    /**
-     * Identificador da invocação remota do método <i>goToDepartureTerminal</i>
-     * ao monitor <i>Autocarro</i>
-     *
-     * @serialField GO_TO_DEPARTURE_TERMINAL
-     */
-    public static final int GO_TO_DEPARTURE_TERMINAL = 1;
-    /**
-     * Identificador da invocação remota do método <i>goToArrivalTerminal</i> ao
-     * monitor <i>Autocarro</i>
-     *
-     * @serialField GO_TO_ARRIVAL_TERMINAL
-     */
-    public static final int GO_TO_ARRIVAL_TERMINAL = 2;
-    /**
-     * Identificador da invocação remota do método <i>parkTheBus</i> ao monitor
-     * <i>Autocarro</i>
-     *
-     * @serialField PARK_THE_BUS
-     */
-    public static final int PARK_THE_BUS = 4;
-    /**
-     * Identificador da invocação remota do método
-     * <i>parkTheBusAndLetPassOff</i> ao monitor <i>Autocarro</i>
-     *
-     * @serialField PARK_THE_BUS_AND_LET_PASS_OFF
-     */
-    public static final int PARK_THE_BUS_AND_LET_PASS_OFF = 5;
-    /**
-     * Identificador da invocação remota do método <i>enterTheBus</i> ao monitor
-     * <i>Autocarro</i>
-     *
-     * @serialField ENTER_THE_BUS
-     */
-    public static final int ENTER_THE_BUS = 6;
-    /**
-     * Identificador da invocação remota do método <i>leaveTheBus</i> ao monitor
-     * <i>Autocarro</i>
-     *
-     * @serialField LEAVE_THE_BUS
-     */
-    public static final int LEAVE_THE_BUS = 7;
-    /**
-     * Identificador da invocação remota do método <i>tryToCollectABag</i> ao
-     * monitor <i>Porao</i>
-     *
-     * @serialField TRY_TO_COLLECT_A_BAG
-     */
-    public static final int TRY_TO_COLLECT_A_BAG = 8;
-    /**
-     * Identificador da invocação remota do método
-     * <i>carryItToAppropriateStore</i> ao monitor <i>RecolhaBagagem</i>
-     *
-     * @serialField CARRY_IT_TO_APPROPRIATE_STORE
-     */
-    public static final int CARRY_IT_TO_APPROPRIATE_STORE = 9;
-    /**
-     * Identificador da invocação remota do método <i>goCollectABag</i> ao
-     * monitor <i>RecolhaBagagem</i>
-     *
-     * @serialField GO_COLLECT_A_BAG
-     */
-    public static final int GO_COLLECT_A_BAG = 10;
-    /**
-     * Identificador da invocação remota do método <i>reportMissingBags</i> ao
-     * monitor <i>RecolhaBagagem</i>
-     *
-     * @serialField REPORT_MISSING_BAGS
-     */
-    public static final int REPORT_MISSING_BAGS = 11;
-    /**
-     * Identificador da invocação remota do método <i>hasDaysWorkEnded</i> ao
-     * monitor <i>TransferenciaTerminal</i>
-     *
-     * @serialField HAS_DAYS_WORK_ENDED
-     */
-    public static final int HAS_DAYS_WORK_ENDED = 12;
-    /**
-     * Identificador da invocação remota do método
-     * <i>announcingBusBoardingShouting</i> ao monitor
-     * <i>TransferenciaTerminal</i>
-     *
-     * @serialField ANNOUNCING_BUS_BOARDING_SHOUTING
-     */
-    public static final int ANNOUNCING_BUS_BOARDING_SHOUTING = 13;
-    /**
-     * Identificador da invocação remota do método <i>takeABus</i> ao monitor
-     * <i>TransferenciaTerminal</i>
-     *
-     * @serialField TAKE_A_BUS
-     */
-    public static final int TAKE_A_BUS = 14;
-    /**
-     * Identificador da invocação remota do método <i>goHome</i> ao monitor
-     * <i>TransicaoAeroporto</i>
-     *
-     * @serialField GO_HOME
-     */
-    public static final int GO_HOME = 15;
-    /**
-     * Identificador da invocação remota do método <i>prepareNextLeg</i> ao
-     * monitor <i>TransicaoAeroporto</i>
-     *
-     * @serialField PREPARE_NEXT_LEG
-     */
-    public static final int PREPARE_NEXT_LEG = 16;
-    /**
-     * Identificador da invocação remota do método <i>noMoreBagsToCollect</i> ao
-     * monitor <i>ZonaDesembarque</i>
-     *
-     * @serialField NO_MORE_BAGS_TO_COLLECT
-     */
-    public static final int NO_MORE_BAGS_TO_COLLECT = 17;
-    /**
-     * Identificador da invocação remota do método <i>whatShouldIDo</i> ao
-     * monitor <i>ZonaDesembarque</i>
-     *
-     * @serialField WHAT_SHOULD_I_DO
-     */
-    public static final int WHAT_SHOULD_I_DO = 18;
-    /**
-     * Identificador da invocação remota do método <i>takeARest</i> ao monitor
-     * <i>ZonaDesembarque</i>
-     *
-     * @serialField TAKE_A_REST
-     */
-    public static final int TAKE_A_REST = 19;
-    /**
-     * Identificador da invocação remota do método <i>bagageiroDone</i> ao
-     * monitor <i>TransicaoAeroporto</i>
-     *
-     * @serialField BAGAGEIRO_DONE
-     */
-    public static final int BAGAGEIRO_DONE = 20;
-
-    /**
-     * Identificador da invocação remota do método <i>resetNoMoreBags</i> ao
-     * monitor <i>RecolhaBagagem</i>
-     *
-     * @serialField RESET_NOMORE_BAGS
-     */
-    public static final int RESET_NOMORE_BAGS = 20;
-    /**
-     * Identificador da invocação remota do método <i>setNVoo</i> ao monitor
-     * <i>TransferenciaTerminal</i>
-     *
-     * @serialField SET_N_VOO
-     */
-    public static final int SET_N_VOO = 21;
-    /**
-     * Identificador da invocação remota do método <i>sendLuggages</i> ao
-     * monitor <i>Porao</i>
-     *
-     * @serialField SEND_LUGAGES
-     */
-    public static final int SEND_LUGAGES = 17;
-
-    /*operacoes realizadas sobre o logging*/
-    /**
-     * Identificador da invocação remota do método <i>reportInitialStatus</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField REPORT_INITIAL_STATUS
-     */
-    public static final int REPORT_INITIAL_STATUS = 0;
-    /**
-     * Identificador da invocação remota do método <i>reportState</i>
-     * (passageiro) ao monitor <i>Logging</i>
-     *
-     * @serialField REPORT_STATE_PASSAGEIRO
-     */
-    public static final int REPORT_STATE_PASSAGEIRO = 1;
-    /**
-     * Identificador da invocação remota do método <i>reportState</i>
-     * (motorista) ao monitor <i>Logging</i>
-     *
-     * @serialField REPORT_STATE_MOTORISTA
-     */
-    public static final int REPORT_STATE_MOTORISTA = 2;
-    /**
-     * Identificador da invocação remota do método <i>reportState</i>
-     * (bagageiro)ao monitor <i>Logging</i>
-     *
-     * @serialField REPORT_STATE_BAGAGEIRO
-     */
-    public static final int REPORT_STATE_BAGAGEIRO = 3;
-    /**
-     * Identificador da invocação remota do método <i>nVoo</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField N_VOO
-     */
-    public static final int N_VOO = 4;
-    /**
-     * Identificador da invocação remota do método <i>setPorao</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField SET_PORAO
-     */
-    public static final int SET_PORAO = 5;
-    /**
-     * Identificador da invocação remota do método <i>bagagemPorao</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField BAGAGEM_PORAO
-     */
-    public static final int BAGAGEM_PORAO = 6;
-    /**
-     * Identificador da invocação remota do método <i>bagagemBelt</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField BAGAGEM_BELT
-     */
-    public static final int BAGAGEM_BELT = 7;
-    /**
-     * Identificador da invocação remota do método <i>bagagemStore</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField BAGAGEM_STORE
-     */
-    public static final int BAGAGEM_STORE = 8;
-    /**
-     * Identificador da invocação remota do método <i>malasActual</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField MALAS_ACTUAL
-     */
-    public static final int MALAS_ACTUAL = 9;
-    /**
-     * Identificador da invocação remota do método <i>malasInicial</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField MALAS_INICIAL
-     */
-    public static final int MALAS_INICIAL = 10;
-    /**
-     * Identificador da invocação remota do método <i>destino</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField DESTINO
-     */
-    public static final int DESTINO = 11;
-    /**
-     * Identificador da invocação remota do método <i>missingBags</i> ao monitor
-     * <i>Logging</i>
-     *
-     * @serialField MISSING_BAGS
-     */
-    public static final int MISSING_BAGS = 12;
-    /**
-     * Identificador da invocação remota do método <i>addFilaEspera</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField ADD_FILA_ESPERA
-     */
-    public static final int ADD_FILA_ESPERA = 13;
-    /**
-     * Identificador da invocação remota do método <i>removeFilaEspera</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField REMOVE_FILA_ESPERA
-     */
-    public static final int REMOVE_FILA_ESPERA = 14;
-    /**
-     * Identificador da invocação remota do método <i>autocarroState</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField AUTOCARRO_STATE
-     */
-    public static final int AUTOCARRO_STATE = 15;
-    /**
-     * Identificador da invocação remota do método <i>shutdownMonitor</i> a
-     * todos os monitores
-     *
-     * @serialField SHUTDOWN_MONITOR
-     */
-    public static final int SHUTDOWN_MONITOR = 99;
-    /**
-     * Identificador da invocação remota do método <i>reportFinalStatus</i> ao
-     * monitor <i>Logging</i>
-     *
-     * @serialField REPORT_FINAL_STATUS
-     */
-    public static final int REPORT_FINAL_STATUS = 17;
 
     /*Identificacao dos monitores*/
     /**
@@ -667,7 +372,7 @@ public class Globals {
      *
      * @serialField hostNames
      */
-    public static int passMax;
+    public static final String[] hostNames = new String[7];
 
     /**
      * Portas nas quais os servidores proxy dos monitoes estão à escuta no
@@ -692,8 +397,17 @@ public class Globals {
         22255,
         22256};
 
-    public static final String[] hostNames = new String[7];
-
+    /**
+     * Função encarregue de realizar o parsing do ficheiro xml de configuração da simulação que se irá realizar.
+     * <p>
+     * Este ficheiro de configuração contém os hostnames das máquinas onde cada monitor está a correr bem como 
+     * <ul>
+     * <li> o número de voos que se irão realizar,
+     * <li> o número de passageiros que vem em cad voo,
+     * <li> o número de bagagens máximo que cada passageiro pode carregar,
+     * <li> a lotação do autocarro.
+     * </ul>
+     */
     public static void xmlParser() {
         try {
             File sim = new File("conf.xml");
