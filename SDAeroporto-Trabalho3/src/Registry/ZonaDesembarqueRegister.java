@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
-import static Estruturas.Globals.MON_AUTOCARRO;
+import Estruturas.Globals;
 import static Estruturas.Globals.portNumber;
 import static Estruturas.Globals.registryHostname;
 import static Estruturas.Globals.registryPort;
-import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
-import Monitores.Autocarro;
+import Interfaces.ZonaDesembarqueInterface;
+import Monitores.ZonaDesembarque;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NoSuchObjectException;
@@ -27,17 +21,19 @@ import java.rmi.server.UnicastRemoteObject;
  *
  * @author Hugo
  */
-public class AutocarroRegister {
+public class ZonaDesembarqueRegister {
+    
     private boolean canEnd;
-    private Autocarro auto;
-    private AutocarroInterface autoInterface;
-    private Registry registry;
+    private ZonaDesembarque desembarque;
+    private ZonaDesembarqueInterface zonaInt;
+    private Registry registry ;
     private LoggingInterface log;
-
-    public AutocarroRegister() {
+    
+    public ZonaDesembarqueRegister() {
         super();
         canEnd = false;
-        try {   
+        
+        try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
             log = (LoggingInterface) registry.lookup("Logging");
         } catch (RemoteException e) {
@@ -49,16 +45,17 @@ public class AutocarroRegister {
             e.printStackTrace();
             System.exit(1);
         }
-        auto = new Autocarro(log, this);
+        
+        desembarque = new ZonaDesembarque(log,this);
         try {
-            autoInterface = (AutocarroInterface) UnicastRemoteObject.exportObject(auto, portNumber[MON_AUTOCARRO]);
+            zonaInt = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, portNumber[Globals.MON_ZONA_DESEMBARQUE]);
         } catch (RemoteException e) {
             System.exit(1);
         }
     }
     
     public synchronized void listening() {
-        String entry = "Autocarro";
+        String entry = "ZonaDesembarque";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
 
@@ -75,15 +72,16 @@ public class AutocarroRegister {
         }
 
         try {
-            register.bind(entry, autoInterface);
+            register.bind(entry, zonaInt);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {
             System.exit(1);
         }
-        GenericIO.writelnString("O serviço Autocarro foi estabelecido!");
-        GenericIO.writelnString("O servidor esta em escuta.");
 
+        GenericIO.writelnString("O serviço ZonaDesembarque foi estabelecido!");
+        GenericIO.writelnString("O servidor esta em escuta.");
+        
         try {
             while (!canEnd) {
                 wait();
@@ -99,21 +97,21 @@ public class AutocarroRegister {
             System.exit(1);
         }
         try {
-            UnicastRemoteObject.unexportObject(auto, false);
+            UnicastRemoteObject.unexportObject(desembarque, false);
         } catch (NoSuchObjectException ex) {
         }
     }
     
+    
+    
+    
     /**
-     * Terminar a execução do serviço referente ao monitor <i>Autocarro</i>.
+     * Terminar a execução do serviço referente ao monitor
+     * <i>ZonaDesembarque</i>.
      */
-    public synchronized void close() {
+   public synchronized void close() {
         canEnd = true;
         notify();
         System.out.printf("Closing...");
-        
     }
-    
-    
-    
 }
