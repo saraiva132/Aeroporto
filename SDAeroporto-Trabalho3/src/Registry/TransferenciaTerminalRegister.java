@@ -30,7 +30,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class TransferenciaTerminalRegister {
     private boolean canEnd;
     private TransferenciaTerminal transferencia;
-    private TransferenciaInterface transfInt;
+    private TransferenciaInterface transfInterface;
     private Registry registry;
     private LoggingInterface log;    
     
@@ -51,14 +51,14 @@ public class TransferenciaTerminalRegister {
         }
         transferencia = new TransferenciaTerminal(log,this);
         try {
-            transfInt = (TransferenciaInterface) UnicastRemoteObject.exportObject(transferencia, portNumber[Globals.MON_TRANSFERENCIA_TERMINAL]);
+            transfInterface = (TransferenciaInterface) UnicastRemoteObject.exportObject(transferencia, portNumber[Globals.MON_TRANSFERENCIA_TERMINAL]);
         } catch (RemoteException e) {
             System.exit(1);
         }
         
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "TransferenciaTerminal";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -76,7 +76,7 @@ public class TransferenciaTerminalRegister {
         }
 
         try {
-            register.bind(entry, transfInt);
+            register.bind(entry, transfInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

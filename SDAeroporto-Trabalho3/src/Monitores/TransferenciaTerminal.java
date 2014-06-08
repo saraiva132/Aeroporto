@@ -1,6 +1,8 @@
 package Monitores;
 
-import static Estruturas.Globals.*;
+import static Estruturas.Globals.MON_TRANSFERENCIA_TERMINAL;
+import static Estruturas.Globals.lotação;
+import static Estruturas.Globals.nChegadas;
 import Estruturas.Globals.passState;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
@@ -12,9 +14,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sdaeroporto.TransferenciaTerminalMain;
 
 /**
  *
@@ -104,7 +103,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
 
     private TransferenciaTerminalRegister transf;
 
-    private VectorCLK vc;
+    private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
@@ -119,7 +118,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         next = false;
         this.log = log;
         this.transf = transf;
-        vc = new VectorCLK();
+        v_clock = new VectorCLK();
     }
 
     /**
@@ -145,11 +144,11 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      */
     @Override
     public synchronized Reply takeABus(VectorCLK ts, int passageiroID) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         //System.out.println("Take the bus");
         int ticket;
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
+            log.UpdateVectorCLK(v_clock, MON_TRANSFERENCIA_TERMINAL);
             log.reportState(passageiroID, passState.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
             fila.add(passageiroID + 1);
 
@@ -178,7 +177,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         }
         notifyAll();
         passTRT--;
-        return new Reply(new VectorCLK(vc.CloneVector()), (Object) ticket);
+        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) ticket);
     }
 
     /**
@@ -204,9 +203,9 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      */
     @Override
     public synchronized Reply hasDaysWorkEnded(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
+            log.UpdateVectorCLK(v_clock, MON_TRANSFERENCIA_TERMINAL);
         } catch (RemoteException ex) {
             System.exit(0);
         }
@@ -223,7 +222,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         }
 
         timeUp = false;
-        return new Reply(new VectorCLK(vc.CloneVector()), (Object) (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0));
+        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0));
     }
 
     /**
@@ -240,9 +239,9 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      */
     @Override
     public synchronized Reply announcingBusBoardingShouting(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSFERENCIA_TERMINAL);
+            log.UpdateVectorCLK(v_clock, MON_TRANSFERENCIA_TERMINAL);
         } catch (RemoteException ex) {
             System.exit(0);
         }
@@ -263,7 +262,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
             pass++;
         }
         canGo = false;
-        return new Reply(new VectorCLK(vc.CloneVector()), (Object) pass);
+        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) pass);
     }
 
     /**

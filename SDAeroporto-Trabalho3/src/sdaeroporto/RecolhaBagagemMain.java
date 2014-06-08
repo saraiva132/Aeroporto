@@ -32,7 +32,7 @@ public class RecolhaBagagemMain {
         GenericIO.writelnString("Security manager was installed!");
         
         RecolhaBagagemRegister recolhaRegister = new RecolhaBagagemRegister();
-        recolhaRegister.listening();
+        recolhaRegister.run();
     }
 
 }

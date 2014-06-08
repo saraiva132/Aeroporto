@@ -25,7 +25,7 @@ public class ZonaDesembarqueRegister {
     
     private boolean canEnd;
     private ZonaDesembarque desembarque;
-    private ZonaDesembarqueInterface zonaInt;
+    private ZonaDesembarqueInterface desembarqueInterface;
     private Registry registry ;
     private LoggingInterface log;
     
@@ -48,13 +48,13 @@ public class ZonaDesembarqueRegister {
         
         desembarque = new ZonaDesembarque(log,this);
         try {
-            zonaInt = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, portNumber[Globals.MON_ZONA_DESEMBARQUE]);
+            desembarqueInterface = (ZonaDesembarqueInterface) UnicastRemoteObject.exportObject(desembarque, portNumber[Globals.MON_ZONA_DESEMBARQUE]);
         } catch (RemoteException e) {
             System.exit(1);
         }
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "ZonaDesembarque";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -72,7 +72,7 @@ public class ZonaDesembarqueRegister {
         }
 
         try {
-            register.bind(entry, zonaInt);
+            register.bind(entry, desembarqueInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

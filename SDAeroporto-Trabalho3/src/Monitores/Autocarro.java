@@ -1,15 +1,13 @@
 package Monitores;
 
 import Estruturas.Globals;
-import static Estruturas.Globals.*;
+import static Estruturas.Globals.MON_AUTOCARRO;
+import static Estruturas.Globals.lotação;
 import Estruturas.VectorCLK;
 import Interfaces.AutocarroInterface;
 import Interfaces.LoggingInterface;
 import Registry.AutocarroRegister;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sdaeroporto.AutocarroMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros e o motorista no âmbito
@@ -78,7 +76,7 @@ public class Autocarro implements AutocarroInterface {
 
     private final AutocarroRegister auto;
 
-    private VectorCLK vc;
+    private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor <b>Autocarro</b>
@@ -94,7 +92,7 @@ public class Autocarro implements AutocarroInterface {
         three_entities_ended = 0;
         this.log = log;
         this.auto = auto;
-        vc = new VectorCLK();
+        v_clock = new VectorCLK();
     }
 
     /**
@@ -115,12 +113,12 @@ public class Autocarro implements AutocarroInterface {
     @Override
     public synchronized VectorCLK enterTheBus(VectorCLK ts, int ticketID, int passageiroId) {
         //System.out.println("Entering the bus motha focka.Bilhete: " + ticketID + " Bilhetes vendidos: " + bilhetes);
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         nOcupantes++;
 
         seat[ticketID] = passageiroId + 1;
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.autocarroState(seat);
             log.reportState(passageiroId, Globals.passState.TERMINAL_TRANSFER);
         } catch (RemoteException e) {
@@ -130,7 +128,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == bilhetesVendidos) {
             notifyAll();
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -148,7 +146,7 @@ public class Autocarro implements AutocarroInterface {
     @Override
     public synchronized VectorCLK leaveTheBus(VectorCLK ts, int passageiroId, int ticketID) {
         //System.out.println("IM OUT!Shitty bus");
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         while (!hasEnded) {
             try {
                 wait();
@@ -158,7 +156,7 @@ public class Autocarro implements AutocarroInterface {
         nOcupantes--;
         seat[ticketID] = 0;
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.autocarroState(seat);
             log.reportState(passageiroId, Globals.passState.AT_THE_DEPARTURE_TRANSFER_TERMINAL);
         } catch (RemoteException e) {
@@ -167,7 +165,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == 0) {
             notify();
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -187,9 +185,9 @@ public class Autocarro implements AutocarroInterface {
     public synchronized VectorCLK announcingBusBoardingWaiting(VectorCLK ts, int bilhetesvendidos) {
 
         // System.out.println("All Aboard V2: bilhetes - " + bilhetesVendidos);
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
         } catch (RemoteException ex) {
             System.exit(1);
         }
@@ -200,7 +198,7 @@ public class Autocarro implements AutocarroInterface {
             } catch (InterruptedException ex) {
             }
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -213,14 +211,14 @@ public class Autocarro implements AutocarroInterface {
      */
     @Override
     public VectorCLK goToDepartureTerminal(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.reportState(Globals.motState.DRIVING_FORWARD);
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -232,14 +230,14 @@ public class Autocarro implements AutocarroInterface {
      */
     @Override
     public VectorCLK goToArrivalTerminal(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.reportState(Globals.motState.DRIVING_BACKWARD);
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -251,14 +249,14 @@ public class Autocarro implements AutocarroInterface {
      */
     @Override
     public VectorCLK parkTheBus(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.reportState(Globals.motState.PARKING_AT_THE_ARRIVAL_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -271,10 +269,10 @@ public class Autocarro implements AutocarroInterface {
      */
     @Override
     public synchronized VectorCLK parkTheBusAndLetPassOff(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         //System.out.println("OUT OUT OUT!");
         try {
-            log.UpdateVectorCLK(vc, MON_AUTOCARRO);
+            log.UpdateVectorCLK(v_clock, MON_AUTOCARRO);
             log.reportState(Globals.motState.PARKING_AT_THE_DEPARTURE_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
@@ -288,7 +286,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (InterruptedException ex) {
         }
         hasEnded = false;
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**

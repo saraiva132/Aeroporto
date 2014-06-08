@@ -71,7 +71,7 @@ public class Bagageiro extends Thread {
     @Override
     public void run() {
         Mala mala;
-        Reply tempRep;
+        Reply response;
         int i = 0;
         try {
             while (i < nChegadas) {
@@ -80,19 +80,19 @@ public class Bagageiro extends Thread {
                 vc.Add(0);
                 vc = zona.takeARest(vc);
                 vc.Add(0);
-                tempRep = porao.tryToCollectABag(vc);
-                mala = (Mala) tempRep.getRetorno();
-                vc = tempRep.getTimestamp();
+                response = porao.tryToCollectABag(vc);
+                mala = (Mala) response.getRetorno();
+                vc = response.getTimestamp();
                 bagDest nextState;
                 do {
                     vc.Add(0);
-                    tempRep = recolha.carryItToAppropriateStore(vc, mala);
-                    nextState = (bagDest) tempRep.getRetorno();
-                    vc = tempRep.getTimestamp();
+                    response = recolha.carryItToAppropriateStore(vc, mala);
+                    nextState = (bagDest) response.getRetorno();
+                    vc = response.getTimestamp();
                     vc.Add(0);
-                    tempRep = porao.tryToCollectABag(vc);
-                    mala = (Mala) tempRep.getRetorno();
-                    vc = tempRep.getTimestamp();
+                    response = porao.tryToCollectABag(vc);
+                    mala = (Mala) response.getRetorno();
+                    vc = response.getTimestamp();
 
                 } while (nextState != bagDest.LOBBYCLEAN);
                 vc.Add(0);

@@ -30,7 +30,7 @@ public class LoggingMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         LoggingRegister logRegister = new LoggingRegister();
-        logRegister.listening();
+        logRegister.run();
     }
 
 }

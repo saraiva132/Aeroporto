@@ -57,7 +57,7 @@ public class AutocarroRegister {
         }
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "Autocarro";
         String nameEntryBase = "RegisterHandler";
         Register register = null;

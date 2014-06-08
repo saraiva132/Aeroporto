@@ -30,7 +30,7 @@ public class TransferenciaTerminalMain {
         GenericIO.writelnString("Security manager was installed!");
         
         TransferenciaTerminalRegister tranferenciaRegister = new TransferenciaTerminalRegister();
-        tranferenciaRegister.listening();
+        tranferenciaRegister.run();
     }
 
 }

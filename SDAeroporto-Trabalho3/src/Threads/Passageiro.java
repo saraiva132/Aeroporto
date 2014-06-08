@@ -138,12 +138,12 @@ public class Passageiro extends Thread {
      */
     @Override
     public void run() {
-        Reply temp;
+        Reply response;
         try {
             vc.Add(id+2);
-            temp = desembarque.whatShouldIDo(vc,id, finalDest, nMalasTotal);
-            destination nextState = (destination) temp.getRetorno();
-            vc.CompareVector(temp.getTimestamp().getVc());
+            response = desembarque.whatShouldIDo(vc,id, finalDest, nMalasTotal);
+            destination nextState = (destination) response.getRetorno();
+            vc.CompareVector(response.getTimestamp().getVc());
             bagCollect getBag;
             switch (nextState) {
                 case WITH_BAGGAGE:
@@ -151,9 +151,9 @@ public class Passageiro extends Thread {
                     // System.out.println("tenho bagagem -----------------");
                     do {
                         vc.Add(id+2);
-                        temp = recolha.goCollectABag(vc,id);
-                        getBag = (bagCollect) temp.getRetorno();
-                        vc.CompareVector(temp.getTimestamp().getVc());
+                        response = recolha.goCollectABag(vc,id);
+                        getBag = (bagCollect) response.getRetorno();
+                        vc.CompareVector(response.getTimestamp().getVc());
                         if ((getBag) == bagCollect.MINE) {
                             nMalasEmPosse++;
                         }
@@ -172,9 +172,9 @@ public class Passageiro extends Thread {
                     int ticket; //bilhete para entrar no autocarro.
                      System.out.println("pass: "+ id +" bef: "+vc.getVc()[id+2]);
                     vc.Add(id+2);
-                    temp = transferencia.takeABus(vc,id);
-                    ticket = (int) temp.getRetorno();
-                    vc.CompareVector(temp.getTimestamp().getVc());
+                    response = transferencia.takeABus(vc,id);
+                    ticket = (int) response.getRetorno();
+                    vc.CompareVector(response.getTimestamp().getVc());
                    
                     vc.Add(id+2);
                     vc.CompareVector(auto.enterTheBus(vc,ticket, id).getVc());

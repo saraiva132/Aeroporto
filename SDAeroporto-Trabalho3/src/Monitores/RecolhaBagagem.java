@@ -1,10 +1,12 @@
 package Monitores;
 
-import Estruturas.Globals;
-import static Estruturas.Globals.*;
+
+import static Estruturas.Globals.MON_RECOLHA_BAGAGEM;
 import Estruturas.Globals.bagCollect;
 import Estruturas.Globals.bagDest;
 import Estruturas.Globals.bagState;
+import static Estruturas.Globals.nChegadas;
+import static Estruturas.Globals.passMax;
 import Estruturas.Globals.passState;
 import Estruturas.Mala;
 import Estruturas.Reply;
@@ -14,9 +16,6 @@ import Interfaces.RecolhaInterface;
 import Registry.RecolhaBagagemRegister;
 import java.rmi.RemoteException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sdaeroporto.RecolhaBagagemMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros e o bagageiro na zona de
@@ -77,13 +76,13 @@ public class RecolhaBagagem implements RecolhaInterface {
 
     private RecolhaBagagemRegister recolha;
 
-    private VectorCLK vc;
+    private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
      */
     public RecolhaBagagem(LoggingInterface log, RecolhaBagagemRegister recolha) {
-        vc = new VectorCLK();
+        v_clock = new VectorCLK();
         nMalasStore = 0;
         belt = new HashMap<>(nChegadas * passMax);
         for (int i = 0; i < passMax; i++) {
@@ -122,9 +121,9 @@ public class RecolhaBagagem implements RecolhaInterface {
      */
     @Override
     public synchronized Reply goCollectABag(VectorCLK ts, int bagID) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
+            log.UpdateVectorCLK(v_clock, MON_RECOLHA_BAGAGEM);
         } catch (RemoteException ex) {
              System.exit(1);
         }
@@ -140,15 +139,15 @@ public class RecolhaBagagem implements RecolhaInterface {
                 log.bagagemBelt(true);
                 if (getBagChance()) {
                     log.malasActual(bagID);
-                    return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagCollect.MINE);
+                    return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.MINE);
                 } else {
-                    return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagCollect.UNSUCCESSFUL);
+                    return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.UNSUCCESSFUL);
                 }
             } catch (RemoteException e) {
                 System.exit(1);
             }
         }
-        return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagCollect.NOMORE);
+        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.NOMORE);
     }
 
     /**
@@ -181,9 +180,9 @@ public class RecolhaBagagem implements RecolhaInterface {
      */
     @Override
     public synchronized Reply carryItToAppropriateStore(VectorCLK ts, Mala mala) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
+            log.UpdateVectorCLK(v_clock, MON_RECOLHA_BAGAGEM);
         } catch (RemoteException ex) {
             System.exit(1);
         }
@@ -191,7 +190,7 @@ public class RecolhaBagagem implements RecolhaInterface {
             //System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
-            return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagDest.LOBBYCLEAN); //Nao tem mala retorna null!
+            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.LOBBYCLEAN); //Nao tem mala retorna null!
         }
         //System.out.println("CarryBag "+ mala.getOwner());
         if (mala.inTransit()) {
@@ -202,7 +201,7 @@ public class RecolhaBagagem implements RecolhaInterface {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagDest.STOREROOM);
+            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.STOREROOM);
         } else {
             //System.out.println(mala.getOwner());
             belt.put(mala.getOwner(), belt.get(mala.getOwner()) + 1);
@@ -213,7 +212,7 @@ public class RecolhaBagagem implements RecolhaInterface {
                 System.exit(1);
             }
             notifyAll();
-            return new Reply(new VectorCLK(vc.CloneVector()), (Object) bagDest.BELT);
+            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.BELT);
         }
     }
 
@@ -242,15 +241,15 @@ public class RecolhaBagagem implements RecolhaInterface {
      */
     @Override
     public synchronized VectorCLK reportMissingBags(VectorCLK ts, int passageiroID, int malasPerdidas) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_RECOLHA_BAGAGEM);
+            log.UpdateVectorCLK(v_clock, MON_RECOLHA_BAGAGEM);
             log.missingBags(malasPerdidas);
             log.reportState(passageiroID, passState.AT_THE_BAGGAGE_RECLAIM_OFFICE);
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**

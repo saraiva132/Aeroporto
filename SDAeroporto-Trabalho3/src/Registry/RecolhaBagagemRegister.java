@@ -30,7 +30,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class RecolhaBagagemRegister {
     private boolean canEnd;
     private RecolhaBagagem recolha ;
-    private RecolhaInterface recolhaInt ;
+    private RecolhaInterface recolhaInterface ;
     private Registry registry ;
     private LoggingInterface log ;
     public RecolhaBagagemRegister() {
@@ -51,13 +51,13 @@ public class RecolhaBagagemRegister {
         }
         recolha = new RecolhaBagagem(log,this);
         try {
-            recolhaInt = (RecolhaInterface) UnicastRemoteObject.exportObject(recolha, portNumber[Globals.MON_RECOLHA_BAGAGEM]);
+            recolhaInterface = (RecolhaInterface) UnicastRemoteObject.exportObject(recolha, portNumber[Globals.MON_RECOLHA_BAGAGEM]);
         } catch (RemoteException e) {
             System.exit(1);
         }
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "RecolhaBagagem";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -75,7 +75,7 @@ public class RecolhaBagagemRegister {
         }
 
         try {
-            register.bind(entry, recolhaInt);
+            register.bind(entry, recolhaInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

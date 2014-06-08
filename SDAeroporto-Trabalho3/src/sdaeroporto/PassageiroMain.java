@@ -53,22 +53,22 @@ public class PassageiroMain {
         ArrayList<Mala> malas = new ArrayList();
 
         Registry registry;
-        AutocarroPassageiroInterface auto = null;
-        RecolhaPassageiroInterface recolha = null;
-        TransicaoPassageiroInterface transicao = null;
-        ZonaDesembarquePassageiroInterface zona = null;
-        TransferenciaPassageiroInterface transferencia = null;
-        PoraoPassageiroInterface porao = null;
-        LoggingInterface log = null;
+        AutocarroPassageiroInterface autoInter = null;
+        RecolhaPassageiroInterface recolhaInter = null;
+        TransicaoPassageiroInterface transicaoInter = null;
+        ZonaDesembarquePassageiroInterface desembarqueInter = null;
+        TransferenciaPassageiroInterface transferenciaInter = null;
+        PoraoPassageiroInterface poraoInter = null;
+        LoggingInterface logInter = null;
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-            porao = (PoraoPassageiroInterface) registry.lookup("Porao");
-            log = (LoggingInterface) registry.lookup("Logging");
-            auto = (AutocarroPassageiroInterface) registry.lookup("Autocarro");
-            recolha = (RecolhaPassageiroInterface) registry.lookup("RecolhaBagagem");
-            transicao = (TransicaoPassageiroInterface) registry.lookup("TransiçãoAeroporto");
-            zona = (ZonaDesembarquePassageiroInterface) registry.lookup("ZonaDesembarque");
-            transferencia = (TransferenciaPassageiroInterface) registry.lookup("TransferenciaTerminal");
+            poraoInter = (PoraoPassageiroInterface) registry.lookup("Porao");
+            logInter = (LoggingInterface) registry.lookup("Logging");
+            autoInter = (AutocarroPassageiroInterface) registry.lookup("Autocarro");
+            recolhaInter = (RecolhaPassageiroInterface) registry.lookup("RecolhaBagagem");
+            transicaoInter = (TransicaoPassageiroInterface) registry.lookup("TransiçãoAeroporto");
+            desembarqueInter = (ZonaDesembarquePassageiroInterface) registry.lookup("ZonaDesembarque");
+            transferenciaInter = (TransferenciaPassageiroInterface) registry.lookup("TransferenciaTerminal");
         } catch (RemoteException e) {
             GenericIO.writelnString("Excepção na localização do Monitor: " + e.getMessage() + "!");
             e.printStackTrace();
@@ -102,22 +102,22 @@ public class PassageiroMain {
             }
             try {
 
-                porao.sendLuggages(obj);
-                log.nVoo(i + 1);
-                log.setPorao(malas.size());
-                log.malasInicial(nMalasPass);
-                log.destino(dest);
-                log.reportInitialStatus();
+                poraoInter.sendLuggages(obj);
+                logInter.nVoo(i + 1);
+                logInter.setPorao(malas.size());
+                logInter.malasInicial(nMalasPass);
+                logInter.destino(dest);
+                logInter.reportInitialStatus();
             } catch (RemoteException e) {
                 System.exit(1);
             }
             
             for (int j = 0; j < passMax; j++) {
-                passageiro[j] = new Passageiro(clk[j],nMalasPass[j], j, i + 1, dest[j], zona, auto, transicao, recolha, transferencia);
+                passageiro[j] = new Passageiro(clk[j],nMalasPass[j], j, i + 1, dest[j], desembarqueInter, autoInter, transicaoInter, recolhaInter, transferenciaInter);
             }
 
             try {
-                transferencia.setnVoo(i + 1, passTRT);
+                transferenciaInter.setnVoo(i + 1, passTRT);
             } catch (RemoteException e) {
                 System.exit(1);
             }
@@ -136,7 +136,7 @@ public class PassageiroMain {
 
             }
             try {
-                recolha.resetNoMoreBags();
+                recolhaInter.resetNoMoreBags();
             } catch (RemoteException e) {
                 System.exit(1);
             }
@@ -144,13 +144,13 @@ public class PassageiroMain {
             malas.clear();
         }
        try {
-            log.shutdownMonitor();
-            transferencia.shutdownMonitor();
-            auto.shutdownMonitor();
-            porao.shutdownMonitor();
-            recolha.shutdownMonitor();
-            transicao.shutdownMonitor();
-            zona.shutdownMonitor();
+            logInter.shutdownMonitor();
+            transferenciaInter.shutdownMonitor();
+            autoInter.shutdownMonitor();
+            poraoInter.shutdownMonitor();
+            recolhaInter.shutdownMonitor();
+            transicaoInter.shutdownMonitor();
+            desembarqueInter.shutdownMonitor();
         } catch (RemoteException e) {
             System.out.printf("Cant shutdown Monitor");
             e.printStackTrace();

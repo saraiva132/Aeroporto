@@ -1,6 +1,5 @@
 package Monitores;
 
-import Estruturas.Globals.*;
 import Estruturas.Globals.bagState;
 import static Estruturas.Globals.fileName;
 import static Estruturas.Globals.lotação;
@@ -163,7 +162,7 @@ public class Logging implements LoggingInterface {
 
     private LoggingRegister log;
 
-    private VectorCLK[] vc;
+    private VectorCLK[] v_clock;
 
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
@@ -191,9 +190,9 @@ public class Logging implements LoggingInterface {
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         three_entities_ended = 3;
         this.log = log;
-        vc = new VectorCLK[6];
-        for (int i = 0; i < vc.length; i++) {
-            vc[i] = new VectorCLK();
+        v_clock = new VectorCLK[6];
+        for (int i = 0; i < v_clock.length; i++) {
+            v_clock[i] = new VectorCLK();
         }
     }
 
@@ -569,20 +568,20 @@ public class Logging implements LoggingInterface {
 
     @Override
     public synchronized void UpdateVectorCLK(VectorCLK ts, int id) {
-        vc[id] = ts;
+        v_clock[id] = ts;
     }
 
-    public ArrayList<VectorCLK> sort() {
+    private ArrayList<VectorCLK> sort() {
         ArrayList<VectorCLK> clk = new ArrayList<>();
-        VectorCLK[] cpy = new VectorCLK[vc.length];
+        VectorCLK[] cpy = new VectorCLK[v_clock.length];
         VectorCLK ts;
 
-        for (int i = 0; i < vc.length - 1; i++) {
-            cpy[i] = vc[i];
+        for (int i = 0; i < v_clock.length - 1; i++) {
+            cpy[i] = v_clock[i];
         }
 
-        for (int j = 0; j < vc.length - 1; j++) {
-            for (int i = 0; i < vc.length - 2; i++) {
+        for (int j = 0; j < v_clock.length - 1; j++) {
+            for (int i = 0; i < v_clock.length - 2; i++) {
                 if (cpy[i].compareTo(cpy[i + 1]) < 0) {
                     ts = cpy[i];
                     cpy[i] = cpy[i + 1];
@@ -591,7 +590,7 @@ public class Logging implements LoggingInterface {
             }
         }
         clk.add(cpy[0]);
-        for (int i = 0; i < vc.length - 2; i++) {
+        for (int i = 0; i < v_clock.length - 2; i++) {
             if (cpy[i].compareTo(cpy[i + 1]) == 0) {
                 clk.add(cpy[i + 1]);
             } else {

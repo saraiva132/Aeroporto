@@ -11,7 +11,6 @@ import Registry.PoraoRegister;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import sdaeroporto.PoraoMain;
 
 /**
  *
@@ -49,7 +48,7 @@ public class Porao implements PoraoInterface {
      */
     private final LoggingInterface log;
 
-    private VectorCLK vc;
+    private VectorCLK v_clock;
 
     private PoraoRegister porao;
 
@@ -62,7 +61,7 @@ public class Porao implements PoraoInterface {
         three_entities_ended = 0;
         this.log = log;
         this.porao = porao;
-        vc = new VectorCLK();
+        v_clock = new VectorCLK();
     }
 
     /**
@@ -79,20 +78,20 @@ public class Porao implements PoraoInterface {
     @Override
     public synchronized Reply tryToCollectABag(VectorCLK ts) {
 
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         if (malas.isEmpty()) {
-            Reply rep = new Reply(new VectorCLK(vc.CloneVector()), null);
+            Reply rep = new Reply(new VectorCLK(v_clock.CloneVector()), null);
             return rep;
         } else {
             System.out.println("vim recolher mala");
             try {
-                log.UpdateVectorCLK(vc, MON_PORAO);
+                log.UpdateVectorCLK(v_clock, MON_PORAO);
                 log.reportState(Globals.bagState.AT_THE_PLANES_HOLD);
                 log.bagagemPorao();
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            Reply rep = new Reply(new VectorCLK(vc.CloneVector()), (Object) malas.remove(0));
+            Reply rep = new Reply(new VectorCLK(v_clock.CloneVector()), (Object) malas.remove(0));
             return rep;
         }
     }

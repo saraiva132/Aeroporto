@@ -44,23 +44,23 @@ public class BagageiroMain {
             System.setSecurityManager(new SecurityManager());
         }
         Registry registry;
-        PoraoBagageiroInterface porao = null;
-        RecolhaBagageiroInterface recolha = null;
-        TransicaoBagageiroInterface transicao = null;
-        ZonaDesembarqueBagageiroInterface zona = null;
-        AutocarroBagageiroInterface auto = null;
-        TransferenciaBagageiroInterface transferencia = null;
-        LoggingInterface log = null;
+        PoraoBagageiroInterface poraoInter = null;
+        RecolhaBagageiroInterface recolhaInter = null;
+        TransicaoBagageiroInterface transicaoInter = null;
+        ZonaDesembarqueBagageiroInterface desembarqueInter = null;
+        AutocarroBagageiroInterface autoInter = null;
+        TransferenciaBagageiroInterface transferenciaInter = null;
+        LoggingInterface logInter = null;
 
         try {
             registry = LocateRegistry.getRegistry(registryHostname, registryPort);
-            log = (LoggingInterface) registry.lookup("Logging");
-            transferencia = (TransferenciaBagageiroInterface) registry.lookup("TransferenciaTerminal");
-            auto = (AutocarroBagageiroInterface) registry.lookup("Autocarro");
-            porao = (PoraoBagageiroInterface) registry.lookup("Porao");
-            recolha = (RecolhaBagageiroInterface) registry.lookup("RecolhaBagagem");
-            transicao = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
-            zona = (ZonaDesembarqueBagageiroInterface) registry.lookup("ZonaDesembarque");
+            logInter = (LoggingInterface) registry.lookup("Logging");
+            transferenciaInter = (TransferenciaBagageiroInterface) registry.lookup("TransferenciaTerminal");
+            autoInter = (AutocarroBagageiroInterface) registry.lookup("Autocarro");
+            poraoInter = (PoraoBagageiroInterface) registry.lookup("Porao");
+            recolhaInter = (RecolhaBagageiroInterface) registry.lookup("RecolhaBagagem");
+            transicaoInter = (TransicaoBagageiroInterface) registry.lookup("TransiçãoAeroporto");
+            desembarqueInter = (ZonaDesembarqueBagageiroInterface) registry.lookup("ZonaDesembarque");
         } catch (RemoteException e) {
             GenericIO.writelnString("Excepção na localização do Logging: " + e.getMessage() + "!");
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class BagageiroMain {
             e.printStackTrace();
             System.exit(1);
         }
-        Bagageiro bagageiro = new Bagageiro(zona, porao, recolha, transicao);
+        Bagageiro bagageiro = new Bagageiro(desembarqueInter, poraoInter, recolhaInter, transicaoInter);
         bagageiro.start();
         try {
             bagageiro.join();
@@ -79,13 +79,13 @@ public class BagageiroMain {
             System.exit(1);
         }
         try {
-            log.shutdownMonitor();
-            transferencia.shutdownMonitor();
-            auto.shutdownMonitor();
-            porao.shutdownMonitor();
-            recolha.shutdownMonitor();
-            transicao.shutdownMonitor();
-            zona.shutdownMonitor();
+            logInter.shutdownMonitor();
+            transferenciaInter.shutdownMonitor();
+            autoInter.shutdownMonitor();
+            poraoInter.shutdownMonitor();
+            recolhaInter.shutdownMonitor();
+            transicaoInter.shutdownMonitor();
+            desembarqueInter.shutdownMonitor();
         } catch (RemoteException e) {
             System.out.printf("Cant shutdown Monitor");
             e.printStackTrace();

@@ -6,23 +6,9 @@
 package sdaeroporto;
 
 import Estruturas.Globals;
-import static Estruturas.Globals.portNumber;
-import static Estruturas.Globals.registryHostname;
-import static Estruturas.Globals.registryPort;
-import Interfaces.LoggingInterface;
-import Interfaces.Register;
-import Interfaces.ZonaDesembarqueInterface;
-import Monitores.ZonaDesembarque;
 import Registry.ZonaDesembarqueRegister;
 import genclass.GenericIO;
-import java.rmi.AlreadyBoundException;
-import java.rmi.NoSuchObjectException;
-import java.rmi.NotBoundException;
 import java.rmi.RMISecurityManager;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Este tipo de dados simula a solução do lado do servidor referente ao monitor
@@ -38,8 +24,6 @@ public class ZonaDesembarqueMain {
         System.setProperty("java.security.policy", "java.policy");
     }
     
-    boolean canEnd = false;
-    
     /**
      * Programa Principal.
      */
@@ -50,8 +34,8 @@ public class ZonaDesembarqueMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         
-        ZonaDesembarqueRegister zonaRegister = new ZonaDesembarqueRegister();
-        zonaRegister.listening();
+        ZonaDesembarqueRegister desembarqueRegister = new ZonaDesembarqueRegister();
+        desembarqueRegister.run();
     }
 
 }

@@ -30,7 +30,7 @@ public class AutocarroMain {
         GenericIO.writelnString("Security manager was installed!");
         
         AutocarroRegister autocarroRegister = new AutocarroRegister();
-        autocarroRegister.listening();
+        autocarroRegister.run();
     }
     
 

@@ -1,16 +1,13 @@
 package Monitores;
 
-import static Estruturas.Globals.*;
+import static Estruturas.Globals.MON_TRANSICAO_AEROPORTO;
+import static Estruturas.Globals.passMax;
 import static Estruturas.Globals.passState.*;
-import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.LoggingInterface;
 import Interfaces.TransicaoInterface;
 import Registry.TransicaoAeroportoRegister;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sdaeroporto.TransicaoAeroportoMain;
 
 /**
  * Monitor que simula a interacção entre os passageiros à saída do aeroporto
@@ -68,7 +65,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
     
     private TransicaoAeroportoRegister transicao;
     
-    private VectorCLK vc;
+    private VectorCLK v_clock;
     /**
      * Instanciação e inicialização do monitor <b>TransiçãoAeroporto</b>
      *
@@ -81,7 +78,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
         three_entities_ended = 0;
         this.log = log;
         this.transicao = transicao;
-        vc = new VectorCLK();
+        v_clock = new VectorCLK();
     }
 
     /**
@@ -99,12 +96,12 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      */
     @Override
     public synchronized VectorCLK goHome(VectorCLK ts,int passageiroId) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         //System.out.println("GoHome!");
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +EXITING_THE_ARRIVAL_TERMINAL);
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
+            log.UpdateVectorCLK(v_clock, MON_TRANSICAO_AEROPORTO);
             log.reportState(passageiroId, EXITING_THE_ARRIVAL_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
@@ -124,7 +121,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -142,12 +139,12 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      */
     @Override
     public synchronized VectorCLK prepareNextLeg(VectorCLK ts , int passageiroId) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         //System.out.println("Prepare next leg!");
         nPassageiros--;
         //System.out.println("passId: "+passageiroId+ " state: " +ENTERING_THE_DEPARTURE_TERMINAL);
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
+            log.UpdateVectorCLK(v_clock, MON_TRANSICAO_AEROPORTO);
             log.reportState(passageiroId, ENTERING_THE_DEPARTURE_TERMINAL);
         } catch (RemoteException e) {
             System.exit(1);
@@ -167,7 +164,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**
@@ -184,16 +181,16 @@ public class TransiçãoAeroporto implements TransicaoInterface {
      */
     @Override
     public synchronized VectorCLK bagageiroDone(VectorCLK ts) {
-        vc.CompareVector(ts.getVc());
+        v_clock.CompareVector(ts.getVc());
         try {
-            log.UpdateVectorCLK(vc, MON_TRANSICAO_AEROPORTO);
+            log.UpdateVectorCLK(v_clock, MON_TRANSICAO_AEROPORTO);
         } catch (RemoteException ex) {
             System.exit(0);
         }
         System.out.println("Bagageiro acabou!(monitor)");
         bagageiroDone = true;
         notifyAll();
-        return new VectorCLK(vc.CloneVector());
+        return new VectorCLK(v_clock.CloneVector());
     }
 
     /**

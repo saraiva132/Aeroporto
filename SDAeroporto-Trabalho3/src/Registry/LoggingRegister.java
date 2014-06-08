@@ -31,21 +31,17 @@ public class LoggingRegister {
     
     private boolean canEnd;
     private Logging log;
-    private LoggingInterface logInt;
+    private LoggingInterface logInterface;
     private Registry registry;
     private PrintStream stdout;
     
     public LoggingRegister() {
         super();
         canEnd = false;
-        
         stdout = System.out;
-        Logging log = null;
-        Registry registry = null;
-        LoggingInterface logInt = null;
         log = new Logging(this);
         try {
-            logInt = (LoggingInterface) UnicastRemoteObject.exportObject(log, portNumber[Globals.MON_LOGGING]);
+            logInterface = (LoggingInterface) UnicastRemoteObject.exportObject(log, portNumber[Globals.MON_LOGGING]);
         } catch (RemoteException e) {
             e.printStackTrace();
             System.exit(1);
@@ -53,7 +49,7 @@ public class LoggingRegister {
         
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "Logging";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -77,7 +73,7 @@ public class LoggingRegister {
         }
         
         try {
-            register.bind(entry, logInt);
+            register.bind(entry, logInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

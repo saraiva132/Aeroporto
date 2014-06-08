@@ -37,7 +37,7 @@ public class Motorista extends Thread {
      */
     private TransferenciaMotoristaInterface transferencia;
     
-    private VectorCLK vc;
+    private VectorCLK clk;
 
     /**
      * Instanciação e inicialização do motorista
@@ -45,7 +45,7 @@ public class Motorista extends Thread {
     public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia) {
         this.auto = auto;
         this.transferencia = transferencia;
-        vc = new VectorCLK();
+        clk = new VectorCLK();
     }
 
     /**
@@ -56,26 +56,26 @@ public class Motorista extends Thread {
         boolean hasWork = true;
         try {
             while (hasWork) {
-                Reply temp;
-                vc.Add(1);
-                temp = transferencia.hasDaysWorkEnded(vc);
-                if ((boolean) temp.getRetorno()) {
+                Reply response;
+                clk.Add(1);
+                response = transferencia.hasDaysWorkEnded(clk);
+                if ((boolean) response.getRetorno()) {
                     hasWork = false;
                 }
-                vc = temp.getTimestamp();
-                vc.Add(1);
-                temp = transferencia.announcingBusBoardingShouting(vc);
-                vc = temp.getTimestamp();
-                vc.Add(1);
-                vc = auto.announcingBusBoardingWaiting(vc, (int) temp.getRetorno());
-                vc.Add(1);
-                vc = auto.goToDepartureTerminal(vc);
-                vc.Add(1);
-                vc = auto.parkTheBusAndLetPassOff(vc);
-                vc.Add(1);
-                vc = auto.goToArrivalTerminal(vc);
-                vc.Add(1);
-                vc = auto.parkTheBus(vc);
+                clk = response.getTimestamp();
+                clk.Add(1);
+                response = transferencia.announcingBusBoardingShouting(clk);
+                clk = response.getTimestamp();
+                clk.Add(1);
+                clk = auto.announcingBusBoardingWaiting(clk, (int) response.getRetorno());
+                clk.Add(1);
+                clk = auto.goToDepartureTerminal(clk);
+                clk.Add(1);
+                clk = auto.parkTheBusAndLetPassOff(clk);
+                clk.Add(1);
+                clk = auto.goToArrivalTerminal(clk);
+                clk.Add(1);
+                clk = auto.parkTheBus(clk);
             }
         } catch (RemoteException e) {
             e.printStackTrace();

@@ -28,7 +28,7 @@ public class TransicaoAeroportoMain {
         }
         GenericIO.writelnString("Security manager was installed!");
         TransicaoAeroportoRegister transicaoRegister = new TransicaoAeroportoRegister();
-        transicaoRegister.listening();        
+        transicaoRegister.run();        
     }
 
 }

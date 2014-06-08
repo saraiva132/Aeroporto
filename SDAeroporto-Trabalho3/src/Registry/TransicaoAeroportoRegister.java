@@ -30,7 +30,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class TransicaoAeroportoRegister {
     private boolean canEnd;
     private TransiçãoAeroporto transicao;
-    private TransicaoInterface transInt ;
+    private TransicaoInterface transicaoInterface ;
     private Registry registry ;
     private LoggingInterface log ;
     
@@ -53,13 +53,13 @@ public class TransicaoAeroportoRegister {
         }
         transicao = new TransiçãoAeroporto(log,this);
         try {
-            transInt = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, portNumber[Globals.MON_TRANSICAO_AEROPORTO]);
+            transicaoInterface = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, portNumber[Globals.MON_TRANSICAO_AEROPORTO]);
         } catch (RemoteException e) {
             System.exit(1);
         }
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "TransiçãoAeroporto";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -77,7 +77,7 @@ public class TransicaoAeroportoRegister {
         }
 
         try {
-            register.bind(entry, transInt);
+            register.bind(entry, transicaoInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {

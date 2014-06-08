@@ -30,7 +30,7 @@ public class PoraoMain {
         GenericIO.writelnString("Security manager was installed!");
         
         PoraoRegister poraoRegister = new PoraoRegister();
-        poraoRegister.listening();
+        poraoRegister.run();
     }
 
 }

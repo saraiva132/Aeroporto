@@ -31,7 +31,7 @@ public class PoraoRegister {
     private boolean canEnd;
     
     private Porao porao;
-    private PoraoInterface poraoInt = null;
+    private PoraoInterface poraoInterface = null;
     private Registry registry = null;
     private LoggingInterface log = null;
 
@@ -53,13 +53,13 @@ public class PoraoRegister {
         }
         porao = new Porao(log,this);
         try {
-            poraoInt = (PoraoInterface) UnicastRemoteObject.exportObject(porao, portNumber[MON_PORAO]);
+            poraoInterface = (PoraoInterface) UnicastRemoteObject.exportObject(porao, portNumber[MON_PORAO]);
         } catch (RemoteException e) {
             System.exit(1);
         }
     }
     
-    public synchronized void listening() {
+    public synchronized void run() {
         String entry = "Porao";
         String nameEntryBase = "RegisterHandler";
         Register register = null;
@@ -77,7 +77,7 @@ public class PoraoRegister {
         }
 
         try {
-            register.bind(entry, poraoInt);
+            register.bind(entry, poraoInterface);
         } catch (RemoteException e) {
             System.exit(1);
         } catch (AlreadyBoundException e) {
