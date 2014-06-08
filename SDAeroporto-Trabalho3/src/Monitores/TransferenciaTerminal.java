@@ -177,7 +177,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         }
         notifyAll();
         passTRT--;
-        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) ticket);
+        return new Reply(new VectorCLK(v_clock), (Object) ticket);
     }
 
     /**
@@ -222,7 +222,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
         }
 
         timeUp = false;
-        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0));
+        return new Reply(new VectorCLK(v_clock), (Object) (fila.isEmpty() && nVoo >= nChegadas && passTRT == 0));
     }
 
     /**
@@ -262,7 +262,7 @@ public class TransferenciaTerminal implements TransferenciaInterface {
             pass++;
         }
         canGo = false;
-        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) pass);
+        return new Reply(new VectorCLK(v_clock), (Object) pass);
     }
 
     /**

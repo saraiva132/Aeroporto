@@ -55,6 +55,7 @@ public class TransicaoAeroportoRegister {
         try {
             transicaoInterface = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, portNumber[Globals.MON_TRANSICAO_AEROPORTO]);
         } catch (RemoteException e) {
+            System.out.println(e.getCause());
             System.exit(1);
         }
     }

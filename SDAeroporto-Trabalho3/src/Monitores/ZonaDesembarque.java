@@ -94,7 +94,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         } catch (InterruptedException ex) {
         }
         canGo = false;
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -137,17 +137,17 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
             notify();
         }
         if (dest && nMalas == 0) {
-            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) destination.WITHOUT_BAGGAGE);
+            return new Reply(new VectorCLK(v_clock), (Object) destination.WITHOUT_BAGGAGE);
         } else if (dest) {
             try {
                 log.reportState(passageiroID, Globals.passState.AT_THE_LUGGAGE_COLLECTION_POINT);
             } catch (RemoteException e) {
                 System.exit(1);
             }
-             return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) destination.WITH_BAGGAGE);
+             return new Reply(new VectorCLK(v_clock), (Object) destination.WITH_BAGGAGE);
 
         } else {
-             return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) destination.IN_TRANSIT);
+             return new Reply(new VectorCLK(v_clock), (Object) destination.IN_TRANSIT);
         }
 
     }
@@ -170,7 +170,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**

@@ -121,7 +121,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -164,7 +164,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
             canLeave = false;
             bagageiroDone = false;
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -190,7 +190,7 @@ public class TransiçãoAeroporto implements TransicaoInterface {
         System.out.println("Bagageiro acabou!(monitor)");
         bagageiroDone = true;
         notifyAll();
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**

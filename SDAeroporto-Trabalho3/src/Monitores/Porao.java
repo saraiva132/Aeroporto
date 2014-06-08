@@ -80,7 +80,7 @@ public class Porao implements PoraoInterface {
 
         v_clock.CompareVector(ts.getVc());
         if (malas.isEmpty()) {
-            Reply rep = new Reply(new VectorCLK(v_clock.CloneVector()), null);
+            Reply rep = new Reply(new VectorCLK(v_clock), null);
             return rep;
         } else {
             System.out.println("vim recolher mala");
@@ -91,7 +91,7 @@ public class Porao implements PoraoInterface {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            Reply rep = new Reply(new VectorCLK(v_clock.CloneVector()), (Object) malas.remove(0));
+            Reply rep = new Reply(new VectorCLK(v_clock), (Object) malas.remove(0));
             return rep;
         }
     }

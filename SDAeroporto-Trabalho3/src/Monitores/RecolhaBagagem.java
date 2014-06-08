@@ -139,15 +139,15 @@ public class RecolhaBagagem implements RecolhaInterface {
                 log.bagagemBelt(true);
                 if (getBagChance()) {
                     log.malasActual(bagID);
-                    return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.MINE);
+                    return new Reply(new VectorCLK(v_clock), (Object) bagCollect.MINE);
                 } else {
-                    return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.UNSUCCESSFUL);
+                    return new Reply(new VectorCLK(v_clock), (Object) bagCollect.UNSUCCESSFUL);
                 }
             } catch (RemoteException e) {
                 System.exit(1);
             }
         }
-        return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagCollect.NOMORE);
+        return new Reply(new VectorCLK(v_clock), (Object) bagCollect.NOMORE);
     }
 
     /**
@@ -190,7 +190,7 @@ public class RecolhaBagagem implements RecolhaInterface {
             //System.out.println("MALAS ACABRAM RAPAZIADA!!!!!");
             noMoreBags = true;
             notifyAll(); // NO MORE BAGS GUYS!!
-            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.LOBBYCLEAN); //Nao tem mala retorna null!
+            return new Reply(new VectorCLK(v_clock), (Object) bagDest.LOBBYCLEAN); //Nao tem mala retorna null!
         }
         //System.out.println("CarryBag "+ mala.getOwner());
         if (mala.inTransit()) {
@@ -201,7 +201,7 @@ public class RecolhaBagagem implements RecolhaInterface {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.STOREROOM);
+            return new Reply(new VectorCLK(v_clock), (Object) bagDest.STOREROOM);
         } else {
             //System.out.println(mala.getOwner());
             belt.put(mala.getOwner(), belt.get(mala.getOwner()) + 1);
@@ -212,7 +212,7 @@ public class RecolhaBagagem implements RecolhaInterface {
                 System.exit(1);
             }
             notifyAll();
-            return new Reply(new VectorCLK(v_clock.CloneVector()), (Object) bagDest.BELT);
+            return new Reply(new VectorCLK(v_clock), (Object) bagDest.BELT);
         }
     }
 
@@ -249,7 +249,7 @@ public class RecolhaBagagem implements RecolhaInterface {
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**

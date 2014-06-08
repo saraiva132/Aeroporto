@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Monitor correspondente ao Repositório Geral de Informação. Necessário apenas
@@ -162,7 +163,9 @@ public class Logging implements LoggingInterface {
 
     private LoggingRegister log;
 
-    private VectorCLK[] v_clock;
+    private VectorCLK v_clock;
+
+    private ArrayList<Log> logger;
 
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
@@ -190,31 +193,14 @@ public class Logging implements LoggingInterface {
         mstate = motState.PARKING_AT_THE_ARRIVAL_TERMINAL;
         three_entities_ended = 3;
         this.log = log;
-        v_clock = new VectorCLK[6];
-        for (int i = 0; i < v_clock.length; i++) {
-            v_clock[i] = new VectorCLK();
-        }
+        this.v_clock = new VectorCLK();
+        this.logger = new ArrayList<>();
     }
 
     /**
      * Auxilia na inicialização do logging
      */
     public synchronized void reportInitialStatus() {
-        
-        fic.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
-        fic.print("|FN  BN| Stat CB SR     Stat      ");
-        for (int i = 0; i < passMax; i++) {
-            fic.printf("Q%s", i);
-        }
-        fic.print("             ");
-        for (int i = 0; i < lotação; i++) {
-            fic.printf("S%s", i);
-        }
-        fic.print("     ");
-        for (int i = 0; i < passMax; i++) {
-            fic.print("St" + i + " Si" + i + " NR" + i + " NA" + i + "|");
-        }
-        fic.println();
 
         for (int i = 0; i < passMax; i++) {
             pstate[i] = passState.AT_THE_DISEMBARKING_ZONE;
@@ -226,39 +212,14 @@ public class Logging implements LoggingInterface {
         }
         nMalasStore = 0;
         nMalasBelt = 0;
-        reportStatus();
     }
 
     /**
      * Auxilia a reportar uma actualização do estado geral do problema
      */
     private synchronized void reportStatus() {
-        ArrayList<VectorCLK> ts = sort();
-
-        fic.print("CLK:");
-        for (int j = 0; j < ts.size(); j++) {
-            for (int i = 0; i < passMax + 2; i++) {
-                fic.printf("%1s,", ts.get(j).getVc()[i]);
-            }
-            fic.printf("| ");
-        }
-
-        fic.println();
-        fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", nVoo, nMalasPorao, bstate.toString(), nMalasBelt, nMalasStore, mstate.toString());
-        for (int i = 0; i < fila.length; i++) {
-            fic.printf("%1d ", fila[i]);
-        }
-
-        fic.print("] autocarro: [");
-        for (int i = 0; i < assentos.length; i++) {
-            fic.printf("%1d ", assentos[i]);
-        }
-        fic.print("]  ");
-        for (int i = 0; i < passMax; i++) {
-            fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
-        }
-
-        fic.println();
+        Log logg = new Log(v_clock, nVoo, nMalasPorao, nMalasBelt, nMalasStore, pstate, fila, nMalasTotal, nMalasActual, passDest, assentos, bstate, mstate);
+        logger.add(logg);
     }
 
     /**
@@ -553,6 +514,7 @@ public class Logging implements LoggingInterface {
         three_entities_ended--;
         System.out.print(three_entities_ended);
         if (three_entities_ended == 0) {
+            sort();
             fic.println("Número total de chegadas de aviões: " + nChegadas);
             fic.println("\nNúmero total de passageiros: " + (nChegadas * passMax));
             fic.println("\n\tNúmero total de passageiros em trânsito: " + nTotalPassageirosTransito);
@@ -566,37 +528,121 @@ public class Logging implements LoggingInterface {
         }
     }
 
-    @Override
     public synchronized void UpdateVectorCLK(VectorCLK ts, int id) {
-        v_clock[id] = ts;
+        v_clock = new VectorCLK(ts);
     }
 
-    private ArrayList<VectorCLK> sort() {
-        ArrayList<VectorCLK> clk = new ArrayList<>();
-        VectorCLK[] cpy = new VectorCLK[v_clock.length];
-        VectorCLK ts;
+    private void sort() {
+        Log temp;
 
-        for (int i = 0; i < v_clock.length - 1; i++) {
-            cpy[i] = v_clock[i];
-        }
-
-        for (int j = 0; j < v_clock.length - 1; j++) {
-            for (int i = 0; i < v_clock.length - 2; i++) {
-                if (cpy[i].compareTo(cpy[i + 1]) < 0) {
-                    ts = cpy[i];
-                    cpy[i] = cpy[i + 1];
-                    cpy[i + 1] = ts;
+        for (int j = logger.size() - 1; j >= 1 - 1; j--) {
+            for (int i = 0; i < j; i++) {
+                if (logger.get(i).getCk().compareTo(logger.get(i + 1).getCk()) > 0) {
+                    temp = logger.get(i);
+                    logger.set(i, logger.get(i + 1));
+                    logger.set(i + 1, temp);
                 }
             }
         }
-        clk.add(cpy[0]);
-        for (int i = 0; i < v_clock.length - 2; i++) {
-            if (cpy[i].compareTo(cpy[i + 1]) == 0) {
-                clk.add(cpy[i + 1]);
-            } else {
-                break;
+
+        for (int i = 0; i < logger.size(); i++) {
+            logger.get(i).writeLine();
+            if (i < logger.size()-1) {
+                if (logger.get(i + 1).getVoo() > logger.get(i).getVoo()) {
+                    fic.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
+                    fic.print("|FN  BN| Stat CB SR     Stat      ");
+                    for (int j = 0; j < passMax; j++) {
+                        fic.printf("Q%s", j);
+                    }
+                    fic.print("             ");
+                    for (int j = 0; j < lotação; j++) {
+                        fic.printf("S%s", j);
+                    }
+                    fic.print("     ");
+                    for (int j = 0; j < passMax; j++) {
+                        fic.print("St" + j + " Si" + j + " NR" + j + " NA" + j + "|");
+                    }
+                    fic.println();
+                }
             }
         }
-        return clk;
+    }
+
+    public class Log {
+
+        private VectorCLK ck;
+        private passState[] pstate;
+        private int[] fila;
+        private int[] nMalasTotal;
+        private int[] nMalasActual;
+        private String[] passDest;
+        private int[] assentos;
+        private bagState bstate;
+        private motState mstate;
+        private int malasporao;
+        private int malasBelt;
+        private int malasStore;
+        private int voo;
+
+        public Log(VectorCLK ck, int nvoo, int nMalasPorao, int nMalasBelt, int nMalasStore, passState[] pstate, int[] fila, int[] nMalasTotal, int[] nMalasActual, String[] passDest, int[] assentos, bagState bstate, motState mstate) {
+            this.ck = ck;
+            this.pstate = new passState[passMax];
+            this.fila = new int[passMax];
+            this.nMalasTotal = new int[passMax];
+            this.nMalasActual = new int[passMax];
+            this.passDest = new String[passMax];
+            for (int i = 0; i < passMax; i++) {
+                this.fila[i] = fila[i];
+                this.nMalasActual[i] = nMalasActual[i];
+                this.nMalasTotal[i] = nMalasTotal[i];
+                this.passDest[i] = passDest[i];
+                this.pstate[i] = pstate[i];
+            }
+            this.assentos = new int[lotação];
+            for (int i = 0; i < lotação; i++) {
+                this.assentos[i] = assentos[i];
+            }
+            this.bstate = bstate;
+            this.mstate = mstate;
+            this.voo = nvoo;
+            this.malasporao = nMalasPorao;
+            this.malasBelt = nMalasBelt;
+            this.malasStore = nMalasStore;
+        }
+
+        public int getVoo() {
+            return voo;
+        }
+
+        public VectorCLK getCk() {
+            return ck;
+        }
+
+        public synchronized void writeLine() {
+
+            fic.print("CLK:");
+            for (int i = 0; i < passMax + 2; i++) {
+                fic.printf("%1s,", ck.getVc()[i]);
+            }
+            fic.printf("| ");
+
+            fic.println();
+            fic.printf("|%2s %3s|%4s %3s %3s | %4s fila: [", voo, malasporao, bstate.toString(), malasBelt, malasStore, mstate.toString());
+            for (int i = 0; i < fila.length; i++) {
+                fic.printf("%1d ", fila[i]);
+            }
+
+            fic.print("] autocarro: [");
+            for (int i = 0; i < assentos.length; i++) {
+                fic.printf("%1d ", assentos[i]);
+            }
+            fic.print("]  ");
+            for (int i = 0; i < passMax; i++) {
+                fic.printf("%3s %3s  %1s  %2s |", pstate[i].toString(), passDest[i], nMalasTotal[i], nMalasActual[i]);
+            }
+
+            fic.println();
+        }
+
     }
 }

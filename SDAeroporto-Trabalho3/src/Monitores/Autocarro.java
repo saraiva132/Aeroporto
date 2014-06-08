@@ -128,7 +128,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == bilhetesVendidos) {
             notifyAll();
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -165,7 +165,7 @@ public class Autocarro implements AutocarroInterface {
         if (nOcupantes == 0) {
             notify();
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -198,7 +198,7 @@ public class Autocarro implements AutocarroInterface {
             } catch (InterruptedException ex) {
             }
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -218,7 +218,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -237,7 +237,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -256,7 +256,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (RemoteException e) {
             System.exit(1);
         }
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**
@@ -286,7 +286,7 @@ public class Autocarro implements AutocarroInterface {
         } catch (InterruptedException ex) {
         }
         hasEnded = false;
-        return new VectorCLK(v_clock.CloneVector());
+        return new VectorCLK(v_clock);
     }
 
     /**

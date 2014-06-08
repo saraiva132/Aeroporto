@@ -21,8 +21,9 @@ public class VectorCLK implements Comparable<VectorCLK>, Serializable {
         }
     }
     
-    public VectorCLK(int[] vc) {
-        this.vector = vc;
+    public VectorCLK(VectorCLK vc) {
+        vector = new int[passMax + 2];
+        this.vector = vc.CloneVector();
     }
 
     public int[] getVc() {
