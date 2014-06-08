@@ -1,6 +1,5 @@
 package Interfaces;
 
-import Estruturas.Globals.bagDest;
 import Estruturas.Mala;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
@@ -32,8 +31,9 @@ public interface RecolhaBagageiroInterface extends Remote{
      * Caso o objecto mala seja null notifica todos os passageiros de que já 
      * não existem mais malas no porão do avião 
      * 
+     * @param vc relógio vectorial do bagageiro
      * @param mala mala que o bagageiro transporta e informação do estado actual do porão
-     * @return Local para onde levou a mala:
+     * @return Relógio vectorial actualizado juntamente com o local para onde levou a mala:
      * <ul>
      * <li>STOREROOM, zona de armazenamento temporário de bagagens
      * <li>BELT, zona de recolha de bagagens
@@ -45,5 +45,15 @@ public interface RecolhaBagageiroInterface extends Remote{
      * @throws java.rmi.RemoteException
      */
     public Reply carryItToAppropriateStore(VectorCLK vc, Mala mala) throws RemoteException;
+    
+    /**
+     * Fechar o monitor RecolhaBagagem.
+     * <p>
+     * Invocador: Bagageiro
+     * <p>
+     * O bagageiro, após concluir o seu ciclo de vida invoca a operação para fechar o monitor <i>RecolhaBagagem</i>.
+     * 
+     * @throws RemoteException
+     */
      public void shutdownMonitor() throws RemoteException ;
 }

@@ -14,11 +14,11 @@ import java.rmi.RMISecurityManager;
  * @author Hugo Frade 59399
  */
 public class PoraoMain {
-    
+
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-    
+
     /**
      * Programa Principal.
      */
@@ -28,7 +28,7 @@ public class PoraoMain {
             System.setSecurityManager(new RMISecurityManager());
         }
         GenericIO.writelnString("Security manager was installed!");
-        
+
         PoraoRegister poraoRegister = new PoraoRegister();
         poraoRegister.run();
     }

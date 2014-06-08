@@ -18,16 +18,50 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por obter uma instância do monitor de <b>Logging</b> e por registar o monitor <b>ZonaDesembarque</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class ZonaDesembarqueRegister {
-    
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
+    
+    /**
+     * Instância do monitor <b>ZonaDesembarque</b>
+     * 
+     * @serialField desembarque
+     */
     private ZonaDesembarque desembarque;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>ZonaDesembarque</b>
+     * 
+     * @serialField desembarqueInterface
+     */
     private ZonaDesembarqueInterface desembarqueInterface;
-    private Registry registry ;
+    
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
+    private Registry registry;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
     private LoggingInterface log;
+
+    /**
+     * Instanciação e Inicialização do ZonaDesembarqueRegister
+     */
     
     public ZonaDesembarqueRegister() {
         super();
@@ -54,6 +88,9 @@ public class ZonaDesembarqueRegister {
         }
     }
     
+    /**
+     * Ciclo de vida do ZonaDesembarqueRegister
+     */
     public synchronized void run() {
         String entry = "ZonaDesembarque";
         String nameEntryBase = "RegisterHandler";

@@ -1,6 +1,5 @@
 package Monitores;
 
-
 import static Estruturas.Globals.MON_RECOLHA_BAGAGEM;
 import Estruturas.Globals.bagCollect;
 import Estruturas.Globals.bagDest;
@@ -74,12 +73,26 @@ public class RecolhaBagagem implements RecolhaInterface {
      */
     private final LoggingInterface log;
 
+    /**
+     * Instância do tipo de dados RecolhaBagagemRegister
+     *
+     * @serialField recolha
+     */
     private RecolhaBagagemRegister recolha;
 
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor <b>RecolhaBagagem</b>
+     *
+     * @param log rererência para o objecto remoto correspondente ao monitor de
+     * Logging
+     * @param recolha referência para o tipo de dados RecolhaBagagemRegister
      */
     public RecolhaBagagem(LoggingInterface log, RecolhaBagagemRegister recolha) {
         v_clock = new VectorCLK();
@@ -106,8 +119,10 @@ public class RecolhaBagagem implements RecolhaInterface {
      * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de
      * forma bem sucedida.
      *
+     * @param ts relógio vectorial do passageiro
      * @param bagID identificador da mala
-     * @return Forma como conseguiu apanhar a sua mala:
+     * @return Relógio vectorial actualizado juntamente com a forma como
+     * conseguiu apanhar a sua mala:
      * <ul>
      * <li>MINE, com sucesso
      * <li>UNSUCCESSFUL, sem sucesso
@@ -125,7 +140,7 @@ public class RecolhaBagagem implements RecolhaInterface {
         try {
             log.UpdateVectorCLK(v_clock, MON_RECOLHA_BAGAGEM);
         } catch (RemoteException ex) {
-             System.exit(1);
+            System.exit(1);
         }
         while ((belt.get(bagID) == 0) && !noMoreBags) { //Dupla condição. Se existir uma mala ou se as malas acabarem
             try {
@@ -166,8 +181,10 @@ public class RecolhaBagagem implements RecolhaInterface {
      * Caso o objecto mala seja null notifica todos os passageiros de que já não
      * existem mais malas no porão do avião
      *
+     * @param ts relógio vectorial do bagageiro
      * @param mala mala que o bagageiro transporta
-     * @return Local para onde levou a mala:
+     * @return Relógio vectorial actualizado juntamente com o local para onde
+     * levou a mala:
      * <ul>
      * <li>STOREROOM, zona de armazenamento temporário de bagagens
      * <li>BELT, zona de recolha de bagagens
@@ -234,10 +251,10 @@ public class RecolhaBagagem implements RecolhaInterface {
      * desloca-se ao guichet de reclamação do aeroporto para reclamar a falta
      * da(s) sua(s) mala(s)
      *
-     * @param ts
+     * @param ts relógio vectorial do passageiro
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
-     * @return
+     * @return Relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK reportMissingBags(VectorCLK ts, int passageiroID, int malasPerdidas) {
@@ -266,20 +283,15 @@ public class RecolhaBagagem implements RecolhaInterface {
     }
 
     /**
-     * Terminar o monitor.
+     * Fechar o monitor RecolhaBagagem.
      * <p>
-     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * Invocador: Bagageiro/Passageiro/Motorista
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3
-     * lançadores das threads correspondentes ao passageiro, bagageiro e
-     * motorista necessitam de fechar os monitores.
+     * O bagageiro/passageiro/motorista, após concluir o seu ciclo de vida
+     * invoca a operação para fechar o monitor <i>RecolhaBagagem</i>.
      *
-     * @return Informação se pode ou não terminar o monitor.
-     * <ul>
-     * <li>TRUE, caso possa
-     * <li>FALSE, caso contrário
-     * </ul>
      */
+    @Override
     public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             recolha.close();

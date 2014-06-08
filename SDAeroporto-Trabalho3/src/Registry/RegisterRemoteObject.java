@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
-
-/**
- *
- * @author rafael
- */
 
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
@@ -19,6 +8,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import Interfaces.Register;
 
+/**
+ *  This data type defines a generic functionality to register remote objects in the local registry service.
+ *  Communication is based in Java RMI.
+ */
 public class RegisterRemoteObject implements Register
 {
     

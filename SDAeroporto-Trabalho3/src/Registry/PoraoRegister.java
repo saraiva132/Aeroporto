@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
 import static Estruturas.Globals.MON_PORAO;
@@ -24,17 +18,51 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por obter uma instância do monitor de <b>Logging</b> e por registar o monitor <b>Porao</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class PoraoRegister {
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
     
+    /**
+     * Instância do monitor <b>Porao</b>
+     * 
+     * @serialField porao
+     */
     private Porao porao;
-    private PoraoInterface poraoInterface = null;
-    private Registry registry = null;
-    private LoggingInterface log = null;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Porao</b>
+     * 
+     * @serialField poraoInterface
+     */
+    private PoraoInterface poraoInterface ;
+    
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
+    private Registry registry ;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
+    private LoggingInterface log ;
 
+    
+    /**
+     * Instanciação e Inicialização do PoraoRegister
+     */
     public PoraoRegister() {
         super();
         canEnd = false;
@@ -59,6 +87,9 @@ public class PoraoRegister {
         }
     }
     
+    /**
+     * Ciclo de vida do PoraoRegister
+     */
     public synchronized void run() {
         String entry = "Porao";
         String nameEntryBase = "RegisterHandler";
@@ -113,8 +144,5 @@ public class PoraoRegister {
         canEnd = true;
         notify();
         System.out.printf("Closing...");
-    }
-    
-    
-    
+    }    
 }

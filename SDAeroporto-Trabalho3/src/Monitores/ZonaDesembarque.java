@@ -52,15 +52,29 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * @serialField log
      */
     private final LoggingInterface log;
-    
-    
+
+    /**
+     * Instância do tipo de dados ZonaDesembarqueRegister
+     *
+     * @serialField zona
+     */
     private ZonaDesembarqueRegister zona;
-    
+
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
+
     /**
      * Instanciação e inicialização do monitor <b>ZonaDesembarque</b>
+     *
+     * @param log rererência para o objecto remoto correspondente ao monitor de
+     * Logging
+     * @param zona referência para o tipo de dados ZonaDesembarqueRegister
      */
-    public ZonaDesembarque(LoggingInterface log,ZonaDesembarqueRegister zona) {
+    public ZonaDesembarque(LoggingInterface log, ZonaDesembarqueRegister zona) {
         nPass = passMax;
         canGo = false;
         three_entities_ended = 0;
@@ -76,6 +90,9 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * <p>
      * O bagageiro descansa enquanto o próximo voo não chega e o último
      * passageiro não sai do avião
+     *
+     * @param ts relógio vectorial do bagageiro
+     * @return Relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK takeARest(VectorCLK ts) {
@@ -106,6 +123,7 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * último passageiro deve notificar o bagageiro de que já pode começar a ir
      * buscar as malas ao porão do avião
      *
+     * @param ts relógio vectorial do passageiro
      * @param passageiroID identificador do passageiro
      * @param dest
      * <ul>
@@ -113,7 +131,8 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * <li>FALSE caso contrário
      * </ul>
      * @param nMalas número de malas que o passageiro contém
-     * @return Qual o seu próximo passo dependendo da sua condição:
+     * @return Relógio vectorial actualizado juntamente com qual o seu próximo
+     * passo dependendo da sua condição:
      * <ul>
      * <li> WITH_BAGAGE caso este seja o seu destino e possua bagagens
      * <li> WTHOUT_BAGAGE caso este seja o seu destino e não possua bagagens
@@ -144,10 +163,10 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-             return new Reply(new VectorCLK(v_clock), (Object) destination.WITH_BAGGAGE);
+            return new Reply(new VectorCLK(v_clock), (Object) destination.WITH_BAGGAGE);
 
         } else {
-             return new Reply(new VectorCLK(v_clock), (Object) destination.IN_TRANSIT);
+            return new Reply(new VectorCLK(v_clock), (Object) destination.IN_TRANSIT);
         }
 
     }
@@ -159,6 +178,9 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
      * <p>
      * O bagageiro, após verificar que o porão já se encontra vazio, dirige-se à
      * sua sala de espera
+     *
+     * @param ts relógio vectorial do bagageiro
+     * @return Relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK noMoreBagsToCollect(VectorCLK ts) {
@@ -174,14 +196,12 @@ public class ZonaDesembarque implements ZonaDesembarqueInterface {
     }
 
     /**
-     * Terminar o monitor.
+     * Fechar o monitor ZonaDesembarque.
      * <p>
-     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * Invocador: Bagageiro, Passageiro e Motorista
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3
-     * lançadores das threads correspondentes ao passageiro, bagageiro e
-     * motorista necessitam de fechar os monitores.
-     *
+     * O bagageiro/passageiro/motorista após concluir o seu ciclo de vida invoca
+     * a operação para fechar o monitor <i>ZonaDesembarque</i>.
      */
     @Override
     public synchronized void shutdownMonitor() {

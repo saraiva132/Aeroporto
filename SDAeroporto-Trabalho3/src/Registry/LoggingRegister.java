@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
 import Estruturas.Globals;
@@ -24,17 +18,48 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por registar o monitor <b>Logging</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class LoggingRegister {
-    
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
+    /**
+     * Instância do monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
     private Logging log;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField logInterface
+     */
     private LoggingInterface logInterface;
+    
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
     private Registry registry;
+    
+    /**
+     * 
+     * @serialField stdout
+     */
     private PrintStream stdout;
     
+    /**
+     * Instanciação e Inicialização do LoggingRegister
+     */
     public LoggingRegister() {
         super();
         canEnd = false;
@@ -49,6 +74,9 @@ public class LoggingRegister {
         
     }
     
+    /**
+     * Ciclo de vida do LoggingRegister
+     */
     public synchronized void run() {
         String entry = "Logging";
         String nameEntryBase = "RegisterHandler";

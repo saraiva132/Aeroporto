@@ -101,12 +101,27 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      */
     private final LoggingInterface log;
 
+    /**
+     * Instância do tipo de dados TransferenciaTerminalRegister
+     *
+     * @serialField transf
+     */
     private TransferenciaTerminalRegister transf;
 
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor TransferenciaTerminal
+     *
+     * @param log rererência para o objecto remoto correspondente ao monitor de
+     * Logging
+     * @param transf referência para o tipo de dados
+     * TransferenciaTerminalRegister
      */
     public TransferenciaTerminal(LoggingInterface log, TransferenciaTerminalRegister transf) {
         nVoo = 1;
@@ -139,8 +154,10 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      * sendo-lhe atribuído um ticket com a posição em que se deverá sentar no
      * autocarro. Por fim, espera até que seja a sua vez de entrar no autocarro
      *
+     * @param ts relógio vectorial do motorista
      * @param passageiroID identificador do passageiro
-     * @return Posição do seu assento no autocarro
+     * @return Posição do seu assento no autocarro juntamente com o relógio
+     * vectorial actualizado
      */
     @Override
     public synchronized Reply takeABus(VectorCLK ts, int passageiroID) {
@@ -192,10 +209,12 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      * autocarro
      * <li>Se a hora de partida chegou.
      * </ul>
+     *
      * O trabalho dele acabou se à hora da partida não se encontrar ninguém no
      * passeio!
      *
-     * @return
+     * @param ts relógio vectorial do motorista
+     * @return Relógio vectorial actualizado juntamente com
      * <ul>
      * <li>TRUE, se o dia de trabalho acabou
      * <li>FALSE, caso contrário
@@ -234,8 +253,10 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      * adormece. O objectivo deste método é chamar um passageiro de cada vez por
      * ordem de chegada na fila de espera. Entrada ordenada!
      *
+     * @param ts relógio vectorial do motorista
      * @return Número de passageiros que tomaram interesse em participar na
-     * viagem (limitado à lotação do Autocarro)
+     * viagem (limitado à lotação do Autocarro) juntamente com o relógio
+     * vectorial actualizado
      */
     @Override
     public synchronized Reply announcingBusBoardingShouting(VectorCLK ts) {
@@ -296,26 +317,21 @@ public class TransferenciaTerminal implements TransferenciaInterface {
      * @param nvoo número de voo
      * @param nPassageiros número de passageiros em trânsito neste voo
      */
+    @Override
     public synchronized void setnVoo(int nvoo, int nPassageiros) {
         this.nVoo = nvoo;
         this.passTRT = nPassageiros;
     }
 
     /**
-     * Terminar o monitor.
+     * Fechar o monitor TransferenciaTerminal.
      * <p>
-     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * Invocador: Bagageiro, Passageiro e Motorista
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3
-     * lançadores das threads correspondentes ao passageiro, bagageiro e
-     * motorista necessitam de fechar os monitores.
-     *
-     * @return Informação se pode ou não terminar o monitor.
-     * <ul>
-     * <li>TRUE, caso possa
-     * <li>FALSE, caso contrário
-     * </ul>
+     * O bagageiro/passageiro/motorista após concluir o seu ciclo de vida invoca
+     * a operação para fechar o monitor <i>TransferenciaTerminal</i>.
      */
+    @Override
     public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             transf.close();

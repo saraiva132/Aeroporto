@@ -98,23 +98,28 @@ public class Passageiro extends Thread {
      */
     private TransferenciaPassageiroInterface transferencia;
     
+    /**
+     * Relógio Vectorial do bagageiro.
+     * 
+     * @serialField vc
+     */
     private VectorCLK vc;
     
     
     /**
      * Instanciação e inicialização do passageiro
      *
-     * @param ts
+     * @param ts relógio vectorial do passageiro
      * @param nMalasTotal número de malas total do passageiro
      * @param id identificador do passageiro
      * @param nVoo número do voo em que o passageiro vem
      * @param finalDest TRUE caso este seja o aeroporto de destino do
      * passageiro, FALSE caso contrário
-     * @param zona
-     * @param auto
-     * @param transicao
-     * @param recolha
-     * @param transferencia
+     * @param zona referência para o objecto remoto correspondente ao monitor ZonaDesembarque
+     * @param auto referência para o objecto remoto correspondente ao monitor Autocarro
+     * @param transicao referência para o objecto remoto correspondente ao monitor TransicaoAeroporto
+     * @param recolha referência para o objecto remoto correspondente ao monitor RecolhaBagagem
+     * @param transferencia referência para o objecto remoto correspondente ao monitor TransferenciaTerminal
      */
     public Passageiro(VectorCLK ts,int nMalasTotal, int id, int nVoo, boolean finalDest, ZonaDesembarquePassageiroInterface zona, AutocarroPassageiroInterface auto,
             TransicaoPassageiroInterface transicao, RecolhaPassageiroInterface recolha,

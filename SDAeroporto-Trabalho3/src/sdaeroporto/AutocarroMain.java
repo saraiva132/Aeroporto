@@ -28,10 +28,9 @@ public class AutocarroMain {
             System.setSecurityManager(new RMISecurityManager());
         }
         GenericIO.writelnString("Security manager was installed!");
-        
+
         AutocarroRegister autocarroRegister = new AutocarroRegister();
         autocarroRegister.run();
     }
-    
 
 }

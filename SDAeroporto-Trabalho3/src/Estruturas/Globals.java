@@ -447,13 +447,3 @@ public class Globals {
         System.out.println(lotação);
     }
 }
-
-/*
- public static final String[] hostNames = {"l040101-ws1.clients.ua.pt",
- "l040101-ws2.clients.ua.pt",
- "l040101-ws3.clients.ua.pt",
- "l040101-ws4.clients.ua.pt",
- "l040101-ws5.clients.ua.pt",
- "l040101-ws7.clients.ua.pt",
- "l040101-ws8.clients.ua.pt",};
- */

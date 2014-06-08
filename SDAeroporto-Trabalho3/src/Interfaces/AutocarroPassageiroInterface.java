@@ -24,8 +24,11 @@ public interface AutocarroPassageiroInterface extends Remote{
      * espera que o motorista o leve até à zona de transferência do terminal de 
      * partida.
      * 
+     * @param ts relógio vectorial do passageiro
      * @param ticketID lugar onde o passageiro se pode sentar
      * @param passageiroId identificador do passageiro
+     * @return relógio vectorial actualizado
+     * @throws java.rmi.RemoteException 
      */
     public VectorCLK enterTheBus(VectorCLK ts, int ticketID,int passageiroId) throws RemoteException;
     
@@ -37,11 +40,23 @@ public interface AutocarroPassageiroInterface extends Remote{
      * O passageiro sai do autocarro e caso seja o último a sair notifica o 
      * motorista de que já não há mais ninguém no autocarro.
      * 
+     * @param ts relógio vectorial do passageiro
      * @param passageiroId identificador do passageiro
      * @param ticketID lugar onde o passageiro estava sentado 
+     * @return  relógio vectorial actualizado
+     * @throws java.rmi.RemoteException  
      */
     
     public VectorCLK leaveTheBus(VectorCLK ts, int passageiroId, int ticketID) throws RemoteException;
 
+    /**
+     * Fechar o monitor Autocarro.
+     * <p>
+     * Invocador: Passageiro
+     * <p>
+     * O passageiro, após concluir o seu ciclo de vida invoca a operação para fechar o monitor <i>Autocarro</i>.
+     * 
+     * @throws RemoteException
+     */
     public void shutdownMonitor() throws RemoteException;        
 }

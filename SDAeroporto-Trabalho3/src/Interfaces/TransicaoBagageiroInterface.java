@@ -19,9 +19,21 @@ public interface TransicaoBagageiroInterface extends Remote{
      * <p>
      * Bagageiro dirige-se anuncia aos passageiros de que já acabou de recolher 
      * as malas do porão do avião em que chegaram e que, assim sendo, eles podem sair do aeroporto
+     * @param vc relógio vectorial do bagageiro
+     * @return Relógio vectorial actualizado
+     * @throws java.rmi.RemoteException
      */
     public VectorCLK bagageiroDone(VectorCLK vc) throws RemoteException;
     
+    /**
+     * Fechar o monitor TransicaoAeroporto.
+     * <p>
+     * Invocador: Bagageiro
+     * <p>
+     * O bagageiro, após concluir o seu ciclo de vida invoca a operação para fechar o monitor <i>TransicaoAeroporto</i>.
+     * 
+     * @throws RemoteException
+     */
      public void shutdownMonitor() throws RemoteException;
      
 }

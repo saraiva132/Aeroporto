@@ -159,17 +159,38 @@ public class Logging implements LoggingInterface {
      */
     private int three_entities_ended;
 
+    /**
+     * Referência de um PrintStream para a consola.
+     *
+     * @serialField fic
+     */
     private PrintStream fic;
 
+    /**
+     * Instância do tipo de dadosLoggingRegister
+     *
+     * @serialField log
+     */
     private LoggingRegister log;
 
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
 
+    /**
+     * Referência para o tipo de dados Log
+     *
+     * @serialField logger
+     */
     private ArrayList<Log> logger;
 
     /**
      * Instanciação e inicialização do monitor <b>Logging</b>
      *
+     * @param log referência para o tipo de dados LoggingRegister
      */
     public Logging(LoggingRegister log) {
         try {
@@ -198,8 +219,14 @@ public class Logging implements LoggingInterface {
     }
 
     /**
-     * Auxilia na inicialização do logging
+     * Auxilia a inicialização do Logging.
+     * <p>
+     * Invocador: PassageiroMain
+     * <p>
+     * A cada ciclo da simulação, a PassageiroMain encarrega-se de reportar o
+     * estado inicial.
      */
+    @Override
     public synchronized void reportInitialStatus() {
 
         for (int i = 0; i < passMax; i++) {
@@ -245,7 +272,6 @@ public class Logging implements LoggingInterface {
      * <p>
      * Invocador: Motorista
      *
-     * <p>
      * Motorista reporta mudança do seu estado.
      *
      * @param state novo estado do motorista
@@ -275,18 +301,30 @@ public class Logging implements LoggingInterface {
 
     /**
      * Actualizar o número de voo
+     * <p>
+     * Invocador: PassageiroMain
+     * <p>
+     * A cada ciclo da simulação, a PassageiroMain encarrega-se de actualizar o
+     * número de voo no monitor Logging
      *
      * @param voo número de voo
      */
+    @Override
     public synchronized void nVoo(int voo) {
         this.nVoo = voo;
     }
 
     /**
      * Definir o número de malas que vem no porão do avião que acabou de aterrar
+     * <p>
+     * Invocador: PassageiroMain
+     * <p>
+     * A cada ciclo da simulação, a PassageiroMain encarrega-se de definir o
+     * número de malas que o novo voo traz no seu Porão
      *
-     * @param nMalasPorao número de malas no porão
+     * @param nMalasPorao número de malas
      */
+    @Override
     public synchronized void setPorao(int nMalasPorao) {
         this.nMalasPorao = nMalasPorao;
     }
@@ -379,17 +417,19 @@ public class Logging implements LoggingInterface {
      *
      * @param nMalas número de malas totais que petencem aos passageiros
      */
+    @Override
     public synchronized void malasInicial(int[] nMalas) {
         System.arraycopy(nMalas, 0, nMalasTotal, 0, passMax);
     }
 
     /**
-     * Reportar tipo de passageiro.
-     *
+     * Reportar tipos de passageiros.
      * <p>
-     * No início de cada simulação é necessário reportar o estado dos
-     * passageiros: se estão em trânsito ou se este aeroporto corresponde ao seu
-     * destino
+     * Invocador: PassageiroMain
+     * <p>
+     * A cada ciclo da simulação, a PassageiroMain encarrega-se de reportar o
+     * estado dos passageiros: se estão em trânsito ou se este aeroporto
+     * corresponde ao seu destino
      *
      * @param destino
      * <ul>
@@ -397,6 +437,7 @@ public class Logging implements LoggingInterface {
      * <li>TRUE caso contrário
      * </ul>
      */
+    @Override
     public synchronized void destino(boolean[] destino) {
         for (int i = 0; i < passMax; i++) {
             if (destino[i]) {
@@ -504,12 +545,8 @@ public class Logging implements LoggingInterface {
      * lançadores das threads correspondentes ao passageiro, bagageiro e
      * motorista necessitam de fechar os monitores.
      *
-     * @return Informação se pode ou não terminar o monitor.
-     * <ul>
-     * <li>TRUE, caso possa
-     * <li>FALSE, caso contrário
-     * </ul>
      */
+    @Override
     public synchronized void shutdownMonitor() {
         three_entities_ended--;
         System.out.print(three_entities_ended);
@@ -528,10 +565,20 @@ public class Logging implements LoggingInterface {
         }
     }
 
+    /**
+     * Actualizar o relógio vectorial do monitor Logging
+     *
+     * @param ts relógio vectorial actualizado da entidade
+     * @param id identificador da entidade
+     */
+    @Override
     public synchronized void UpdateVectorCLK(VectorCLK ts, int id) {
         v_clock = new VectorCLK(ts);
     }
 
+    /**
+     * Ordenar as ocorrências das operações com base nas suas timestamps
+     */
     private void sort() {
         Log temp;
 
@@ -547,7 +594,7 @@ public class Logging implements LoggingInterface {
 
         for (int i = 0; i < logger.size(); i++) {
             logger.get(i).writeLine();
-            if (i < logger.size()-1) {
+            if (i < logger.size() - 1) {
                 if (logger.get(i + 1).getVoo() > logger.get(i).getVoo()) {
                     fic.println("|PLANE |   PORTER       DRIVER                                       PASSENGERS");
                     fic.print("|FN  BN| Stat CB SR     Stat      ");
@@ -568,7 +615,10 @@ public class Logging implements LoggingInterface {
         }
     }
 
-    public class Log {
+    /**
+     * Tipo de dados que armazena o estado de uma operação realizada
+     */
+    private class Log {
 
         private VectorCLK ck;
         private passState[] pstate;
@@ -584,6 +634,23 @@ public class Logging implements LoggingInterface {
         private int malasStore;
         private int voo;
 
+        /**
+         * Instanciação e inicialização do tipo de dados Log
+         *
+         * @param ck
+         * @param nvoo
+         * @param nMalasPorao
+         * @param nMalasBelt
+         * @param nMalasStore
+         * @param pstate
+         * @param fila
+         * @param nMalasTotal
+         * @param nMalasActual
+         * @param passDest
+         * @param assentos
+         * @param bstate
+         * @param mstate
+         */
         public Log(VectorCLK ck, int nvoo, int nMalasPorao, int nMalasBelt, int nMalasStore, passState[] pstate, int[] fila, int[] nMalasTotal, int[] nMalasActual, String[] passDest, int[] assentos, bagState bstate, motState mstate) {
             this.ck = ck;
             this.pstate = new passState[passMax];
@@ -610,14 +677,27 @@ public class Logging implements LoggingInterface {
             this.malasStore = nMalasStore;
         }
 
+        /**
+         * Obter o número de voo
+         *
+         * @return Número de voo
+         */
         public int getVoo() {
             return voo;
         }
 
+        /**
+         * Obter o timestamp
+         *
+         * @return relógio vectorial
+         */
         public VectorCLK getCk() {
             return ck;
         }
 
+        /**
+         * Escrever uma operação no ficheiro de logging
+         */
         public synchronized void writeLine() {
 
             fic.print("CLK:");

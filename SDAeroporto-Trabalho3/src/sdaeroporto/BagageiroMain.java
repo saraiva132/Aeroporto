@@ -21,8 +21,7 @@ import java.rmi.registry.Registry;
  * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b>
  * do lado do cliente correspondente ao <i>bagageiro</i>.
  * <p>
- * A comunicação baseia-se em passagem de mensagens sobre sockets usando o
- * protocolo TCP.
+ * A comunicação baseia-se em Java RMI
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399

@@ -18,7 +18,7 @@ public class TransferenciaTerminalMain {
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-    
+
     /**
      * Programa Principal.
      */
@@ -28,7 +28,7 @@ public class TransferenciaTerminalMain {
             System.setSecurityManager(new RMISecurityManager());
         }
         GenericIO.writelnString("Security manager was installed!");
-        
+
         TransferenciaTerminalRegister tranferenciaRegister = new TransferenciaTerminalRegister();
         tranferenciaRegister.run();
     }

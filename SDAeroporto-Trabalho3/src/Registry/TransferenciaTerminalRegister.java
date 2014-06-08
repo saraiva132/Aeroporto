@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
 import Estruturas.Globals;
@@ -24,16 +18,52 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por obter uma instância do monitor de <b>Logging</b> e por registar o monitor <b>TransferenciaTerminal</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class TransferenciaTerminalRegister {
+    
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
+    
+    /**
+     * Instância do monitor <b>TransferenciaTerminal</b>
+     * 
+     * @serialField transferencia
+     */
     private TransferenciaTerminal transferencia;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>TransferenciaTerminal</b>
+     * 
+     * @serialField transfInterface
+     */
     private TransferenciaInterface transfInterface;
+    
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
     private Registry registry;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
     private LoggingInterface log;    
     
+    
+    /**
+     * Instanciação e Inicialização do TransferenciaTerminalRegister
+     */
     public TransferenciaTerminalRegister() {
         super();
         canEnd = false;
@@ -57,7 +87,9 @@ public class TransferenciaTerminalRegister {
         }
         
     }
-    
+    /**
+     * Ciclo de vida TransferenciaTerminalRegister
+     */
     public synchronized void run() {
         String entry = "TransferenciaTerminal";
         String nameEntryBase = "RegisterHandler";
@@ -104,8 +136,7 @@ public class TransferenciaTerminalRegister {
             UnicastRemoteObject.unexportObject(transferencia, false);
         } catch (NoSuchObjectException ex) {
         }
-    }
-    
+    }    
     
     /**
      * Terminar a execução do serviço referente ao monitor
@@ -115,6 +146,5 @@ public class TransferenciaTerminalRegister {
         canEnd = true;
         notify();
         System.out.printf("Closing...");
-    }
-    
+    }    
 }

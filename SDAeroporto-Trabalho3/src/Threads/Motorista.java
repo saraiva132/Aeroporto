@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Threads;
-
-import Estruturas.Globals.motState;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import Interfaces.AutocarroMotoristaInterface;
@@ -36,11 +34,18 @@ public class Motorista extends Thread {
      * @serialField transferencia
      */
     private TransferenciaMotoristaInterface transferencia;
-    
+    /**
+     * Relógio Vectorial do motorista.
+     * 
+     * @serialField clk
+     */
     private VectorCLK clk;
 
     /**
      * Instanciação e inicialização do motorista
+     * 
+     * @param auto referência para o objecto remoto correspondente ao monitor Autocarro
+     * @param transferencia referência para o objecto remoto correspondente ao monitor TransferenciaTerminal
      */
     public Motorista(AutocarroMotoristaInterface auto, TransferenciaMotoristaInterface transferencia) {
         this.auto = auto;

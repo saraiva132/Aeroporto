@@ -1,6 +1,5 @@
 package Interfaces;
 
-import Estruturas.Globals.bagCollect;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import java.rmi.Remote;
@@ -27,9 +26,9 @@ public interface RecolhaPassageiroInterface extends Remote{
      * Simula, ainda, se o passageiro consegue ou não apanhar a sua mala de forma
      * bem sucedida.
      * 
-     * @param ts
+     * @param ts relógio vectorial do passageiro
      * @param bagID identificador da mala
-     * @return Forma como conseguiu apanhar a sua mala: 
+     * @return Relógio vectorial actualizado juntamente com a forma como conseguiu apanhar a sua mala: 
      * <ul>
      * <li>MINE, com sucesso 
      * <li>UNSUCCESSFUL, sem sucesso 
@@ -53,12 +52,32 @@ public interface RecolhaPassageiroInterface extends Remote{
      * desloca-se ao guichet de reclamação do aeroporto para reclamar a falta da(s)
      * sua(s) mala(s)
      * 
+     * @param vc relógio vectorial do passageiro
      * @param passageiroID identificador do passageiro
      * @param malasPerdidas número de malas perdidas
+     * @return Relógio vectorial actualizado
+     * @throws java.rmi.RemoteException
      */
     public VectorCLK reportMissingBags(VectorCLK vc, int passageiroID,int malasPerdidas)throws RemoteException;
     
+    /**
+     * Função auxiliar utilizada a cada iteração da simulação.
+     * <p>
+     * Invocador: PassageiroMain
+     * <p>
+     * A cada ciclo da simulação, o PassageiroMain encarrega-se de fazer reset à variável que identifica que não existem mais malas para recolher na passadeira.
+     * @throws RemoteException 
+     */
     public void resetNoMoreBags() throws RemoteException;
     
+    /**
+     * Fechar o monitor RecolhaBagagem.
+     * <p>
+     * Invocador: Passageiro
+     * <p>
+     * O passageiro, após concluir o seu ciclo de vida invoca a operação para fechar o monitor <i>RecolhaBagagem</i>.
+     * 
+     * @throws RemoteException
+     */
     public void shutdownMonitor() throws RemoteException;
 }

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
 import Estruturas.Globals;
@@ -24,15 +18,51 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por obter uma instância do monitor de <b>Logging</b> e por registar o monitor <b>RecolhaBagagem</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class RecolhaBagagemRegister {
+    
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
+    
+    /**
+     * Instância do monitor <b>RecolhaBagagem</b>
+     * 
+     * @serialField recolha
+     */
     private RecolhaBagagem recolha ;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>RecolhaBagagem</b>
+     * 
+     * @serialField recolhaInterface
+     */
     private RecolhaInterface recolhaInterface ;
+    
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
     private Registry registry ;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
     private LoggingInterface log ;
+    
+    /**
+     * Instanciação e Inicialização do RecolhaBagagemRegister
+     */
     public RecolhaBagagemRegister() {
         super();
         canEnd = false;
@@ -57,6 +87,9 @@ public class RecolhaBagagemRegister {
         }
     }
     
+    /**
+     * Ciclo de vida do RecolhaBagagemRegister
+     */
     public synchronized void run() {
         String entry = "RecolhaBagagem";
         String nameEntryBase = "RegisterHandler";
@@ -104,7 +137,6 @@ public class RecolhaBagagemRegister {
         } catch (NoSuchObjectException ex) {
         }
     }
-    
     
     
     /**

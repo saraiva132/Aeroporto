@@ -44,17 +44,28 @@ public class Bagageiro extends Thread {
      */
     private RecolhaBagageiroInterface recolha;
 
+    /**
+     * Auxilia a simulação do ciclo de vida e as operações que o bagageiro pode
+     * realizar sobre a zona de transição do aeroporto
+     * 
+     * @serialField transicao
+     */
     private TransicaoBagageiroInterface transicao;
 
+    /**
+     * Relógio Vectorial do bagageiro.
+     * 
+     * @serialField vc
+     */
     private VectorCLK vc;
 
     /**
      * Instanciação e inicialização do bagageiro
      *
-     * @param zona
-     * @param porao
-     * @param recolha
-     * @param transicao
+     * @param zona referência para o objecto remoto correspondente ao monitor ZonaDesembarque
+     * @param porao referência para o objecto remoto correspondente ao monitor Porao 
+     * @param recolha referência para o objecto remoto correspondente ao monitor RecolhaBagagem
+     * @param transicao referência para o objecto remoto correspondente ao monitor TransicaoAeroporto
      */
     public Bagageiro(ZonaDesembarqueBagageiroInterface zona, PoraoBagageiroInterface porao,
             RecolhaBagageiroInterface recolha, TransicaoBagageiroInterface transicao) {

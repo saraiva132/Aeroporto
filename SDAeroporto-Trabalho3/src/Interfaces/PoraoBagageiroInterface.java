@@ -1,6 +1,5 @@
 package Interfaces;
 
-import Estruturas.Mala;
 import Estruturas.Reply;
 import Estruturas.VectorCLK;
 import java.rmi.Remote;
@@ -23,8 +22,20 @@ public interface PoraoBagageiroInterface extends Remote{
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre
      * vazio recolhe uma mala
      *
-     * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se encontrar vazio
+     * @param vc relógio vectorial do bagageiro
+     * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se encontrar vazio juntamente com relógio vectorial actualizado
+     * @throws java.rmi.RemoteException
      */
     public Reply tryToCollectABag(VectorCLK vc) throws RemoteException;
+    
+    /**
+     * Fechar o monitor Porao.
+     * <p>
+     * Invocador: Bagageiro
+     * <p>
+     * O Bagageiro, após concluir o seu ciclo de vida invoca a operação para fechar o monitor <i>Porao</i>.
+     * 
+     * @throws RemoteException 
+     */
     public void shutdownMonitor() throws RemoteException ;
 }

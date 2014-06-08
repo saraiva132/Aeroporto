@@ -74,12 +74,26 @@ public class Autocarro implements AutocarroInterface {
      */
     private final LoggingInterface log;
 
+    /**
+     * Instância do tipo de dados AutocarroRegister
+     *
+     * @serialField auto
+     */
     private final AutocarroRegister auto;
 
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
 
     /**
      * Instanciação e inicialização do monitor <b>Autocarro</b>
+     *
+     * @param log rererência para o objecto remoto correspondente ao monitor de
+     * Logging
+     * @param auto referência para o tipo de dados AutocarroRegister
      */
     public Autocarro(LoggingInterface log, AutocarroRegister auto) {
         hasEnded = false;
@@ -105,10 +119,10 @@ public class Autocarro implements AutocarroInterface {
      * motorista que já se sentou e espera que o motorista o leve até à zona de
      * transferência do terminal de partida.
      *
-     * @param ts
+     * @param ts relógio vectorial do passageiro
      * @param ticketID lugar onde o passageiro se pode sentar
      * @param passageiroId identificador do passageiro
-     * @return
+     * @return relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK enterTheBus(VectorCLK ts, int ticketID, int passageiroId) {
@@ -139,9 +153,10 @@ public class Autocarro implements AutocarroInterface {
      * O passageiro sai do autocarro e caso seja o último a sair notifica o
      * motorista de que já não há mais ninguém no autocarro.
      *
-     * @param ts
+     * @param ts relógio vectorial do passageiro
+     * @param passageiroId identificador do passageiro
      * @param ticketID lugar onde o passageiro estava sentado
-     * @return
+     * @return relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK leaveTheBus(VectorCLK ts, int passageiroId, int ticketID) {
@@ -176,10 +191,10 @@ public class Autocarro implements AutocarroInterface {
      * Motorista espera que todos os passageiros entrem no autocarro para poder
      * seguir
      *
-     * @param ts
-     * @param bilhetesvendidos - Número de bilhetes vendidos (corresponde ao
+     * @param ts relógio vectorial do motorista
+     * @param bilhetesvendidos Número de bilhetes vendidos (corresponde ao
      * número de passageiros que estão à espera)
-     * @return 
+     * @return relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK announcingBusBoardingWaiting(VectorCLK ts, int bilhetesvendidos) {
@@ -206,8 +221,11 @@ public class Autocarro implements AutocarroInterface {
      * <p>
      * Invocador: Motorista
      * <p>
-     * Motorista conduz os passageiros para o proximo terminal.
+     * Motorista conduz os passageiros que se encontram em trânsito para o
+     * terminal de partida.
      *
+     * @param ts relógio vectorial do motorista
+     * @return relógio vectorial actualizado
      */
     @Override
     public VectorCLK goToDepartureTerminal(VectorCLK ts) {
@@ -227,6 +245,9 @@ public class Autocarro implements AutocarroInterface {
      * Invocador: Motorista
      * <p>
      * Motorista retorna ao terminal de chegada.
+     *
+     * @param ts relógio vectorial do motorista
+     * @return relógio vectorial actualizado
      */
     @Override
     public VectorCLK goToArrivalTerminal(VectorCLK ts) {
@@ -246,6 +267,9 @@ public class Autocarro implements AutocarroInterface {
      * Invocador: Motorista
      * <p>
      * Motorista estaciona o autocarro no terminal de chegada.
+     *
+     * @param ts relógio vectorial do motorista
+     * @return relógio vectorial actualizado
      */
     @Override
     public VectorCLK parkTheBus(VectorCLK ts) {
@@ -264,8 +288,11 @@ public class Autocarro implements AutocarroInterface {
      * <p>
      * Invocador: Motorista
      * <p>
-     * Motorista estaciona o autocarro e larga os passageiros, ele bloqueia até
-     * que o ultimo passageiro saia do Autocarro e o acorde.
+     * Motorista estaciona o autocarro e larga os passageiros; bloqueia até que
+     * o último passageiro saia do autocarro e o acorde.
+     *
+     * @param ts relógio vectorial do motorista
+     * @return relógio vectorial actualizado
      */
     @Override
     public synchronized VectorCLK parkTheBusAndLetPassOff(VectorCLK ts) {
@@ -290,20 +317,12 @@ public class Autocarro implements AutocarroInterface {
     }
 
     /**
-     * Terminar o monitor.
+     * Fechar o monitor Autocarro.
      * <p>
-     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * Invocador: Bagageiro, Passageiro e Motorista
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3
-     * lançadores das threads correspondentes ao passageiro, bagageiro e
-     * motorista necessitam de fechar os monitores.
-     *
-     * @return Informação se pode ou não terminar o monitor.
-     * <ul>
-     * <li>TRUE, caso possa
-     * <li>FALSE, caso contrário
-     * </ul>
-     * @throws Estruturas.ShutdownException
+     * O bagageiro/passageiro/motorista após concluir o seu ciclo de vida invoca
+     * a operação para fechar o monitor <i>Autocarro</i>.
      */
     @Override
     public synchronized void shutdownMonitor() {

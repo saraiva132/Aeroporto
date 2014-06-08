@@ -48,13 +48,26 @@ public class Porao implements PoraoInterface {
      */
     private final LoggingInterface log;
 
+    /**
+     * Instância do tipo de dados VectorCLK.
+     *
+     * @serialField v_clock
+     */
     private VectorCLK v_clock;
 
+    /**
+     * Referência para o tipo de dados PoraoRegister
+     *
+     * @serialField porao
+     */
     private PoraoRegister porao;
 
     /**
      * Instanciação e inicialização do monitor <b>Porao</b>
      *
+     * @param log rererência para o objecto remoto correspondente ao monitor de
+     * Logging
+     * @param porao referência para o tipo de dados PoraoRegister
      */
     public Porao(LoggingInterface log, PoraoRegister porao) {
         this.malas = new ArrayList<>();
@@ -72,8 +85,9 @@ public class Porao implements PoraoInterface {
      * O bagageiro desloca-se ao porão do avião e caso este não se encontre
      * vazio recolhe uma mala
      *
+     * @param ts relógio vectorial do bagageiro
      * @return Mala que apanhou no porão, ou <i>null</i> caso o porão se
-     * encontrar vazio
+     * encontrar vazio juntamente com relógio vectorial actualizado
      */
     @Override
     public synchronized Reply tryToCollectABag(VectorCLK ts) {
@@ -102,21 +116,16 @@ public class Porao implements PoraoInterface {
     }
 
     /**
-     * Terminar o monitor.
+     * Fechar o monitor Porao.
      * <p>
-     * Invocadores: BagageiroMain, MotoristaMain e PassageiroMain
+     * Invocador: Bagageiro/Passageiro/Motorista
      * <p>
-     * No final da execução da simulação, para o fechar o monitor os 3
-     * lançadores das threads correspondentes ao passageiro, bagageiro e
-     * motorista necessitam de fechar os monitores.
+     * O bagageiro/passageiro/motorista, após concluir o seu ciclo de vida
+     * invoca a operação para fechar o monitor <i>Porao</i>.
      *
-     * @return Informação se pode ou não terminar o monitor.
-     * <ul>
-     * <li>TRUE, caso possa
-     * <li>FALSE, caso contrário
-     * </ul>
      */
-      public synchronized void shutdownMonitor() {
+    @Override
+    public synchronized void shutdownMonitor() {
         if (++three_entities_ended >= 3) {
             porao.close();
         }

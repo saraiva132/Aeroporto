@@ -24,18 +24,17 @@ import java.util.Random;
  * Este tipo de dados simula a solução ao problema <b>Rapsódia no Aeroporto</b>
  * do lado do cliente correspondente ao <i>passageiro</i>.
  * <p>
- * A comunicação baseia-se em passagem de mensagens sobre sockets usando o
- * protocolo TCP.
+ * A comunicação baseia-se em Java RMI
  *
  * @author Rafael Figueiredo 59863
  * @author Hugo Frade 59399
  */
 public class PassageiroMain {
-    
+
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-    
+
     /**
      * Programa Principal
      */
@@ -78,8 +77,8 @@ public class PassageiroMain {
             e.printStackTrace();
             System.exit(1);
         }
-        VectorCLK [] clk = new VectorCLK[passMax];
-        for(int i = 0; i < clk.length;i++){
+        VectorCLK[] clk = new VectorCLK[passMax];
+        for (int i = 0; i < clk.length; i++) {
             clk[i] = new VectorCLK();
         }
         for (int i = 0; i < nChegadas; i++) {
@@ -94,7 +93,7 @@ public class PassageiroMain {
                     malas.add(new Mala(j, !dest[j]));
                 }
             }
-            
+
             Mala[] obj = new Mala[malas.size()];
 
             for (int k = 0; k < malas.size(); k++) {
@@ -111,9 +110,9 @@ public class PassageiroMain {
             } catch (RemoteException e) {
                 System.exit(1);
             }
-            
+
             for (int j = 0; j < passMax; j++) {
-                passageiro[j] = new Passageiro(clk[j],nMalasPass[j], j, i + 1, dest[j], desembarqueInter, autoInter, transicaoInter, recolhaInter, transferenciaInter);
+                passageiro[j] = new Passageiro(clk[j], nMalasPass[j], j, i + 1, dest[j], desembarqueInter, autoInter, transicaoInter, recolhaInter, transferenciaInter);
             }
 
             try {
@@ -143,7 +142,7 @@ public class PassageiroMain {
 
             malas.clear();
         }
-       try {
+        try {
             logInter.shutdownMonitor();
             transferenciaInter.shutdownMonitor();
             autoInter.shutdownMonitor();

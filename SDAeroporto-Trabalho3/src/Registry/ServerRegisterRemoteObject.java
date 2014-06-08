@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Registry;
 
 import Estruturas.Globals;
@@ -17,15 +12,21 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
- *
- * @author rafael
+ *  This data type instantiates and registers a remote object that enables the registration of other remote objects
+ *  located in the same or other processing nodes in the local registry service.
+ *  Communication is based in Java RMI.
  */
-public class ServerRegisterRemoteObject {
+
+public class ServerRegisterRemoteObject
+{
+  
 
     static {
         System.setProperty("java.security.policy", "java.policy");
     }
-
+/**
+   *  Main task.
+   */
     public static void main(String[] args) {
         Globals.xmlParser();
         if (System.getSecurityManager() == null) {

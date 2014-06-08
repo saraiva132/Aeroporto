@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Registry;
 
 import Estruturas.Globals;
@@ -13,7 +7,7 @@ import static Estruturas.Globals.registryPort;
 import Interfaces.LoggingInterface;
 import Interfaces.Register;
 import Interfaces.TransicaoInterface;
-import Monitores.TransiçãoAeroporto;
+import Monitores.TransicaoAeroporto;
 import genclass.GenericIO;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NoSuchObjectException;
@@ -24,17 +18,51 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 /**
+ * Este tipo de dados é responsável por obter uma instância do monitor de <b>Logging</b> e por registar o monitor <b>TransicaoAeroporto</b>.
  *
- * @author Hugo
+ * @author Rafael Figueiredo 59863
+ * @author Hugo Frade 59399
  */
 public class TransicaoAeroportoRegister {
+    
+    /**
+     * Identifica se já se pode terminar a execução do serviço.
+     * 
+     * @serialField canEnd
+     */
     private boolean canEnd;
-    private TransiçãoAeroporto transicao;
+    
+    /**
+     * Instância do monitor <b>TransicaoAeroporto</b>
+     * 
+     * @serialField transicao
+     */
+    private TransicaoAeroporto transicao;
+    
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>TransicaoAeroporto</b>
+     * 
+     * @serialField transicaoInterface
+     */
     private TransicaoInterface transicaoInterface ;
-    private Registry registry ;
-    private LoggingInterface log ;
     
+    /**
+     * Instância da interface que contêm os métodos para guardar e retirar referências para objectos remotos.
+     * 
+     * @serialField registry
+     */
+    private Registry registry;
     
+    /**
+     * Instância do objecto que define as operações que podem ser realizadas sobre o monitor <b>Logging</b>
+     * 
+     * @serialField log
+     */
+    private LoggingInterface log;
+
+    /**
+     * Instanciação e Inicialização do TransicaoAeroportoRegister
+     */
     public TransicaoAeroportoRegister() {
         super();
         canEnd=false;
@@ -51,7 +79,7 @@ public class TransicaoAeroportoRegister {
             e.printStackTrace();
             System.exit(1);
         }
-        transicao = new TransiçãoAeroporto(log,this);
+        transicao = new TransicaoAeroporto(log,this);
         try {
             transicaoInterface = (TransicaoInterface) UnicastRemoteObject.exportObject(transicao, portNumber[Globals.MON_TRANSICAO_AEROPORTO]);
         } catch (RemoteException e) {
@@ -60,6 +88,9 @@ public class TransicaoAeroportoRegister {
         }
     }
     
+    /**
+     * Ciclo de vida do TransicaoAeroportoRegister
+     */
     public synchronized void run() {
         String entry = "TransiçãoAeroporto";
         String nameEntryBase = "RegisterHandler";

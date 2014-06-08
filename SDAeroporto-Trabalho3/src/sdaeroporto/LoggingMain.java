@@ -21,7 +21,6 @@ public class LoggingMain {
 
     /**
      * Programa Principal.
-     * @param args
      */
     public static void main(String[] args) {
         Globals.xmlParser();
